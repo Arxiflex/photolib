@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- What FileProvider may share: the cache directory, where the app writes the diagnostic bundle. -->
+<paths>
+    <cache-path name="cache" path="." />
+</paths>

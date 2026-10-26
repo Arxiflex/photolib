@@ -1,0 +1,102 @@
+syntax = "proto3";
+
+package photolib.kernel.v1;
+
+// A lockbox slot: one factor that unlocks the device.
+message LockboxSlot {
+  // 1 keystore, 2 passcode, 3 biometric, 4 recovery code, 5 account.
+  uint32 factor = 1;
+  // The passcode's key includes the hardware binding.
+  bool hardware = 2;
+  // The account of factor 5.
+  bytes user_id = 3;
+  // The passcode's Argon2id parameters, held to the device policy.
+  bytes params = 4;
+  // The slot's PLW; sealing keeps it when the slot names no key.
+  bytes wrap = 5;
+  // When sealing, the factor's key, to wrap the device data key under anew.
+  uint32 key = 6;
+  // With a key: 24 random bytes.
+  bytes nonce = 7;
+}
+
+// Seals a lockbox: the device data key wrapped under each slot's key, or kept from the lockbox it replaces.
+message SealLockboxRequest {
+  // The device data key.
+  uint32 key = 1;
+  bytes device_id = 2;
+  repeated LockboxSlot slots = 3;
+}
+
+// A lockbox.
+message SealLockboxResponse {
+  bytes lockbox = 1;
+}
+
+// Checks a lockbox and lists its slots without opening any.
+message ReadLockboxRequest {
+  bytes lockbox = 1;
+}
+
+// What a lockbox holds; its slots carry their wraps, for sealing a lockbox that keeps them.
+message ReadLockboxResponse {
+  bytes device_id = 1;
+  // The key_id of the device data key.
+  bytes key_id = 2;
+  repeated LockboxSlot slots = 3;
+}
+
+// Opens a lockbox slot with its factor's key: the device data key enters the keyring.
+message OpenLockboxRequest {
+  bytes lockbox = 1;
+  uint32 slot = 2;
+  uint32 key = 3;
+}
+
+// Asks for the public key of an inbox key, which locked work seals journal entries to.
+message InboxPublicKeyRequest {
+  uint32 key = 1;
+}
+
+// An X25519 public key, 32 bytes.
+message InboxPublicKeyResponse {
+  bytes public_key = 1;
+}
+
+// Seals a journal entry to an inbox public key; it needs no secret.
+message SealJournalEntryRequest {
+  bytes public_key = 1;
+  // 32 random bytes.
+  bytes randomness = 2;
+  bytes plaintext = 3;
+}
+
+// A sealed journal entry.
+message SealJournalEntryResponse {
+  bytes entry = 1;
+}
+
+// Opens a journal entry with the inbox key.
+message OpenJournalEntryRequest {
+  uint32 key = 1;
+  bytes entry = 2;
+}
+
+// The plaintext of a journal entry.
+message OpenJournalEntryResponse {
+  bytes plaintext = 1;
+}
+
+// Derives the page key of a database file from the device data key. It is the one key a response carries, because
+// SQLite3MultipleCiphers must hold it (ADR-0057).
+message DatabaseKeyRequest {
+  // The device data key.
+  uint32 key = 1;
+  // The 16-byte id of the database file.
+  bytes file_id = 2;
+}
+
+// HKDF(DDK, "photolib/v1/local/db" ‖ file_id), 32 bytes.
+message DatabaseKeyResponse {
+  bytes page_key = 1;
+}

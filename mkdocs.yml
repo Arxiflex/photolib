@@ -1,0 +1,27 @@
+site_name: Photolib
+site_description: User, administrator and developer documentation and architecture decision records
+site_url: https://arxiflex.github.io/photolib/
+repo_url: https://github.com/Arxiflex/photolib
+strict: true
+
+theme:
+  name: mkdocs
+  highlightjs: false # the theme would load it from a CDN (ADR-0017)
+extra_css:
+  - css/extra.css
+
+# Pages are reached from the README.md of their section, so only the sections are listed here.
+nav:
+  - Home: README.md
+  - User guide: user/README.md
+  - Administrator guide: admin/README.md
+  - Developer guide: dev/README.md
+  - Architecture decisions: adr/README.md
+
+validation:
+  nav:
+    omitted_files: ignore
+  links:
+    not_found: warn
+    unrecognized_links: warn
+    anchors: warn

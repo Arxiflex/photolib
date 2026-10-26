@@ -1,0 +1,58 @@
+# Build output and caches
+/.cache/
+/site/
+/server/target/
+/kernel/target/
+target/
+node_modules/
+/viewer/dist/
+.dart_tool/
+__pycache__/
+*.pyc
+/app/build
+/app/packages/*/build
+/app/packages/photolib_editor/test/assets/
+/app/test/features/viewer/assets/
+/app/test/failures/
+/app/.flutter-plugins*
+/app/web/sqlite3mc.wasm
+/app/web/drift_worker.js
+/app/web/data_worker.js
+/app/web/metadata_worker.js
+/app/web/hash_worker.js
+/app/web/hls.min.js
+/app/web/hls.LICENSE.txt
+/app/web/kernel/
+/tools/dev/caddy-root.crt
+/app/ios/Pods/
+/app/macos/Pods/
+# Flutter writes these on the first iOS or macOS build (CocoaPods); the tracked .xcconfig files it edits stay as committed.
+/app/ios/Podfile
+/app/ios/Podfile.lock
+/app/macos/Podfile
+/app/macos/Podfile.lock
+*.log
+*.tmp
+*.swp
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.iml
+
+# Secrets and key material never belong in the repository. Test vectors are JSON; add a deliberate fixture with
+# `git add -f` and say why in the commit.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa*
+id_ed25519*
+/secrets/

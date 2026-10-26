@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "path": "compound/odd/trailing-data.jpg",
+  "size": 1494,
+  "sha256": "8986201d0991c979631203f0b40bd7d9fd8a781c5299b3435648b7b34bc58c47",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "trailing_data"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 320,
+    "height": 240
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

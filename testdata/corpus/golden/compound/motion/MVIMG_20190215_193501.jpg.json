@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "path": "compound/motion/MVIMG_20190215_193501.jpg",
+  "size": 83664,
+  "sha256": "2900a8586cb973e8ef042857dd9b51dc3722df7593bd465089a31051278da108",
+  "origin": "synthetic",
+  "notes": "The embedded motion video is a placeholder.",
+  "format": "jpeg",
+  "vendor": "google",
+  "quirks": [
+    "micro_video"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 4032,
+    "height": 3024,
+    "make": "Google",
+    "model": "Pixel 3",
+    "motion": {
+      "offset": 82913,
+      "length": 751
+    }
+  },
+  "filename": {
+    "matches": [
+      "F02",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2019-02-15T19:35:01",
+        "precision": "s",
+        "event": "capture"
+      },
+      {
+        "source": "filename:F02",
+        "kind": "local",
+        "value": "2019-02-15T19:35:01",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-02-15T19:35:01",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

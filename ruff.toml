@@ -1,0 +1,5 @@
+# Python is linted with ruff's default rules plus E501 at 120 columns (docs/dev/lint.md).
+line-length = 120
+
+[lint]
+extend-select = ["E501"]

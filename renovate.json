@@ -1,0 +1,61 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "timezone": "UTC",
+  "schedule": ["before 6am on Monday"],
+  "minimumReleaseAge": "7 days",
+  "osvVulnerabilityAlerts": true,
+  "automerge": true,
+  "prConcurrentLimit": 6,
+  "labels": ["dependencies"],
+  "semanticCommits": "enabled",
+  "semanticCommitType": "chore",
+  "semanticCommitScope": "deps",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 6am on Monday"]
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "The gitleaks image the gate's secret scan runs when gitleaks is not installed",
+      "managerFilePatterns": ["/^tools/tests/test_secrets\\.sh$/"],
+      "matchStrings": ["(?<depName>zricethezav/gitleaks):(?<currentValue>v\\d+\\.\\d+\\.\\d+)"],
+      "datasourceTemplate": "docker"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["fvm"],
+      "enabled": false,
+      "description": "The Flutter pin moves only through the upgrade gates (docs/dev/flutter.md)"
+    },
+    {
+      "matchManagers": ["cargo"],
+      "groupName": "rust crates"
+    },
+    {
+      "matchManagers": ["pub"],
+      "groupName": "dart packages"
+    },
+    {
+      "matchManagers": ["npm"],
+      "groupName": "npm packages"
+    },
+    {
+      "matchManagers": ["gradle", "gradle-wrapper"],
+      "groupName": "android build"
+    },
+    {
+      "matchManagers": ["dockerfile", "docker-compose"],
+      "groupName": "container images"
+    },
+    {
+      "matchManagers": ["github-actions", "custom.regex"],
+      "groupName": "ci tooling"
+    }
+  ]
+}

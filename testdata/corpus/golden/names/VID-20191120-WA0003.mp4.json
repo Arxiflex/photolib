@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "path": "names/VID-20191120-WA0003.mp4",
+  "size": 747,
+  "sha256": "cf242e60a1507cfb376ac2d1cae27f5528679e31f5b0aab80bd625b044cd3c1b",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mp4",
+  "quirks": [
+    "messenger_copy",
+    "mvhd_zero",
+    "upper_bound_name"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "h264"
+  },
+  "filename": {
+    "matches": [
+      "F25"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F25",
+        "kind": "local",
+        "value": "2019-11-20",
+        "precision": "day",
+        "event": "receive"
+      }
+    ],
+    "resolved": {
+      "local": "2019-11-20",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "day",
+      "bound": "upper",
+      "source": "filename:F25",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "path": "stills/recompressed.jxl",
+  "size": 88,
+  "sha256": "3dd2e81d39099854c4938fe9a8751d571929ccd936e57d1283103dd11a1c88ca",
+  "origin": "synthetic",
+  "notes": "Placeholder JPEG XL payload: the structure and metadata are real, the image does not decode.",
+  "format": "jxl",
+  "quirks": [
+    "jxl_recompressed_jpeg"
+  ],
+  "media": {
+    "container": "jxl",
+    "mime": "image/jxl",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 64,
+    "height": 48
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

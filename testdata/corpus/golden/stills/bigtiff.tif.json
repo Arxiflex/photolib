@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "path": "stills/bigtiff.tif",
+  "size": 19392,
+  "sha256": "80c2850cd2a2797448a113d27d70a31f31d931d09423967e3d39ae2336d4c0dd",
+  "origin": "synthetic",
+  "format": "tiff",
+  "quirks": [
+    "bigtiff"
+  ],
+  "media": {
+    "container": "tiff",
+    "mime": "image/tiff",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "path": "names/photo_2023-12-31_12-34-56.jpg",
+  "size": 3415,
+  "sha256": "d20bff551d149fcea6baab3abeecc182b67b9393c6786c4e8525aa232f45f3bf",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "messenger_copy",
+    "upper_bound_name"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F28",
+      "F52",
+      "F54"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F28",
+        "kind": "local",
+        "value": "2023-12-31T12:34:56",
+        "precision": "s",
+        "event": "save"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12-31T12:34:56",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "upper",
+      "source": "filename:F28",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

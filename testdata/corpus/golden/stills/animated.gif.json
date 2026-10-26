@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "path": "stills/animated.gif",
+  "size": 3807,
+  "sha256": "a8a31256e28a82255c1563b81e404d3c0fd664a12d095b9e2569edffcaa82095",
+  "origin": "synthetic",
+  "format": "gif",
+  "quirks": [
+    "animated"
+  ],
+  "media": {
+    "container": "gif",
+    "mime": "image/gif",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

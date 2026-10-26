@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "path": "stills/palette.png",
+  "size": 1084,
+  "sha256": "84671c4a0c5d21c741f991715dd606829ea51f367b40d98a5361b679555307c9",
+  "origin": "synthetic",
+  "format": "png",
+  "quirks": [],
+  "media": {
+    "container": "png",
+    "mime": "image/png",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

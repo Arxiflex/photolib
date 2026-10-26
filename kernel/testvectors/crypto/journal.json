@@ -1,0 +1,108 @@
+{
+ "construction": "Sealed journal entries to the inbox key",
+ "spec": "docs/dev/crypto-v1.md#sealed-journal-entries",
+ "valid": [
+  {
+   "id": "journal-entry",
+   "description": "an upload acknowledged while locked",
+   "inbox_key": "9d991b05a9255495de07296a5efec6d70ad048058d7f3f84a911929c14b754a9",
+   "public_key": "e01a4869e13a2f2c9ae69730f9db00257e023f38f5d378c0b233fec0fdce8f05",
+   "randomness": "582c6de436bd77869f35015227f3820b17741da395fe5e70d3764e0b4de83da8",
+   "plaintext": "0801121075706c6f616420323032362d31302d3135",
+   "entry": "504c4a0101000000f2c8eae6f2a3266af092a1ba736b734b7eadff7c176bf97671cbd0fc6a9182ecb5d4bdc707dbb3d8be31f103c825dc150120562a1eb443c4b27b6adc81037e832929367f330c210faae5fafa68a08e131932ae4280"
+  },
+  {
+   "id": "journal-empty",
+   "description": "an empty plaintext",
+   "inbox_key": "9d991b05a9255495de07296a5efec6d70ad048058d7f3f84a911929c14b754a9",
+   "public_key": "e01a4869e13a2f2c9ae69730f9db00257e023f38f5d378c0b233fec0fdce8f05",
+   "randomness": "db55d7a806c3a518471b27001ae9bf713c6bfb23e395a5985073bb53ea04b2b0",
+   "plaintext": "",
+   "entry": "504c4a0101000000f2c8eae6f2a3266af092a1ba736b734b7dda3c03f3abbac38a24e9570305bfcfa44c03f1eb77e4537d96871933193678ef134efcf160005a13271be35e9b8407"
+  }
+ ],
+ "invalid": [
+  {
+   "id": "journal-short",
+   "description": "shorter than header and tag",
+   "base": "journal-entry",
+   "mutations": [
+    {
+     "truncate": 71
+    }
+   ],
+   "error": "bad_length"
+  },
+  {
+   "id": "journal-wrong-type",
+   "description": "a wrap where a journal entry is expected",
+   "base": "journal-entry",
+   "mutations": [
+    {
+     "set": [
+      2,
+      "57"
+     ]
+    }
+   ],
+   "error": "wrong_type"
+  },
+  {
+   "id": "journal-reserved",
+   "description": "reserved bytes must be zero",
+   "base": "journal-entry",
+   "mutations": [
+    {
+     "set": [
+      5,
+      "01"
+     ]
+    }
+   ],
+   "error": "bad_header"
+  },
+  {
+   "id": "journal-enc-tampered",
+   "description": "a bit of the ephemeral key flipped",
+   "base": "journal-entry",
+   "mutations": [
+    {
+     "flip": 30
+    }
+   ],
+   "error": "auth_failed"
+  },
+  {
+   "id": "journal-ciphertext-tampered",
+   "description": "a ciphertext bit flipped",
+   "base": "journal-entry",
+   "mutations": [
+    {
+     "flip": 60
+    }
+   ],
+   "error": "auth_failed"
+  },
+  {
+   "id": "journal-zero-shared-secret",
+   "description": "an ephemeral key of small order",
+   "base": "journal-entry",
+   "mutations": [
+    {
+     "set": [
+      24,
+      "0000000000000000000000000000000000000000000000000000000000000000"
+     ]
+    }
+   ],
+   "error": "auth_failed"
+  },
+  {
+   "id": "journal-wrong-recipient",
+   "description": "opened with another device's inbox key",
+   "base": "journal-entry",
+   "inbox_key": "831a8d673f05c08ab4305f15c0271490cff35d653655417d7560db1002d32249",
+   "error": "wrong_recipient"
+  }
+ ]
+}

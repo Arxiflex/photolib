@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "path": "raw/jpegxl.dng",
+  "size": 22198,
+  "sha256": "6a5a8a025ad5c1cc76924f7e0cc3477a98c243ba2da771a149a5af74aa42700a",
+  "origin": "synthetic",
+  "notes": "Placeholder sensor data, not a camera mosaic; the embedded JPEG preview decodes.",
+  "format": "dng",
+  "quirks": [
+    "dng_jxl"
+  ],
+  "media": {
+    "container": "tiff",
+    "mime": "image/x-adobe-dng",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120,
+    "make": "Leica Camera AG",
+    "model": "LEICA SL3",
+    "orientation": 8
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2024-05-05T12:00:00",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+02:00"
+      }
+    ],
+    "resolved": {
+      "local": "2024-05-05T12:00:00",
+      "utc": "2024-05-05T10:00:00Z",
+      "offset": "+02:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

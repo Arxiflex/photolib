@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "path": "raw/pentax.pef",
+  "size": 22100,
+  "sha256": "5f4b3e2be5632483accb03e4b5f0536e35b285fb6f2568e2fcb22b130b997d00",
+  "origin": "synthetic",
+  "notes": "Placeholder sensor data, not a camera mosaic; the embedded JPEG preview decodes.",
+  "format": "pef",
+  "vendor": "pentax",
+  "quirks": [],
+  "media": {
+    "container": "tiff",
+    "mime": "image/x-pentax-pef",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120,
+    "make": "PENTAX Corporation",
+    "model": "PENTAX K-1",
+    "orientation": 8
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2015-12-24T17:00:01",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2015-12-24T17:00:01",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

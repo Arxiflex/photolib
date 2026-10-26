@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "path": "compound/raw-jpeg/DSC00789.ARW",
+  "size": 26015,
+  "sha256": "95d6e9d15b8aae342c849539c2d44516268ee3eea0fe0f46213d81b0cbf906c3",
+  "origin": "synthetic",
+  "notes": "Placeholder sensor data, not a camera mosaic; the embedded JPEG preview decodes.",
+  "format": "arw",
+  "vendor": "sony",
+  "quirks": [
+    "raw_jpeg_pair"
+  ],
+  "media": {
+    "container": "tiff",
+    "mime": "image/x-sony-arw",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120,
+    "make": "SONY",
+    "model": "ILCE-7RM4"
+  },
+  "group": {
+    "kind": "raw_jpeg",
+    "key": "DSC00789",
+    "role": "raw_alt"
+  },
+  "filename": {
+    "matches": [
+      "F43"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2021-03-14T14:15:16",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+01:00"
+      }
+    ],
+    "resolved": {
+      "local": "2021-03-14T14:15:16",
+      "utc": "2021-03-14T13:15:16Z",
+      "offset": "+01:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

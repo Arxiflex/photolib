@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "path": "stills/baseline.jpg",
+  "size": 3094,
+  "sha256": "fbc3d3dfddf20e214514fd2410d892e1168a5a4c287b06d12e5fc19eaae3f6c1",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "canon",
+  "quirks": [],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "make": "Canon",
+    "model": "Canon EOS 5D Mark IV"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2019-05-09T15:47:33",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-05-09T15:47:33",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

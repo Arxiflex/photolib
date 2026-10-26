@@ -1,0 +1,135 @@
+syntax = "proto3";
+
+package photolib.kernel.v1;
+
+// Signs a PLS log entry or statement with an Ed25519 seed in the keyring.
+message SignEntryRequest {
+  uint32 key = 1;
+  // 1 identity, 2 album membership, 3 library membership, 4 statement.
+  uint32 log_type = 2;
+  uint32 body_type = 3;
+  bytes log_id = 4;
+  uint64 seq = 5;
+  // The entry_hash of entry seq - 1; empty for entry 0 and statements.
+  bytes prev_hash = 6;
+  uint64 time_ms = 7;
+  bytes body = 8;
+}
+
+// A signed PLS entry.
+message SignEntryResponse {
+  bytes entry = 1;
+}
+
+// A position in a log: the seq and entry_hash of an entry.
+message Checkpoint {
+  uint64 seq = 1;
+  bytes entry_hash = 2;
+}
+
+// A wrap that a verified entry names by its SHA-256: a PLH to a member or device, or the back-link PLW of a new epoch.
+message SignedWrap {
+  uint64 seq = 1;
+  // The member or device; empty for a back-link.
+  bytes recipient_id = 2;
+  bytes sha256 = 3;
+}
+
+// Replays a user's identity log from entry 0; the view must contain the reader's checkpoint, if it has one.
+message VerifyIdentityLogRequest {
+  bytes user_id = 1;
+  repeated bytes entries = 2;
+  Checkpoint checkpoint = 3;
+}
+
+// A device of an identity log.
+message Device {
+  bytes device_id = 1;
+  // Its X-Wing public key.
+  bytes public_key = 2;
+}
+
+// The verified state of an identity log.
+message VerifyIdentityLogResponse {
+  // Ed25519 public keys, oldest first; the last one signs.
+  repeated bytes signing_keys = 1;
+  // The X-Wing public key.
+  bytes encryption_key = 2;
+  repeated Device devices = 3;
+  uint32 amk_generation = 4;
+  // The last entry: the reader's next checkpoint.
+  Checkpoint head = 5;
+  repeated SignedWrap wraps = 6;
+}
+
+// A user's signing keys from a verified identity log, oldest first.
+message Identity {
+  bytes user_id = 1;
+  repeated bytes signing_keys = 2;
+}
+
+// Replays an album or library membership log from entry 0, then checks upload statements against it.
+message VerifyMembershipLogRequest {
+  // 2 album, 3 library.
+  uint32 log_type = 1;
+  bytes log_id = 2;
+  repeated bytes entries = 3;
+  Checkpoint checkpoint = 4;
+  // Every member's, from VerifyIdentityLog.
+  repeated Identity identities = 5;
+  repeated bytes statements = 6;
+}
+
+// A member: role 1 viewer, 2 contributor, 3 admin, and the pk_id of its pinned signing key.
+message Member {
+  bytes user_id = 1;
+  uint32 role = 2;
+  bytes signing_key_id = 3;
+}
+
+// A link, with its drop key's X-Wing public key once set.
+message Link {
+  bytes link_id = 1;
+  bytes drop_key = 2;
+}
+
+// What an upload statement says, or why it is rejected: an error code of the specification.
+message Upload {
+  bytes file_id = 1;
+  bytes uploader = 2;
+  bytes objects_hash = 3;
+  string rejected = 4;
+}
+
+// The verified state of a membership log; members and links ordered by id, uploads as the statements.
+message VerifyMembershipLogResponse {
+  bytes owner = 1;
+  repeated Member members = 2;
+  uint32 epoch = 3;
+  bool rotation_due = 4;
+  repeated Link links = 5;
+  Checkpoint head = 6;
+  repeated SignedWrap wraps = 7;
+  repeated Upload uploads = 8;
+}
+
+// The safety number two users compare out of band.
+message SafetyNumberRequest {
+  bytes user_a = 1;
+  // User A's Ed25519 signing public key.
+  bytes signing_key_a = 2;
+  bytes user_b = 3;
+  bytes signing_key_b = 4;
+}
+
+// The epoch code members compare: of a membership log at its head.
+message EpochCodeRequest {
+  bytes log_id = 1;
+  // The head's entry_hash.
+  bytes head = 2;
+}
+
+// Groups of five digits separated by spaces.
+message CodeResponse {
+  string code = 1;
+}

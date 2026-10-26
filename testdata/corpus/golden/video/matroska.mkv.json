@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "path": "video/matroska.mkv",
+  "size": 228,
+  "sha256": "e55866d7e319d5accb560b08d5a391e6ea17da6caa712186448d952d8c0e31fe",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mkv",
+  "quirks": [],
+  "media": {
+    "container": "ebml",
+    "mime": "video/x-matroska",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1280,
+    "height": 720,
+    "duration_ms": 5000,
+    "codec": "h264"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

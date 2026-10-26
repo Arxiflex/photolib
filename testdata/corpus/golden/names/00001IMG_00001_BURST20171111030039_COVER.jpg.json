@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "path": "names/00001IMG_00001_BURST20171111030039_COVER.jpg",
+  "size": 3835,
+  "sha256": "11ae93f3672852eb908f51193524dcb327a10d5caaab550bcad7537314248988",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "burst"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "group": {
+    "kind": "burst",
+    "key": "BURST20171111030039",
+    "role": "burst_cover"
+  },
+  "filename": {
+    "matches": [
+      "F04",
+      "F52",
+      "F53"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F04",
+        "kind": "local",
+        "value": "2017-11-11T03:00:39",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2017-11-11T03:00:39",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F04",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

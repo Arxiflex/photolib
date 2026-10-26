@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "path": "compound/exif/stripped.jpg",
+  "size": 3022,
+  "sha256": "2f73eeb04fe90df63dde4e121184d7ada903eb6869efb6d9f99c3e232db1b24b",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "exif_stripped"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "orientation": 6
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

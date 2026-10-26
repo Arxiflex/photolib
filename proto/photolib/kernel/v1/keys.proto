@@ -1,0 +1,154 @@
+syntax = "proto3";
+
+package photolib.kernel.v1;
+
+// Brings 32 bytes of key material into the keyring: fresh randomness, or what a platform keystore releases.
+message ImportKeyRequest {
+  bytes secret = 1;
+}
+
+// A key in the keyring: the handle later requests name it by, and its key_id. Key material never leaves the kernel.
+message KeyResponse {
+  uint32 key = 1;
+  bytes key_id = 2;
+}
+
+// Zeroizes a key and forgets its handle.
+message DropKeyRequest {
+  uint32 key = 1;
+}
+
+// Nothing: the key is gone.
+message DropKeyResponse {}
+
+// Derives HKDF-SHA256(key, "photolib/v1/" ‖ label ‖ context) into the keyring.
+message DeriveKeyRequest {
+  uint32 key = 1;
+  // E.g. "local/db".
+  string label = 2;
+  // E.g. a database file id.
+  bytes context = 3;
+}
+
+// Stretches a password into the keyring: HKDF(Argon2id(NFC(password), params) ‖ hardware, "photolib/v1/" ‖ label), or
+// the Argon2id output itself when the label is empty.
+message DerivePasswordKeyRequest {
+  string password = 1;
+  // An Argon2id parameter set, 26 bytes, with one lane, at most 2 GiB and 64 passes.
+  bytes params = 2;
+  // E.g. "kek/passcode".
+  string label = 3;
+  // The output of the device's hardware binding; empty without one.
+  bytes hardware = 4;
+}
+
+// The policies an Argon2id parameter set is held to before it is used.
+enum KdfPolicy {
+  KDF_POLICY_UNSPECIFIED = 0;
+  // An account's parameters, as a server sends them.
+  KDF_POLICY_ACCOUNT = 1;
+  // A device's passcode parameters.
+  KDF_POLICY_DEVICE = 2;
+}
+
+// Checks an Argon2id parameter set against a policy.
+message CheckKdfParamsRequest {
+  bytes params = 1;
+  KdfPolicy policy = 2;
+}
+
+// Nothing: the parameters pass.
+message CheckKdfParamsResponse {}
+
+// Where a wrap belongs. Readers rebuild it, so a wrap moved elsewhere fails; empty ids are zero.
+message WrapContext {
+  bytes user_id = 1;
+  bytes container_id = 2;
+  bytes subject_id = 3;
+  uint32 number = 4;
+}
+
+// Wraps a key under another as a PLW.
+message WrapKeyRequest {
+  uint32 wrapping_key = 1;
+  uint32 key = 2;
+  uint32 wrapped_type = 3;
+  WrapContext context = 4;
+  // 24 random bytes.
+  bytes nonce = 5;
+}
+
+// A PLW, 144 bytes.
+message WrapKeyResponse {
+  bytes wrap = 1;
+}
+
+// Opens a PLW into the keyring; a wrap of another wrapped type fails.
+message UnwrapKeyRequest {
+  uint32 wrapping_key = 1;
+  uint32 wrapped_type = 2;
+  WrapContext context = 3;
+  bytes wrap = 4;
+}
+
+// The dedup token of an original: HMAC-SHA256(DedupKey, SHA-256 of its bytes), equal only within one user's library.
+message DedupTokenRequest {
+  // The DedupKey.
+  uint32 key = 1;
+  // The SHA-256 of the original.
+  bytes sha256 = 2;
+}
+
+// A dedup token, 32 bytes.
+message DedupTokenResponse {
+  bytes token = 1;
+}
+
+// Derives the LinkKey of a public link or static export into the keyring, and the verifier the server stores.
+message LinkKeysRequest {
+  // The LinkSecret.
+  uint32 secret = 1;
+  bytes link_id = 2;
+  // With a password, its hash: DerivePasswordKey with no label and the parameters (1, 64 MiB, 3, 1, link_id).
+  uint32 password_hash = 3;
+}
+
+// The LinkKey's handle and key_id, and SHA-256(LinkAuth).
+message LinkKeysResponse {
+  uint32 key = 1;
+  bytes key_id = 2;
+  bytes verifier = 3;
+}
+
+// Formats the URL fragment of a link: v1.<link_id>.<secret>[.p][.<SHA-256(manifest)[0..8)>], in base64url.
+message LinkFragmentRequest {
+  bytes link_id = 1;
+  // The LinkSecret, which the fragment carries.
+  bytes secret = 2;
+  // A password is required.
+  bool password = 3;
+  // The link's PLX manifest; none when empty.
+  bytes manifest = 4;
+}
+
+// The fragment, without the '#'.
+message LinkFragmentResponse {
+  string fragment = 1;
+}
+
+// Encodes 32 bytes of recovery entropy, fresh randomness, as the recovery phrase of a recovery kit
+// (docs/dev/crypto-v1.md#recovery-phrase).
+message RecoveryPhraseRequest {
+  bytes entropy = 1;
+}
+
+// The phrase: 24 English words joined by spaces.
+message RecoveryPhraseResponse {
+  string phrase = 1;
+}
+
+// Reads a recovery phrase as typed into the keyring as KEK_rec, which wraps the account master key. A phrase the
+// reader refuses fails with its reason: bad_length, unknown_word (with `word`, its 1-based position) or bad_checksum.
+message RecoveryKeyRequest {
+  string phrase = 1;
+}

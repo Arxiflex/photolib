@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "path": "names/IMG_1234.HEIC",
+  "size": 357,
+  "sha256": "d2dbb4563398b766de7eb51d7c7d180753257d495bcd1940bb1f7c59b2d00ec0",
+  "origin": "synthetic",
+  "notes": "Placeholder HEVC payload: the structure and metadata are real, the image does not decode.",
+  "format": "heic",
+  "vendor": "apple",
+  "quirks": [
+    "counter_not_time"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "heic",
+    "mime": "image/heic",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 4032,
+    "height": 3024
+  },
+  "filename": {
+    "matches": [
+      "F10",
+      "F43"
+    ]
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

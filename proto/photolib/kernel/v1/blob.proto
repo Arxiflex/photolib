@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package photolib.kernel.v1;
+
+// Seals a PLB blob envelope, or a PLX manifest. Called as a stream, the plaintext may also follow in pieces: each step
+// returns the envelope bytes it completed, and finishing returns the rest.
+message EncryptBlobRequest {
+  uint32 key = 1;
+  uint32 kind = 2;
+  bool manifest = 3;
+  // Pads the plaintext to its Padmé length, so the envelope hides its exact size.
+  bool padded = 4;
+  // 32 random bytes.
+  bytes salt = 5;
+  // The whole plaintext or, when streaming, its first bytes.
+  bytes plaintext = 6;
+}
+
+// A sealed envelope, or when streaming the part of it a step completed.
+message EncryptBlobResponse {
+  bytes envelope = 1;
+}
+
+// Opens a PLB blob envelope, or a PLX manifest, of the content kind asked for. Called as a stream, the envelope may also
+// follow in pieces: each step returns the plaintext of the chunks it completed. Any run of an unpadded envelope's chunks
+// also opens alone (random access, for seeking): the envelope's header followed by its chunks from first_chunk on.
+message DecryptBlobRequest {
+  uint32 key = 1;
+  uint32 kind = 2;
+  bool manifest = 3;
+  // The whole envelope or, when streaming, its first bytes.
+  bytes envelope = 4;
+  // The index of the first chunk after the header.
+  uint64 first_chunk = 5;
+  // The chunks given stop before the envelope's last one, so none of them is opened as the last.
+  bool more = 6;
+}
+
+// The plaintext of an envelope.
+message DecryptBlobResponse {
+  bytes plaintext = 1;
+}

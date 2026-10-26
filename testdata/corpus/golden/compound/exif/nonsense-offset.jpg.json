@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "path": "compound/exif/nonsense-offset.jpg",
+  "size": 3582,
+  "sha256": "0148cbe2fcdbc5ffc43a07ed26971ad1fcb68ecc873414008ac53ea9cdadea99",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "exif_nonsense_offset"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "make": "Canon",
+    "model": "Canon EOS 5D Mark IV"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2020-02-29T18:03:11",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+99:99",
+        "rejected": "out_of_range"
+      },
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2020-02-29T18:03:11",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2020-02-29T18:03:11",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

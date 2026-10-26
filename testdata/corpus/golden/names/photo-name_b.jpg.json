@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "path": "names/photo-name_b.jpg",
+  "size": 3161,
+  "sha256": "aca26c996cf6c591cef05101ea7056267821caf25db0c4db9ca20559cbb3221f",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "epson",
+  "quirks": [
+    "scan"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "make": "EPSON",
+    "model": "FF-680W"
+  },
+  "filename": {
+    "matches": [
+      "F45"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_createdate",
+        "kind": "local",
+        "value": "2023-06-18T14:20:05",
+        "precision": "s",
+        "event": "scan"
+      }
+    ],
+    "resolved": null
+  }
+}

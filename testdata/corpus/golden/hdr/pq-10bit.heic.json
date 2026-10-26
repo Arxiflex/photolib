@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "path": "hdr/pq-10bit.heic",
+  "size": 612,
+  "sha256": "5ead65aceebf3e2fa130c8e0af36a2db255892c8b978156360d3bcc70dcd3220",
+  "origin": "synthetic",
+  "notes": "Placeholder HEVC payload: the structure and metadata are real, the image does not decode.",
+  "format": "heic",
+  "vendor": "apple",
+  "quirks": [
+    "bit_depth_10",
+    "hdr_pq"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "heic",
+    "mime": "image/heic",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 4032,
+    "height": 3024,
+    "make": "Apple",
+    "model": "iPhone 15 Pro"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2024-02-03T16:30:45",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+01:00"
+      }
+    ],
+    "resolved": {
+      "local": "2024-02-03T16:30:45",
+      "utc": "2024-02-03T15:30:45Z",
+      "offset": "+01:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

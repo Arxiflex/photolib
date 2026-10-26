@@ -1,0 +1,19 @@
+name: Install Flutter
+description: Installs the Flutter version pinned in app/.fvmrc, or the newest build of a channel when one is given.
+inputs:
+  channel:
+    description: Install the newest build of this channel instead of the pinned version (the weekly beta run)
+    default: ''
+runs:
+  using: composite
+  steps:
+    - id: pin
+      shell: bash
+      run: |
+        echo "version=$(sed -n 's/.*"flutter": *"\([^"]*\)".*/\1/p' app/.fvmrc)" >> "$GITHUB_OUTPUT"
+    # Flutter publishes no Linux arm64 SDK archive; there the 'master' channel checks the pinned tag out from git.
+    - uses: subosito/flutter-action@v2
+      with:
+        flutter-version: ${{ inputs.channel == '' && steps.pin.outputs.version || '' }}
+        channel: ${{ inputs.channel || (runner.os == 'Linux' && runner.arch == 'ARM64' && 'master') || 'stable' }}
+        cache: true

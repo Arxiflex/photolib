@@ -1,0 +1,215 @@
+{
+ "construction": "PLW symmetric key wrap",
+ "spec": "docs/dev/crypto-v1.md#plw-symmetric-key-wrap",
+ "valid": [
+  {
+   "id": "plw-amk-under-password-kek",
+   "description": "AMK generation 0 under KEK_pw",
+   "wrapping_key": "c5ec787172438c1283e2bb995785d17fa4cc5a8572abf2dfd39673aaa6f446e1",
+   "key": "b12c1711b2ba4da88446b0500b77b05432f8cceb284d718c41b77b659fd2638b",
+   "wrapped_type": 1,
+   "context": {
+    "user_id": "8372984cbc87a239b291582768d26fb4",
+    "container_id": "00000000000000000000000000000000",
+    "subject_id": "00000000000000000000000000000000",
+    "number": 0
+   },
+   "nonce": "321c8b5950ae2c0db504776cf5ff1c7bf6b600bcdd6e2c82",
+   "wrap": "504c5701010100005bdab11319381e12ce9744894d6239090b0223f4a9f28525f7289c908bf7cd63321c8b5950ae2c0db504776cf5ff1c7bf6b600bcdd6e2c82201a1850ba6df5b1aab81fb4cd61ec7fe9bd608bd06ca68307f638730030e45b860f2f2d3dbc43ecf0fcfac9f19b343f896efa74099cad1d7e1756e8780a21b6fb9e4a741f56f3f65cec818f6522a421"
+  },
+  {
+   "id": "plw-album-key-under-amk",
+   "description": "AlbumKey epoch 0 under its owner's AMK",
+   "wrapping_key": "b12c1711b2ba4da88446b0500b77b05432f8cceb284d718c41b77b659fd2638b",
+   "key": "2b597251b46a48ded781561478ebbc6c8e602488562cb2d98998b261cdd1334e",
+   "wrapped_type": 3,
+   "context": {
+    "user_id": "8372984cbc87a239b291582768d26fb4",
+    "container_id": "2e029f6d53f5d5a7ed6f6956e473d455",
+    "subject_id": "00000000000000000000000000000000",
+    "number": 0
+   },
+   "nonce": "d15c36f9a480a24f88b53328c11b55fe082fae1ab7d22acd",
+   "wrap": "504c5701010300000b0223f4a9f28525f7289c908bf7cd6367cd95183065a46d8dab883a7ff8d7dbd15c36f9a480a24f88b53328c11b55fe082fae1ab7d22acd7f70034bd7e2ee8226895c9f565541c8dd474efdc54bf151bb6cdd9a6a1b9fdf7e01785d8b7806e6ce9750625b51c818b076281236c34e37c1db2e0c07ed38cfd78518faed5716d42c3dcacb6819521e"
+  },
+  {
+   "id": "plw-album-backlink",
+   "description": "AlbumKey epoch 0 under AlbumKey epoch 1: the history chain",
+   "wrapping_key": "f29c7582f00c4084ef8c501f0cc9f6aa66e2af5fc5c4256dc2974cb9eb92a407",
+   "key": "2b597251b46a48ded781561478ebbc6c8e602488562cb2d98998b261cdd1334e",
+   "wrapped_type": 3,
+   "context": {
+    "user_id": "00000000000000000000000000000000",
+    "container_id": "2e029f6d53f5d5a7ed6f6956e473d455",
+    "subject_id": "00000000000000000000000000000000",
+    "number": 0
+   },
+   "nonce": "8524c5694fdf7281e7ee4a098376504f3d11daa3c210eaef",
+   "wrap": "504c570101030000f1391c377be865a1c36ab24441174dc567cd95183065a46d8dab883a7ff8d7db8524c5694fdf7281e7ee4a098376504f3d11daa3c210eaef2f3279a6a7bcb9b9f82b91898a517049de4dbd24d1e89b1dd2f5ab8d4531af0642c16fae58122751064d226833acc81e7ea6faaf175935d07fc032ad15e3a0199c84ec1c619fda1d9ded51cf80fd1022"
+  },
+  {
+   "id": "plw-file-key-under-album-key",
+   "description": "FileKey under AlbumKey epoch 1",
+   "wrapping_key": "f29c7582f00c4084ef8c501f0cc9f6aa66e2af5fc5c4256dc2974cb9eb92a407",
+   "key": "46df682bb6bc6fbcf1c31e92c9ac5b58d38cb52d70c10a588017c5daddb4cbaa",
+   "wrapped_type": 5,
+   "context": {
+    "user_id": "00000000000000000000000000000000",
+    "container_id": "2e029f6d53f5d5a7ed6f6956e473d455",
+    "subject_id": "6a6c3caa217ae04ed5bd2cc6fbbd5c68",
+    "number": 1
+   },
+   "nonce": "44b4ddc7b9dc71a31260bba1fa3432454b574b980b4868fb",
+   "wrap": "504c570101050000f1391c377be865a1c36ab24441174dc5b74c79e80862291bdb2b4f5d257a344b44b4ddc7b9dc71a31260bba1fa3432454b574b980b4868fbca71cfd01223e1f78bf76247e64bc01f3a52196439d9b2ac64736b8b292ffbee82b3751c9c34915ba2980064ff9153c4b2f114d9465f1132dee279f6bfdb67d405eceb419cea780cd5d1d05a712cd558"
+  },
+  {
+   "id": "plw-preview-key-under-link-key",
+   "description": "a preview key under a public link's LinkKey",
+   "wrapping_key": "209b7ff204b0f3c7737a6d8b18ed3e945a2c3d198922f428fda76c0e52a92bc4",
+   "key": "91dc85652ff62e449860605b904a2ceed38fad466a3f4aaa1fe50a2298037205",
+   "wrapped_type": 6,
+   "context": {
+    "user_id": "00000000000000000000000000000000",
+    "container_id": "ad9395fe2e87cef89dee4df348f2e01a",
+    "subject_id": "6a6c3caa217ae04ed5bd2cc6fbbd5c68",
+    "number": 2
+   },
+   "nonce": "79dacbe61775d4e3ec36ce4172a9be969ae6e6a76c469d1c",
+   "wrap": "504c5701010600005b126f47166ebfa3d4b1997ae959d0a409f7389b61d2ea09e2139a3dda6066fa79dacbe61775d4e3ec36ce4172a9be969ae6e6a76c469d1c60315a75ca6e5c7a16dc99bdb5c2bcebd2f6e602490dbbfe80991be8c6b01c9b31530b58dcd8b0db75a33a3da656044cd16d475f68627b80c2b4df8bab18682bd3d99eb041a5cf7dfda86759aec8203f"
+  },
+  {
+   "id": "plw-signing-key-under-amk",
+   "description": "the identity signing seed under the AMK",
+   "wrapping_key": "b12c1711b2ba4da88446b0500b77b05432f8cceb284d718c41b77b659fd2638b",
+   "key": "d8c095fa9df7c0c30098cc4246edc392040311573542aac33e6523e40efe0fbe",
+   "wrapped_type": 8,
+   "context": {
+    "user_id": "8372984cbc87a239b291582768d26fb4",
+    "container_id": "00000000000000000000000000000000",
+    "subject_id": "00000000000000000000000000000000",
+    "number": 0
+   },
+   "nonce": "0eed43e85126b54b152dced604003c78c5cc0879c505fd2b",
+   "wrap": "504c5701010800000b0223f4a9f28525f7289c908bf7cd630c9933f0ac16f144a162e03a25234a690eed43e85126b54b152dced604003c78c5cc0879c505fd2bdd3d0a2d33b0a688ebd32b6a13d85e0e20c9a8429a8ae97c649c028c75e44dde1f737e1982d99f1545b360e2201c831ba2ee10d2d1c09aed8e772d3bb9901805b68766c646f76328273267b12a254b7d"
+  }
+ ],
+ "invalid": [
+  {
+   "id": "plw-moved-to-another-file",
+   "description": "a FileKey wrap replayed for another file",
+   "base": "plw-file-key-under-album-key",
+   "context": {
+    "user_id": "00000000000000000000000000000000",
+    "container_id": "2e029f6d53f5d5a7ed6f6956e473d455",
+    "subject_id": "a6330c2d024bbb4be51c267eae11089a",
+    "number": 1
+   },
+   "error": "auth_failed"
+  },
+  {
+   "id": "plw-wrong-epoch",
+   "description": "the context names epoch 0",
+   "base": "plw-file-key-under-album-key",
+   "context": {
+    "user_id": "00000000000000000000000000000000",
+    "container_id": "2e029f6d53f5d5a7ed6f6956e473d455",
+    "subject_id": "6a6c3caa217ae04ed5bd2cc6fbbd5c68",
+    "number": 0
+   },
+   "error": "auth_failed"
+  },
+  {
+   "id": "plw-wrong-key",
+   "description": "another key: rejected by the commitment before decryption",
+   "base": "plw-file-key-under-album-key",
+   "wrapping_key": "2b597251b46a48ded781561478ebbc6c8e602488562cb2d98998b261cdd1334e",
+   "error": "commitment_mismatch"
+  },
+  {
+   "id": "plw-type-swapped",
+   "description": "wrapped_type changed from FileKey to RenditionKey",
+   "base": "plw-file-key-under-album-key",
+   "mutations": [
+    {
+     "set": [
+      5,
+      "06"
+     ]
+    }
+   ],
+   "wrapped_type": 6,
+   "error": "auth_failed"
+  },
+  {
+   "id": "plw-wrong-type",
+   "description": "a FileKey wrap used where a LinkSecret is expected",
+   "base": "plw-file-key-under-album-key",
+   "wrapped_type": 7,
+   "error": "wrong_kind"
+  },
+  {
+   "id": "plw-unknown-type",
+   "description": "wrapped_type 0 is not assigned",
+   "base": "plw-file-key-under-album-key",
+   "mutations": [
+    {
+     "set": [
+      5,
+      "00"
+     ]
+    }
+   ],
+   "error": "bad_header"
+  },
+  {
+   "id": "plw-reserved",
+   "description": "reserved bytes must be zero",
+   "base": "plw-file-key-under-album-key",
+   "mutations": [
+    {
+     "set": [
+      6,
+      "01"
+     ]
+    }
+   ],
+   "error": "bad_header"
+  },
+  {
+   "id": "plw-bad-length",
+   "description": "one byte short",
+   "base": "plw-file-key-under-album-key",
+   "mutations": [
+    {
+     "truncate": 143
+    }
+   ],
+   "error": "bad_length"
+  },
+  {
+   "id": "plw-tag-tampered",
+   "description": "tag bit flipped",
+   "base": "plw-file-key-under-album-key",
+   "mutations": [
+    {
+     "flip": 143
+    }
+   ],
+   "error": "auth_failed"
+  },
+  {
+   "id": "plw-bad-key-id",
+   "description": "authentic wrap whose wrapped_key_id names another key",
+   "wrapping_key": "f29c7582f00c4084ef8c501f0cc9f6aa66e2af5fc5c4256dc2974cb9eb92a407",
+   "wrapped_type": 5,
+   "context": {
+    "user_id": "00000000000000000000000000000000",
+    "container_id": "2e029f6d53f5d5a7ed6f6956e473d455",
+    "subject_id": "6a6c3caa217ae04ed5bd2cc6fbbd5c68",
+    "number": 1
+   },
+   "wrap": "504c570101050000f1391c377be865a1c36ab24441174dc567cd95183065a46d8dab883a7ff8d7db18d5c18b56676f41f33cc9b0a9a1349fa282ae38af46f7fe5337c7c84bf5b1f10c4a623dcec91ab2a4ff08c7c982acb178170b076077ca4454a9e339a09b7f64e8de674a43f73474e455f42318d557a3172cff111865716bc30be5b60a351e14f6abedcef9753bbd",
+   "error": "bad_key_id"
+  }
+ ]
+}

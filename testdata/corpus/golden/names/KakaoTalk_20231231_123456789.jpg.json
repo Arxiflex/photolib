@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "path": "names/KakaoTalk_20231231_123456789.jpg",
+  "size": 3549,
+  "sha256": "2ded2529f2380ab58d9651a6ee351baca96a104b031a347e2aae21d8af9f59c8",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "messenger_copy",
+    "upper_bound_name"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F33"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F33",
+        "kind": "local",
+        "value": "2023-12-31T12:34:56.789",
+        "precision": "ms",
+        "event": "save"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12-31T12:34:56.789",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "ms",
+      "bound": "upper",
+      "source": "filename:F33",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

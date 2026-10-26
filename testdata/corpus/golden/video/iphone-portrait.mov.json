@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "path": "video/iphone-portrait.mov",
+  "size": 904,
+  "sha256": "dff046bf73d422c02e5d1b9ee981d699a06757e3b44811cee0550de62641c043",
+  "origin": "synthetic",
+  "notes": "Placeholder hevc payload: the structure and metadata are real, the video does not decode.",
+  "format": "mov",
+  "vendor": "apple",
+  "quirks": [
+    "video_rotation"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "qt  ",
+    "mime": "video/quicktime",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1080,
+    "height": 1920,
+    "duration_ms": 3000,
+    "codec": "hevc",
+    "orientation": 6,
+    "make": "Apple",
+    "model": "iPhone 13 Pro"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "qt_keys_creationdate",
+        "kind": "local",
+        "value": "2021-12-24T19:30:00",
+        "precision": "s",
+        "event": "record_start",
+        "offset": "+01:00"
+      },
+      {
+        "source": "qt_mvhd_phone",
+        "kind": "utc",
+        "value": "2021-12-24T18:30:00Z",
+        "precision": "s",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": "2021-12-24T19:30:00",
+      "utc": "2021-12-24T18:30:00Z",
+      "offset": "+01:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "qt_keys_creationdate",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

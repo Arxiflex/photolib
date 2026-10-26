@@ -1,0 +1,11 @@
+# The parts of docs/dev/api/photolib.openapi.yaml that protoc-gen-connect-openapi does not take from the protos.
+openapi: 3.1.0
+info:
+  title: Photolib API
+  version: v1
+  description: >-
+    The API of a Photolib server, generated from the protobuf package photolib.api.v1 in proto/. Each call is a
+    Connect RPC: an HTTP POST of JSON (application/json) or binary protobuf (application/proto) to
+    /photolib.api.v1.<Service>/<Method>. Errors carry no prose: `code` is the Connect error code and `details` holds a
+    photolib.api.v1.ErrorDetail whose reason code and parameters the client turns into a message in its user's
+    language. GetServerInfo lists the capabilities the server supports; check them before relying on a behaviour.

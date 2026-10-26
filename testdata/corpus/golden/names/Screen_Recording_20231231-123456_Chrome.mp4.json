@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "path": "names/Screen_Recording_20231231-123456_Chrome.mp4",
+  "size": 747,
+  "sha256": "87f0d5b9cff62dda6e740708188735e1a4f1f459c365a99386fd685c9f046287",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mp4",
+  "vendor": "samsung",
+  "quirks": [
+    "mvhd_zero",
+    "screen_recording"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "h264"
+  },
+  "filename": {
+    "matches": [
+      "F16",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F16",
+        "kind": "local",
+        "value": "2023-12-31T12:34:56",
+        "precision": "s",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12-31T12:34:56",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F16",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

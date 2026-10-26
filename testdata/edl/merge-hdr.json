@@ -1,0 +1,10 @@
+{
+  "tracks": [
+    {
+      "items": [
+        {"clip": {"assetId": "hlg", "source": {"start": {"num": 0, "den": 1}, "duration": {"num": 3, "den": 2}}}},
+        {"clip": {"assetId": "hlg-small", "source": {"start": {"num": 1, "den": 2}, "duration": {"num": 1, "den": 1}}}}
+      ]
+    }
+  ]
+}

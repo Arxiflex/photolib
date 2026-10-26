@@ -1,0 +1,1 @@
+Photolib, fotoğraflarınızı ve videolarınızı kendi yönettiğiniz bir sunucuda saklar. Tüm kitaplığınıza bu cihazda ve sunucuda göz atın, yeni fotoğrafları ve videoları çeker çekmez yedekleyin ve albümleri seçtiğiniz kişilerle paylaşın.

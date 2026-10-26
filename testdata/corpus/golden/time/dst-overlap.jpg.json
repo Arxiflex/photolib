@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "path": "time/dst-overlap.jpg",
+  "size": 3301,
+  "sha256": "31da9c7ebe8f84ce837f29947d8416211a5b93a84da7cf767c6f69042e9367e1",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "dst_overlap"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "make": "Canon",
+    "model": "Canon EOS 5D Mark IV",
+    "gps": {
+      "lat": 48.8584,
+      "lon": 2.2945
+    }
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2024-10-27T02:30:00",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2024-10-27T02:30:00",
+      "utc": "2024-10-27T00:30:00Z",
+      "offset": "+02:00",
+      "tz_source": "gps_polygon",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": [
+        "dst_ambiguous"
+      ]
+    }
+  }
+}

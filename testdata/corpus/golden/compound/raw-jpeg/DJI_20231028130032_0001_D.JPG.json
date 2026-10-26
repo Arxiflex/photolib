@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "path": "compound/raw-jpeg/DJI_20231028130032_0001_D.JPG",
+  "size": 155996,
+  "sha256": "c94d628a9de6382663eb0e0ee18933b849633383b38ec0ac775dd01925e22b01",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "dji",
+  "quirks": [
+    "raw_jpeg_pair"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 6000,
+    "height": 4000,
+    "make": "DJI",
+    "model": "FC3582"
+  },
+  "group": {
+    "kind": "raw_jpeg",
+    "key": "DJI_20231028130032_0001_D",
+    "role": "primary"
+  },
+  "filename": {
+    "matches": [
+      "F38",
+      "F52",
+      "F53"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2023-10-28T13:00:32",
+        "precision": "s",
+        "event": "capture"
+      },
+      {
+        "source": "filename:F38",
+        "kind": "local",
+        "value": "2023-10-28T13:00:32",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2023-10-28T13:00:32",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

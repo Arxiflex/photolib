@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "path": "compound/sphere/spherical-v1.mp4",
+  "size": 1197,
+  "sha256": "a1a8a6b5a964647a40e3b9a289e54ba627451fc86dd470c62bdc9dfbf5f7acc3",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mp4",
+  "quirks": [
+    "spherical_video_v1"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 3840,
+    "height": 1920,
+    "duration_ms": 3000,
+    "codec": "h264",
+    "make": "RICOH",
+    "model": "THETA V",
+    "pano": {
+      "projection": "equirectangular",
+      "cropped": false
+    }
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "qt_mvhd_camera",
+        "kind": "local",
+        "value": "2019-08-10T14:00:00",
+        "precision": "s",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": "2019-08-10T14:00:00",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "qt_mvhd_camera",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

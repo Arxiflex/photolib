@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "path": "stills/document.pdf",
+  "size": 489,
+  "sha256": "d9e65378d9c53cab0c6562d16bf904eb2b650f9a8c83a1037c82151896eb88c4",
+  "origin": "synthetic",
+  "format": "pdf",
+  "quirks": [],
+  "media": {
+    "container": "pdf",
+    "mime": "application/pdf",
+    "kind": "document",
+    "support": "unsupported"
+  },
+  "metadata": {},
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

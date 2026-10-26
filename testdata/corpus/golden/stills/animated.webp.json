@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "path": "stills/animated.webp",
+  "size": 5222,
+  "sha256": "92594787cfc88e28f19c5063f871e0bec08391fb9505a6aa39dfc19ea4b0cd0a",
+  "origin": "synthetic",
+  "format": "webp",
+  "quirks": [
+    "animated"
+  ],
+  "media": {
+    "container": "webp",
+    "mime": "image/webp",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

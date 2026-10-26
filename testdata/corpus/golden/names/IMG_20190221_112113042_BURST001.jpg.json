@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "path": "names/IMG_20190221_112113042_BURST001.jpg",
+  "size": 3642,
+  "sha256": "f950ea4e9990dbcd188fc4c8ff5f1e2e8ebaa13d6b191cc3f3db192f5687ef6c",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "burst"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "group": {
+    "kind": "burst",
+    "key": "20190221_112113042",
+    "role": "burst_member"
+  },
+  "filename": {
+    "matches": [
+      "F02",
+      "F08"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F02",
+        "kind": "local",
+        "value": "2019-02-21T11:21:13.042",
+        "precision": "ms",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-02-21T11:21:13.042",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "ms",
+      "bound": "exact",
+      "source": "filename:F02",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "path": "names/PXL_20231026_210700001.mp4",
+  "size": 747,
+  "sha256": "0d96e2153ae5e280bf74181721c190e55228a74dad0f69de20943de66ad7b354",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mp4",
+  "vendor": "google",
+  "quirks": [
+    "mvhd_zero",
+    "pixel_utc_name"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "h264"
+  },
+  "filename": {
+    "matches": [
+      "F03"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F03",
+        "kind": "utc",
+        "value": "2023-10-26T21:07:00.001Z",
+        "precision": "ms",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": null,
+      "utc": "2023-10-26T21:07:00.001Z",
+      "offset": null,
+      "tz_source": "device_default",
+      "precision": "ms",
+      "bound": "exact",
+      "source": "filename:F03",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

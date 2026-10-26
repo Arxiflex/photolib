@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "path": "stills/interlaced.png",
+  "size": 5707,
+  "sha256": "90f51b93b2742cae8fbdd25031cff99306826269df0631fc3ee13969a9863242",
+  "origin": "synthetic",
+  "format": "png",
+  "quirks": [
+    "interlaced"
+  ],
+  "media": {
+    "container": "png",
+    "mime": "image/png",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

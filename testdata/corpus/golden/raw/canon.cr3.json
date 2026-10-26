@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "path": "raw/canon.cr3",
+  "size": 3054,
+  "sha256": "4cb4ff36947f98524a823866bc859c0f8ec0996c62bedd735166f569304c912e",
+  "origin": "synthetic",
+  "notes": "Placeholder sensor data, not a camera mosaic; the embedded JPEG preview decodes.",
+  "format": "cr3",
+  "vendor": "canon",
+  "quirks": [],
+  "media": {
+    "container": "isobmff",
+    "brand": "crx ",
+    "mime": "image/x-canon-cr3",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 8192,
+    "height": 5464,
+    "orientation": 6,
+    "make": "Canon",
+    "model": "Canon EOS R5"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2020-01-02T03:04:05",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+01:00"
+      }
+    ],
+    "resolved": {
+      "local": "2020-01-02T03:04:05",
+      "utc": "2020-01-02T02:04:05Z",
+      "offset": "+01:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

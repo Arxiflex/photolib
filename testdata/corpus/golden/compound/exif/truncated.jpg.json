@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "path": "compound/exif/truncated.jpg",
+  "size": 3006,
+  "sha256": "0c4ab7c544a279c9c691d2121258a7bccde195151626a2d3bb42f749bd2815ec",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "exif_truncated"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

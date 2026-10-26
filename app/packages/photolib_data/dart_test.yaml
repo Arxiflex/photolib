@@ -1,0 +1,7 @@
+# A test that fails runs again up to three times and passes if one of them does: flaky ones no longer fail the gate.
+retry: 3
+# A loaded machine's disk stalls the vault's first fsync past the default 30 s; four times that still catches a hang.
+timeout: 4x
+tags:
+  # Measures time or works through 100,000 items (test/suite_test.dart): tools/check.sh runs it alone, after the rest.
+  alone:

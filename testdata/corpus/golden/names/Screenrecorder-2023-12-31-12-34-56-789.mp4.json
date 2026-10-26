@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "path": "names/Screenrecorder-2023-12-31-12-34-56-789.mp4",
+  "size": 747,
+  "sha256": "a936321d0be4758dd37603b5f70f4294b97bc704ee504d6f0e87d32acb53e1ae",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mp4",
+  "vendor": "xiaomi",
+  "quirks": [
+    "mvhd_zero",
+    "screen_recording"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "h264"
+  },
+  "filename": {
+    "matches": [
+      "F17",
+      "F52",
+      "F54"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F17",
+        "kind": "local",
+        "value": "2023-12-31T12:34:56.789",
+        "precision": "ms",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12-31T12:34:56.789",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "ms",
+      "bound": "exact",
+      "source": "filename:F17",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

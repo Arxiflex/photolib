@@ -1,0 +1,26 @@
+name: photolib_kernel
+description: The Photolib kernel through dart:ffi and, on the web, WebAssembly; and the runner of its conformance vectors.
+publish_to: none
+
+environment:
+  sdk: ^3.9.0
+
+dependencies:
+  code_assets: ^2.1.0
+  crypto: ^3.0.7
+  ffi: ^2.1.0
+  hooks: ^2.0.2
+
+dev_dependencies:
+  dart_code_linter: ^4.4.2
+  photolib_harness:
+    path: ../photolib_harness
+  stream_channel: ^2.1.4
+  test: ^1.25.0
+  very_good_analysis: ^11.0.0
+
+# Its own tests load the kernel that test/vectors_test.dart builds from source, so the hook bundles none here.
+hooks:
+  user_defines:
+    photolib_kernel:
+      bundle: false

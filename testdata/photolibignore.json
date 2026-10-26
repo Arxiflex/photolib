@@ -1,0 +1,67 @@
+{
+  "about": "Ignore rules of folder scans, shared by the app's folder indexer and the server's external libraries (docs/07-storage-and-libraries.md §4): the defaults, then every .photolibignore in gitignore syntax, telling names apart by case only where the folder's file system does (caseSensitive, true unless a case says otherwise). In each case, rules maps a directory under the root ('' is the root) to its .photolibignore; a path ending in / is a directory; a path is ignored when it or a directory above it is.",
+  "cases": [
+    {
+      "name": "the defaults, at any depth",
+      "rules": {},
+      "ignored": ["@eaDir/", "2024/@eaDir/a.jpg", "#recycle/", ".thumbnails/", "x/.trashed-1700000000-a.jpg",
+        ".Trash-1000/", "$RECYCLE.BIN/", ".dtrash/", "Thumbs.db", "a/.DS_Store", ".AppleDouble/"],
+      "kept": ["eaDir/a.jpg", "recycle/a.jpg", "thumbnails/a.jpg", "trashed-a.jpg", "a.jpg", "thumbs.db"]
+    },
+    {
+      "name": "a name without a slash matches at any depth; a trailing slash only directories",
+      "rules": {"": "*.tmp\nraw/\n"},
+      "ignored": ["a.tmp", "x/y/b.tmp", "raw/", "x/raw/a.jpg"],
+      "kept": ["a.tmp.jpg", "raw", "x/raw", "rawer/a.jpg"]
+    },
+    {
+      "name": "a leading or middle slash anchors to the rule file's directory",
+      "rules": {"": "/exports\ndocs/private\n", "trips": "/drafts\n"},
+      "ignored": ["exports/", "exports", "docs/private/", "trips/drafts/a.jpg"],
+      "kept": ["a/exports/", "a/docs/private/", "drafts/a.jpg", "trips/x/drafts/a.jpg"]
+    },
+    {
+      "name": "the last matching rule wins, and a deeper file overrides",
+      "rules": {"": "*.png\n!keep.png\n", "art": "!*.png\n"},
+      "ignored": ["a.png", "x/b.png"],
+      "kept": ["keep.png", "x/keep.png", "art/a.png", "art/x/b.png"]
+    },
+    {
+      "name": "nothing inside an ignored directory comes back",
+      "rules": {"": "private/\n!private/a.jpg\n", "private": "!b.jpg\n"},
+      "ignored": ["private/", "private/a.jpg", "private/b.jpg"],
+      "kept": []
+    },
+    {
+      "name": "double asterisks",
+      "rules": {"": "**/cache\nlogs/**\na/**/b\nx**y\n"},
+      "ignored": ["cache/", "q/r/cache", "logs/a.jpg", "logs/q/a.jpg", "a/b", "a/q/b", "a/q/r/b/", "xzy", "x_y"],
+      "kept": ["logs", "q/logs/a.jpg", "a/qb", "ab", "x/y", "x_y.jpg"]
+    },
+    {
+      "name": "wildcards and character classes never match a slash",
+      "rules": {"": "IMG_[0-9]?.jpg\n[!a-c]*.png\nq*z\ndir?x\n"},
+      "ignored": ["IMG_12.jpg", "s/IMG_3a.jpg", "d.png", "qz", "q12z", "dir_x"],
+      "kept": ["IMG_a2.jpg", "IMG_1.jpg", "a.png", "c.png", "q/z", "dir/x"]
+    },
+    {
+      "name": "comments, blank lines, escapes and trailing spaces",
+      "rules": {"": "# a comment\n\n\\#hash.jpg\n\\!bang.jpg\nspaced.jpg   \nkept\\ \n\\*.jpg\n"},
+      "ignored": ["#hash.jpg", "!bang.jpg", "spaced.jpg", "kept ", "*.jpg"],
+      "kept": ["# a comment", "spaced.jpg   ", "kept", "a.jpg"]
+    },
+    {
+      "name": "on a case-insensitive file system, rules match names in any case",
+      "caseSensitive": false,
+      "rules": {"": "*.PNG\n!KEEP.png\nRaw/\n/Exports\n[a-c]*.tif\n"},
+      "ignored": ["thumbs.db", "THUMBS.DB", "x/@EADIR/", "a.png", "x/B.Png", "raw/", "RAW/a.jpg", "exports/", "B.TIF"],
+      "kept": ["keep.png", "a.jpg", "raw", "x/exports/", "d.tif"]
+    },
+    {
+      "name": "a rule may undo a default",
+      "rules": {"": "!.thumbnails/\n"},
+      "ignored": ["@eaDir/"],
+      "kept": [".thumbnails/a.jpg"]
+    }
+  ]
+}

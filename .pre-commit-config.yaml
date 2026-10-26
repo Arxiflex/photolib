@@ -1,0 +1,17 @@
+# Git hooks, installed by `just bootstrap` (or `pre-commit install`). They run the repository's own scripts, so a
+# commit is checked exactly as it is before a merge. Everything is local: no hook repository is downloaded.
+default_install_hook_types: [pre-commit, commit-msg]
+repos:
+  - repo: local
+    hooks:
+      - id: check
+        name: quality gate
+        entry: bash tools/check.sh
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: commitlint
+        name: Conventional Commits
+        entry: bash tools/commitlint.sh --file
+        language: system
+        stages: [commit-msg]

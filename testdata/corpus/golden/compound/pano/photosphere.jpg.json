@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "path": "compound/pano/photosphere.jpg",
+  "size": 210646,
+  "sha256": "a0bd4fb1679909479d105522893e9e9f4d6cad3c94a407a5526844b6146434a5",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "google",
+  "quirks": [
+    "photo_sphere"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 8192,
+    "height": 4096,
+    "make": "Google",
+    "model": "Pixel 7",
+    "pano": {
+      "projection": "equirectangular",
+      "cropped": false
+    }
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2022-06-18T18:30:00",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+02:00"
+      }
+    ],
+    "resolved": {
+      "local": "2022-06-18T18:30:00",
+      "utc": "2022-06-18T16:30:00Z",
+      "offset": "+02:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

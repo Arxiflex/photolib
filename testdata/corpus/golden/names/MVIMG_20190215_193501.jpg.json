@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "path": "names/MVIMG_20190215_193501.jpg",
+  "size": 3350,
+  "sha256": "e0607611f42bb438fec75d16f828b4435d8a2a3f5020c81edf61299d5a170d78",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F02",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F02",
+        "kind": "local",
+        "value": "2019-02-15T19:35:01",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-02-15T19:35:01",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F02",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

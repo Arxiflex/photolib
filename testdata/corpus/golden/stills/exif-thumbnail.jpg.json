@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "path": "stills/exif-thumbnail.jpg",
+  "size": 11057,
+  "sha256": "49ee5a6122b1499022c3460ee65c427adf3b9c229e6ad0c5b47278120a2a70dc",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "sony",
+  "quirks": [
+    "embedded_preview"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "make": "SONY",
+    "model": "ILCE-7M3"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2022-09-18T16:45:09",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+09:00"
+      }
+    ],
+    "resolved": {
+      "local": "2022-09-18T16:45:09",
+      "utc": "2022-09-18T07:45:09Z",
+      "offset": "+09:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

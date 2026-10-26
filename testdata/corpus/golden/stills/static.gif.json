@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "path": "stills/static.gif",
+  "size": 1236,
+  "sha256": "8f558cd8533ed70bfdb13cccacdde90e9191b293d7bafeb9b420f1f6609c2281",
+  "origin": "synthetic",
+  "format": "gif",
+  "quirks": [],
+  "media": {
+    "container": "gif",
+    "mime": "image/gif",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

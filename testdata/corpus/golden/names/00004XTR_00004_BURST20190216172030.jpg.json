@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "path": "names/00004XTR_00004_BURST20190216172030.jpg",
+  "size": 3728,
+  "sha256": "816f2d142edd2fcdf8ed4a2387a3d58d4afcc1fba57c4726a854b089ab9833b9",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "burst"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F04",
+      "F52",
+      "F53"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F04",
+        "kind": "local",
+        "value": "2019-02-16T17:20:30",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-02-16T17:20:30",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F04",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "path": "takeout/Google Photos/Photos from 2020/IMG_20200101_130000.jpg",
+  "size": 3379,
+  "sha256": "a44902976f2d37f88ed45855a5137fa6106658fd1f6ef285735bcb0771ebf532",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "takeout_geo_zero",
+    "takeout_supplemental_sidecar",
+    "takeout_year_folder"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "sidecars": [
+    {
+      "path": "takeout/Google Photos/Photos from 2020/IMG_20200101_130000.jpg.supplemental-metad.json",
+      "kind": "takeout_json",
+      "sha256": "0a2291bbbb9b2195c4157922d1379b33074a1726bcc2df198d8d209bb46d27fe"
+    }
+  ],
+  "filename": {
+    "matches": [
+      "F01",
+      "F02",
+      "F50",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "takeout_photoTakenTime",
+        "kind": "utc",
+        "value": "2020-01-01T12:00:00Z",
+        "precision": "s",
+        "event": "capture"
+      },
+      {
+        "source": "filename:F01",
+        "kind": "local",
+        "value": "2020-01-01T13:00:00",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2020-01-01T13:00:00",
+      "utc": "2020-01-01T12:00:00Z",
+      "offset": "+01:00",
+      "tz_source": "paired_utc_delta",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F01",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

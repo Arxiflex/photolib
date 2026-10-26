@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- What software centres show of the app (AppStream), in the deb and the AppImage. -->
+<component type="desktop-application">
+  <id>org.photolib.photolib</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>AGPL-3.0-only</project_license>
+  <name>Photolib</name>
+  <summary>Your photos and videos, on a server of your own</summary>
+  <summary xml:lang="es">Tus fotos y vídeos, en un servidor propio</summary>
+  <summary xml:lang="fr">Vos photos et vidéos, sur votre propre serveur</summary>
+  <summary xml:lang="de">Deine Fotos und Videos auf deinem eigenen Server</summary>
+  <summary xml:lang="it">Le tue foto e i tuoi video, su un server tutto tuo</summary>
+  <summary xml:lang="pt_BR">Suas fotos e vídeos em um servidor só seu</summary>
+  <summary xml:lang="ru">Ваши фото и видео — на вашем собственном сервере</summary>
+  <summary xml:lang="uk">Ваші фото та відео — на вашому власному сервері</summary>
+  <summary xml:lang="pl">Twoje zdjęcia i filmy na Twoim własnym serwerze</summary>
+  <summary xml:lang="nl">Je foto's en video's op je eigen server</summary>
+  <summary xml:lang="tr">Fotoğraflarınız ve videolarınız kendi sunucunuzda</summary>
+  <summary xml:lang="ar">صورك ومقاطع الفيديو الخاصة بك على خادمك الخاص</summary>
+  <summary xml:lang="he">התמונות והסרטונים שלך, בשרת משלך</summary>
+  <summary xml:lang="hi">आपकी फ़ोटो और वीडियो, आपके अपने सर्वर पर</summary>
+  <summary xml:lang="ja">写真と動画を、自分のサーバーに</summary>
+  <summary xml:lang="ko">사진과 동영상을 나만의 서버에</summary>
+  <summary xml:lang="zh_CN">你的照片和视频，存放在你自己的服务器上</summary>
+  <summary xml:lang="zh_TW">你的照片和影片，存放在你自己的伺服器上</summary>
+  <summary xml:lang="id">Foto dan video Anda, di server milik Anda sendiri</summary>
+  <summary xml:lang="vi">Ảnh và video của bạn, trên máy chủ của riêng bạn</summary>
+  <summary xml:lang="sv">Dina foton och videor på din egen server</summary>
+  <description>
+    <p>Photolib keeps your photos and videos on a server you run yourself. Browse your whole library, on this device and on the server, back up new photos and videos as you take them, and share albums with the people you choose.</p>
+    <p xml:lang="es">Photolib guarda tus fotos y vídeos en un servidor que gestionas tú. Explora toda tu biblioteca, en este dispositivo y en el servidor, haz copia de seguridad de las fotos y vídeos nuevos en cuanto los hagas y comparte álbumes con quien tú elijas.</p>
+    <p xml:lang="fr">Photolib conserve vos photos et vidéos sur un serveur que vous gérez vous-même. Parcourez toute votre bibliothèque, sur cet appareil et sur le serveur, sauvegardez les nouvelles photos et vidéos dès que vous les prenez et partagez des albums avec les personnes de votre choix.</p>
+    <p xml:lang="de">Photolib bewahrt deine Fotos und Videos auf einem Server auf, den du selbst betreibst. Durchsuche deine ganze Bibliothek auf diesem Gerät und auf dem Server, sichere neue Fotos und Videos, sobald du sie aufnimmst, und teile Alben mit den Menschen deiner Wahl.</p>
+    <p xml:lang="it">Photolib conserva le tue foto e i tuoi video su un server che gestisci tu. Sfoglia tutta la libreria, su questo dispositivo e sul server, esegui il backup di nuove foto e nuovi video appena li scatti e condividi album con le persone che scegli.</p>
+    <p xml:lang="pt_BR">O Photolib guarda suas fotos e vídeos em um servidor que você mesmo administra. Navegue por toda a sua biblioteca, neste dispositivo e no servidor, faça backup de novas fotos e vídeos assim que você os registra e compartilhe álbuns com as pessoas que escolher.</p>
+    <p xml:lang="ru">Photolib хранит ваши фото и видео на сервере, которым управляете вы сами. Просматривайте всю медиатеку — на этом устройстве и на сервере, сохраняйте резервные копии новых фото и видео сразу после съёмки и делитесь альбомами с теми, кого выберете.</p>
+    <p xml:lang="uk">Photolib зберігає ваші фото та відео на сервері, яким керуєте ви самі. Переглядайте всю медіатеку — на цьому пристрої та на сервері, створюйте резервні копії нових фото й відео одразу після зйомки та діліться альбомами з тими, кого оберете.</p>
+    <p xml:lang="pl">Photolib przechowuje Twoje zdjęcia i filmy na serwerze, którym zarządzasz samodzielnie. Przeglądaj całą bibliotekę, na tym urządzeniu i na serwerze, twórz kopie zapasowe nowych zdjęć i filmów zaraz po ich zrobieniu i udostępniaj albumy wybranym osobom.</p>
+    <p xml:lang="nl">Photolib bewaart je foto's en video's op een server die je zelf beheert. Blader door je hele bibliotheek, op dit apparaat en op de server, maak een back-up van nieuwe foto's en video's zodra je ze maakt en deel albums met de mensen die jij kiest.</p>
+    <p xml:lang="tr">Photolib, fotoğraflarınızı ve videolarınızı kendi yönettiğiniz bir sunucuda saklar. Tüm kitaplığınıza bu cihazda ve sunucuda göz atın, yeni fotoğrafları ve videoları çeker çekmez yedekleyin ve albümleri seçtiğiniz kişilerle paylaşın.</p>
+    <p xml:lang="ar">يحتفظ Photolib بصورك ومقاطع الفيديو الخاصة بك على خادم تديره بنفسك. تصفّح مكتبتك كلها على هذا الجهاز وعلى الخادم، وانسخ الصور ومقاطع الفيديو الجديدة احتياطيًا فور التقاطها، وشارك الألبومات مع من تختارهم.</p>
+    <p xml:lang="he">Photolib שומר את התמונות והסרטונים שלך בשרת שמנוהל על ידך. אפשר לעיין בכל הספרייה, במכשיר הזה ובשרת, לגבות תמונות וסרטונים חדשים מיד כשמצלמים אותם ולשתף אלבומים עם האנשים שבוחרים.</p>
+    <p xml:lang="hi">Photolib आपकी फ़ोटो और वीडियो को उस सर्वर पर रखता है जिसे आप खुद चलाते हैं। इस डिवाइस और सर्वर पर अपनी पूरी लाइब्रेरी देखें, नई फ़ोटो और वीडियो लेते ही उनका बैकअप लें, और अपनी पसंद के लोगों के साथ एल्बम साझा करें।</p>
+    <p xml:lang="ja">Photolib は、写真と動画をあなた自身が運用するサーバーに保管します。このデバイスとサーバーにあるライブラリ全体を閲覧し、新しい写真や動画を撮影したらすぐにバックアップし、選んだ人とアルバムを共有できます。</p>
+    <p xml:lang="ko">Photolib은 사진과 동영상을 직접 운영하는 서버에 보관합니다. 이 기기와 서버에 있는 전체 라이브러리를 둘러보고, 새 사진과 동영상을 찍는 즉시 백업하고, 원하는 사람과 앨범을 공유하세요.</p>
+    <p xml:lang="zh_CN">Photolib 将你的照片和视频保存在你自己运行的服务器上。浏览整个图库，无论是在这台设备上还是在服务器上；拍摄后立即备份新的照片和视频；并与你选择的人共享相册。</p>
+    <p xml:lang="zh_TW">Photolib 將你的照片和影片保存在你自己執行的伺服器上。瀏覽整個圖庫，無論是在這部裝置上還是在伺服器上；拍攝後立即備份新的照片和影片；並與你選擇的人分享相簿。</p>
+    <p xml:lang="id">Photolib menyimpan foto dan video Anda di server yang Anda kelola sendiri. Jelajahi seluruh pustaka Anda, di perangkat ini dan di server, cadangkan foto dan video baru begitu Anda mengambilnya, dan bagikan album kepada orang-orang yang Anda pilih.</p>
+    <p xml:lang="vi">Photolib lưu giữ ảnh và video của bạn trên máy chủ do chính bạn vận hành. Duyệt toàn bộ thư viện trên thiết bị này và trên máy chủ, sao lưu ảnh và video mới ngay khi bạn chụp, và chia sẻ album với những người bạn chọn.</p>
+    <p xml:lang="sv">Photolib förvarar dina foton och videor på en server som du själv driver. Bläddra i hela biblioteket, på den här enheten och på servern, säkerhetskopiera nya foton och videor så fort du tar dem och dela album med de personer du väljer.</p>
+  </description>
+  <launchable type="desktop-id">org.photolib.photolib.desktop</launchable>
+  <url type="homepage">https://github.com/Arxiflex/photolib</url>
+  <url type="bugtracker">https://github.com/Arxiflex/photolib/issues</url>
+  <developer id="org.photolib">
+    <name>Photolib</name>
+  </developer>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="0.1.0" date="2026-10-21"/>
+  </releases>
+</component>

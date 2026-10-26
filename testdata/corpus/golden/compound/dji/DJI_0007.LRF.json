@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "path": "compound/dji/DJI_0007.LRF",
+  "size": 751,
+  "sha256": "bbe1035021df662510a776d47d92e70cc36d93148d5d7754edaaf4c8e714a3c8",
+  "origin": "synthetic",
+  "notes": "Placeholder hevc payload: the structure and metadata are real, the video does not decode.",
+  "format": "lrf",
+  "vendor": "dji",
+  "quirks": [
+    "camera_proxy"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1280,
+    "height": 720,
+    "duration_ms": 3000,
+    "codec": "hevc",
+    "make": "DJI",
+    "model": "Mavic 3"
+  },
+  "group": {
+    "kind": "camera_aux",
+    "key": "DJI_0007",
+    "role": "camera_aux"
+  },
+  "filename": {
+    "matches": [
+      "F39"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "qt_mvhd_camera",
+        "kind": "local",
+        "value": "2023-09-02T16:45:10",
+        "precision": "s",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": "2023-09-02T16:45:10",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "qt_mvhd_camera",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "path": "names/PXL_20210101_120000123.NIGHT.jpg",
+  "size": 3570,
+  "sha256": "f1b7839eb98eac3f17a6d2b22f093fec6871af60462030d435da5584ffaf305d",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "google",
+  "quirks": [
+    "pixel_utc_name"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F03"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F03",
+        "kind": "utc",
+        "value": "2021-01-01T12:00:00.123Z",
+        "precision": "ms",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": null,
+      "utc": "2021-01-01T12:00:00.123Z",
+      "offset": null,
+      "tz_source": "device_default",
+      "precision": "ms",
+      "bound": "exact",
+      "source": "filename:F03",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

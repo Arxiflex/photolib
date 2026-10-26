@@ -1,0 +1,29 @@
+[package]
+name = "photolib-jobs"
+version = "0.0.0"
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+license.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+async-trait = "0.1.92"
+sqlx = { version = "0.8.6", default-features = false, features = ["runtime-tokio", "postgres"] }
+# Uuid columns; sqlx's own `uuid` feature would put the MySQL and SQLite drivers in Cargo.lock.
+sqlx-postgres = { version = "0.8.6", default-features = false, features = ["uuid"] }
+tokio = { version = "1.53.3", features = ["macros", "rt", "sync", "time"] }
+tokio-util = "0.7.20"
+tracing = "0.1.44"
+uuid = { version = "1.26.1", features = ["v7"] }
+
+# sqlx-postgres is there for its uuid feature only.
+[package.metadata.cargo-machete]
+ignored = ["sqlx-postgres"]
+
+[dev-dependencies]
+photolib-db = { path = "../photolib-db", features = ["testing"] }
+photolib-spawn = { path = "../photolib-spawn" }
+tokio = { version = "1.53.3", features = ["macros", "rt-multi-thread"] }

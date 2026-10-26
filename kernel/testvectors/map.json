@@ -1,0 +1,134 @@
+{
+  "cases": [
+    {
+      "method": 45,
+      "name": "the world at zoom 3: Paris merged, Lisbon alone",
+      "request": "CAERAAAAAACAZsAZAAAAAABAVcAhAAAAAACAZkApAAAAAABAVUAwAw==",
+      "response": "Ci4KFgldj8L1KFxDQBFA4XoUrkciwBgBIAIKFAkaQO+lcG1IQBHYo3A9CtcCQBgC",
+      "setup": [
+        {
+          "method": 44,
+          "request": "CiDNzMzMzGxIQK5H4XoUbkhAXI/C9ShcQ0AAAAAAAAD4fxIgzczMzMzMAkDhehSuR+ECQEjhehSuRyLAAAAAAAAAAAAaCoDGCoDeNIDSHwA=",
+          "response": "CgQIARAD"
+        }
+      ]
+    },
+    {
+      "method": 45,
+      "name": "zoom 20 separates the Paris photos",
+      "request": "CAERAAAAAACAZsAZAAAAAABAVcAhAAAAAACAZkApAAAAAABAVUAwFA==",
+      "response": "CkgKFgldj8L1KFxDQBFA4XoUrkciwBgBIAIKFgmxR+F6FG5IQBEsexSuR+ECQBgBIAEKFgnPzMzMzGxIQBHezMzMzMwCQBgBIAA=",
+      "setup": [
+        {
+          "method": 44,
+          "request": "CiDNzMzMzGxIQK5H4XoUbkhAXI/C9ShcQ0AAAAAAAAD4fxIgzczMzMzMAkDhehSuR+ECQEjhehSuRyLAAAAAAAAAAAAaCoDGCoDeNIDSHwA=",
+          "response": "CgQIARAD"
+        }
+      ]
+    },
+    {
+      "method": 45,
+      "name": "a time range keeps what was taken in it",
+      "request": "CAERAAAAAACAZsAZAAAAAABAVcAhAAAAAACAZkApAAAAAABAVUAwFDoICICMFRCAmCo=",
+      "response": "ChgKFgldj8L1KFxDQBFA4XoUrkciwBgBIAI=",
+      "setup": [
+        {
+          "method": 44,
+          "request": "CiDNzMzMzGxIQK5H4XoUbkhAXI/C9ShcQ0AAAAAAAAD4fxIgzczMzMzMAkDhehSuR+ECQEjhehSuRyLAAAAAAAAAAAAaCoDGCoDeNIDSHwA=",
+          "response": "CgQIARAD"
+        }
+      ]
+    },
+    {
+      "method": 45,
+      "name": "a lasso keeps what lies inside its polygon",
+      "request": "CAERAAAAAACAZsAZAAAAAABAVcAhAAAAAACAZkApAAAAAABAVUAwFDpCGkAAAAAAAABEQAAAAAAAAAAAAAAAAAAAREAAAAAAAAAUQAAAAAAAAElAAAAAAAAAFEAAAAAAAABJQAAAAAAAAAAA",
+      "response": "CjAKFgmxR+F6FG5IQBEsexSuR+ECQBgBIAEKFgnPzMzMzGxIQBHezMzMzMwCQBgBIAA=",
+      "setup": [
+        {
+          "method": 44,
+          "request": "CiDNzMzMzGxIQK5H4XoUbkhAXI/C9ShcQ0AAAAAAAAD4fxIgzczMzMzMAkDhehSuR+ECQEjhehSuRyLAAAAAAAAAAAAaCoDGCoDeNIDSHwA=",
+          "response": "CgQIARAD"
+        }
+      ]
+    },
+    {
+      "method": 46,
+      "name": "the assets of a viewport in order, cut by a limit but counted",
+      "request": "CAERAAAAAACAZsAZAAAAAABAVcAhAAAAAACAZkApAAAAAABAVUA4Ag==",
+      "response": "CgYKAgABEAM=",
+      "setup": [
+        {
+          "method": 44,
+          "request": "CiDNzMzMzGxIQK5H4XoUbkhAXI/C9ShcQ0AAAAAAAAD4fxIgzczMzMzMAkDhehSuR+ECQEjhehSuRyLAAAAAAAAAAAAaCoDGCoDeNIDSHwA=",
+          "response": "CgQIARAD"
+        }
+      ]
+    },
+    {
+      "method": 46,
+      "name": "a lasso and a time range together",
+      "request": "CAERAAAAAACAZsAZAAAAAABAVcAhAAAAAACAZkApAAAAAABAVUAyRhCA0h8aQAAAAAAAAERAAAAAAAAAAAAAAAAAAABEQAAAAAAAABRAAAAAAAAASUAAAAAAAAAUQAAAAAAAAElAAAAAAAAAAAA=",
+      "response": "CgUKAQAQAQ==",
+      "setup": [
+        {
+          "method": 44,
+          "request": "CiDNzMzMzGxIQK5H4XoUbkhAXI/C9ShcQ0AAAAAAAAD4fxIgzczMzMzMAkDhehSuR+ECQEjhehSuRyLAAAAAAAAAAAAaCoDGCoDeNIDSHwA=",
+          "response": "CgQIARAD"
+        }
+      ]
+    },
+    {
+      "method": 47,
+      "name": "a dropped index is gone",
+      "request": "CAE=",
+      "response": "CgA=",
+      "setup": [
+        {
+          "method": 44,
+          "request": "CiDNzMzMzGxIQK5H4XoUbkhAXI/C9ShcQ0AAAAAAAAD4fxIgzczMzMzMAkDhehSuR+ECQEjhehSuRyLAAAAAAAAAAAAaCoDGCoDeNIDSHwA=",
+          "response": "CgQIARAD"
+        }
+      ]
+    },
+    {
+      "method": 45,
+      "name": "an index that is not held",
+      "request": "CAkRAAAAAACAZsAZAAAAAABAVcAhAAAAAACAZkApAAAAAABAVUAwAw==",
+      "response": "EhIIAhIOCgVmaWVsZBIFaW5kZXg=",
+      "setup": [
+        {
+          "method": 44,
+          "request": "CiDNzMzMzGxIQK5H4XoUbkhAXI/C9ShcQ0AAAAAAAAD4fxIgzczMzMzMAkDhehSuR+ECQEjhehSuRyLAAAAAAAAAAAAaCoDGCoDeNIDSHwA=",
+          "response": "CgQIARAD"
+        }
+      ]
+    },
+    {
+      "method": 45,
+      "name": "an odd polygon",
+      "request": "CAERAAAAAACAZsAZAAAAAABAVcAhAAAAAACAZkApAAAAAABAVUAwAzoaGhgAAAAAAADwPwAAAAAAAABAAAAAAAAACEA=",
+      "response": "EhsIAhIXCgVmaWVsZBIOZmlsdGVyLnBvbHlnb24=",
+      "setup": [
+        {
+          "method": 44,
+          "request": "CiDNzMzMzGxIQK5H4XoUbkhAXI/C9ShcQ0AAAAAAAAD4fxIgzczMzMzMAkDhehSuR+ECQEjhehSuRyLAAAAAAAAAAAAaCoDGCoDeNIDSHwA=",
+          "response": "CgQIARAD"
+        }
+      ]
+    },
+    {
+      "method": 44,
+      "name": "positions and longitudes of different lengths",
+      "request": "CggAAAAAAADwPw==",
+      "response": "EhcIAhITCgVmaWVsZBIKbG9uZ2l0dWRlcw=="
+    },
+    {
+      "method": 44,
+      "name": "times for some of the assets only",
+      "request": "ChAAAAAAAADwPwAAAAAAAABAEhAAAAAAAADwPwAAAAAAAABAGgEK",
+      "response": "EhIIAhIOCgVmaWVsZBIFdGltZXM="
+    }
+  ],
+  "description": "The map index: clusters of a viewport, time and lasso filters, assets of a viewport (design doc 14)."
+}

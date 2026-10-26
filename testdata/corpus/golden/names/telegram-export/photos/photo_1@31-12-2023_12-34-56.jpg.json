@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "path": "names/telegram-export/photos/photo_1@31-12-2023_12-34-56.jpg",
+  "size": 3459,
+  "sha256": "1c9344a9b4a1e25fa32c875d845f0029e1bb9bd55cf7ae63dc664d292d75b367",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "messenger_copy",
+    "upper_bound_name"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F29"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F29",
+        "kind": "local",
+        "value": "2023-12-31T12:34:56",
+        "precision": "s",
+        "event": "receive"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12-31T12:34:56",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "upper",
+      "source": "filename:F29",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

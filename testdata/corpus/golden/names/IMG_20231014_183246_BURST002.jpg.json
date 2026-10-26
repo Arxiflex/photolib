@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "path": "names/IMG_20231014_183246_BURST002.jpg",
+  "size": 3571,
+  "sha256": "cfecd20b94b905974781f6c302155f0f88cbf3a2be4762d953c739d8242b0e46",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "huawei",
+  "quirks": [
+    "burst"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "group": {
+    "kind": "burst",
+    "key": "20231014_183246",
+    "role": "burst_member"
+  },
+  "filename": {
+    "matches": [
+      "F01",
+      "F02",
+      "F06",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F06",
+        "kind": "local",
+        "value": "2023-10-14T18:32:46",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2023-10-14T18:32:46",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F06",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

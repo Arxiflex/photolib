@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "path": "names/201801261147521000.jpg",
+  "size": 3390,
+  "sha256": "178baebe27228b1d191e118a25bd5dbff640659fec6190e52bc8b14546125df7",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F53"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F53",
+        "kind": "local",
+        "value": "2018-01-26T11:47:52",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2018-01-26T11:47:52",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F53",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

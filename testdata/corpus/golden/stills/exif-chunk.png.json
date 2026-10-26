@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "path": "stills/exif-chunk.png",
+  "size": 1990,
+  "sha256": "be0bb8eaccf59a3488d5013304b343b1d2735858b3871583c7276ad2f4f6ab1d",
+  "origin": "synthetic",
+  "format": "png",
+  "vendor": "google",
+  "quirks": [],
+  "media": {
+    "container": "png",
+    "mime": "image/png",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120,
+    "make": "Google",
+    "model": "Pixel 7"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2023-03-30T18:41:38",
+        "precision": "s",
+        "event": "capture",
+        "offset": "-04:00"
+      }
+    ],
+    "resolved": {
+      "local": "2023-03-30T18:41:38",
+      "utc": "2023-03-30T22:41:38Z",
+      "offset": "-04:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

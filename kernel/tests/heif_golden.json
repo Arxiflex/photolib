@@ -1,0 +1,747 @@
+{
+  "compound/depth/portrait.heic": {
+    "picture": {
+      "clap": null,
+      "grid": [
+        0,
+        0
+      ],
+      "image": {
+        "codec": "HEIF_CODEC_HEVC",
+        "codec_string": "hvc1.17.2A0D6E4A.L144.55.2C.6B.20.46.D9",
+        "config": "01115276b054552c6b2046d99081a861342df40507b53d",
+        "size": [
+          4032,
+          3024
+        ],
+        "spans": [
+          "451+96"
+        ]
+      },
+      "mirror": null,
+      "rotation": 0,
+      "size": [
+        4032,
+        3024
+      ],
+      "tiles": []
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  },
+  "compound/edited/IMG_3001.HEIC": {
+    "picture": {
+      "clap": null,
+      "grid": [
+        0,
+        0
+      ],
+      "image": {
+        "codec": "HEIF_CODEC_HEVC",
+        "codec_string": "hvc1.A22.37FB6537.H190.AF.66.15.4A.5E.25",
+        "config": "0176eca6dfecaf66154a5e25be3e37785a989e1e769503",
+        "size": [
+          4032,
+          3024
+        ],
+        "spans": [
+          "322+96"
+        ]
+      },
+      "mirror": null,
+      "rotation": 0,
+      "size": [
+        4032,
+        3024
+      ],
+      "tiles": []
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  },
+  "compound/live/IMG_2001.HEIC": {
+    "picture": {
+      "clap": null,
+      "grid": [
+        0,
+        0
+      ],
+      "image": {
+        "codec": "HEIF_CODEC_HEVC",
+        "codec_string": "hvc1.B5.7908FE64.L232.3A.98.AF.AC.55.87",
+        "config": "0185267f109e3a98afac5587e8ed8cfa194b44ca800d78",
+        "size": [
+          4032,
+          3024
+        ],
+        "spans": [
+          "322+96"
+        ]
+      },
+      "mirror": null,
+      "rotation": 0,
+      "size": [
+        4032,
+        3024
+      ],
+      "tiles": []
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  },
+  "compound/motion/pixel-motion.heic": {
+    "picture": {
+      "clap": null,
+      "grid": [
+        0,
+        0
+      ],
+      "image": {
+        "codec": "HEIF_CODEC_HEVC",
+        "codec_string": "hvc1.C25.6AED1E71.H236.91.CE.AC.7B.88.74",
+        "config": "01f98e78b75691ceac7b8874ec54a920e5cc462ce6fed0",
+        "size": [
+          4032,
+          3024
+        ],
+        "spans": [
+          "322+96"
+        ]
+      },
+      "mirror": null,
+      "rotation": 0,
+      "size": [
+        4032,
+        3024
+      ],
+      "tiles": []
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  },
+  "compound/odd/heic-saved-as.jpg": {
+    "picture": {
+      "clap": null,
+      "grid": [
+        0,
+        0
+      ],
+      "image": {
+        "codec": "HEIF_CODEC_HEVC",
+        "codec_string": "hvc1.A6.89CA6DE5.H1.76.BD.E0.0.81.42",
+        "config": "0166a7b6539176bde000814201116e1cc30e0bd8447836",
+        "size": [
+          4032,
+          3024
+        ],
+        "spans": [
+          "322+96"
+        ]
+      },
+      "mirror": null,
+      "rotation": 0,
+      "size": [
+        4032,
+        3024
+      ],
+      "tiles": []
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  },
+  "compound/pano/spatial.heic": {
+    "picture": {
+      "clap": null,
+      "grid": [
+        0,
+        0
+      ],
+      "image": {
+        "codec": "HEIF_CODEC_HEVC",
+        "codec_string": "hvc1.C4.D5A3CC83.H229.C1.29.20.5E.C5.5F",
+        "config": "01e4c133c5abc129205ec55fe5dde51d1b3ce7460c0dcd",
+        "size": [
+          3840,
+          2160
+        ],
+        "spans": [
+          "419+96"
+        ]
+      },
+      "mirror": null,
+      "rotation": 0,
+      "size": [
+        3840,
+        2160
+      ],
+      "tiles": []
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  },
+  "hdr/apple-gain-map.heic": {
+    "picture": {
+      "clap": null,
+      "grid": [
+        0,
+        0
+      ],
+      "image": {
+        "codec": "HEIF_CODEC_HEVC",
+        "codec_string": "hvc1.A15.A1F184AD.H72.C4.EE.EE.8F.9E.97",
+        "config": "016fb5218f85c4eeee8f9e97484b20e3819239c189e7db",
+        "size": [
+          4032,
+          3024
+        ],
+        "spans": [
+          "464+96"
+        ]
+      },
+      "mirror": null,
+      "rotation": 0,
+      "size": [
+        4032,
+        3024
+      ],
+      "tiles": []
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  },
+  "hdr/hlg.avif": {
+    "picture": {
+      "clap": null,
+      "grid": [
+        0,
+        0
+      ],
+      "image": {
+        "codec": "HEIF_CODEC_AV1",
+        "codec_string": "av01.0.00M.08",
+        "config": "81000c00",
+        "size": [
+          3840,
+          2160
+        ],
+        "spans": [
+          "262+96"
+        ]
+      },
+      "mirror": null,
+      "rotation": 0,
+      "size": [
+        3840,
+        2160
+      ],
+      "tiles": []
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  },
+  "hdr/iso-gain-map.heic": {
+    "picture": {
+      "clap": null,
+      "grid": [
+        0,
+        0
+      ],
+      "image": {
+        "codec": "HEIF_CODEC_HEVC",
+        "codec_string": "hvc1.A14.28AD1BC4.L60.92.4F.2F.36.8.F7",
+        "config": "014e23d8b514924f2f3608f73c7b8d7485068b46e0d79f",
+        "size": [
+          4032,
+          3024
+        ],
+        "spans": [
+          "434+96"
+        ]
+      },
+      "mirror": null,
+      "rotation": 0,
+      "size": [
+        4032,
+        3024
+      ],
+      "tiles": []
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  },
+  "hdr/pq-10bit.heic": {
+    "picture": {
+      "clap": null,
+      "grid": [
+        0,
+        0
+      ],
+      "image": {
+        "codec": "HEIF_CODEC_HEVC",
+        "codec_string": "hvc1.B5.CFDA45F6.L202.C1.C9.66.8A.53.D0",
+        "config": "01856fa25bf3c1c9668a53d0ca2b92e6a921aadc7f7be8",
+        "size": [
+          4032,
+          3024
+        ],
+        "spans": [
+          "342+96"
+        ]
+      },
+      "mirror": null,
+      "rotation": 0,
+      "size": [
+        4032,
+        3024
+      ],
+      "tiles": []
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  },
+  "hdr/pq.avif": {
+    "picture": {
+      "clap": null,
+      "grid": [
+        0,
+        0
+      ],
+      "image": {
+        "codec": "HEIF_CODEC_AV1",
+        "codec_string": "av01.0.00M.08",
+        "config": "81000c00",
+        "size": [
+          3840,
+          2160
+        ],
+        "spans": [
+          "262+96"
+        ]
+      },
+      "mirror": null,
+      "rotation": 0,
+      "size": [
+        3840,
+        2160
+      ],
+      "tiles": []
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  },
+  "names/IMG_1234.HEIC": {
+    "picture": {
+      "clap": null,
+      "grid": [
+        0,
+        0
+      ],
+      "image": {
+        "codec": "HEIF_CODEC_HEVC",
+        "codec_string": "hvc1.28.A08CF2C6.L196.6.33.5B.E3.C9.4A",
+        "config": "011c634f310506335be3c94ac4d4130fee49c56f6a5ce8",
+        "size": [
+          4032,
+          3024
+        ],
+        "spans": [
+          "261+96"
+        ]
+      },
+      "mirror": null,
+      "rotation": 0,
+      "size": [
+        4032,
+        3024
+      ],
+      "tiles": []
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  },
+  "stills/10bit.avif": {
+    "picture": {
+      "clap": null,
+      "grid": [
+        0,
+        0
+      ],
+      "image": {
+        "codec": "HEIF_CODEC_AV1",
+        "codec_string": "av01.0.00M.08",
+        "config": "81000c00",
+        "size": [
+          4032,
+          3024
+        ],
+        "spans": [
+          "303+96"
+        ]
+      },
+      "mirror": null,
+      "rotation": 0,
+      "size": [
+        4032,
+        3024
+      ],
+      "tiles": []
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  },
+  "stills/10bit.heic": {
+    "picture": {
+      "clap": null,
+      "grid": [
+        0,
+        0
+      ],
+      "image": {
+        "codec": "HEIF_CODEC_HEVC",
+        "codec_string": "hvc1.B23.283F516C.L51.A2.1E.B5.81.8B.DF",
+        "config": "0197368afc14a21eb5818bdf3394d28ca3ee6da02be4e8",
+        "size": [
+          4032,
+          3024
+        ],
+        "spans": [
+          "322+96"
+        ]
+      },
+      "mirror": null,
+      "rotation": 0,
+      "size": [
+        4032,
+        3024
+      ],
+      "tiles": []
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  },
+  "stills/12bit.avif": {
+    "picture": {
+      "clap": null,
+      "grid": [
+        0,
+        0
+      ],
+      "image": {
+        "codec": "HEIF_CODEC_AV1",
+        "codec_string": "av01.0.00M.08",
+        "config": "81000c00",
+        "size": [
+          4032,
+          3024
+        ],
+        "spans": [
+          "303+96"
+        ]
+      },
+      "mirror": null,
+      "rotation": 0,
+      "size": [
+        4032,
+        3024
+      ],
+      "tiles": []
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  },
+  "stills/8bit.avif": {
+    "picture": {
+      "clap": null,
+      "grid": [
+        0,
+        0
+      ],
+      "image": {
+        "codec": "HEIF_CODEC_AV1",
+        "codec_string": "av01.0.00M.08",
+        "config": "81000c00",
+        "size": [
+          4032,
+          3024
+        ],
+        "spans": [
+          "303+96"
+        ]
+      },
+      "mirror": null,
+      "rotation": 0,
+      "size": [
+        4032,
+        3024
+      ],
+      "tiles": []
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  },
+  "stills/alpha-aux.heic": {
+    "picture": {
+      "clap": null,
+      "grid": [
+        0,
+        0
+      ],
+      "image": {
+        "codec": "HEIF_CODEC_HEVC",
+        "codec_string": "hvc1.A23.72085EB1.H80.2F.21.7D.85.D4.95",
+        "config": "01778d7a104e2f217d85d49550ded6e444fec3c83a6e73",
+        "size": [
+          4032,
+          3024
+        ],
+        "spans": [
+          "451+96"
+        ]
+      },
+      "mirror": null,
+      "rotation": 0,
+      "size": [
+        4032,
+        3024
+      ],
+      "tiles": []
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  },
+  "stills/clap.heic": {
+    "picture": {
+      "clap": [
+        [
+          4000,
+          1
+        ],
+        [
+          3000,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "grid": [
+        0,
+        0
+      ],
+      "image": {
+        "codec": "HEIF_CODEC_HEVC",
+        "codec_string": "hvc1.A7.17D78114.H117.79.4A.D5.2.4F.56",
+        "config": "01672881ebe8794ad5024f56757363d218531af860d561",
+        "size": [
+          4032,
+          3024
+        ],
+        "spans": [
+          "363+96"
+        ]
+      },
+      "mirror": null,
+      "rotation": 0,
+      "size": [
+        4032,
+        3024
+      ],
+      "tiles": []
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  },
+  "stills/grid.heic": {
+    "picture": {
+      "clap": null,
+      "grid": [
+        2,
+        2
+      ],
+      "image": null,
+      "mirror": null,
+      "rotation": 0,
+      "size": [
+        4032,
+        3024
+      ],
+      "tiles": [
+        {
+          "codec": "HEIF_CODEC_HEVC",
+          "codec_string": "hvc1.C6.3B520AA2.L132.D1.F1.D9.9.6B.67",
+          "config": "01c645504adcd1f1d9096b678454eef84870e60326c4a0",
+          "size": [
+            2016,
+            1512
+          ],
+          "spans": [
+            "532+48"
+          ]
+        },
+        {
+          "codec": "HEIF_CODEC_HEVC",
+          "codec_string": "hvc1.C6.3B520AA2.L132.D1.F1.D9.9.6B.67",
+          "config": "01c645504adcd1f1d9096b678454eef84870e60326c4a0",
+          "size": [
+            2016,
+            1512
+          ],
+          "spans": [
+            "580+48"
+          ]
+        },
+        {
+          "codec": "HEIF_CODEC_HEVC",
+          "codec_string": "hvc1.C6.3B520AA2.L132.D1.F1.D9.9.6B.67",
+          "config": "01c645504adcd1f1d9096b678454eef84870e60326c4a0",
+          "size": [
+            2016,
+            1512
+          ],
+          "spans": [
+            "628+48"
+          ]
+        },
+        {
+          "codec": "HEIF_CODEC_HEVC",
+          "codec_string": "hvc1.C6.3B520AA2.L132.D1.F1.D9.9.6B.67",
+          "config": "01c645504adcd1f1d9096b678454eef84870e60326c4a0",
+          "size": [
+            2016,
+            1512
+          ],
+          "spans": [
+            "676+48"
+          ]
+        }
+      ]
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  },
+  "stills/imir.heic": {
+    "picture": {
+      "clap": null,
+      "grid": [
+        0,
+        0
+      ],
+      "image": {
+        "codec": "HEIF_CODEC_HEVC",
+        "codec_string": "hvc1.A25.C56E8EBE.H167.87.CB.B3.E0.8.82",
+        "config": "01797d7176a387cbb3e00882a793b310db2dd58854acc4",
+        "size": [
+          4032,
+          3024
+        ],
+        "spans": [
+          "332+96"
+        ]
+      },
+      "mirror": 0,
+      "rotation": 0,
+      "size": [
+        4032,
+        3024
+      ],
+      "tiles": []
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  },
+  "stills/iphone.heic": {
+    "picture": {
+      "clap": null,
+      "grid": [
+        0,
+        0
+      ],
+      "image": {
+        "codec": "HEIF_CODEC_HEVC",
+        "codec_string": "hvc1.14.5A56929F.L88.35.F1.49.8E.FC.FB",
+        "config": "010ef9496a5a35f1498efcfb58349111b5b8563b918f2e",
+        "size": [
+          4032,
+          3024
+        ],
+        "spans": [
+          "322+96"
+        ]
+      },
+      "mirror": null,
+      "rotation": 0,
+      "size": [
+        4032,
+        3024
+      ],
+      "tiles": []
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  },
+  "stills/irot.heic": {
+    "picture": {
+      "clap": null,
+      "grid": [
+        0,
+        0
+      ],
+      "image": {
+        "codec": "HEIF_CODEC_HEVC",
+        "codec_string": "hvc1.18.33196D78.H90.2A.FA.DB.C1.AF.61",
+        "config": "01321eb698cc2afadbc1af615ad4229669babc690196ab",
+        "size": [
+          4032,
+          3024
+        ],
+        "spans": [
+          "332+96"
+        ]
+      },
+      "mirror": null,
+      "rotation": 3,
+      "size": [
+        4032,
+        3024
+      ],
+      "tiles": []
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  },
+  "takeout/Google Photos/Photos from 2022/IMG_6001.HEIC": {
+    "picture": {
+      "clap": null,
+      "grid": [
+        0,
+        0
+      ],
+      "image": {
+        "codec": "HEIF_CODEC_HEVC",
+        "codec_string": "hvc1.16.28258157.H235.C9.51.25.6D.F9.2A",
+        "config": "0130ea81a414c951256df92aeb10f94991589c6140b8c3",
+        "size": [
+          4032,
+          3024
+        ],
+        "spans": [
+          "322+96"
+        ]
+      },
+      "mirror": null,
+      "rotation": 0,
+      "size": [
+        4032,
+        3024
+      ],
+      "tiles": []
+    },
+    "status": "HEIF_STATUS_OK",
+    "thumbnail": null
+  }
+}

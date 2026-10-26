@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "path": "stills/16bit.tif",
+  "size": 115328,
+  "sha256": "17a56463a7d4b1b448ff951312e769558fc1fb7fc2a2da7e9475bef1f3366443",
+  "origin": "synthetic",
+  "format": "tiff",
+  "quirks": [
+    "bit_depth_16"
+  ],
+  "media": {
+    "container": "tiff",
+    "mime": "image/tiff",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

@@ -1,0 +1,6 @@
+# The Rust release every cargo here builds with: a new release's clippy brings lints that tools/lint/baseline.json
+# does not hold, so it moves only in a change of its own (AGENTS.md). The MSRV is each workspace's rust-version.
+[toolchain]
+channel = "1.99.1"
+components = ["clippy", "rustfmt"]
+profile = "minimal"

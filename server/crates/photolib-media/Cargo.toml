@@ -1,0 +1,25 @@
+[package]
+name = "photolib-media"
+version = "0.0.0"
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+license.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.154"
+landlock = "0.4.7"
+libc = "0.2.177"
+seccompiler = "0.5.0"
+nix = { version = "0.31.3", features = ["resource", "signal"] }
+photolib-kernel = { path = "../../../kernel" }
+prost = "0.14"
+rs-vips = "0.7.0"
+tokio = { version = "1.53.3", features = ["process", "io-util", "time", "macros"] }
+tracing = "0.1.44"
+tempfile = "3.27.0"
+image = { version = "0.25.10", default-features = false, features = ["bmp"] }

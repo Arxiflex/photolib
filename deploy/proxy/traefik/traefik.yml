@@ -1,0 +1,27 @@
+# Traefik 3's static configuration for photolibd: photolib.yml in /etc/traefik/dynamic routes to it.
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false
+entryPoints:
+  web:
+    address: ":80"
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+  websecure:
+    address: ":443"
+    transport:
+      # Traefik 3 ends requests after 60 s; uploads and streams (video, events) take longer.
+      respondingTimeouts:
+        readTimeout: 0
+providers:
+  file:
+    directory: /etc/traefik/dynamic
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      storage: /letsencrypt/acme.json
+      httpChallenge:
+        entryPoint: web

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "path": "names/DJI_20240225081020_0033_D.MP4",
+  "size": 747,
+  "sha256": "60c953f2930597ef7f96f54958be5eceed1528f2bca241523265fcdcef2726f4",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mp4",
+  "vendor": "dji",
+  "quirks": [
+    "mvhd_zero"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "h264"
+  },
+  "filename": {
+    "matches": [
+      "F38",
+      "F52",
+      "F53"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F38",
+        "kind": "local",
+        "value": "2024-02-25T08:10:20",
+        "precision": "s",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": "2024-02-25T08:10:20",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F38",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "path": "names/IMG_20190509_154736_HDR.jpg",
+  "size": 3395,
+  "sha256": "f05900b9c8bbb24951d8bf586598e65a6f4ed822de3bc0bbd86dbceb387cea7e",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F01",
+      "F02",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F01",
+        "kind": "local",
+        "value": "2019-05-09T15:47:36",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-05-09T15:47:36",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F01",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

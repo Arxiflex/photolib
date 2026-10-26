@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "path": "compound/orientation/orientation-2.jpg",
+  "size": 3216,
+  "sha256": "7998813ead4a20148a80745e1af3b96f3cb4d42b13773f1c60bc1e4a08ebf6a7",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "canon",
+  "quirks": [
+    "exif_orientation"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "orientation": 2,
+    "make": "Canon",
+    "model": "Canon EOS 5D Mark IV"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2019-05-02T15:47:33",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-05-02T15:47:33",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

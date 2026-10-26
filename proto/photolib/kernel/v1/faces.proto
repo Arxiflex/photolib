@@ -1,0 +1,115 @@
+syntax = "proto3";
+
+package photolib.kernel.v1;
+
+import "photolib/kernel/v1/develop.proto";
+
+// Face detection and embedding (design 09 §7, ADR-0389): the kernel prepares what YuNet and SFace take and reads what
+// they answer, so that the server and every device find the same faces; the models run in the host (ONNX Runtime).
+
+// A face in an upright image, in fractions of its width and height so that it holds at any size of the image.
+message Face {
+  // The box, inside the image: its top left corner and size.
+  float x = 1;
+  float y = 2;
+  float width = 3;
+  float height = 4;
+  // The face's right eye, left eye, nose tip and right and left mouth corners as x, y pairs (ten values, in the
+  // order of the face's own sides, so that the right eye is the left one in the picture). They may lie outside the
+  // image.
+  repeated float landmarks = 5;
+  // YuNet's confidence, 0 to 1.
+  float score = 6;
+}
+
+// The input of YuNet: the image stretched to a size YuNet takes (multiples of 32), as blue, green and red planes of
+// values 0 to 255.
+message PrepareFaceDetectionRequest {
+  // 8-bit sRGB RGBA, upright, row by row; alpha is ignored.
+  uint32 width = 1;
+  uint32 height = 2;
+  bytes rgba = 3;
+  // The longer side of the tensor, 32 to 1,280 (640 if 0); the shorter keeps the proportions, to a multiple of 32.
+  uint32 max_side = 4;
+}
+
+// The tensor of a PrepareFaceDetectionRequest.
+message PrepareFaceDetectionResponse {
+  // The tensor's size.
+  uint32 width = 1;
+  uint32 height = 2;
+  // 3 × height × width float32 values, little-endian.
+  bytes tensor = 3;
+}
+
+// Reads YuNet's outputs for a tensor of `width` × `height`.
+message DecodeFacesRequest {
+  uint32 width = 1;
+  uint32 height = 2;
+  // The twelve outputs in the model's order, each float32 little-endian: cls, obj, bbox and kps at strides 8, 16
+  // and 32 (cls_8, cls_16, cls_32, obj_8, ..., kps_32).
+  repeated bytes outputs = 3;
+  // 0 to 1; 0.7 if 0.
+  float min_score = 4;
+  // Boxes that overlap a better one by more than this fraction are dropped; 0.3 if 0.
+  float max_overlap = 5;
+  // At most this many faces, the best first; 64 if 0.
+  uint32 max_faces = 6;
+}
+
+// The faces YuNet found, best first.
+message DecodeFacesResponse {
+  repeated Face faces = 1;
+}
+
+// The input of SFace: the face turned, scaled and cut to 112 × 112 by the similarity transform that puts its
+// landmarks on ArcFace's template.
+message AlignFaceRequest {
+  uint32 width = 1;
+  uint32 height = 2;
+  bytes rgba = 3;
+  // The face's ten landmark values, as in Face.
+  repeated float landmarks = 4;
+  // The model's own scaling, as PrepareImageRequest has it: each value scaled to [0, 1], less `mean` and over `std`
+  // (red, green and blue: three each, every std non-zero). Both empty leaves the values 0 to 255, as SFace takes them.
+  repeated float mean = 5;
+  repeated float std = 6;
+}
+
+// The tensor of an AlignFaceRequest.
+message AlignFaceResponse {
+  // 3 × 112 × 112 float32 values, little-endian: red, green and blue planes.
+  bytes tensor = 1;
+}
+
+// SFace's 128 values as a unit vector, which compares by dot product.
+message NormalizeFaceEmbeddingRequest {
+  repeated float values = 1;
+}
+
+// The embedding as a unit vector.
+message NormalizeFaceEmbeddingResponse {
+  repeated float values = 1;
+}
+
+// Moves faces between an upright original and a copy of it that has had a geometry edit (the same turns, mirror and
+// crop as Develop and EditCopyResponse.crop), so that boxes stored against the original stay right on the copy.
+message MapFacesRequest {
+  repeated Face faces = 1;
+  // The original's size in pixels, whichever way the faces move.
+  uint32 width = 2;
+  uint32 height = 3;
+  // The edit; only its quarter turns, flip and crop count. The crop is in pixels of the turned and mirrored original.
+  Develop edit = 4;
+  // False: from the original to the copy; true: from the copy back to the original.
+  bool to_original = 5;
+}
+
+// The faces moved by the edit.
+message MapFacesResponse {
+  // One for each face of the request, in the other image's fractions.
+  repeated Face faces = 1;
+  // Whether at least half of the face's box is in the copy; false only from the original, for a face the crop cuts
+  // away. Its box is then clipped to the copy.
+  repeated bool visible = 2;
+}

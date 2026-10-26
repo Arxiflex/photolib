@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "path": "compound/raw-jpeg/IMGP0034.JPG",
+  "size": 151943,
+  "sha256": "03688efb0b5e945adc20faa82b32edd46019cc6fa7f9735f36a7deb296613ba6",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "pentax",
+  "quirks": [
+    "raw_jpeg_pair"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 6000,
+    "height": 4000,
+    "make": "PENTAX Corporation",
+    "model": "PENTAX K-1"
+  },
+  "group": {
+    "kind": "raw_jpeg",
+    "key": "IMGP0034",
+    "role": "primary"
+  },
+  "filename": {
+    "matches": [
+      "F43"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2015-12-24T17:00:01",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2015-12-24T17:00:01",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

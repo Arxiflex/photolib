@@ -1,0 +1,154 @@
+syntax = "proto3";
+
+package photolib.api.v1;
+
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+
+// What an account may do on its server.
+enum UserRole {
+  USER_ROLE_UNSPECIFIED = 0;
+  // Manages the server and its accounts.
+  USER_ROLE_ADMIN = 1;
+  // Backs up and organises their own photos.
+  USER_ROLE_USER = 2;
+  // Browses what others share with them and never uploads (OPS-27).
+  USER_ROLE_VIEWER = 3;
+}
+
+// Whether an account may sign in.
+enum UserStatus {
+  USER_STATUS_UNSPECIFIED = 0;
+  USER_STATUS_ACTIVE = 1;
+  USER_STATUS_DISABLED = 2;
+  // Created but never signed in.
+  USER_STATUS_INVITED = 3;
+  // Signs in no more and is purged at `purge_at`; setting another status before then restores it.
+  USER_STATUS_DELETED = 4;
+}
+
+// An account on this server.
+message User {
+  string user_id = 1;
+  // Unique sign-in name: 1 to 64 of a-z, 0-9, ".", "_" and "-", starting with a letter or digit; never changes.
+  string handle = 2;
+  string display_name = 3;
+  // Unique when set; empty means none.
+  string email = 4;
+  UserRole role = 5;
+  UserStatus status = 6;
+  // Storage the account may use; absent means unlimited.
+  optional int64 quota_bytes = 7;
+  // BCP 47 language tag, e.g. "de-CH"; empty means the server's default.
+  string locale = 8;
+  google.protobuf.Timestamp created_at = 9;
+  // When a deleted account is purged; absent for any other status.
+  google.protobuf.Timestamp purge_at = 10;
+}
+
+// Turns a new server into a working one. Needs no sign-in.
+service SetupService {
+  // Creates the first administrator. The caller proves that they operate the server with the one-time setup token
+  // that photolibd printed in its log; there are no default credentials. Fails once an administrator exists.
+  rpc CreateFirstAdmin(CreateFirstAdminRequest) returns (CreateFirstAdminResponse);
+}
+
+// The first administrator and the token that allows it.
+message CreateFirstAdminRequest {
+  string setup_token = 1;
+  // The administrator; only handle, display_name, email and locale are read.
+  User user = 2;
+}
+
+// The administrator created.
+message CreateFirstAdminResponse {
+  User user = 1;
+  // Lets the administrator set their password.
+  PasswordSetup password_setup = 2;
+}
+
+// A one-time token with which a person sets their own password through AuthService, so nobody else learns it. It
+// replaces any earlier token of the account.
+message PasswordSetup {
+  string token = 1;
+  // Seven days after it was made.
+  google.protobuf.Timestamp expires_at = 2;
+}
+
+// The accounts of this server, for its administrators. Every change is recorded in the audit log.
+service UserService {
+  // Returns every account, deleted ones included, by handle.
+  rpc ListUsers(ListUsersRequest) returns (ListUsersResponse);
+  // Creates an active account.
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+  // Changes the fields of an account that `update_mask` names.
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse);
+  // Deletes an account: it signs in no more and is purged after a delay, until which UpdateUser restores it (OPS-22).
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
+  // Makes a password setup token for an account, to hand to its owner: for a new account or a forgotten password.
+  // The old password works until the new one is set.
+  rpc CreatePasswordSetup(CreatePasswordSetupRequest) returns (CreatePasswordSetupResponse);
+  // Removes an account's passkeys, TOTP and recovery codes, for an owner who lost them all: the password alone signs
+  // in again, and where the instance requires a second factor, the account enrols a new one.
+  rpc ResetSecondFactors(ResetSecondFactorsRequest) returns (ResetSecondFactorsResponse);
+}
+
+// Asks for every account.
+message ListUsersRequest {}
+
+// Every account.
+message ListUsersResponse {
+  repeated User users = 1;
+}
+
+// The account to create.
+message CreateUserRequest {
+  // Only handle, display_name, email, role, quota_bytes and locale are read; role is required.
+  User user = 1;
+}
+
+// The account created.
+message CreateUserResponse {
+  User user = 1;
+}
+
+// The changes to an account.
+message UpdateUserRequest {
+  // The account `user.user_id`, with the new values of the fields that `update_mask` names.
+  User user = 1;
+  // Some of display_name, email, role, status (active or disabled), quota_bytes and locale.
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+// The account after the change.
+message UpdateUserResponse {
+  User user = 1;
+}
+
+// The account to delete.
+message DeleteUserRequest {
+  string user_id = 1;
+}
+
+// The deleted account, with the time it will be purged.
+message DeleteUserResponse {
+  User user = 1;
+}
+
+// The account that needs a password.
+message CreatePasswordSetupRequest {
+  string user_id = 1;
+}
+
+// The token to hand to the account's owner.
+message CreatePasswordSetupResponse {
+  PasswordSetup password_setup = 1;
+}
+
+// The account whose second factors to remove.
+message ResetSecondFactorsRequest {
+  string user_id = 1;
+}
+
+// The account has no second factor left.
+message ResetSecondFactorsResponse {}

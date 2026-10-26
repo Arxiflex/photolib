@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "path": "names/STK-20191120-WA0005.webp",
+  "size": 8634,
+  "sha256": "44c489545d8a0be50e4db57442752a5c0604e8ae367081bbfa079ba9f89a80ba",
+  "origin": "synthetic",
+  "format": "webp",
+  "quirks": [
+    "messenger_copy",
+    "upper_bound_name"
+  ],
+  "media": {
+    "container": "webp",
+    "mime": "image/webp",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": [
+      "F25"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F25",
+        "kind": "local",
+        "value": "2019-11-20",
+        "precision": "day",
+        "event": "receive"
+      }
+    ],
+    "resolved": {
+      "local": "2019-11-20",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "day",
+      "bound": "upper",
+      "source": "filename:F25",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

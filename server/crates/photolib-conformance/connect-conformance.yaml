@@ -1,0 +1,25 @@
+# The subset of Connect that photolibd serves, checked by the official conformance suite
+# (tools/connect_conformance.sh): the Connect protocol over HTTP/1.1 and cleartext HTTP/2 (TLS ends at the reverse
+# proxy), binary and JSON, identity, gzip and zstd, unary calls (POST, and GET for side-effect-free ones) and
+# server-streaming calls.
+features:
+  versions:
+    - HTTP_VERSION_1
+    - HTTP_VERSION_2
+  protocols:
+    - PROTOCOL_CONNECT
+  codecs:
+    - CODEC_PROTO
+    - CODEC_JSON
+  compressions:
+    - COMPRESSION_IDENTITY
+    - COMPRESSION_GZIP
+    - COMPRESSION_ZSTD
+  stream_types:
+    - STREAM_TYPE_UNARY
+    - STREAM_TYPE_SERVER_STREAM
+  supports_h2c: true
+  supports_tls: false
+  supports_trailers: false
+  supports_connect_get: true
+  supports_message_receive_limit: true

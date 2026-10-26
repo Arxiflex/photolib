@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "path": "takeout/Google Photos/Photos from 2024/IMG_20240729_044500.jpg",
+  "size": 77146,
+  "sha256": "ce17005dc6ffd053a03dd524f9eb8a2e551b64397afffb82951234641957a861",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "samsung",
+  "quirks": [
+    "takeout_geo_zero",
+    "takeout_legacy_sidecar",
+    "takeout_year_folder"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 4000,
+    "height": 3000,
+    "make": "samsung",
+    "model": "SM-S911B"
+  },
+  "sidecars": [
+    {
+      "path": "takeout/Google Photos/Photos from 2024/IMG_20240729_044500.jpg.json",
+      "kind": "takeout_json",
+      "sha256": "7a98c095a537f5acc844125a587c9b3a9e3df1b4a0387e5a88b7bf5c769a9561"
+    }
+  ],
+  "filename": {
+    "matches": [
+      "F01",
+      "F02",
+      "F50",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2024-07-29T04:45:00",
+        "precision": "s",
+        "event": "capture"
+      },
+      {
+        "source": "takeout_photoTakenTime",
+        "kind": "utc",
+        "value": "2024-07-28T19:45:00Z",
+        "precision": "s",
+        "event": "capture"
+      },
+      {
+        "source": "filename:F01",
+        "kind": "local",
+        "value": "2024-07-29T04:45:00",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2024-07-29T04:45:00",
+      "utc": "2024-07-28T19:45:00Z",
+      "offset": "+09:00",
+      "tz_source": "paired_utc_delta",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

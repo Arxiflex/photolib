@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "path": "names/Screenshot_20231027_123303_Facebook.jpg",
+  "size": 3652,
+  "sha256": "85edcb2bee278439547da438dd41a1a68be8f0059d072d7ac0a046bf4bf052c6",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "samsung",
+  "quirks": [
+    "screenshot"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F13",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F13",
+        "kind": "local",
+        "value": "2023-10-27T12:33:03",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2023-10-27T12:33:03",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F13",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

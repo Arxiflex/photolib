@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "path": "video/mjpeg.mov",
+  "size": 31179,
+  "sha256": "54af634e83b70848e5139efe5bd0c4af0e20eb9a99580dda56fdf436f7ebdea0",
+  "origin": "synthetic",
+  "format": "mov",
+  "vendor": "panasonic",
+  "quirks": [],
+  "media": {
+    "container": "isobmff",
+    "brand": "qt  ",
+    "mime": "video/quicktime",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "duration_ms": 1000,
+    "codec": "mjpeg",
+    "make": "Panasonic",
+    "model": "DMC-TZ5"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "qt_mvhd_camera",
+        "kind": "local",
+        "value": "2008-07-19T14:30:00",
+        "precision": "s",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": "2008-07-19T14:30:00",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "qt_mvhd_camera",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

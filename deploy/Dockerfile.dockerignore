@@ -1,0 +1,6 @@
+# The image builds photolibd from these alone.
+*
+!kernel
+!server
+!tools/synthlib
+**/target

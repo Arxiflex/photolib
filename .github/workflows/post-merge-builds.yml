@@ -1,0 +1,292 @@
+name: post-merge-builds
+
+# Builds the apps and the server once a change is merged to dev, and keeps them as the run's artifacts, so that the
+# latest build of dev is one download away. It checks nothing: no test, lint, analysis or gate (ci.yml did all of that
+# on the merge queue's branch before the merge). Unsigned and without a secret: the Android APK is debug-signed, the
+# macOS app ad-hoc signed, the server not signed.
+#
+#   client-linux     ubuntu   flutter build linux            tar.gz of the bundle
+#   client-android   ubuntu   flutter build apk (arm64)      the libre flavour's APK
+#   client-macos     macOS    flutter build macos, universal zip of photolib.app (arm64 and x86_64)
+#   server-linux     ubuntu   tools/package.sh photolibd     tar.gz of photolibd, its config and systemd unit
+#   summary          ubuntu   the table of what was built, on the run's page
+#
+# Windows is intentionally not built yet (the libmpv archive of ADR-0229 is not published): add the job back
+# when it is. The server has no Windows build: it links libvips (rs-vips), which Windows does not provide. The jobs are
+# independent: one that fails does not stop the others. A newer push to dev cancels a run that is still going, so a
+# burst of merges is built once. Every job calls the kernel's and Flutter's build scripts the repository has, and
+# builds the kernel as `tools/kernel/build.py` does: its release profile, which keeps the library inside ADR-0004's
+# size budget (a lower optimisation level does not).
+on:
+  push:
+    branches: [dev]
+    # A change that cannot change a build: documentation, tests, and the repository's own settings
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
+      - mkdocs.yml
+      - LICENSE
+      - DCO
+      - .mergify.yml
+      - renovate.json
+      - .gitleaks.toml
+      - tools/tests/**
+      - tools/lint/**
+      - tools/perf/**
+      - app/test/**
+      - app/integration_test/**
+      - app/packages/*/test/**
+      - server/crates/*/tests/**
+
+permissions:
+  contents: read
+
+concurrency:
+  group: post-merge-builds-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_INCREMENTAL: '0'
+  CARGO_TERM_COLOR: never
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+  # Rust installs the pinned release by hand, without clippy and rustfmt, which rust-toolchain.toml would add
+  RUSTUP_AUTO_INSTALL: '0'
+
+jobs:
+  client-linux:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - id: rev
+        run: echo "sha=${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+      - name: Rust, the pinned release without its extra components
+        run: |
+          release=$(sed -n 's/^channel *= *"\(.*\)"/\1/p' rust-toolchain.toml)
+          rustup toolchain install "$release" --profile minimal --no-self-update
+          echo "RUSTUP_TOOLCHAIN=$release" >> "$GITHUB_ENV"
+      # GTK, libmpv for the video player and the keyring's libsecret and jsoncpp; the runner has the rest
+      - uses: ./.github/actions/apt-install
+        with:
+          packages: libgtk-3-dev libmpv-dev libsecret-1-dev libjsoncpp-dev
+      - uses: ./.github/actions/flutter
+      - name: Kernel
+        run: python3 tools/kernel/build.py --out app/build/kernel linux-x64
+      - name: Build
+        working-directory: app
+        run: flutter build linux --release
+      - name: Pack
+        run: |
+          mkdir dist
+          tar -C app/build/linux/x64/release/bundle -cf - . | gzip -3 > "dist/photolib-client-linux-x64-${{ steps.rev.outputs.sha }}.tar.gz"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: photolib-client-linux-x64-${{ steps.rev.outputs.sha }}
+          path: dist/photolib-client-linux-x64-${{ steps.rev.outputs.sha }}.tar.gz
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+
+  client-android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - id: rev
+        run: echo "sha=${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+      - name: Rust, the pinned release without its extra components
+        run: |
+          release=$(sed -n 's/^channel *= *"\(.*\)"/\1/p' rust-toolchain.toml)
+          rustup toolchain install "$release" --profile minimal --no-self-update
+          echo "RUSTUP_TOOLCHAIN=$release" >> "$GITHUB_ENV"
+      - uses: ./.github/actions/flutter
+      # The NDK and SDK platform the pinned Flutter builds with, cached by version
+      - uses: ./.github/actions/android-sdk
+      # Gradle's downloads and wrapper, restored from the last build of dev when the build files changed
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('app/pubspec.lock', 'app/android/**/*.gradle*', 'app/android/gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: gradle-${{ runner.os }}-
+      # Every modern phone is arm64; the kernel is built for that one ABI only
+      - name: Kernel
+        run: python3 tools/kernel/build.py --out app/build/kernel android-arm64
+      - name: Build
+        working-directory: app
+        run: flutter build apk --release --flavor libre --target-platform android-arm64
+      - name: Pack
+        run: |
+          mkdir dist
+          cp app/build/app/outputs/flutter-apk/app-libre-release.apk "dist/photolib-client-android-arm64-${{ steps.rev.outputs.sha }}.apk"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: photolib-client-android-arm64-${{ steps.rev.outputs.sha }}
+          path: dist/photolib-client-android-arm64-${{ steps.rev.outputs.sha }}.apk
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+
+  # The most expensive runner: nothing here but the build and the zip. One job on an arm64 runner makes a universal app
+  # (arm64 and x86_64): Flutter builds both slices, so the kernel is built for both, and one arm job costs less than
+  # an arm job and an Intel job.
+  client-macos:
+    runs-on: macos-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v5
+      - id: rev
+        run: echo "sha=${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+      - name: Rust, the pinned release without its extra components, for both Macs
+        run: |
+          release=$(sed -n 's/^channel *= *"\(.*\)"/\1/p' rust-toolchain.toml)
+          rustup toolchain install "$release" --profile minimal --no-self-update \
+            --target aarch64-apple-darwin --target x86_64-apple-darwin
+          echo "RUSTUP_TOOLCHAIN=$release" >> "$GITHUB_ENV"
+      - uses: ./.github/actions/flutter
+      # An explicit step until the app's build builds the kernel itself on a fresh checkout (wi/12-macos-fixes): then
+      # this step can go. Without the x64 library the build hook fails: no prebuilt kernel for macos-x64.
+      - name: Kernel
+        run: python3 tools/kernel/build.py --out app/build/kernel macos-arm64 macos-x64
+      # #120 bundles libvips into the app and fails a release build without Homebrew's vips; until it lands the
+      # checkout has no such script and this costs nothing. The runner is arm64, so only its slice of libvips is
+      # bundled and the build warns about the x86_64 one: a warning, which does not fail this job.
+      - name: Vips
+        run: '[ ! -f tools/macos/bundle_vips.py ] || brew install vips'
+      - name: Build
+        working-directory: app
+        run: flutter build macos --release
+      # Both slices must be there, in the app and in the kernel library, or the Intel Macs get a broken app. The kernel
+      # lands where Flutter's native assets put it (a framework or a dylib under Contents/Frameworks), so it is found
+      # by name and everything found is printed; with no separate library the app binary links it and is checked alone.
+      - name: Both slices
+        run: |
+          app=app/build/macos/Build/Products/Release/photolib.app
+          binary=$(find "$app/Contents/MacOS" -maxdepth 1 -type f | head -n 1)
+          found=$(find "$app" -iname '*kernel_ffi*' | sort)
+          files=("$binary")
+          while IFS= read -r path; do
+            [ -n "$path" ] && [ -f "$path" ] && [ ! -L "$path" ] && lipo -archs "$path" > /dev/null 2>&1 && files+=("$path")
+          done <<< "$found"
+          fail() {
+            echo "::error::$1"
+            echo "found by name:"; echo "${found:-none}"
+            echo "Contents/Frameworks:"; find "$app/Contents/Frameworks" -maxdepth 2 | sort
+            echo "linked by the app:"; otool -L "$binary"
+            exit 1
+          }
+          {
+            echo "### Slices"
+            echo "found by name:"; echo '```'; echo "${found:-none}"; echo '```'
+            [ "${#files[@]}" -gt 1 ] || echo "No separate kernel library: the app binary links it, so only the binary is checked."
+            for file in "${files[@]}"; do
+              archs=$(lipo -archs "$file") || fail "lipo cannot read $file"
+              echo "- \`${file#"$app"/}\`: $archs"
+              [ "$archs" = "x86_64 arm64" ] || fail "$file has $archs, not x86_64 arm64"
+            done
+          } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
+          exit "${PIPESTATUS[0]}"
+      # ditto keeps the app's symlinks and attributes, which zip would lose
+      - name: Pack
+        run: |
+          mkdir dist
+          ditto -c -k --keepParent app/build/macos/Build/Products/Release/photolib.app "dist/photolib-client-macos-universal-${{ steps.rev.outputs.sha }}.zip"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: photolib-client-macos-universal-${{ steps.rev.outputs.sha }}
+          path: dist/photolib-client-macos-universal-${{ steps.rev.outputs.sha }}.zip
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+
+  server-linux:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - id: rev
+        run: echo "sha=${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+      - name: Rust, the pinned release without its extra components
+        run: |
+          release=$(sed -n 's/^channel *= *"\(.*\)"/\1/p' rust-toolchain.toml)
+          rustup toolchain install "$release" --profile minimal --no-self-update
+          echo "RUSTUP_TOOLCHAIN=$release" >> "$GITHUB_ENV"
+      - uses: ./.github/actions/apt-install
+        with:
+          packages: libvips-dev
+      # The registry and the dependencies' build, restored from the last build of dev when Cargo.lock changed
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: server
+      # The release profile, with the symbols stripped: a smaller file to link, to pack and to download
+      - name: Build
+        env:
+          CARGO_PROFILE_RELEASE_STRIP: symbols
+        run: bash tools/package.sh photolibd
+      - name: Pack
+        run: |
+          mkdir dist
+          tar -C server/target/deb -cf - usr/bin/photolibd etc/photolib lib/systemd | gzip -3 > "dist/photolib-server-linux-x64-${{ steps.rev.outputs.sha }}.tar.gz"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: photolib-server-linux-x64-${{ steps.rev.outputs.sha }}
+          path: dist/photolib-server-linux-x64-${{ steps.rev.outputs.sha }}.tar.gz
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+
+  # What the run built, on its page, also when a target failed
+  summary:
+    needs: [client-linux, client-android, client-macos, server-linux]
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      # The run's artifacts, with their sizes and links
+      actions: read
+    steps:
+      - name: Table
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NEEDS: ${{ toJSON(needs) }}
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+        run: |
+          gh api --paginate "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts" --jq '.artifacts[]' > "$RUNNER_TEMP/artifacts.json"
+          python3 - >> "$GITHUB_STEP_SUMMARY" <<'PY'
+          import json, os
+          env = os.environ
+          needs = json.loads(env["NEEDS"])
+          artifacts = [json.loads(line) for line in open(env["RUNNER_TEMP"] + "/artifacts.json") if line.strip()]
+          sha = env["GITHUB_SHA"][:7]
+          subject = env.get("COMMIT_MESSAGE", "").split("\n")[0].replace("|", "\\|")
+          run = f"{env['GITHUB_SERVER_URL']}/{env['GITHUB_REPOSITORY']}/actions/runs/{env['GITHUB_RUN_ID']}"
+          targets = [("client-linux", "Client, Linux x64", "photolib-client-linux-x64-", "tar.gz"),
+                     ("client-android", "Client, Android arm64", "photolib-client-android-arm64-", "apk"),
+                     ("client-macos", "Client, macOS universal", "photolib-client-macos-universal-", "zip"),
+                     ("server-linux", "Server, Linux x64", "photolib-server-linux-x64-", "tar.gz")]
+          print(f"## Builds of `{sha}` {subject}\n")
+          print("| Target | Result | File | Size | Download | Commit |\n|---|---|---|---|---|---|")
+          for job, title, prefix, ext in targets:
+              found = [a for a in artifacts if a["name"] == prefix + sha]
+              result = needs[job]["result"]
+              if found:
+                  a = found[0]
+                  size = f"{a['size_in_bytes'] / 1e6:.1f} MB"
+                  link = f"[{a['name']}]({run}/artifacts/{a['id']})"
+                  print(f"| {title} | built | `{a['name']}.{ext}` | {size} | {link} | `{sha}` {subject} |")
+              else:
+                  print(f"| {title} | **{result}** | | | | `{sha}` {subject} |")
+          print(f"\nThe artifacts stay 14 days. The run: {run}\n")
+          print("Download the latest successful build of dev with the GitHub CLI:\n")
+          print("```sh")
+          print("id=$(gh run list --workflow post-merge-builds.yml --branch dev --status success --limit 1 --json databaseId --jq '.[0].databaseId')")
+          print('gh run download "$id"          # every target; add -n <artifact name> for one')
+          print("```\n")
+          print("Unsigned, to try out: Linux `tar xzf` and run `./photolib` (needs GTK 3, libmpv2 and libsecret); "
+                "Android `adb install` the APK (debug-signed); macOS (Apple Silicon and Intel) unzip, then `xattr -dr com.apple.quarantine "
+                "photolib.app` or right-click, Open; server `tar xzf`, copy "
+                "`etc/photolib/photolibd.yaml`, run `usr/bin/photolibd` with PostgreSQL, libvips 8.15+, FFmpeg and "
+                "ExifTool installed (the `photolibd` package in `docs/admin` lists them).")
+          PY

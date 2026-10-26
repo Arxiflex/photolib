@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "path": "stills/artwork.eps",
+  "size": 122,
+  "sha256": "22f16f0df2241ba6506395df908d89e3a7874c5ee89663dbf5c42d72dcd72904",
+  "origin": "synthetic",
+  "format": "eps",
+  "quirks": [],
+  "media": {
+    "container": "eps",
+    "mime": "application/postscript",
+    "kind": "document",
+    "support": "unsupported"
+  },
+  "metadata": {
+    "width": 100,
+    "height": 80
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "path": "time/folders/2019/05/photo.jpg",
+  "size": 3057,
+  "sha256": "db5cc747e1c17500bb696f5aa0d732b2446f56a0716ed6c0ec65ea5bd4c71f26",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "path_date"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "path:ym",
+        "kind": "local",
+        "value": "2019-05",
+        "precision": "month",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-05",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "month",
+      "bound": "exact",
+      "source": "path:ym",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

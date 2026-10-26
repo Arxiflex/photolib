@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "path": "time/conflicts/exif-vs-xmp.jpg",
+  "size": 3520,
+  "sha256": "cf978e3bc4bcde6fd28490d36b3444c0e74ea0b79b3427b3020b6bc0a0296664",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "canon",
+  "quirks": [
+    "time_conflict"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "make": "Canon",
+    "model": "Canon EOS 5D Mark IV"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2018-06-02T10:20:30",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+02:00"
+      },
+      {
+        "source": "xmp_date_with_offset",
+        "kind": "local",
+        "value": "2018-06-03T10:20:30",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+02:00"
+      }
+    ],
+    "resolved": {
+      "local": "2018-06-02T10:20:30",
+      "utc": "2018-06-02T08:20:30Z",
+      "offset": "+02:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "medium",
+      "flags": [
+        "needs_review"
+      ]
+    }
+  }
+}

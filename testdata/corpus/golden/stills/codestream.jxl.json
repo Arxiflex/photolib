@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "path": "stills/codestream.jxl",
+  "size": 16,
+  "sha256": "01b4ebaf18ba811082344fb952c0603cb68d294fda32c91dca8f5fa178744644",
+  "origin": "synthetic",
+  "notes": "Placeholder JPEG XL payload: the structure and metadata are real, the image does not decode.",
+  "format": "jxl",
+  "quirks": [],
+  "media": {
+    "container": "jxl",
+    "mime": "image/jxl",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 64,
+    "height": 48
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

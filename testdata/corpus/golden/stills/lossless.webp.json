@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "path": "stills/lossless.webp",
+  "size": 482,
+  "sha256": "3126028384999e9a1506175edf7ede5844cd26c29accb10f603079832a30d11e",
+  "origin": "synthetic",
+  "format": "webp",
+  "quirks": [
+    "lossless"
+  ],
+  "media": {
+    "container": "webp",
+    "mime": "image/webp",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "path": "compound/raw-jpeg/DSC_0456.NEF",
+  "size": 25825,
+  "sha256": "fc1bbc96211ca34a8f95dfac5737db9dbea905b2d02b146e563090bb0bb4e8fb",
+  "origin": "synthetic",
+  "notes": "Placeholder sensor data, not a camera mosaic; the embedded JPEG preview decodes.",
+  "format": "nef",
+  "vendor": "nikon",
+  "quirks": [
+    "raw_jpeg_pair"
+  ],
+  "media": {
+    "container": "tiff",
+    "mime": "image/x-nikon-nef",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120,
+    "make": "NIKON CORPORATION",
+    "model": "NIKON D850"
+  },
+  "group": {
+    "kind": "raw_jpeg",
+    "key": "DSC_0456",
+    "role": "raw_alt"
+  },
+  "filename": {
+    "matches": [
+      "F43"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2019-10-03T06:30:00",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-10-03T06:30:00",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

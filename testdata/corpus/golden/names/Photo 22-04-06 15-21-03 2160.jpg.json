@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "path": "names/Photo 22-04-06 15-21-03 2160.jpg",
+  "size": 3487,
+  "sha256": "7b8d5189ead0ddb0ca6ef405054fe13b173171d6d8c2131a300ebd3170663760",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "two_digit_year"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F49"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F49",
+        "kind": "local",
+        "value": "2022-04-06T15:21:03",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2022-04-06T15:21:03",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F49",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

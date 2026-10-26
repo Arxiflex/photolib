@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "path": "names/IMG_20190221_112112042.jpg",
+  "size": 3359,
+  "sha256": "df26d265ca33c0232c3237a1f44db4311aadebeee43bd5f2a05d061b7f74653c",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F02",
+      "F08"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F02",
+        "kind": "local",
+        "value": "2019-02-21T11:21:12.042",
+        "precision": "ms",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-02-21T11:21:12.042",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "ms",
+      "bound": "exact",
+      "source": "filename:F02",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

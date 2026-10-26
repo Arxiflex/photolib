@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "path": "time/zones/year-end.jpg",
+  "size": 3118,
+  "sha256": "2017698e8036d32cd0c7527d6992a4d4982925b1a9ed84df4bbba6777a04c580",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "canon",
+  "quirks": [],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "make": "Canon",
+    "model": "Canon EOS 5D Mark IV"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2019-12-31T23:59:59",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+00:00"
+      }
+    ],
+    "resolved": {
+      "local": "2019-12-31T23:59:59",
+      "utc": "2019-12-31T23:59:59Z",
+      "offset": "+00:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

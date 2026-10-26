@@ -1,0 +1,171 @@
+syntax = "proto3";
+
+package photolib.kernel.v1;
+
+import "google/protobuf/timestamp.proto";
+import "photolib/kernel/v1/metadata.proto";
+import "photolib/model/v1/capture_time.proto";
+
+// Resolves when a file was captured from every claim about it: its embedded metadata, its name and folders, and what
+// the host read elsewhere (design doc 13 §4). Pure: the current time and the time zones are inputs.
+message ResolveCaptureTimeRequest {
+  // The start of the file up to the end of its metadata; for a JPEG, up to the end of the EXIF segment. Unused when
+  // ranges are given.
+  bytes head = 1;
+  // The original file name without its directory, as the source named it (a Takeout title, PhotoKit's
+  // originalFilename), e.g. "IMG_20250714_160309.jpg".
+  string file_name = 2;
+  // The folders above the file below the import root, "/"-separated, e.g. "2019/05/09".
+  string folder = 3;
+  // Claims the host read elsewhere, as ISO 8601 wall clocks: "quicktime:creationdate" (local with its offset),
+  // "quicktime:mvhd" (UTC with offset 0 from a phone, a camera's local clock without one) and
+  // "takeout:photoTakenTime" (UTC, offset 0). Other sources are rejected. A movie's own dates are claims of these
+  // sources too: its mvhd time is UTC unless its make is a camera maker's; a host claim replaces the file's own of the
+  // same source.
+  repeated photolib.model.v1.CaptureTime claims = 4;
+  // The zone at the file's GPS position, which the host looked up; absent when it has none.
+  TimeZone gps_zone = 5;
+  // The capturing device's zone over time, from its zone journal; only for files this device captured.
+  TimeZone device_zone = 6;
+  // When the resolver runs: a claim more than two days later is implausible. Absent, no claim is too late.
+  google.protobuf.Timestamp resolved_at = 7;
+  // The pieces of the file that ReadMetadata read, with the file's size, instead of head: a host that reads files in
+  // ranges resolves from the bytes it already has.
+  repeated FileRange ranges = 8;
+  uint64 size = 9;
+  // The zone to assume when no evidence fixes one, which the host chose: the import run's, a rule for the device or
+  // camera, or the library's (the owner's home zone); never the server's zone or UTC for want of one.
+  TimeZone default_zone = 10;
+}
+
+// A time zone as a table of UTC offsets, which the host takes from the IANA database.
+message TimeZone {
+  // IANA name, e.g. "Europe/Paris".
+  string name = 1;
+  // In time order; each offset holds until the next one starts, and the first one also before it starts.
+  repeated ZoneOffset offsets = 2;
+}
+
+// An offset of a time zone from UTC and when it starts.
+message ZoneOffset {
+  google.protobuf.Timestamp starts_at = 1;
+  sint32 offset_minutes = 2;
+}
+
+// The resolved capture time and why ("why this date?").
+message ResolveCaptureTimeResponse {
+  // The winning claim's wall clock, the offset and zone found for it, its precision, source and confidence; the
+  // source is "unknown" when nothing dates the file. local_datetime is empty when only the instant is known and the
+  // offset absent when the wall clock floats.
+  photolib.model.v1.CaptureTime capture_time = 1;
+  // The instant; absent when the wall clock floats or the date has no time of day.
+  google.protobuf.Timestamp taken_at = 2;
+  ZoneSource zone_source = 3;
+  // The file was taken on or before this time: the winner is a receive, save or transfer date.
+  bool upper_bound = 4;
+  repeated CaptureTimeFlag flags = 5;
+  // Every claim considered, in the order read: embedded metadata, the host's, the file name's, the folders'.
+  repeated TimeClaim claims = 6;
+  CaptureTimeRule rule = 7;
+}
+
+// Where the zone of a capture time came from.
+enum ZoneSource {
+  // No evidence: the wall clock floats, or only the instant is known.
+  ZONE_SOURCE_UNSPECIFIED = 0;
+  // The offset written with the winning wall clock, or with one that agrees with it.
+  ZONE_SOURCE_EXPLICIT_OFFSET = 1;
+  // The GPS time (UTC) against the wall clock, a whole number of quarter hours apart; a zero delta only where the
+  // host's zone agrees, as it may be one clock read twice.
+  ZONE_SOURCE_GPS_DELTA = 2;
+  // Another UTC claim, such as a Pixel file name or a Takeout time, against the wall clock, as for GPS_DELTA.
+  ZONE_SOURCE_PAIRED_UTC_DELTA = 3;
+  // The host's zone at the GPS position; also over a measured offset it disagrees with (ZONE_MISMATCH).
+  ZONE_SOURCE_GPS_ZONE = 4;
+  // The host's device zone journal.
+  ZONE_SOURCE_DEVICE_ZONE = 5;
+  // Assumed: the host's default zone, as no evidence fixed one.
+  ZONE_SOURCE_DEFAULT_ZONE = 6;
+}
+
+// Something about a capture time the user may want to check.
+enum CaptureTimeFlag {
+  CAPTURE_TIME_FLAG_UNSPECIFIED = 0;
+  // Claims disagree, or the time is later than a receive date: queue for review.
+  CAPTURE_TIME_FLAG_NEEDS_REVIEW = 1;
+  // Taken after the file was received, saved or transferred.
+  CAPTURE_TIME_FLAG_CAPTURE_AFTER_RECEIVE = 2;
+  // The wall clock falls in a daylight-saving gap or overlap: the earlier instant was taken.
+  CAPTURE_TIME_FLAG_DST_AMBIGUOUS = 3;
+  // Only the instant is known, and the wall clock shown comes from the default zone: confirm the zone.
+  CAPTURE_TIME_FLAG_ASSUMED_ZONE = 4;
+  // A measured offset fixed the instant but differs from the zone at the GPS position then (a camera left on home
+  // time, or a stale fix): the wall clock shown is that zone's, the winning claim keeps the camera's. With
+  // NEEDS_REVIEW, where the user may keep the camera's zone.
+  CAPTURE_TIME_FLAG_ZONE_MISMATCH = 5;
+}
+
+// How the winner was chosen.
+enum CaptureTimeRule {
+  CAPTURE_TIME_RULE_UNSPECIFIED = 0;
+  // Nothing dates the file.
+  CAPTURE_TIME_RULE_NO_EVIDENCE = 1;
+  // Every claim that counts agrees.
+  CAPTURE_TIME_RULE_AGREEMENT = 2;
+  // Claims disagree: the most confident group of agreeing claims won.
+  CAPTURE_TIME_RULE_MOST_CONFIDENT = 3;
+}
+
+// One claim about when a file was taken, as the resolver read and judged it.
+message TimeClaim {
+  // Source, wall clock (a UTC reading with offset 0), precision, and the confidence after the checks, 0 if rejected.
+  photolib.model.v1.CaptureTime time = 1;
+  TimeEvent event = 2;
+  ClaimVerdict verdict = 3;
+}
+
+// What a claimed time is the time of.
+enum TimeEvent {
+  TIME_EVENT_UNSPECIFIED = 0;
+  // Taking the photo or starting the recording.
+  TIME_EVENT_CAPTURE = 1;
+  // Receiving it in a messenger: the file was taken on or before.
+  TIME_EVENT_RECEIVE = 2;
+  // Saving it from an app.
+  TIME_EVENT_SAVE = 3;
+  // Copying it off a device or out of a service.
+  TIME_EVENT_TRANSFER = 4;
+  // Scanning a print, never the capture time.
+  TIME_EVENT_SCAN = 5;
+}
+
+// The resolver's judgement of one claim.
+enum ClaimVerdict {
+  CLAIM_VERDICT_UNSPECIFIED = 0;
+  // The winner: its wall clock or instant is the capture time.
+  CLAIM_VERDICT_WON = 1;
+  // Agrees with the winner and raises its confidence.
+  CLAIM_VERDICT_AGREES = 2;
+  // Disagrees and is strong enough to need a review.
+  CLAIM_VERDICT_CONFLICTS = 3;
+  // Disagrees and is too weak to matter.
+  CLAIM_VERDICT_OUTVOTED = 4;
+  // A receive, save or transfer time that bounds the capture time from above.
+  CLAIM_VERDICT_BOUND = 5;
+  // A GPS time before the capture: the last fix of the receiver.
+  CLAIM_VERDICT_STALE = 6;
+  // The scan of a print: kept, never a capture time.
+  CLAIM_VERDICT_SCAN_TIME = 7;
+  // No date, or one that does not exist, such as 2023-02-29.
+  CLAIM_VERDICT_INVALID = 8;
+  // A placeholder date of a camera or encoder, such as 1970-01-01 or 0000:00:00.
+  CLAIM_VERDICT_SENTINEL = 9;
+  // Before 1826 or the rule's earliest year, or more than two days after the resolver runs.
+  CLAIM_VERDICT_OUT_OF_RANGE = 10;
+  // Day and month could be either way round, as in 04.05.2019.
+  CLAIM_VERDICT_AMBIGUOUS_ORDER = 11;
+  // The name has a month and day but no year.
+  CLAIM_VERDICT_NO_YEAR = 12;
+  // A host claim from a source the resolver does not know.
+  CLAIM_VERDICT_UNKNOWN_SOURCE = 13;
+}

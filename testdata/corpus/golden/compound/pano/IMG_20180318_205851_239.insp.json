@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "path": "compound/pano/IMG_20180318_205851_239.insp",
+  "size": 30905,
+  "sha256": "2121b749fae4586fcf4e4a04f1cff44414860d47a47538dbc461497790f56499",
+  "origin": "synthetic",
+  "notes": "The research registry lists this name for F42 but its own pattern needs the lens field",
+  "format": "insp",
+  "vendor": "insta360",
+  "quirks": [
+    "photo_sphere"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 3008,
+    "height": 1504,
+    "make": "Insta360",
+    "model": "Insta360 Air",
+    "pano": {
+      "projection": "equirectangular",
+      "cropped": false
+    }
+  },
+  "filename": {
+    "matches": [
+      "F01",
+      "F02",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2018-03-18T20:58:51",
+        "precision": "s",
+        "event": "capture"
+      },
+      {
+        "source": "filename:F01",
+        "kind": "local",
+        "value": "2018-03-18T20:58:51",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2018-03-18T20:58:51",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

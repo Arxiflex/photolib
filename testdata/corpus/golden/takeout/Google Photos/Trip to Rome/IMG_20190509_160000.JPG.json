@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "path": "takeout/Google Photos/Trip to Rome/IMG_20190509_160000.JPG",
+  "size": 3338,
+  "sha256": "c28ed98415b299a4d785e8ce3d42c8014632f8ee918b01c11ad3e05c1f778329",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "takeout_case_drift",
+    "takeout_geo_zero",
+    "takeout_legacy_sidecar"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "sidecars": [
+    {
+      "path": "takeout/Google Photos/Trip to Rome/IMG_20190509_160000.jpg.json",
+      "kind": "takeout_json",
+      "sha256": "7b392dc2985b0f80a7bcb3ae1cdbf67cb17656f87462c7d1b77fa5f373a82a95"
+    }
+  ],
+  "filename": {
+    "matches": [
+      "F01",
+      "F02",
+      "F50",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "takeout_photoTakenTime",
+        "kind": "utc",
+        "value": "2019-05-09T14:00:00Z",
+        "precision": "s",
+        "event": "capture"
+      },
+      {
+        "source": "filename:F01",
+        "kind": "local",
+        "value": "2019-05-09T16:00:00",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-05-09T16:00:00",
+      "utc": "2019-05-09T14:00:00Z",
+      "offset": "+02:00",
+      "tz_source": "paired_utc_delta",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F01",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

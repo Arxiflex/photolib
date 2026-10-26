@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "path": "names/telegram_2020-01-30_09-57-18.jpg",
+  "size": 3544,
+  "sha256": "d4ec59dd6a6338fb87f955d66177baf0872113aef8df0ab4c503b042995a5117",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "messenger_copy",
+    "upper_bound_name"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F28",
+      "F52",
+      "F54"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F28",
+        "kind": "local",
+        "value": "2020-01-30T09:57:18",
+        "precision": "s",
+        "event": "save"
+      }
+    ],
+    "resolved": {
+      "local": "2020-01-30T09:57:18",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "upper",
+      "source": "filename:F28",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

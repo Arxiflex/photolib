@@ -1,0 +1,151 @@
+# promtool test rules alerts.test.yml (tools/promtool.sh): every alert stays quiet, then fires. time() starts at 0.
+rule_files:
+  - alerts.yml
+evaluation_interval: 1m
+tests:
+  - interval: 1m
+    input_series:
+      - series: 'up{job="photolib",instance="127.0.0.1:8080"}'
+        values: "1x5 0x10"
+      - series: 'photolib_database_up{job="photolib",instance="127.0.0.1:8080"}'
+        values: "1x10 0x10"
+      # The newest dump was written one hour in.
+      - series: "photolib_backup_last_timestamp_seconds"
+        values: "3600x3000"
+      # A drill passed two hours in.
+      - series: "photolib_restore_drill_last_success_timestamp_seconds"
+        values: "7200x3100"
+      - series: 'photolib_jobs{type="scan",status="dead"}'
+        values: "2x120"
+      - series: 'photolib_jobs{type="embed",status="dead"}'
+        values: "1x60 3x60"
+      # Render jobs were queued 40 minutes in: from then on photolibd reports their dead count.
+      - series: 'photolib_jobs{type="render",status="dead"}'
+        values: "_x40 0x20 1x60"
+      - series: 'photolib_storage_size_bytes{dir="data_dir"}'
+        values: "100x40"
+      - series: 'photolib_storage_free_bytes{dir="data_dir"}'
+        values: "50x10 5x30"
+      - series: "photolib_sync_watermark_lag_seconds"
+        values: "0+60x10"
+      # The scrub finds a damaged original 30 minutes in.
+      - series: 'photolib_integrity_findings{kind="content"}'
+        values: "0x30 1x30"
+      # Ann's Pixel, last seen at 1000 s with 12 items to back up, goes silent 20 minutes in.
+      - series: 'photolib_device_backup_silent{device="d1",name="Pixel",user="ann"}'
+        values: "0x20 1x20"
+      - series: 'photolib_device_backup_pending{device="d1",name="Pixel",user="ann"}'
+        values: "12x40"
+      - series: 'photolib_device_last_seen_timestamp_seconds{device="d1",name="Pixel",user="ann"}'
+        values: "1000x40"
+      # The GPU box restarts 10 minutes in with a driver whose CUDA outputs fail the self-test.
+      - series: 'photolib_ml_backend_disabled{node="gpu-box",file="sface@2021dec/face_recognition_sface_2021dec.onnx",backend="cuda"}'
+        values: "_x10 1x10"
+    alert_rule_test:
+      - eval_time: 9m
+        alertname: PhotolibDown
+      - eval_time: 12m
+        alertname: PhotolibDown
+        exp_alerts:
+          - exp_labels:
+              severity: critical
+              job: photolib
+              instance: "127.0.0.1:8080"
+            exp_annotations:
+              summary: "Prometheus cannot scrape photolibd at 127.0.0.1:8080"
+      - eval_time: 14m
+        alertname: PhotolibDatabaseUnreachable
+      - eval_time: 16m
+        alertname: PhotolibDatabaseUnreachable
+        exp_alerts:
+          - exp_labels:
+              severity: critical
+              job: photolib
+              instance: "127.0.0.1:8080"
+            exp_annotations:
+              summary: "photolibd at 127.0.0.1:8080 cannot read its database"
+      - eval_time: 48h
+        alertname: PhotolibBackupTooOld
+      - eval_time: 50h
+        alertname: PhotolibBackupTooOld
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+            exp_annotations:
+              summary: "The newest database dump is more than 48 hours old"
+      - eval_time: 49h
+        alertname: PhotolibRestoreDrillFailing
+      - eval_time: 51h
+        alertname: PhotolibRestoreDrillFailing
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+            exp_annotations:
+              summary: "No restore drill of a database backup has passed for more than 48 hours"
+      - eval_time: 50m
+        alertname: PhotolibJobsDeadLettered
+      - eval_time: 90m
+        alertname: PhotolibJobsDeadLettered
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              type: embed
+            exp_annotations:
+              summary: "More embed jobs failed five times than an hour ago; retry or cancel them"
+          - exp_labels:
+              severity: warning
+              type: render
+            exp_annotations:
+              summary: "More render jobs failed five times than an hour ago; retry or cancel them"
+      - eval_time: 15m
+        alertname: PhotolibDiskAlmostFull
+      - eval_time: 25m
+        alertname: PhotolibDiskAlmostFull
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              dir: data_dir
+            exp_annotations:
+              summary: "The filesystem of data_dir is more than 90% full"
+      - eval_time: 5m
+        alertname: PhotolibSyncWatermarkLag
+      - eval_time: 6m
+        alertname: PhotolibSyncWatermarkLag
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+            exp_annotations:
+              summary: "A transaction has held back sync for more than 5 minutes"
+      - eval_time: 29m
+        alertname: PhotolibIntegrityFindings
+      - eval_time: 31m
+        alertname: PhotolibIntegrityFindings
+        exp_alerts:
+          - exp_labels:
+              severity: critical
+            exp_annotations:
+              summary: "Open integrity findings: 1; see Overview in the admin console"
+      - eval_time: 19m
+        alertname: PhotolibDeviceBackupSilent
+      - eval_time: 21m
+        alertname: PhotolibDeviceBackupSilent
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              device: d1
+              name: Pixel
+              user: ann
+            exp_annotations:
+              summary: "Pixel of ann has not reported a backup for longer than backup_silent_hours; last seen 1970-01-01 00:16:40 +0000 UTC, 12 items to back up"
+      - eval_time: 9m
+        alertname: PhotolibMlBackendDisabled
+      - eval_time: 11m
+        alertname: PhotolibMlBackendDisabled
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              node: gpu-box
+              file: sface@2021dec/face_recognition_sface_2021dec.onnx
+              backend: cuda
+            exp_annotations:
+              summary: "gpu-box disabled cuda for sface@2021dec/face_recognition_sface_2021dec.onnx: see the ml check in the admin console's diagnostics"

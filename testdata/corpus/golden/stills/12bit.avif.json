@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "path": "stills/12bit.avif",
+  "size": 569,
+  "sha256": "0e7b460667a5f28fd8b9ce2482a5ec20a1fe1fd4f66564e96549be0b9608dfce",
+  "origin": "synthetic",
+  "notes": "Placeholder AV1 payload: the structure and metadata are real, the image does not decode.",
+  "format": "avif",
+  "vendor": "google",
+  "quirks": [
+    "bit_depth_12"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "avif",
+    "mime": "image/avif",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 4032,
+    "height": 3024,
+    "make": "Google",
+    "model": "Pixel 7"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2023-10-26T21:06:44",
+        "precision": "s",
+        "event": "capture",
+        "offset": "-07:00"
+      }
+    ],
+    "resolved": {
+      "local": "2023-10-26T21:06:44",
+      "utc": "2023-10-27T04:06:44Z",
+      "offset": "-07:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

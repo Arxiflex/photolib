@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "path": "compound/pano/photosphere-cropped.jpg",
+  "size": 104691,
+  "sha256": "494af68238d61bcfe9df4deb994527333ac9425a9dd8aa4127fca8eade4498d7",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "google",
+  "quirks": [
+    "photo_sphere_cropped"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 8192,
+    "height": 2048,
+    "make": "Google",
+    "model": "Pixel 7",
+    "pano": {
+      "projection": "equirectangular",
+      "cropped": true,
+      "heading": 123.5
+    }
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2022-06-18T18:40:00",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+02:00"
+      }
+    ],
+    "resolved": {
+      "local": "2022-06-18T18:40:00",
+      "utc": "2022-06-18T16:40:00Z",
+      "offset": "+02:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

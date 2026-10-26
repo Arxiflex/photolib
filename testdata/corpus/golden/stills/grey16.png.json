@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "path": "stills/grey16.png",
+  "size": 1305,
+  "sha256": "446c9facfe64302f46ffd65a3981861c3e664c57a5ebf00ec3c24eb58afe768c",
+  "origin": "synthetic",
+  "format": "png",
+  "quirks": [
+    "bit_depth_16"
+  ],
+  "media": {
+    "container": "png",
+    "mime": "image/png",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

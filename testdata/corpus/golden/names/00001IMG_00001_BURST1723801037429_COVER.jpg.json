@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "path": "names/00001IMG_00001_BURST1723801037429_COVER.jpg",
+  "size": 3796,
+  "sha256": "2bc77e106d48ebced997b2d76ec07096555d70680bc6fc01aa987c2cbcaf742b",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "burst",
+    "epoch_name"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F04",
+      "F55"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F04",
+        "kind": "utc",
+        "value": "2024-08-16T09:37:17.429Z",
+        "precision": "ms",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": null,
+      "utc": "2024-08-16T09:37:17.429Z",
+      "offset": null,
+      "tz_source": "device_default",
+      "precision": "ms",
+      "bound": "exact",
+      "source": "filename:F04",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

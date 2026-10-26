@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "path": "raw/olympus.orf",
+  "size": 25854,
+  "sha256": "3c7e12e463b1b2c7b21e1354c40221c9029fb844ae843c4bd65105146aed6d12",
+  "origin": "synthetic",
+  "notes": "Placeholder sensor data, not a camera mosaic; the embedded JPEG preview decodes.",
+  "format": "orf",
+  "vendor": "olympus",
+  "quirks": [],
+  "media": {
+    "container": "tiff",
+    "mime": "image/x-olympus-orf",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120,
+    "make": "OLYMPUS CORPORATION",
+    "model": "E-M5",
+    "orientation": 6
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2016-08-08T08:08:08",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2016-08-08T08:08:08",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

@@ -1,0 +1,10 @@
+# photolibd behind Caddy, which gets and renews the certificate itself (recommended). PHOTOLIB_DOMAIN, PHOTOLIB_BASE_PATH
+# (empty, or photolibd's base_path such as /photos) and PHOTOLIB_UPSTREAM come from the environment (compose.yaml).
+{$PHOTOLIB_DOMAIN} {
+  handle {$PHOTOLIB_BASE_PATH}/* {
+    # Prometheus and photolibd doctor reach photolibd directly, never through here (ADR-0046).
+    @private path {$PHOTOLIB_BASE_PATH}/metrics {$PHOTOLIB_BASE_PATH}/diagnostics
+    respond @private 403
+    reverse_proxy {$PHOTOLIB_UPSTREAM:photolibd:8080}
+  }
+}

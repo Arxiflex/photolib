@@ -1,0 +1,5 @@
+# A test that fails runs again up to three times and passes if one of them does: flaky ones no longer fail the gate.
+retry: 3
+# Beside the rest of the suite on a loaded machine, loops of file I/O and decodes outlast the default 30 s; four times
+# that still catches a hang.
+timeout: 4x

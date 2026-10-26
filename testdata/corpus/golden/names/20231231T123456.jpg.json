@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "path": "names/20231231T123456.jpg",
+  "size": 3349,
+  "sha256": "cdf63ece0158e208df9d3c050ff3fadcc1497b154324006fe608ed80972f2d35",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F52",
+        "kind": "local",
+        "value": "2023-12-31T12:34:56",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12-31T12:34:56",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F52",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

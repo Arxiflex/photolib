@@ -1,0 +1,927 @@
+-- Schema of the replica: the projection of docs/04-domain-model.md a device keeps, plus its local-only tables (§11).
+-- IDs are UUIDv7 as 16-byte blobs, hashes BLAKE3-256, times UTC milliseconds since the epoch. Enumerations are text
+-- without CHECK constraints, so a value added by a newer server never fails the apply of a sync batch.
+-- `txid` is the server change that last wrote a synced row; NULL while the row exists only on this device, which is
+-- what the pre-migration backup keeps (local_only.dart).
+
+-- §3
+CREATE TABLE library (
+  id BLOB NOT NULL PRIMARY KEY,
+  owner_id BLOB NOT NULL,
+  kind TEXT NOT NULL, -- managed, external, or local for a standalone library (local:<device>)
+  privacy TEXT NOT NULL, -- standard, private
+  access TEXT NOT NULL, -- ro, rw
+  root_uri TEXT,
+  is_upload_target INTEGER NOT NULL DEFAULT 0,
+  state TEXT NOT NULL, -- online, offline, scanning, error
+  txid INTEGER
+) STRICT;
+
+-- §4.1
+CREATE TABLE asset (
+  id BLOB NOT NULL PRIMARY KEY,
+  library_id BLOB NOT NULL,
+  owner_id BLOB NOT NULL,
+  original_filename TEXT NOT NULL,
+  source TEXT NOT NULL, -- upload, scan, import, edit-copy
+  source_ref TEXT,
+  content_hash BLOB,
+  media_kind TEXT NOT NULL, -- image, video
+  facets TEXT NOT NULL DEFAULT '', -- comma-separated: live, motion_photo, animated, panorama, raw, …
+  taken_local TEXT, -- naive ISO 8601 date-time
+  tz_offset_min INTEGER,
+  tz_name TEXT,
+  taken_utc INTEGER,
+  time_source TEXT NOT NULL DEFAULT 'unknown',
+  time_confidence INTEGER NOT NULL DEFAULT 0,
+  time_precision TEXT, -- year, month, day, minute, second, ms
+  tz_assumed INTEGER NOT NULL DEFAULT 0,
+  lat REAL,
+  lon REAL,
+  alt REAL,
+  accuracy_m REAL,
+  location_source TEXT, -- exif, sidecar, user, import, estimated
+  place_id BLOB,
+  width INTEGER,
+  height INTEGER,
+  orientation INTEGER,
+  duration_ms INTEGER,
+  file_size_total INTEGER,
+  make TEXT,
+  model TEXT,
+  lens TEXT,
+  title TEXT,
+  description TEXT,
+  rating INTEGER NOT NULL DEFAULT 0, -- -1 reject, 0 to 5
+  color_label TEXT,
+  archived INTEGER NOT NULL DEFAULT 0,
+  locked INTEGER NOT NULL DEFAULT 0,
+  trashed_at INTEGER,
+  stack_id BLOB,
+  stack_order INTEGER,
+  current_version_id BLOB,
+  created_at INTEGER NOT NULL,
+  txid INTEGER,
+  -- Schema 16: a video's frames a second, which ingest read (assets.fps), which the viewer steps by.
+  fps REAL,
+  -- Schema 22: the ThumbHash of its smallest rendition, which a cell paints until the server's thumbnail shows
+  -- (docs/10-client-app.md §3.4, T0).
+  thumbhash BLOB,
+  -- Schema 27, device-only: a present item of the device index links it, and so shows it (local_asset.tile).
+  on_device INTEGER NOT NULL DEFAULT 0
+) STRICT;
+
+CREATE INDEX asset_taken ON asset (taken_utc DESC, id);
+-- Schema 7: what sync's garbage collection looks up (sync.dart).
+CREATE INDEX asset_library ON asset (library_id);
+
+-- Per-viewer state of an asset; the replica belongs to one account, so the user is implied.
+CREATE TABLE asset_user_state (
+  asset_id BLOB NOT NULL PRIMARY KEY,
+  favorite INTEGER NOT NULL DEFAULT 0,
+  hidden_from_memories INTEGER NOT NULL DEFAULT 0,
+  last_viewed_at INTEGER,
+  playback_position_ms INTEGER,
+  txid INTEGER,
+  -- Schema 29 (ORG-17): the asset is in an album this account hides from its timeline or memories; the server keeps it.
+  album_hides_timeline INTEGER NOT NULL DEFAULT 0,
+  album_hides_memories INTEGER NOT NULL DEFAULT 0
+) STRICT;
+
+-- Schema 29 (ORG-17): what this account hides of an album or a library; the replica belongs to one account.
+CREATE TABLE album_user_state (
+  album_id BLOB NOT NULL PRIMARY KEY,
+  hide_from_timeline INTEGER NOT NULL DEFAULT 0,
+  hide_from_memories INTEGER NOT NULL DEFAULT 0,
+  txid INTEGER
+) STRICT;
+
+CREATE TABLE library_user_state (
+  library_id BLOB NOT NULL PRIMARY KEY,
+  hide_from_timeline INTEGER NOT NULL DEFAULT 0,
+  hide_from_memories INTEGER NOT NULL DEFAULT 0,
+  txid INTEGER
+) STRICT;
+
+-- §4.2
+CREATE TABLE asset_file (
+  id BLOB NOT NULL PRIMARY KEY,
+  asset_id BLOB NOT NULL,
+  role TEXT NOT NULL, -- original, original_alt, live_motion, sidecar, render, thumb_s, preview, …
+  mime TEXT NOT NULL,
+  size INTEGER NOT NULL,
+  content_hash BLOB,
+  state TEXT NOT NULL, -- present, missing, offline, pending_upload, integrity_error
+  txid INTEGER
+) STRICT;
+
+CREATE INDEX asset_file_asset ON asset_file (asset_id);
+
+-- §4.3; versions are immutable
+CREATE TABLE asset_version (
+  id BLOB NOT NULL PRIMARY KEY,
+  asset_id BLOB NOT NULL,
+  parent_id BLOB,
+  kind TEXT NOT NULL, -- original, edit, external_change, import_variant
+  label TEXT,
+  recipe BLOB, -- EditRecipe protobuf
+  render_file_id BLOB,
+  created_at INTEGER NOT NULL,
+  txid INTEGER
+) STRICT;
+
+CREATE INDEX asset_version_asset ON asset_version (asset_id); -- schema 7
+
+-- §4.4
+CREATE TABLE stack (
+  id BLOB NOT NULL PRIMARY KEY,
+  owner_id BLOB NOT NULL,
+  kind TEXT NOT NULL, -- burst, similar_series, raw_jpeg, bracket, manual
+  cover_asset_id BLOB,
+  review_state TEXT NOT NULL DEFAULT 'unreviewed',
+  txid INTEGER
+) STRICT;
+
+-- §5
+CREATE TABLE album_folder (
+  id BLOB NOT NULL PRIMARY KEY,
+  owner_id BLOB NOT NULL,
+  parent_id BLOB,
+  name TEXT NOT NULL,
+  sort_key TEXT NOT NULL,
+  txid INTEGER
+) STRICT;
+
+CREATE TABLE album (
+  id BLOB NOT NULL PRIMARY KEY,
+  owner_id BLOB NOT NULL,
+  folder_id BLOB,
+  title TEXT NOT NULL,
+  description TEXT,
+  cover_asset_id BLOB,
+  sort_mode TEXT NOT NULL DEFAULT 'custom', -- custom, taken_asc, taken_desc, added_desc, name, rating
+  layout TEXT NOT NULL DEFAULT 'grid', -- grid, justified, story
+  privacy TEXT NOT NULL DEFAULT 'standard',
+  created_at INTEGER NOT NULL,
+  txid INTEGER
+) STRICT;
+
+-- An album is an ordered list of blocks; sort_key is a fractional index.
+CREATE TABLE album_item (
+  id BLOB NOT NULL PRIMARY KEY,
+  album_id BLOB NOT NULL,
+  kind TEXT NOT NULL, -- asset, text, heading, location, divider, date
+  asset_id BLOB,
+  anchor_asset_id BLOB, -- the asset a text, location or divider block stays before under any sort
+  payload TEXT,
+  sort_key TEXT NOT NULL,
+  txid INTEGER
+) STRICT;
+
+CREATE INDEX album_item_order ON album_item (album_id, sort_key);
+
+-- Schema 7: albums of others shared with this account, each opening its album_items/{album} stream.
+CREATE TABLE album_member (
+  album_id BLOB NOT NULL,
+  user_id BLOB NOT NULL,
+  role TEXT NOT NULL, -- viewer, contributor, editor
+  txid INTEGER,
+  PRIMARY KEY (album_id, user_id)
+) STRICT;
+
+-- §6
+CREATE TABLE tag (
+  id BLOB NOT NULL PRIMARY KEY,
+  owner_id BLOB NOT NULL,
+  parent_id BLOB,
+  name TEXT NOT NULL,
+  path TEXT NOT NULL, -- materialised, e.g. Places|Europe|Paris
+  color TEXT,
+  is_album INTEGER NOT NULL DEFAULT 0,
+  origin TEXT NOT NULL DEFAULT 'user', -- user, import, auto-accepted
+  txid INTEGER
+) STRICT;
+
+CREATE TABLE asset_tag (
+  asset_id BLOB NOT NULL,
+  tag_id BLOB NOT NULL,
+  origin TEXT NOT NULL DEFAULT 'user', -- user, import, ml
+  confidence REAL,
+  created_at INTEGER NOT NULL,
+  txid INTEGER,
+  PRIMARY KEY (asset_id, tag_id)
+) STRICT;
+
+CREATE INDEX asset_tag_tag ON asset_tag (tag_id);
+
+-- §7
+CREATE TABLE person (
+  id BLOB NOT NULL PRIMARY KEY,
+  owner_id BLOB NOT NULL,
+  kind TEXT NOT NULL DEFAULT 'human', -- human, pet
+  name TEXT,
+  birth_date TEXT,
+  cover_face_id BLOB,
+  hidden INTEGER NOT NULL DEFAULT 0,
+  merged_into BLOB,
+  txid INTEGER
+) STRICT;
+
+CREATE TABLE face (
+  id BLOB NOT NULL PRIMARY KEY,
+  asset_id BLOB NOT NULL,
+  bbox TEXT NOT NULL, -- normalised x,y,w,h
+  quality REAL,
+  person_id BLOB,
+  assignment TEXT NOT NULL DEFAULT 'auto', -- auto, user, import
+  txid INTEGER
+) STRICT;
+
+CREATE INDEX face_person ON face (person_id);
+CREATE INDEX face_asset ON face (asset_id); -- schema 7
+
+-- Schema 7: what an asset no longer synced takes with it; schema 27: the tiles of its device items (linked_tile).
+CREATE TRIGGER asset_deleted AFTER DELETE ON asset BEGIN
+  DELETE FROM asset_file WHERE asset_id = old.id;
+  DELETE FROM asset_version WHERE asset_id = old.id;
+  DELETE FROM face WHERE asset_id = old.id;
+  UPDATE local_asset SET tile = t.tile FROM linked_tile t WHERE t.id = local_asset.id AND asset_id = old.id;
+END;
+
+-- Schema 7: partners who share their photos with this account, each opening its partner/{owner} stream.
+CREATE TABLE partner_share (
+  owner_id BLOB NOT NULL,
+  partner_id BLOB NOT NULL,
+  taken_since TEXT, -- the date the share starts at, e.g. 2020-01-31
+  txid INTEGER,
+  PRIMARY KEY (owner_id, partner_id)
+) STRICT;
+
+-- Schema 10: the libraries a partner's share shows whole, private ones (ADR-0091), as its stream sent an undated asset
+-- of each; schema 11: every library of the partner's own that it sent assets of (ADR-0155), `whole` for those. Synced,
+-- but by no table of the server's (sync.dart).
+CREATE TABLE partner_library (
+  owner_id BLOB NOT NULL,
+  library_id BLOB NOT NULL,
+  whole INTEGER NOT NULL DEFAULT 0,
+  PRIMARY KEY (owner_id, library_id)
+) STRICT;
+
+-- §11, local-only. One row per media item on this device, identified by its platform id, never by the SQLite rowid.
+CREATE TABLE local_asset (
+  id BLOB NOT NULL PRIMARY KEY,
+  source TEXT NOT NULL, -- mediastore, photokit, folder, web
+  volume TEXT NOT NULL DEFAULT '', -- for a folder file, the root of its media_source
+  -- MediaStore id or PHAsset localIdentifier. A folder file's path and file id both change (moves, remounts), so it
+  -- is the row's own id in hex, and the scanner matches path and file_id (folders.dart).
+  source_id TEXT NOT NULL,
+  generation TEXT, -- MediaStore GENERATION_ADDED; for PhotoKit, the sync that last read the asset
+  size INTEGER NOT NULL,
+  mtime INTEGER NOT NULL,
+  content_hash BLOB, -- computed lazily
+  asset_id BLOB, -- set once matched or uploaded
+  path TEXT, -- a folder file's path under its root, '/'-separated; MediaStore's, relative to the volume, ending in '/'
+  file_id TEXT, -- a folder file's inode or NTFS file id, which a rename keeps
+  state TEXT NOT NULL DEFAULT 'present', -- present, offline (its drive is away), missing; never deleted for either
+  -- Schema 3: what MediaStore says of the item until its metadata is extracted (docs/10-client-app.md §5.2).
+  name TEXT,
+  bucket_id TEXT, -- the folder, which device galleries show as an album
+  bucket_name TEXT,
+  mime TEXT,
+  taken INTEGER, -- DATE_TAKEN, a provisional sort key
+  -- Extraction fills in what the platform left NULL.
+  width INTEGER,
+  height INTEGER,
+  orientation INTEGER, -- clockwise degrees
+  duration_ms INTEGER,
+  favorite INTEGER NOT NULL DEFAULT 0,
+  trashed INTEGER NOT NULL DEFAULT 0, -- in the system trash, until expires
+  expires INTEGER,
+  -- Schema 4: what metadata extraction read in the file (metadata.dart), as in asset; NULL until it ran.
+  extracted INTEGER, -- when it read this version of the file; NULL while pending
+  taken_local TEXT, -- the kernel's capture time
+  tz_offset_min INTEGER,
+  taken_utc INTEGER,
+  time_source TEXT,
+  time_confidence INTEGER,
+  time_precision TEXT,
+  lat REAL,
+  lon REAL,
+  make TEXT,
+  model TEXT,
+  facets TEXT, -- comma-separated: motion_photo, panorama, animated, hdr; PhotoKit's subtypes and bursts (photo_kit.dart)
+  -- Schema 5: what PhotoKit says of an asset (docs/10-client-app.md §6.1).
+  cloud_id TEXT, -- PHCloudIdentifier, which names the asset on every device of the iCloud library
+  burst_id TEXT,
+  edited INTEGER NOT NULL DEFAULT 0, -- Photos holds an edit over the original
+  -- Schema 6: when this device's index first saw the item, the time in its UUIDv7 id: its date added (VIEW-06).
+  added INTEGER,
+  -- Schema 8: the ThumbHash of its thumbnail, which a cell paints until the thumbnail shows (docs/10-client-app.md
+  -- §3.4, T0); the thumbnail warm-up computes it.
+  thumbhash BLOB,
+  -- Schema 9: where extraction found a motion photo's video in the file (docs/10-client-app.md §4.3).
+  motion_offset INTEGER,
+  motion_length INTEGER,
+  -- Schema 12: a video's frames a second, on average, which the viewer steps by (ReadMetadataResponse.frame_rate).
+  frame_rate REAL,
+  -- Schema 13: how a photo sphere or 360° video is projected, from its metadata (docs/10-client-app.md §4.4); NULL when
+  -- flat. The kernel's projection, its GPano crop as `left,top,width,height,full width,full height` when it is partial,
+  -- and its stereo packing: top_bottom, left_right or right_left.
+  projection TEXT,
+  crop TEXT,
+  stereo TEXT,
+  -- Schema 14: a MediaStore item's device_folder, schema 21 a folder file's too; 0 for PhotoKit's, which no folder
+  -- setting hides.
+  folder INTEGER NOT NULL DEFAULT 0,
+  -- Schema 16: GPano's PoseHeadingDegrees, the compass heading of the full panorama's middle, which compass lock aligns.
+  heading REAL,
+  -- Schema 24, Photolib's own state of the item, never read from a .nomedia or the OS (ADR-0245): hidden is out of
+  -- every view, archived out of the timeline; `bin` is where the platform's trash keeps a file Photolib moved there,
+  -- for its restore; `fingerprint` names its content (kept_state).
+  hidden INTEGER NOT NULL DEFAULT 0,
+  archived INTEGER NOT NULL DEFAULT 0,
+  bin TEXT,
+  fingerprint BLOB,
+  -- Schema 27: how the timeline shows a present item (ADR-0267), kept by the triggers below: 0 a tile not backed up, 1
+  -- a tile backed up (its asset is in a managed library), 2 none (its asset is trashed, archived or locked, or a copy
+  -- with a smaller id shows it).
+  tile INTEGER NOT NULL DEFAULT 0,
+  UNIQUE (source, volume, source_id)
+) STRICT;
+
+CREATE INDEX local_asset_path ON local_asset (volume, path);
+-- Schema 25: the device's copies of a content, which back up once (backup.dart).
+CREATE INDEX local_asset_hash ON local_asset (content_hash) WHERE content_hash IS NOT NULL;
+CREATE INDEX local_asset_file ON local_asset (volume, file_id);
+-- What extraction has still to read, newest first.
+CREATE INDEX local_asset_pending ON local_asset (COALESCE(taken, mtime) DESC, id DESC) WHERE extracted IS NULL;
+-- Schema 17: the files of each folder by state, which folderSummary counts without reading a row.
+CREATE INDEX local_asset_root ON local_asset (volume, state) WHERE source = 'folder';
+
+-- Schema 6: the timeline (docs/10-client-app.md §3.1), by local capture day (`yyyymmdd`), newest first, then capture
+-- time. Until extraction reads a date its platform date or file time stands in, as a UTC day. Indexes repeat the views'
+-- expressions, as the query planner needs them, and hold every column a day count reads: the folder (schema 14), which
+-- device-item queries filter on without reading the row, the tile and whether it is hidden or archived. Schema 19 adds
+-- the facets, which badge animated items, NULL until extraction or PhotoKit says.
+-- Schema 27 (ADR-0267): one tile per photo, a device item's or else its asset's; `backup` says which of not_backed_up,
+-- backed_up and cloud_only it is, and an asset's `thumb_s` and `thumb_m` are its renditions' hashes (T5, ADR-0246).
+CREATE VIEW timeline_item AS SELECT id, source, volume, source_id, path, size, mtime, mime, thumbhash, projection,
+  favorite, hidden, archived, COALESCE(added, 0) AS added,
+  CAST(COALESCE(strftime('%Y%m%d', taken_local), strftime('%Y%m%d', COALESCE(taken, mtime) / 1000, 'unixepoch'))
+    AS INTEGER) AS day,
+  COALESCE(taken_utc, taken, mtime) AS sort_key, folder, facets,
+  asset_id, CASE tile WHEN 1 THEN 'backed_up' ELSE 'not_backed_up' END AS backup,
+  CAST(NULL AS BLOB) AS thumb_s, CAST(NULL AS BLOB) AS thumb_m
+  FROM local_asset WHERE state = 'present' AND trashed = 0 AND tile < 2;
+CREATE INDEX local_asset_timeline ON local_asset (
+  CAST(COALESCE(strftime('%Y%m%d', taken_local), strftime('%Y%m%d', COALESCE(taken, mtime) / 1000, 'unixepoch'))
+    AS INTEGER) DESC,
+  COALESCE(taken_utc, taken, mtime) DESC, id DESC, folder, tile, hidden, archived)
+  WHERE state = 'present' AND trashed = 0 AND tile < 2;
+CREATE INDEX local_asset_added ON local_asset (COALESCE(added, 0) DESC, id DESC, folder, tile, hidden, archived)
+  WHERE state = 'present' AND trashed = 0 AND tile < 2;
+-- Schema 14, local-only: the folders of the device's volumes, MediaStore's buckets, and whether the library shows
+-- them (ADR-0210); schema 21: a desktop or browser folder's directories too, its root as volume, and the folders above
+-- a bucket the user set a visibility on (ADR-0290). Keyed by volume and relative path, which a card's removal, a
+-- MediaStore rebuild and a reinstall keep; a folder stays, with its setting, when its items go, until the user forgets
+-- it.
+CREATE TABLE device_folder (
+  id INTEGER NOT NULL PRIMARY KEY, -- what local_asset.folder holds
+  volume TEXT NOT NULL,
+  path TEXT NOT NULL, -- RELATIVE_PATH, ending in '/', or '' for the volume or root itself
+  name TEXT NOT NULL DEFAULT '', -- BUCKET_DISPLAY_NAME, or '' for the path's last folder
+  -- Schema 21: the folder's own visibility, shown, hidden or inherit: the nearest folder above with its own decides.
+  visibility TEXT NOT NULL DEFAULT 'inherit',
+  fresh INTEGER NOT NULL DEFAULT 0, -- came after the first index, and the app has still to say so
+  UNIQUE (volume, path)
+) STRICT;
+
+CREATE INDEX device_folder_own ON device_folder (volume, path) WHERE visibility <> 'inherit'; -- schema 21
+
+-- Schema 14, local-only: one row, whether the library shows only the chosen device folders, the root's own visibility
+-- hidden (schema 21), and until when (ms) it shows the excluded too.
+CREATE TABLE device_folder_mode (
+  id INTEGER NOT NULL PRIMARY KEY CHECK (id = 0),
+  only_chosen INTEGER NOT NULL DEFAULT 0,
+  reveal_until INTEGER
+) STRICT;
+
+-- The device folders the user keeps out of the library, and those of them hidden now. A folder is out when the nearest
+-- own visibility at or above it on its volume is hidden, or with none the root's. Every query of device items the user
+-- sees filters on hidden_folder; app/test/device_queries_test.dart fails on one that does not.
+CREATE VIEW excluded_folder AS SELECT id FROM device_folder f WHERE IFNULL(
+  (SELECT g.visibility FROM device_folder g WHERE g.volume = f.volume AND g.visibility <> 'inherit'
+    AND g.path <= f.path AND substr(f.path, 1, length(g.path)) = g.path ORDER BY g.path DESC LIMIT 1),
+  (SELECT IIF(only_chosen, 'hidden', 'shown') FROM device_folder_mode)) = 'hidden';
+CREATE VIEW hidden_folder AS SELECT id FROM excluded_folder
+  WHERE NOT EXISTS (SELECT 1 FROM device_folder_mode WHERE reveal_until > unixepoch() * 1000);
+
+-- Schema 14: the timeline items of each folder and day, so that the timeline's days count within docs/10 §2's 50 ms
+-- at 1M items whatever folders it hides; schema 24 counts the hidden and archived apart (`veiled`). The triggers keep
+-- it; a rebuilt replica recounts it as rows come back. They count each change from its old and new row (schema 27), as
+-- a change of a row's tile may run inside another change of that row, and a count may pass below zero until the outer
+-- change is counted.
+CREATE TABLE timeline_day (
+  day INTEGER NOT NULL,
+  folder INTEGER NOT NULL,
+  veiled INTEGER NOT NULL,
+  count INTEGER NOT NULL,
+  PRIMARY KEY (day, folder, veiled)
+) STRICT, WITHOUT ROWID;
+
+CREATE TRIGGER timeline_day_insert AFTER INSERT ON local_asset
+  WHEN new.state = 'present' AND new.trashed = 0 AND new.tile < 2 BEGIN
+  INSERT INTO timeline_day VALUES (CAST(COALESCE(strftime('%Y%m%d', new.taken_local),
+      strftime('%Y%m%d', COALESCE(new.taken, new.mtime) / 1000, 'unixepoch')) AS INTEGER), new.folder,
+      new.hidden + new.archived > 0, 1)
+    ON CONFLICT DO UPDATE SET count = count + 1;
+END;
+CREATE TRIGGER timeline_day_delete AFTER DELETE ON local_asset
+  WHEN old.state = 'present' AND old.trashed = 0 AND old.tile < 2 BEGIN
+  INSERT INTO timeline_day VALUES (CAST(COALESCE(strftime('%Y%m%d', old.taken_local),
+      strftime('%Y%m%d', COALESCE(old.taken, old.mtime) / 1000, 'unixepoch')) AS INTEGER), old.folder,
+      old.hidden + old.archived > 0, -1)
+    ON CONFLICT DO UPDATE SET count = count - 1;
+END;
+CREATE TRIGGER timeline_day_update
+  AFTER UPDATE OF state, trashed, taken_local, taken, mtime, folder, hidden, archived, tile ON local_asset BEGIN
+  INSERT INTO timeline_day SELECT CAST(COALESCE(strftime('%Y%m%d', old.taken_local),
+      strftime('%Y%m%d', COALESCE(old.taken, old.mtime) / 1000, 'unixepoch')) AS INTEGER), old.folder,
+      old.hidden + old.archived > 0, -1
+    WHERE old.state = 'present' AND old.trashed = 0 AND old.tile < 2 ON CONFLICT DO UPDATE SET count = count - 1;
+  INSERT INTO timeline_day SELECT CAST(COALESCE(strftime('%Y%m%d', new.taken_local),
+      strftime('%Y%m%d', COALESCE(new.taken, new.mtime) / 1000, 'unixepoch')) AS INTEGER), new.folder,
+      new.hidden + new.archived > 0, 1
+    WHERE new.state = 'present' AND new.trashed = 0 AND new.tile < 2 ON CONFLICT DO UPDATE SET count = count + 1;
+END;
+CREATE TRIGGER timeline_day_empty AFTER UPDATE OF count ON timeline_day WHEN new.count = 0 BEGIN
+  DELETE FROM timeline_day WHERE day = new.day AND folder = new.folder AND veiled = new.veiled;
+END;
+
+-- Schema 18: the same by date added, in quarter hours of UTC (`added / 900000`), as every time zone's offset is whole
+-- quarter hours: the items added in each counted once, whichever offset the days are at. Schema 24 counts the hidden
+-- and archived apart too. Its triggers count as timeline_day's do (schema 27).
+CREATE TABLE timeline_added (
+  slot INTEGER NOT NULL,
+  folder INTEGER NOT NULL,
+  veiled INTEGER NOT NULL,
+  count INTEGER NOT NULL,
+  PRIMARY KEY (slot, folder, veiled)
+) STRICT, WITHOUT ROWID;
+
+CREATE TRIGGER timeline_added_insert AFTER INSERT ON local_asset
+  WHEN new.state = 'present' AND new.trashed = 0 AND new.tile < 2 BEGIN
+  INSERT INTO timeline_added VALUES (COALESCE(new.added, 0) / 900000, new.folder, new.hidden + new.archived > 0, 1)
+    ON CONFLICT DO UPDATE SET count = count + 1;
+END;
+CREATE TRIGGER timeline_added_delete AFTER DELETE ON local_asset
+  WHEN old.state = 'present' AND old.trashed = 0 AND old.tile < 2 BEGIN
+  INSERT INTO timeline_added VALUES (COALESCE(old.added, 0) / 900000, old.folder, old.hidden + old.archived > 0, -1)
+    ON CONFLICT DO UPDATE SET count = count - 1;
+END;
+CREATE TRIGGER timeline_added_update
+  AFTER UPDATE OF state, trashed, added, folder, hidden, archived, tile ON local_asset BEGIN
+  INSERT INTO timeline_added SELECT COALESCE(old.added, 0) / 900000, old.folder, old.hidden + old.archived > 0, -1
+    WHERE old.state = 'present' AND old.trashed = 0 AND old.tile < 2 ON CONFLICT DO UPDATE SET count = count - 1;
+  INSERT INTO timeline_added SELECT COALESCE(new.added, 0) / 900000, new.folder, new.hidden + new.archived > 0, 1
+    WHERE new.state = 'present' AND new.trashed = 0 AND new.tile < 2 ON CONFLICT DO UPDATE SET count = count + 1;
+END;
+CREATE TRIGGER timeline_added_empty AFTER UPDATE OF count ON timeline_added WHEN new.count = 0 BEGIN
+  DELETE FROM timeline_added WHERE slot = new.slot AND folder = new.folder AND veiled = new.veiled;
+END;
+
+-- Schema 24, local-only: the state of an item kept by the fingerprint of its content (SHA-256 of its size and its first
+-- and last 4 KiB), so that the item a move, rename or copy leaves under another row gets it back (ADR-0245).
+CREATE TABLE kept_state (
+  fingerprint BLOB NOT NULL PRIMARY KEY,
+  favorite INTEGER NOT NULL DEFAULT 0,
+  hidden INTEGER NOT NULL DEFAULT 0,
+  archived INTEGER NOT NULL DEFAULT 0
+) STRICT;
+
+-- A change of the state keeps it; a fingerprint read joins the state kept by it and the row's own.
+CREATE TRIGGER local_asset_kept AFTER UPDATE OF favorite, hidden, archived ON local_asset
+  WHEN new.fingerprint IS NOT NULL AND (old.favorite <> new.favorite OR old.hidden <> new.hidden
+    OR old.archived <> new.archived) BEGIN
+  INSERT INTO kept_state VALUES (new.fingerprint, new.favorite, new.hidden, new.archived) ON CONFLICT (fingerprint)
+    DO UPDATE SET favorite = excluded.favorite, hidden = excluded.hidden, archived = excluded.archived;
+  DELETE FROM kept_state WHERE fingerprint = new.fingerprint AND favorite = 0 AND hidden = 0 AND archived = 0;
+END;
+CREATE TRIGGER local_asset_fingerprint AFTER UPDATE OF fingerprint ON local_asset
+  WHEN new.fingerprint IS NOT NULL BEGIN
+  INSERT INTO kept_state VALUES (new.fingerprint, new.favorite, new.hidden, new.archived) ON CONFLICT (fingerprint)
+    DO UPDATE SET favorite = favorite | excluded.favorite, hidden = hidden | excluded.hidden,
+      archived = archived | excluded.archived;
+  UPDATE local_asset SET favorite = (SELECT favorite FROM kept_state WHERE fingerprint = new.fingerprint),
+    hidden = (SELECT hidden FROM kept_state WHERE fingerprint = new.fingerprint),
+    archived = (SELECT archived FROM kept_state WHERE fingerprint = new.fingerprint) WHERE id = new.id;
+  DELETE FROM kept_state WHERE fingerprint = new.fingerprint AND favorite = 0 AND hidden = 0 AND archived = 0;
+END;
+
+CREATE INDEX local_asset_asset ON local_asset (asset_id) WHERE asset_id IS NOT NULL; -- schema 27
+
+-- Schema 27: the photos and videos of the account's libraries no device item shows, with the columns of timeline_item;
+-- undated ones in day 0, last, added when the server made them. `+library_id` keeps the planner on the timeline
+-- indexes.
+CREATE VIEW cloud_item AS SELECT id, 'server' AS source, '' AS volume, '' AS source_id, original_filename AS path,
+  COALESCE(file_size_total, 0) AS size, created_at AS mtime,
+  CASE media_kind WHEN 'video' THEN 'video/*' ELSE 'image/*' END AS mime, thumbhash, CAST(NULL AS TEXT) AS projection,
+  0 AS favorite, 0 AS hidden, 0 AS archived, created_at AS added,
+  CAST(COALESCE(strftime('%Y%m%d', taken_local), strftime('%Y%m%d', taken_utc / 1000, 'unixepoch'), 0) AS INTEGER)
+    AS day,
+  COALESCE(taken_utc, created_at) AS sort_key, 0 AS folder, facets, id AS asset_id, 'cloud_only' AS backup,
+  (SELECT f.content_hash FROM asset_file f WHERE f.asset_id = asset.id AND f.role = 'thumb_s' AND f.state = 'present')
+    AS thumb_s,
+  (SELECT f.content_hash FROM asset_file f WHERE f.asset_id = asset.id AND f.role = 'thumb_m' AND f.state = 'present')
+    AS thumb_m
+  FROM asset WHERE trashed_at IS NULL AND archived = 0 AND locked = 0 AND on_device = 0
+    AND media_kind IN ('image', 'video') AND +library_id IN (SELECT id FROM library)
+    AND NOT EXISTS (SELECT 1 FROM asset_user_state s WHERE s.asset_id = asset.id AND s.album_hides_timeline <> 0)
+    AND NOT EXISTS (SELECT 1 FROM library_user_state h WHERE h.library_id = asset.library_id
+      AND h.hide_from_timeline <> 0);
+CREATE INDEX asset_timeline ON asset (
+  CAST(COALESCE(strftime('%Y%m%d', taken_local), strftime('%Y%m%d', taken_utc / 1000, 'unixepoch'), 0) AS INTEGER)
+    DESC,
+  COALESCE(taken_utc, created_at) DESC, id DESC, library_id)
+  WHERE trashed_at IS NULL AND archived = 0 AND locked = 0 AND on_device = 0 AND media_kind IN ('image', 'video');
+CREATE INDEX asset_added ON asset (created_at DESC, id DESC, library_id)
+  WHERE trashed_at IS NULL AND archived = 0 AND locked = 0 AND on_device = 0 AND media_kind IN ('image', 'video');
+
+-- Schema 27: the tile of each linked device item, which the triggers below copy into local_asset.tile whenever a link,
+-- a device item's presence or an asset changes. A library arrives before its assets and leaves with them.
+CREATE VIEW linked_tile AS SELECT l.id, CASE
+    WHEN EXISTS (SELECT 1 FROM local_asset o WHERE o.asset_id = l.asset_id AND o.state = 'present' AND o.trashed = 0
+      AND o.id < l.id) THEN 2
+    WHEN EXISTS (SELECT 1 FROM asset a WHERE a.id = l.asset_id
+      AND (a.trashed_at IS NOT NULL OR a.archived <> 0 OR a.locked <> 0)) THEN 2
+    WHEN EXISTS (SELECT 1 FROM asset_user_state s WHERE s.asset_id = l.asset_id AND s.album_hides_timeline <> 0)
+      THEN 2
+    WHEN EXISTS (SELECT 1 FROM asset a JOIN library_user_state h ON h.library_id = a.library_id
+      WHERE a.id = l.asset_id AND h.hide_from_timeline <> 0) THEN 2
+    WHEN EXISTS (SELECT 1 FROM asset a JOIN library k ON k.id = a.library_id WHERE a.id = l.asset_id
+      AND k.kind = 'managed') THEN 1
+    ELSE 0 END AS tile
+  FROM local_asset l WHERE l.asset_id IS NOT NULL;
+CREATE TRIGGER local_asset_linked AFTER INSERT ON local_asset WHEN new.asset_id IS NOT NULL BEGIN
+  UPDATE local_asset SET tile = t.tile FROM linked_tile t WHERE t.id = local_asset.id AND asset_id = new.asset_id;
+  UPDATE asset SET on_device = 1 WHERE id = new.asset_id AND new.state = 'present' AND new.trashed = 0;
+END;
+CREATE TRIGGER local_asset_relinked AFTER UPDATE OF asset_id, state, trashed ON local_asset
+  WHEN old.asset_id IS NOT NULL OR new.asset_id IS NOT NULL BEGIN
+  UPDATE local_asset SET tile = 0 WHERE id = new.id AND new.asset_id IS NULL;
+  UPDATE local_asset SET tile = t.tile FROM linked_tile t
+    WHERE t.id = local_asset.id AND asset_id IN (old.asset_id, new.asset_id);
+  UPDATE asset SET on_device = EXISTS (SELECT 1 FROM local_asset l WHERE l.asset_id = asset.id
+    AND l.state = 'present' AND l.trashed = 0) WHERE id IN (old.asset_id, new.asset_id);
+END;
+CREATE TRIGGER local_asset_unlinked AFTER DELETE ON local_asset WHEN old.asset_id IS NOT NULL BEGIN
+  UPDATE local_asset SET tile = t.tile FROM linked_tile t WHERE t.id = local_asset.id AND asset_id = old.asset_id;
+  UPDATE asset SET on_device = EXISTS (SELECT 1 FROM local_asset l WHERE l.asset_id = asset.id
+    AND l.state = 'present' AND l.trashed = 0) WHERE id = old.asset_id;
+END;
+-- Schema 29: a hiding that changes retiles the device items of the assets it reaches.
+CREATE TRIGGER asset_state_hidden_insert AFTER INSERT ON asset_user_state WHEN new.album_hides_timeline <> 0 BEGIN
+  UPDATE local_asset SET tile = t.tile FROM linked_tile t WHERE t.id = local_asset.id AND asset_id = new.asset_id;
+END;
+CREATE TRIGGER asset_state_hidden_update AFTER UPDATE OF album_hides_timeline ON asset_user_state BEGIN
+  UPDATE local_asset SET tile = t.tile FROM linked_tile t WHERE t.id = local_asset.id AND asset_id = new.asset_id;
+END;
+CREATE TRIGGER library_state_hidden_insert AFTER INSERT ON library_user_state WHEN new.hide_from_timeline <> 0 BEGIN
+  UPDATE local_asset SET tile = t.tile FROM linked_tile t WHERE t.id = local_asset.id
+    AND asset_id IN (SELECT id FROM asset WHERE library_id = new.library_id);
+END;
+CREATE TRIGGER library_state_hidden_update AFTER UPDATE OF hide_from_timeline ON library_user_state BEGIN
+  UPDATE local_asset SET tile = t.tile FROM linked_tile t WHERE t.id = local_asset.id
+    AND asset_id IN (SELECT id FROM asset WHERE library_id = new.library_id);
+END;
+CREATE TRIGGER library_state_hidden_delete AFTER DELETE ON library_user_state WHEN old.hide_from_timeline <> 0 BEGIN
+  UPDATE local_asset SET tile = t.tile FROM linked_tile t WHERE t.id = local_asset.id
+    AND asset_id IN (SELECT id FROM asset WHERE library_id = old.library_id);
+END;
+CREATE TRIGGER asset_linked AFTER INSERT ON asset
+  WHEN EXISTS (SELECT 1 FROM local_asset WHERE asset_id = new.id) BEGIN
+  UPDATE local_asset SET tile = t.tile FROM linked_tile t WHERE t.id = local_asset.id AND asset_id = new.id;
+  UPDATE asset SET on_device = EXISTS (SELECT 1 FROM local_asset l WHERE l.asset_id = asset.id
+    AND l.state = 'present' AND l.trashed = 0) WHERE id = new.id;
+END;
+CREATE TRIGGER asset_changed AFTER UPDATE OF trashed_at, archived, locked, library_id ON asset
+  WHEN EXISTS (SELECT 1 FROM local_asset WHERE asset_id = new.id) BEGIN
+  UPDATE local_asset SET tile = t.tile FROM linked_tile t WHERE t.id = local_asset.id AND asset_id = new.id;
+END;
+
+-- A folder the user added on a desktop (docs/10-client-app.md §8.1); its files are the local_asset rows whose volume
+-- is its root.
+CREATE TABLE media_source (
+  root TEXT NOT NULL PRIMARY KEY, -- absolute path
+  -- scanning: from when it is added until a full scan ends; online; offline: missing, unreadable or empty, as a drive
+  -- away leaves it
+  state TEXT NOT NULL DEFAULT 'online',
+  checkpoint TEXT -- the last directory the full scan under way finished, so a restart resumes after it
+) STRICT;
+
+-- Schema 3, local-only: how far the index of each device volume has caught up (media_store.dart).
+CREATE TABLE volume_cursor (
+  source TEXT NOT NULL,
+  volume TEXT NOT NULL,
+  install_id TEXT NOT NULL, -- the install that indexed it
+  -- MediaStore.getVersion, whose generations another version cannot compare; PhotoKit's persistent change token
+  version TEXT NOT NULL,
+  generation INTEGER NOT NULL, -- the volume's generation the index has caught up with
+  root TEXT, -- schema 4: where it is mounted, the directory its items' paths are under
+  PRIMARY KEY (source, volume)
+) STRICT;
+
+-- The backup state machine of docs/05-sync-and-offline.md §6: discovered, selected, waiting_for_icloud, hashing,
+-- dedup_check, linked, preparing, uploading, verifying, backed_up, failed, paused; why in `reason` (backup.dart).
+CREATE TABLE backup_state (
+  local_asset_id BLOB NOT NULL PRIMARY KEY,
+  state TEXT NOT NULL,
+  reason TEXT,
+  retry_at INTEGER,
+  updated_at INTEGER NOT NULL,
+  -- Schema 25: the upload's path on the server, kept before its first byte is sent, so that a restart resumes it;
+  -- and the failures in a row, which space the retries out (ADR-0226).
+  upload TEXT,
+  attempts INTEGER NOT NULL DEFAULT 0
+) STRICT;
+
+CREATE INDEX backup_state_state ON backup_state (state); -- schema 25
+
+-- Schema 25, local-only: each backup run, when it started and ended, what it uploaded, linked and failed, how many
+-- selected items it left, and why it stopped early or sent nothing (backup.dart).
+CREATE TABLE backup_run (
+  id INTEGER NOT NULL PRIMARY KEY,
+  started INTEGER NOT NULL,
+  ended INTEGER, -- NULL while it runs, or once the app was stopped during it
+  uploaded INTEGER NOT NULL DEFAULT 0,
+  linked INTEGER NOT NULL DEFAULT 0,
+  failed INTEGER NOT NULL DEFAULT 0,
+  pending INTEGER NOT NULL DEFAULT 0,
+  stopped TEXT
+) STRICT;
+
+-- Pending mutations (outbox.dart); seq is the order they were recorded in, which the drain keeps. `entity` is the
+-- server's table and `entity_id` the key of the replica's row; `error` is the reason the server refused one for good,
+-- kept until the user has seen it.
+CREATE TABLE outbox (
+  seq INTEGER NOT NULL PRIMARY KEY,
+  mutation_id BLOB NOT NULL UNIQUE, -- the idempotency key
+  entity TEXT NOT NULL,
+  entity_id BLOB NOT NULL,
+  mutation BLOB NOT NULL, -- photolib.sync.v1.Mutation
+  attempts INTEGER NOT NULL DEFAULT 0,
+  retry_at INTEGER,
+  error TEXT,
+  created_at INTEGER NOT NULL
+) STRICT;
+
+-- Schema 23: what a sync batch looks up, the mutations still waiting for its rows.
+CREATE INDEX outbox_entity ON outbox (entity, entity_id);
+
+-- Schema 23: the device's hybrid logical clock (docs/05-sync-and-offline.md §5), one row: its last reading, which the
+-- next exceeds whatever the wall clock does.
+CREATE TABLE clock (
+  device_id BLOB NOT NULL PRIMARY KEY,
+  ms INTEGER NOT NULL,
+  counter INTEGER NOT NULL
+) STRICT;
+
+-- One cursor per sync stream and per backfill (docs/05-sync-and-offline.md §3).
+CREATE TABLE sync_cursor (
+  stream TEXT NOT NULL PRIMARY KEY,
+  cursor BLOB NOT NULL,
+  updated_at INTEGER NOT NULL,
+  epoch TEXT -- schema 7: the server's epoch when it was read, which a restore changes (§8)
+) STRICT;
+
+-- How many entries of each extension's journal the data isolate has merged (journal.dart).
+CREATE TABLE ext_journal_cursor (
+  journal TEXT NOT NULL PRIMARY KEY,
+  merged INTEGER NOT NULL
+) STRICT;
+
+-- Schema 15, local-only: what on-device ML computed for each item and model (docs/09-ml-and-search.md §1.1, ADR-0254),
+-- from the version of the file it read.
+CREATE TABLE local_ml (
+  local_asset_id BLOB NOT NULL,
+  model TEXT NOT NULL, -- id@revision
+  size INTEGER NOT NULL, -- the file's when it was read
+  mtime INTEGER NOT NULL,
+  vec BLOB, -- the output, half floats (binary16) little-endian; NULL when it failed
+  failure TEXT, -- why there is no output: 'unreadable by <decoder>', read again by another
+  rt_flags TEXT NOT NULL, -- the runtime, execution provider and precision that computed it
+  -- Schema 28: what OCR read in the picture (ADR-0388), as read and in lower case for the search to match; NULL for
+  -- the other models and when it failed.
+  ocr_text TEXT,
+  ocr_folded TEXT,
+  PRIMARY KEY (local_asset_id, model)
+) STRICT;
+
+-- Schema 26: what mlProgress (Settings' indexing progress) sums, by folder and model, within docs/10's 16 ms at 1M
+-- items whatever folders are out; reading every item took 1.5 s. Model '' counts the photos the library shows, a
+-- model's `done` its outputs for their files' present versions and `failed` the failures among them. The triggers
+-- keep it while local_ml rows are inserted or replaced (ml.dart), never upserted or ignored; a rebuilt replica
+-- recounts it as rows come back. ml_photo is search's videoOf in SQL, which ml_test.dart holds it to. Schema 27 counts
+-- only the items the timeline shows (`tile` < 2, ADR-0267), whose tile the triggers on local_asset read from the row
+-- they count, as timeline_day's do: a change of a row's tile may run inside another change of that row.
+CREATE VIEW ml_photo AS SELECT id, folder, size, mtime, tile FROM local_asset WHERE state = 'present' AND trashed = 0
+  AND NOT (IFNULL(mime, '') LIKE 'video/%' OR IFNULL(mime, '') = '' AND path IS NOT NULL AND (path LIKE '%.mp4'
+    OR path LIKE '%.mov' OR path LIKE '%.m4v' OR path LIKE '%.avi' OR path LIKE '%.mkv' OR path LIKE '%.webm'
+    OR path LIKE '%.3gp' OR path LIKE '%.mts' OR path LIKE '%.m2ts'));
+-- What each item adds to ml_count.
+CREATE VIEW ml_counted AS SELECT id, folder, '' AS model, 0 AS failed FROM ml_photo
+  UNION ALL SELECT p.id, p.folder, m.model, m.failure IS NOT NULL FROM ml_photo p
+    INNER JOIN local_ml m ON m.local_asset_id = p.id AND m.size = p.size AND m.mtime = p.mtime;
+CREATE TABLE ml_count (
+  folder INTEGER NOT NULL,
+  model TEXT NOT NULL,
+  done INTEGER NOT NULL,
+  failed INTEGER NOT NULL,
+  PRIMARY KEY (folder, model)
+) STRICT, WITHOUT ROWID;
+
+CREATE TRIGGER ml_count_insert AFTER INSERT ON local_asset WHEN new.tile < 2 BEGIN
+  INSERT INTO ml_count SELECT folder, model, 1, failed FROM ml_counted WHERE id = new.id
+    ON CONFLICT DO UPDATE SET done = done + excluded.done, failed = failed + excluded.failed;
+END;
+CREATE TRIGGER ml_count_delete BEFORE DELETE ON local_asset WHEN old.tile < 2 BEGIN
+  INSERT INTO ml_count SELECT folder, model, -1, -failed FROM ml_counted WHERE id = old.id
+    ON CONFLICT DO UPDATE SET done = done + excluded.done, failed = failed + excluded.failed;
+END;
+-- An update that changes what ml_photo reads takes the item's counts away before it and adds them again after; an
+-- indexer's rescan, which writes the same values again, costs nothing more.
+CREATE TRIGGER ml_count_unset BEFORE UPDATE OF id, state, trashed, folder, size, mtime, mime, path, tile
+  ON local_asset
+  WHEN (old.id, old.state, old.trashed, old.folder, old.size, old.mtime, old.mime, old.path, old.tile < 2)
+    IS NOT (new.id, new.state, new.trashed, new.folder, new.size, new.mtime, new.mime, new.path, new.tile < 2)
+BEGIN
+  INSERT INTO ml_count SELECT folder, model, -1, -failed FROM ml_counted WHERE id = old.id AND old.tile < 2
+    ON CONFLICT DO UPDATE SET done = done + excluded.done, failed = failed + excluded.failed;
+END;
+CREATE TRIGGER ml_count_set AFTER UPDATE OF id, state, trashed, folder, size, mtime, mime, path, tile
+  ON local_asset
+  WHEN (old.id, old.state, old.trashed, old.folder, old.size, old.mtime, old.mime, old.path, old.tile < 2)
+    IS NOT (new.id, new.state, new.trashed, new.folder, new.size, new.mtime, new.mime, new.path, new.tile < 2)
+BEGIN
+  INSERT INTO ml_count SELECT folder, model, 1, failed FROM ml_counted WHERE id = new.id AND new.tile < 2
+    ON CONFLICT DO UPDATE SET done = done + excluded.done, failed = failed + excluded.failed;
+END;
+-- A row that REPLACE deletes, which fires no delete trigger.
+CREATE TRIGGER ml_count_ml_replace BEFORE INSERT ON local_ml BEGIN
+  INSERT INTO ml_count SELECT p.folder, m.model, -1, -(m.failure IS NOT NULL) FROM ml_photo p
+    INNER JOIN local_ml m ON m.local_asset_id = p.id AND m.size = p.size AND m.mtime = p.mtime
+    WHERE m.local_asset_id = new.local_asset_id AND m.model = new.model AND p.tile < 2
+    ON CONFLICT DO UPDATE SET done = done + excluded.done, failed = failed + excluded.failed;
+END;
+CREATE TRIGGER ml_count_ml_insert AFTER INSERT ON local_ml BEGIN
+  INSERT INTO ml_count SELECT folder, new.model, 1, new.failure IS NOT NULL FROM ml_photo
+    WHERE id = new.local_asset_id AND size = new.size AND mtime = new.mtime AND tile < 2
+    ON CONFLICT DO UPDATE SET done = done + excluded.done, failed = failed + excluded.failed;
+END;
+CREATE TRIGGER ml_count_ml_delete AFTER DELETE ON local_ml BEGIN
+  INSERT INTO ml_count SELECT folder, old.model, -1, -(old.failure IS NOT NULL) FROM ml_photo
+    WHERE id = old.local_asset_id AND size = old.size AND mtime = old.mtime AND tile < 2
+    ON CONFLICT DO UPDATE SET done = done + excluded.done, failed = failed + excluded.failed;
+END;
+CREATE TRIGGER ml_count_ml_update AFTER UPDATE ON local_ml BEGIN
+  INSERT INTO ml_count SELECT folder, old.model, -1, -(old.failure IS NOT NULL) FROM ml_photo
+    WHERE id = old.local_asset_id AND size = old.size AND mtime = old.mtime AND tile < 2
+    ON CONFLICT DO UPDATE SET done = done + excluded.done, failed = failed + excluded.failed;
+  INSERT INTO ml_count SELECT folder, new.model, 1, new.failure IS NOT NULL FROM ml_photo
+    WHERE id = new.local_asset_id AND size = new.size AND mtime = new.mtime AND tile < 2
+    ON CONFLICT DO UPDATE SET done = done + excluded.done, failed = failed + excluded.failed;
+END;
+
+backupSummary: SELECT state, COUNT(*) AS count FROM backup_state GROUP BY state ORDER BY state;
+-- The device's items not backed up, by state and reason, with the first retry: what the backup screen explains.
+backupReasons: SELECT b.state, b.reason, COUNT(*) AS count, MIN(b.retry_at) AS retry_at FROM backup_state b
+  INNER JOIN local_asset a ON a.id = b.local_asset_id
+  WHERE a.state = 'present' AND a.trashed = 0 AND b.state NOT IN ('backed_up', 'linked')
+  GROUP BY b.state, b.reason ORDER BY b.state, b.reason;
+-- Some of the items in a state for a reason, newest first.
+backupItems(:state AS TEXT, :reason AS TEXT OR NULL): SELECT a.name, a.path, a.source_id FROM backup_state b
+  INNER JOIN local_asset a ON a.id = b.local_asset_id
+  WHERE a.state = 'present' AND a.trashed = 0 AND b.state = :state AND b.reason IS :reason
+  ORDER BY b.local_asset_id DESC LIMIT :limit;
+folderSummary: SELECT root, state, (SELECT COUNT(*) FROM local_asset a WHERE a.source = 'folder'
+  AND a.volume = s.root AND a.state <> 'missing') AS items FROM media_source s ORDER BY root;
+deviceBuckets: SELECT bucket_id, bucket_name, COUNT(*) AS items FROM local_asset
+  WHERE state = 'present' AND trashed = 0 AND hidden = 0 AND folder NOT IN (SELECT id FROM hidden_folder)
+  GROUP BY source, bucket_id ORDER BY MAX(COALESCE(taken, mtime)) DESC;
+-- Local search (search.dart): a window of the items in the library that its filters admit, newest first, each with
+-- how many there are in all, from one pass over the table. (A window function would do, but drift writes its frame
+-- out with EXCLUDE NO OTHERS, which SQLite runs in quadratic time.)
+localSearch($filters = TRUE): WITH hit AS MATERIALIZED (SELECT id, COALESCE(taken_utc, taken, mtime) AS k
+    FROM local_asset a WHERE a.state <> 'missing' AND a.trashed = 0
+      AND a.folder NOT IN (SELECT id FROM hidden_folder) AND $filters)
+  SELECT r.**, (SELECT COUNT(*) FROM hit) AS total
+  FROM (SELECT id, k FROM hit ORDER BY k DESC, id DESC LIMIT :limit OFFSET :offset) h
+  INNER JOIN local_asset r ON r.id = h.id ORDER BY h.k DESC, h.id DESC;
+-- The folders that hold items themselves: a MediaStore item's path is its folder, a folder file's ends in its name.
+localFolders: SELECT source, volume, CASE source WHEN 'folder' THEN rtrim(path, "replace"(path, '/', '')) ELSE path END
+  AS dir, COUNT(*) AS items FROM local_asset
+  WHERE state <> 'missing' AND trashed = 0 AND folder NOT IN (SELECT id FROM hidden_folder)
+  GROUP BY 1, 2, 3 ORDER BY 1, 2, 3;
+localCameras: SELECT make, model, COUNT(*) AS items FROM local_asset
+  WHERE state <> 'missing' AND trashed = 0 AND hidden = 0 AND (make IS NOT NULL OR model IS NOT NULL)
+    AND folder NOT IN (SELECT id FROM hidden_folder)
+  GROUP BY make, model ORDER BY items DESC, make, model;
+-- Files that are no photo or video (ADR-0066): synced assets without a media kind, newest first, with their original.
+otherFiles: SELECT a.id, a.original_filename AS name, a.created_at, f.size, f.mime FROM asset a
+  LEFT JOIN asset_file f ON f.asset_id = a.id AND f.role = 'original'
+  WHERE a.media_kind = '' AND a.trashed_at IS NULL ORDER BY a.created_at DESC, a.id DESC;
+pendingOutbox: SELECT * FROM outbox WHERE error IS NULL AND (retry_at IS NULL OR retry_at <= :now) ORDER BY seq
+  LIMIT :limit;
+-- What metadata extraction reads next (metadata.dart): the items waiting below a sort key and id, newest first, or
+-- those of ids; each with the directory its path is under, as soon as that is known.
+extractionQueue(:key AS INTEGER, :id AS BLOB): SELECT a.**, CASE a.source WHEN 'folder' THEN a.volume ELSE c.root END AS root
+  FROM local_asset a LEFT JOIN volume_cursor c ON c.source = a.source AND c.volume = a.volume
+  WHERE a.extracted IS NULL AND a.state = 'present' AND (a.source = 'folder' OR c.root IS NOT NULL)
+    AND (COALESCE(a.taken, a.mtime), a.id) < (:key, :id)
+  ORDER BY COALESCE(a.taken, a.mtime) DESC, a.id DESC LIMIT :limit;
+extractionQueueOf: SELECT a.**, CASE a.source WHEN 'folder' THEN a.volume ELSE c.root END AS root
+  FROM local_asset a LEFT JOIN volume_cursor c ON c.source = a.source AND c.volume = a.volume
+  WHERE a.extracted IS NULL AND a.state = 'present' AND (a.source = 'folder' OR c.root IS NOT NULL)
+    AND a.id IN :ids;
+-- What on-device ML has still to run :model on (ml.dart): photos the library shows that it never read in their file's
+-- present version, after (:day, :key, :id) in the timeline's order, in a tier: 0 those the device index added since
+-- :since, 1 favourites, 2 those taken since the day :year, 3 any; one that failed waits for a decoder other than the
+-- one :failure names. And how far it is (ml_count), with a NULL :model for the one it ran last.
+mlQueue(:tier AS INTEGER, :since AS INTEGER, :year AS INTEGER, :day AS INTEGER, :key AS INTEGER, :id AS BLOB,
+    :model AS TEXT, :failure AS TEXT, $photo = TRUE):
+  SELECT a.**, t.day AS day, t.sort_key AS sort_key FROM timeline_item t INNER JOIN local_asset a ON a.id = t.id
+  WHERE t.folder NOT IN (SELECT id FROM hidden_folder) AND $photo
+    AND CASE :tier WHEN 0 THEN t.added >= :since WHEN 1 THEN a.favorite = 1 WHEN 2 THEN t.day >= :year ELSE 1 END
+    AND (t.day, t.sort_key, t.id) < (:day, :key, :id) AND NOT EXISTS (SELECT 1 FROM local_ml m
+      WHERE m.local_asset_id = a.id AND m.model = :model AND m.size = a.size AND m.mtime = a.mtime
+        AND (m.failure IS NULL OR m.failure = :failure))
+  ORDER BY t.day DESC, t.sort_key DESC, t.id DESC LIMIT :limit;
+mlProgress(:model AS TEXT OR NULL): SELECT CAST(TOTAL(IIF(model = '', done, 0)) AS INTEGER) AS total,
+  CAST(TOTAL(IIF(model = '', 0, done)) AS INTEGER) AS done, CAST(TOTAL(failed) AS INTEGER) AS failed FROM ml_count
+  WHERE model IN ('', IFNULL(:model, (SELECT model FROM local_ml ORDER BY rowid DESC LIMIT 1)))
+    AND folder NOT IN (SELECT id FROM hidden_folder);
+-- The photos the library shows that the model, or the one run last, could not read, and why, newest first.
+mlFailures(:model AS TEXT OR NULL, $photo = TRUE): SELECT a.**, m.failure AS failure FROM local_ml m
+  INNER JOIN timeline_item t ON t.id = m.local_asset_id INNER JOIN local_asset a ON a.id = t.id
+  WHERE m.model = IFNULL(:model, (SELECT model FROM local_ml ORDER BY rowid DESC LIMIT 1)) AND m.failure IS NOT NULL
+    AND m.size = a.size AND m.mtime = a.mtime AND t.folder NOT IN (SELECT id FROM hidden_folder) AND $photo
+  ORDER BY t.day DESC, t.sort_key DESC, t.id DESC;
+-- The timeline's days and a page of it from the start of a day, of the tiles in one backup state or all; for date
+-- added, days at a UTC offset in ms, whole quarter hours. Hidden and archived items only when [veiled]. Pages merge the
+-- views in the order of their indexes (ADR-0267). Days of all tiles add timeline_day's or timeline_added's counts,
+-- those of one state count the index.
+timelineDays(:veiled AS BOOLEAN, :backup AS TEXT OR NULL):
+  SELECT day, CAST(IFNULL(SUM(n), 0) AS INTEGER) AS count FROM (
+    SELECT day, SUM(count) AS n FROM timeline_day
+      WHERE (:veiled OR veiled = 0) AND :backup IS NULL AND folder NOT IN (SELECT id FROM hidden_folder) GROUP BY day
+    UNION ALL SELECT day, COUNT(*) FROM timeline_item
+      WHERE :backup IS NOT NULL AND backup = :backup AND (:veiled OR hidden + archived = 0)
+        AND folder NOT IN (SELECT id FROM hidden_folder) GROUP BY day
+    UNION ALL SELECT day, COUNT(*) FROM cloud_item WHERE :backup IS NULL OR :backup = 'cloud_only' GROUP BY day)
+  GROUP BY day ORDER BY day DESC;
+timelinePage(:day AS INTEGER, :veiled AS BOOLEAN, :backup AS TEXT OR NULL, :limit AS INTEGER, :skip AS INTEGER):
+  SELECT * FROM timeline_item WHERE day <= :day AND (:veiled OR hidden + archived = 0)
+    AND (:backup IS NULL OR backup = :backup) AND folder NOT IN (SELECT id FROM hidden_folder)
+  UNION ALL SELECT * FROM cloud_item WHERE day <= :day AND (:backup IS NULL OR :backup = 'cloud_only')
+  ORDER BY day DESC, sort_key DESC, id DESC LIMIT :limit OFFSET :skip;
+timelineAddedDays(:offset AS INTEGER, :veiled AS BOOLEAN, :backup AS TEXT OR NULL):
+  SELECT CAST(strftime('%Y%m%d', d * 86400, 'unixepoch') AS INTEGER) AS day, CAST(IFNULL(SUM(n), 0) AS INTEGER) AS count
+  FROM (
+    SELECT (slot * 900000 + :offset) / 86400000 AS d, SUM(count) AS n FROM timeline_added
+      WHERE (:veiled OR veiled = 0) AND :backup IS NULL AND folder NOT IN (SELECT id FROM hidden_folder) GROUP BY d
+    UNION ALL SELECT (added + :offset) / 86400000, COUNT(*) FROM timeline_item
+      WHERE :backup IS NOT NULL AND backup = :backup AND (:veiled OR hidden + archived = 0)
+        AND folder NOT IN (SELECT id FROM hidden_folder) GROUP BY 1
+    UNION ALL SELECT (added + :offset) / 86400000, COUNT(*) FROM cloud_item
+      WHERE :backup IS NULL OR :backup = 'cloud_only' GROUP BY 1)
+  GROUP BY d ORDER BY d DESC;
+timelineAddedPage(:before AS INTEGER, :veiled AS BOOLEAN, :backup AS TEXT OR NULL, :limit AS INTEGER, :skip AS INTEGER):
+  SELECT * FROM timeline_item WHERE added < :before AND (:veiled OR hidden + archived = 0)
+    AND (:backup IS NULL OR backup = :backup) AND folder NOT IN (SELECT id FROM hidden_folder)
+  UNION ALL SELECT * FROM cloud_item WHERE added < :before AND (:backup IS NULL OR :backup = 'cloud_only')
+  ORDER BY added DESC, id DESC LIMIT :limit OFFSET :skip;
+-- The items of a device folder, shown or not, as the timeline orders them: the swipe context of one of them that
+-- another app opened (ADR-0210).
+folderContext(:folder AS INTEGER): SELECT * FROM timeline_item WHERE folder = :folder
+  ORDER BY day DESC, sort_key DESC, id DESC;
+-- The device folders with their timeline items, the newest day of one, and whether the library hides them.
+deviceFolders: SELECT f.*, CAST(IFNULL(SUM(d.count), 0) AS INTEGER) AS items, MAX(d.day) AS newest,
+  f.id IN (SELECT id FROM excluded_folder) AS out FROM device_folder f LEFT JOIN timeline_day d ON d.folder = f.id
+  GROUP BY f.id ORDER BY f.volume, f.path;
+excludedFolders: SELECT id FROM excluded_folder;
+-- The first device folder new to the user that holds items, with how many.
+freshFolder: SELECT f.id, f.name, CAST(IFNULL(SUM(d.count), 0) AS INTEGER) AS items
+  FROM device_folder f INNER JOIN timeline_day d ON d.folder = f.id WHERE f.fresh GROUP BY f.id ORDER BY f.id LIMIT 1;
+-- The trash (deletion.dart): what is in it, the soonest to go first.
+trashItems(:veiled AS BOOLEAN): SELECT * FROM local_asset WHERE trashed = 1 AND (:veiled OR hidden = 0)
+  AND folder NOT IN (SELECT id FROM hidden_folder) ORDER BY expires IS NULL, expires, id;
+-- Folder items newest first, below a day, sort key and id: a folder's, or those the thumbnail warm-up has no ThumbHash
+-- of. `+source`, `+volume` and `day <=` walk the timeline's index from there, where the source's index sorted every
+-- item of the folder for each page.
+folderItems(:volume AS TEXT OR NULL, :hashless AS BOOLEAN, :day AS INTEGER, :key AS INTEGER, :id AS BLOB):
+  SELECT * FROM timeline_item WHERE +source = 'folder' AND (:volume IS NULL OR +volume = :volume)
+    AND (NOT :hashless OR thumbhash IS NULL) AND day <= :day AND (day, sort_key, id) < (:day, :key, :id)
+  ORDER BY day DESC, sort_key DESC, id DESC LIMIT :limit;
+-- The map's items by id (a device item's or an asset's), as the timeline has them, newest first (geo.dart).
+mapItems: SELECT * FROM timeline_item WHERE id IN :ids AND folder NOT IN (SELECT id FROM hidden_folder)
+  UNION ALL SELECT * FROM cloud_item WHERE id IN :ids ORDER BY day DESC, sort_key DESC, id DESC;

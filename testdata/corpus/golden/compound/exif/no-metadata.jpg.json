@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "path": "compound/exif/no-metadata.jpg",
+  "size": 3011,
+  "sha256": "ab8ecbbd566b2235e9ff4af65da9579dfc1b9812f16b5463f537c14cca68b1b7",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "exif_missing"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "path": "compound/raw-jpeg/DSC_0456.JPG",
+  "size": 151463,
+  "sha256": "f3d5f33b5af5e3efcc5d9eebd41d6c182c9cb7887559917e5973a45c6106abb4",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "nikon",
+  "quirks": [
+    "raw_jpeg_pair"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 6000,
+    "height": 4000,
+    "make": "NIKON CORPORATION",
+    "model": "NIKON D850"
+  },
+  "group": {
+    "kind": "raw_jpeg",
+    "key": "DSC_0456",
+    "role": "primary"
+  },
+  "filename": {
+    "matches": [
+      "F43"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2019-10-03T06:30:00",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-10-03T06:30:00",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "path": "time/conflicts/IMG-20191120-WA0010.jpg",
+  "size": 3546,
+  "sha256": "5ae9e6a622925544dbc3678831c7ef7cbfc88062b38caeb05797dd3613c99122",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "samsung",
+  "quirks": [
+    "messenger_copy",
+    "time_conflict",
+    "upper_bound_name"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "make": "samsung",
+    "model": "SM-G991B"
+  },
+  "filename": {
+    "matches": [
+      "F25"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2019-11-21T08:00:00",
+        "precision": "s",
+        "event": "capture"
+      },
+      {
+        "source": "filename:F25",
+        "kind": "local",
+        "value": "2019-11-20",
+        "precision": "day",
+        "event": "receive"
+      }
+    ],
+    "resolved": {
+      "local": "2019-11-21T08:00:00",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "low",
+      "flags": [
+        "capture_after_receive",
+        "needs_review"
+      ]
+    }
+  }
+}

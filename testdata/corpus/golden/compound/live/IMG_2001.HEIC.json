@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "path": "compound/live/IMG_2001.HEIC",
+  "size": 880,
+  "sha256": "3ffa76fcfcbe03421bae4b659757b9029355561f9b423bedf292f7e2faba1f41",
+  "origin": "synthetic",
+  "notes": "Placeholder HEVC payload: the structure and metadata are real, the image does not decode.",
+  "format": "heic",
+  "vendor": "apple",
+  "quirks": [
+    "live_photo"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "heic",
+    "mime": "image/heic",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 4032,
+    "height": 3024,
+    "make": "Apple",
+    "model": "iPhone 13 Pro",
+    "gps": {
+      "lat": 48.8584,
+      "lon": 2.2945
+    }
+  },
+  "group": {
+    "kind": "live_photo",
+    "key": "9D2F6B0E-3A41-4C58-8E7B-1F0A5C6D7E81",
+    "role": "primary"
+  },
+  "filename": {
+    "matches": [
+      "F10",
+      "F43"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2022-08-14T17:42:10",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+02:00"
+      },
+      {
+        "source": "gps_datetime",
+        "kind": "utc",
+        "value": "2021-07-14T10:15:42Z",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2022-08-14T17:42:10",
+      "utc": "2022-08-14T15:42:10Z",
+      "offset": "+02:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

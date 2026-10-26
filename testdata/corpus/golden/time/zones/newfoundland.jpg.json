@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "path": "time/zones/newfoundland.jpg",
+  "size": 3186,
+  "sha256": "b30efb82582b4eea304c6e455d6a70cdd81cd92187a13ed1b5420ba3cb8eb3f7",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "canon",
+  "quirks": [],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "make": "Canon",
+    "model": "Canon EOS 5D Mark IV"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2023-04-14T08:30:00",
+        "precision": "s",
+        "event": "capture",
+        "offset": "-03:30"
+      }
+    ],
+    "resolved": {
+      "local": "2023-04-14T08:30:00",
+      "utc": "2023-04-14T12:00:00Z",
+      "offset": "-03:30",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

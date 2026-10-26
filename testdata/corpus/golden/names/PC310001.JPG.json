@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "path": "names/PC310001.JPG",
+  "size": 2938,
+  "sha256": "ea4ea8e3ce5fa644839a59240f11ebb6bb890566824ae6c246748f42a4b25222",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "olympus",
+  "quirks": [
+    "counter_not_time"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F44"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F44",
+        "kind": "local",
+        "value": null,
+        "precision": null,
+        "event": "capture",
+        "rejected": "no_year"
+      }
+    ],
+    "resolved": null
+  }
+}

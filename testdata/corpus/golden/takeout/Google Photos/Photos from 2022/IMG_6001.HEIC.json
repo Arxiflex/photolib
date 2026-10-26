@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "path": "takeout/Google Photos/Photos from 2022/IMG_6001.HEIC",
+  "size": 674,
+  "sha256": "c91fbcad72aa830a522d18deaf5a889dc25b913e692ffda0d12569fb17647579",
+  "origin": "synthetic",
+  "notes": "Placeholder HEVC payload: the structure and metadata are real, the image does not decode.",
+  "format": "heic",
+  "vendor": "apple",
+  "quirks": [
+    "live_photo",
+    "takeout_geo_zero",
+    "takeout_legacy_sidecar",
+    "takeout_year_folder"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "heic",
+    "mime": "image/heic",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 4032,
+    "height": 3024,
+    "make": "Apple",
+    "model": "iPhone 13 Pro"
+  },
+  "group": {
+    "kind": "live_photo",
+    "key": "3E8A5D1C-7B24-49F0-A6C3-5D9E0F1B2A47",
+    "role": "primary"
+  },
+  "sidecars": [
+    {
+      "path": "takeout/Google Photos/Photos from 2022/IMG_6001.HEIC.json",
+      "kind": "takeout_json",
+      "sha256": "a3a48f9b251ef07bd0c88a5872e3e67546537692fd65fb52ad0bf67cc35e0c5e"
+    }
+  ],
+  "filename": {
+    "matches": [
+      "F10",
+      "F43",
+      "F50"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2022-09-03T10:15:20",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+02:00"
+      },
+      {
+        "source": "takeout_photoTakenTime",
+        "kind": "utc",
+        "value": "2022-09-03T08:15:20Z",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2022-09-03T10:15:20",
+      "utc": "2022-09-03T08:15:20Z",
+      "offset": "+02:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

@@ -1,0 +1,27 @@
+# The app's and every package's analysis (each package includes this file): very_good_analysis, its strict modes and
+# dart_code_linter's limits. tools/lint/ratchet.sh fails the gate on a finding its baseline does not hold.
+include: package:very_good_analysis/analysis_options.yaml
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+  exclude:
+    - build/**
+    - packages/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**
+
+dart_code_linter:
+  metrics:
+    cyclomatic-complexity: 20
+    source-lines-of-code: 80
+  metrics-exclude:
+    - test/**
+  rules:
+    - avoid-non-null-assertion

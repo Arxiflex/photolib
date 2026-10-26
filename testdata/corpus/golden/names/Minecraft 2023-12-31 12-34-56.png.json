@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "path": "names/Minecraft 2023-12-31 12-34-56.png",
+  "size": 2642,
+  "sha256": "cee8d658d5f394cd7475cf7600d1daa2cc1c4e3bebec830caee0b2ff96798790",
+  "origin": "synthetic",
+  "format": "png",
+  "quirks": [
+    "screenshot"
+  ],
+  "media": {
+    "container": "png",
+    "mime": "image/png",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": [
+      "F52",
+      "F54"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F52",
+        "kind": "local",
+        "value": "2023-12-31T12:34:56",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12-31T12:34:56",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F52",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

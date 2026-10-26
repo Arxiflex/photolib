@@ -1,0 +1,11 @@
+{
+  "name": "photolib",
+  "image": "mcr.microsoft.com/devcontainers/base:trixie",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": { "moby": false },
+    "ghcr.io/devcontainers/features/rust:1": {},
+    "ghcr.io/devcontainers/features/node:1": {}
+  },
+  "postCreateCommand": "sudo mkdir -p /etc/postgresql-common/createcluster.d && echo 'create_main_cluster = false' | sudo tee /etc/postgresql-common/createcluster.d/photolib.conf && sudo apt-get update && sudo apt-get install -y --no-install-recommends just pre-commit python3 postgresql-17 libvips-dev libheif-plugin-libde265 libheif-plugin-dav1d && bash tools/dev/bootstrap.sh",
+  "forwardPorts": [3900, 5432, 8443]
+}

@@ -1,0 +1,39 @@
+version: v2
+clean: true
+plugins:
+  - local: protoc-gen-buffa
+    out: server/crates/photolib-proto/src/gen/buffa
+    strategy: all
+    opt: [views=true, json=true]
+  - local: protoc-gen-buffa-packaging
+    out: server/crates/photolib-proto/src/gen/buffa
+    strategy: all
+  - local: protoc-gen-connect-rust
+    out: server/crates/photolib-proto/src/gen/connect
+    opt: [buffa_module=crate::proto, gate_client_feature]
+  - local: protoc-gen-buffa-packaging
+    out: server/crates/photolib-proto/src/gen/connect
+    strategy: all
+    opt: [filter=services]
+  - local: protoc-gen-dart
+    out: app/packages/photolib_api/lib/src/gen
+  - local: protoc-gen-es
+    out: viewer/src/gen
+    opt: target=ts
+  - local: protoc-gen-connect-openapi
+    out: docs/dev/api
+    strategy: all
+    opt:
+      - path=photolib.openapi.yaml
+      - base=proto/openapi.base.yaml
+      - features=connectrpc
+      - with-streaming
+    types:
+      - photolib.api.v1
+  - local: protoc-gen-prost
+    out: kernel/src/gen
+    opt:
+      - flat_output_dir
+      - btree_map=.
+    types:
+      - photolib.kernel.v1

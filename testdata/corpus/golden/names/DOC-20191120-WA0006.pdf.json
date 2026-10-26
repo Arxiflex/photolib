@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "path": "names/DOC-20191120-WA0006.pdf",
+  "size": 489,
+  "sha256": "d9e65378d9c53cab0c6562d16bf904eb2b650f9a8c83a1037c82151896eb88c4",
+  "origin": "synthetic",
+  "format": "pdf",
+  "quirks": [
+    "messenger_copy",
+    "upper_bound_name"
+  ],
+  "media": {
+    "container": "pdf",
+    "mime": "application/pdf",
+    "kind": "document",
+    "support": "unsupported"
+  },
+  "metadata": {},
+  "filename": {
+    "matches": [
+      "F25"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F25",
+        "kind": "local",
+        "value": "2019-11-20",
+        "precision": "day",
+        "event": "receive"
+      }
+    ],
+    "resolved": {
+      "local": "2019-11-20",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "day",
+      "bound": "upper",
+      "source": "filename:F25",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

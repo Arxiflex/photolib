@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package photolib.sync.v1;
+
+// Where a device stands in one stream (design 05 §3).
+message StreamCursor {
+  // The stream, e.g. "account", "libraries" or "assets/<library id>".
+  string stream = 1;
+  // The cursor of the stream's last applied batch; empty starts it from scratch, with a snapshot.
+  bytes cursor = 2;
+}
+
+// One column of a row: uuids, text, dates, JSON and arrays (as JSON) are text, times are integer milliseconds since
+// the Unix epoch, UTC; no kind is NULL.
+message Value {
+  oneof kind {
+    string text = 1;
+    sint64 integer = 2;
+    double real = 3;
+    bool boolean = 4;
+    bytes blob = 5;
+  }
+}
+
+// The values of one row, in the order of its group's columns.
+message Row {
+  repeated Value values = 1;
+}
+
+// Rows of one table: upserts, or deletions that carry only the key columns.
+message Rows {
+  // The table, e.g. "assets".
+  string entity = 1;
+  repeated string columns = 2;
+  repeated Row rows = 3;
+  bool deleted = 4;
+}
+
+// What became of a stream.
+enum StreamStatus {
+  STREAM_STATUS_UNSPECIFIED = 0;
+  // Changes follow; the device applies them.
+  STREAM_STATUS_OK = 1;
+  // The cursor is from another epoch, too old or unreadable: drop what the stream delivered and start it again with
+  // an empty cursor.
+  STREAM_STATUS_RESET_REQUIRED = 2;
+  // The stream does not exist or is not the caller's: drop what it delivered.
+  STREAM_STATUS_FORBIDDEN = 3;
+}
+
+// Changes of one stream that a device applies in one transaction, then stores `cursor`.
+message SyncBatch {
+  string stream = 1;
+  StreamStatus status = 2;
+  repeated Rows changes = 3;
+  bytes cursor = 4;
+  // The stream has caught up: this is its last batch of the call.
+  bool caught_up = 5;
+}

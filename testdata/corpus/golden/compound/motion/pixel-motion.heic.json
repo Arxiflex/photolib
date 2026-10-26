@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "path": "compound/motion/pixel-motion.heic",
+  "size": 1351,
+  "sha256": "bd74726939ed6991db47b644ff18b86f245f716eabf3d6692a307d61bf93cf8d",
+  "origin": "synthetic",
+  "notes": "Placeholder HEVC payload: the structure and metadata are real, the image does not decode. The embedded motion video is a placeholder.",
+  "format": "heic",
+  "vendor": "google",
+  "quirks": [
+    "motion_photo_mpvd"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "heic",
+    "mime": "image/heic",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 4032,
+    "height": 3024,
+    "make": "Google",
+    "model": "Pixel 8 Pro",
+    "motion": {
+      "offset": 600,
+      "length": 751
+    }
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2023-11-12T16:20:30",
+        "precision": "s",
+        "event": "capture",
+        "offset": "-08:00"
+      }
+    ],
+    "resolved": {
+      "local": "2023-11-12T16:20:30",
+      "utc": "2023-11-13T00:20:30Z",
+      "offset": "-08:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

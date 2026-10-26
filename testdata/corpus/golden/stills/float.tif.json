@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "path": "stills/float.tif",
+  "size": 76934,
+  "sha256": "3f7afe3f72c66051784c6448eb3cec2fa8ee6415ca4d0cb01cc90fed16ca5def",
+  "origin": "synthetic",
+  "format": "tiff",
+  "quirks": [
+    "float"
+  ],
+  "media": {
+    "container": "tiff",
+    "mime": "image/tiff",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

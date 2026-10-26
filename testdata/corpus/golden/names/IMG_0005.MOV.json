@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "path": "names/IMG_0005.MOV",
+  "size": 747,
+  "sha256": "993a91fb7f61a220f6e0d51b261a4d1b93fa3718b8eb7a92e2be924bd7ca16f9",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mov",
+  "vendor": "apple",
+  "quirks": [
+    "counter_not_time",
+    "mvhd_zero"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "qt  ",
+    "mime": "video/quicktime",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "h264"
+  },
+  "filename": {
+    "matches": [
+      "F10",
+      "F43"
+    ]
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "path": "names/received_1234567890123456.jpeg",
+  "size": 3560,
+  "sha256": "abbe354eb62be8525af027d5bd380f8b99dd57172dd279d779a8ebaa0c8b9a23",
+  "origin": "synthetic",
+  "notes": "Messenger names carry an id and no date",
+  "format": "jpeg",
+  "quirks": [
+    "counter_not_time",
+    "messenger_copy"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

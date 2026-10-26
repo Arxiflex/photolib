@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "path": "hdr/samsung-gain-map.jpg",
+  "size": 87322,
+  "sha256": "318687842cdd052f5083727f07680c33cabe2f8387d4df970f90dcd7a77c2276",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "samsung",
+  "quirks": [
+    "gain_map_samsung",
+    "trailing_data"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 4000,
+    "height": 3000,
+    "make": "samsung",
+    "model": "SM-S918B"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2023-05-20T13:14:15",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+09:00"
+      }
+    ],
+    "resolved": {
+      "local": "2023-05-20T13:14:15",
+      "utc": "2023-05-20T04:14:15Z",
+      "offset": "+09:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

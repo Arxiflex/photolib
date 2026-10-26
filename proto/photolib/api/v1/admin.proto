@@ -1,0 +1,649 @@
+syntax = "proto3";
+
+package photolib.api.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// Runs the server, for its administrators: the admin console (OPS-02). Changes are recorded in the audit log.
+service AdminService {
+  // The server at a glance: usage per account and per file role, libraries, backups, jobs and pauses.
+  rpc GetStatus(GetStatusRequest) returns (GetStatusResponse);
+  // Checks every store now: reachable, marker, credentials and clock, free space where known.
+  rpc ListStores(ListStoresRequest) returns (ListStoresResponse);
+  // Jobs, newest first.
+  rpc ListJobs(ListJobsRequest) returns (ListJobsResponse);
+  // Queues a dead or cancelled job again from its first attempt.
+  rpc RetryJob(RetryJobRequest) returns (RetryJobResponse);
+  // Cancels a queued or running job.
+  rpc CancelJob(CancelJobRequest) returns (CancelJobResponse);
+  // Starts no job of a type until the pause ends by itself. Pausing a maintenance type (backup, purge, scrub)
+  // needs an administrator's session; an API key gets permission_denied with reason `job.maintenance`.
+  rpc PauseJobType(PauseJobTypeRequest) returns (PauseJobTypeResponse);
+  // Ends a pause now.
+  rpc ResumeJobType(ResumeJobTypeRequest) returns (ResumeJobTypeResponse);
+  // Re-reads metadata, regenerates renditions or re-detects faces of the assets in a scope, and of no others.
+  rpc Reprocess(ReprocessRequest) returns (ReprocessResponse);
+  // The audit log, newest first.
+  rpc ListAuditEvents(ListAuditEventsRequest) returns (ListAuditEventsResponse);
+  // The newest lines this process logged.
+  rpc TailLogs(TailLogsRequest) returns (TailLogsResponse);
+  // The instance's policies and defaults.
+  rpc GetSettings(GetSettingsRequest) returns (GetSettingsResponse);
+  // Replaces the settings; a value out of range is invalid_argument `field.invalid` naming the field, and a change to
+  // one the configuration file pins failed_precondition `setting.pinned` naming it as `field`.
+  rpc UpdateSettings(UpdateSettingsRequest) returns (UpdateSettingsResponse);
+  // The capability switches of the server, an account or a library, each with its effective value and where it comes
+  // from (R-MODE-5, ADR-0240).
+  rpc GetPolicy(GetPolicyRequest) returns (GetPolicyResponse);
+  // Sets or clears one capability's switch at one level. One the configuration file pins is failed_precondition
+  // `setting.pinned` naming it as `field`.
+  rpc UpdatePolicy(UpdatePolicyRequest) returns (UpdatePolicyResponse);
+  // Sets the server's switch of every capability the configuration file does not pin as a preset says, and clears what
+  // accounts and libraries set of them; the switches stay editable.
+  rpc ApplyPreset(ApplyPresetRequest) returns (ApplyPresetResponse);
+  // Runs `photolibd doctor` in the server, with the diagnostics bundle for a bug report (OPS-19).
+  rpc GetDiagnostics(GetDiagnosticsRequest) returns (GetDiagnosticsResponse);
+  // Gives a user a read-only external library of the files under a folder of the server, and starts scanning it. The
+  // folder must lie under one of the configured `external_roots`, else permission_denied `library.root_not_allowed`,
+  // and neither hold nor lie in another library or photolibd's own directories, else failed_precondition
+  // `library.root_overlaps`.
+  rpc CreateExternalLibrary(CreateExternalLibraryRequest) returns (CreateExternalLibraryResponse);
+  // Scans an external library again now: new files are added, moved ones keep their assets and those it does not find
+  // turn missing, unless that is more than 1,000 assets or 5 % of the library, when the scan waits for ConfirmScan.
+  rpc ScanLibrary(ScanLibraryRequest) returns (ScanLibraryResponse);
+  // Queues a backup of the database now, into the store `placement.backups` names; its restore drill follows.
+  rpc BackUpNow(BackUpNowRequest) returns (BackUpNowResponse);
+  // Stops photolibd, which replaces the database with a backup when it starts again: what changed since the backup is
+  // lost, and devices sync from scratch. A dump that is not there is not_found `backup.not_found`. Needs an
+  // administrator's session; an API key gets permission_denied with reason `backup.restore`.
+  rpc RestoreBackup(RestoreBackupRequest) returns (RestoreBackupResponse);
+  // Hides what the last scan of an external library did not find, which it held back (LibraryStatus.held).
+  rpc ConfirmScan(ConfirmScanRequest) returns (ConfirmScanResponse);
+  // Finds files a sync tool announces before other work (API-11): the folders that the paths name or lie in are
+  // listed for new files at once. Nothing is hidden: a scan does that.
+  rpc HintPaths(HintPathsRequest) returns (HintPathsResponse);
+  // Moves an external library to another folder, such as its share mounted elsewhere, and scans it there: every asset
+  // keeps its id, albums, faces and edits, and nothing is read again. The folder must hold a name the library's root
+  // held, else failed_precondition `library.root_differs`; it is checked as CreateExternalLibrary checks a root.
+  rpc RelocateLibrary(RelocateLibraryRequest) returns (RelocateLibraryResponse);
+}
+
+// Asks for the status.
+message GetStatusRequest {}
+
+// The server at a glance.
+message GetStatusResponse {
+  repeated AccountUsage accounts = 1;
+  // Originals and each derivative class (OPS-20, LIB-19).
+  repeated FileUsage files = 2;
+  repeated LibraryStatus libraries = 3;
+  // Database dumps in the data directory, newest first.
+  repeated Backup backups = 4;
+  // Open and dead jobs by type and status.
+  repeated JobCount jobs = 5;
+  repeated JobPause pauses = 6;
+  // Integrity findings no scrub has seen fixed yet, newest first, at most 100 (OPS-10).
+  repeated IntegrityFinding findings = 7;
+  // Each store's scrub (ADR-0234).
+  repeated StoreScrub scrubs = 8;
+  // Every device that reports its backup, the longest silent first (ING-26).
+  repeated DeviceBackup device_backups = 9;
+  // The newest restore drill of a backup, and the newest that passed: when a restore was last verified.
+  BackupRun last_drill = 10;
+  BackupRun last_verified_restore = 11;
+  // The newest restore the console asked for.
+  BackupRun last_restore = 12;
+}
+
+// What an account stores (OPS-21).
+message AccountUsage {
+  string user_id = 1;
+  string handle = 2;
+  int64 asset_count = 3;
+  int64 size_bytes = 4;
+}
+
+// The files of one role (`original`, `thumb_s`, `preview`, …).
+message FileUsage {
+  string role = 1;
+  int64 file_count = 2;
+  int64 size_bytes = 3;
+}
+
+// Where a library's files are.
+enum LibraryKind {
+  LIBRARY_KIND_UNSPECIFIED = 0;
+  LIBRARY_KIND_MANAGED = 1;
+  LIBRARY_KIND_EXTERNAL = 2;
+}
+
+// Whether a library can be read.
+enum LibraryState {
+  LIBRARY_STATE_UNSPECIFIED = 0;
+  LIBRARY_STATE_ONLINE = 1;
+  // Its root or marker is missing; nothing in it changes.
+  LIBRARY_STATE_OFFLINE = 2;
+  LIBRARY_STATE_SCANNING = 3;
+  LIBRARY_STATE_ERROR = 4;
+}
+
+// A library and its state.
+message LibraryStatus {
+  string library_id = 1;
+  string name = 2;
+  string owner_handle = 3;
+  LibraryKind kind = 4;
+  LibraryState state = 5;
+  int64 asset_count = 6;
+  // What its last scan did not find and holds back, more than 1,000 assets or 5 % of them, until ConfirmScan.
+  Confirmation held = 7;
+  // How many of its folders no watch covers: they are polled hourly (a network file system, or past the system's
+  // limit of watches, which the log names).
+  int64 polled_folder_count = 8;
+}
+
+// What an operation would hide, trash, delete or purge when that is more than 1,000 items or 5 % of its scope: it
+// runs only once the same token comes back, and a token stands for that count in that state only.
+message Confirmation {
+  int64 count = 1;
+  int64 total = 2;
+  string token = 3;
+}
+
+// What a scrub or a read found wrong with an object.
+enum FindingKind {
+  FINDING_KIND_UNSPECIFIED = 0;
+  // Its bytes no longer have the hash recorded when it was written: bit-rot or a silent change.
+  FINDING_KIND_CONTENT = 1;
+  // It is gone.
+  FINDING_KIND_MISSING = 2;
+  // It has another size than recorded, such as a truncated one.
+  FINDING_KIND_SIZE = 3;
+  // It carries another hash than recorded: it was replaced.
+  FINDING_KIND_HASH = 4;
+  // It lies under a library, but no file names it.
+  FINDING_KIND_ORPHAN = 5;
+}
+
+// An object of a store that is not as recorded, and whose it is.
+message IntegrityFinding {
+  string store = 1;
+  string key = 2;
+  FindingKind kind = 3;
+  // What was found, in English for the administrator.
+  string detail = 4;
+  google.protobuf.Timestamp found_at = 5;
+  // The asset the object holds a file of, its file name and its owner; empty for an orphan.
+  string asset_id = 6;
+  string file_name = 7;
+  string owner_handle = 8;
+}
+
+// Where a store's scrub is.
+message StoreScrub {
+  string store = 1;
+  // When it last finished checking every file of the store; absent before its first cycle ends.
+  google.protobuf.Timestamp cycle_ended_at = 2;
+}
+
+// A device's backup as it last reported it.
+message DeviceBackup {
+  string device_id = 1;
+  string name = 2;
+  string owner_handle = 3;
+  // Its last request of any kind.
+  google.protobuf.Timestamp last_seen_at = 4;
+  google.protobuf.Timestamp reported_at = 5;
+  // Items it still had to back up then.
+  int64 pending_count = 6;
+  // It has not reported for longer than the settings' `backup_silent_hours`.
+  bool silent = 7;
+}
+
+// A database dump.
+message Backup {
+  // Its key in the store, such as `backups/backup-20261021T030000Z.dump`.
+  string name = 1;
+  int64 size_bytes = 2;
+  google.protobuf.Timestamp created_at = 3;
+  // `local`, the data directory, or a configured store.
+  string store = 4;
+}
+
+// How a backup, a restore drill or a restore ended.
+message BackupRun {
+  string store = 1;
+  // The dump's key in the store.
+  string dump = 2;
+  bool ok = 3;
+  // In English for the administrator: what a drill restored, or why it failed.
+  string detail = 4;
+  google.protobuf.Timestamp finished_at = 5;
+}
+
+// Where a job is in its life.
+enum JobStatus {
+  JOB_STATUS_UNSPECIFIED = 0;
+  JOB_STATUS_QUEUED = 1;
+  JOB_STATUS_RUNNING = 2;
+  JOB_STATUS_DONE = 3;
+  // Failed every attempt: the dead-letter queue.
+  JOB_STATUS_DEAD = 4;
+  JOB_STATUS_CANCELLED = 5;
+}
+
+// How many jobs of a type have a status.
+message JobCount {
+  string type = 1;
+  JobStatus status = 2;
+  int64 count = 3;
+}
+
+// A paused job type.
+message JobPause {
+  string type = 1;
+  // When the pause ends by itself.
+  google.protobuf.Timestamp until_at = 2;
+  // Who paused it; empty when the account is gone.
+  string paused_by_user_id = 3;
+}
+
+// Asks for the stores.
+message ListStoresRequest {}
+
+// Every store, the data directory (`local`) first.
+message ListStoresResponse {
+  repeated StoreStatus stores = 1;
+}
+
+// The outcome of a check.
+enum CheckStatus {
+  CHECK_STATUS_UNSPECIFIED = 0;
+  CHECK_STATUS_OK = 1;
+  // Works, but needs attention.
+  CHECK_STATUS_WARN = 2;
+  CHECK_STATUS_FAIL = 3;
+}
+
+// A store as checked now.
+message StoreStatus {
+  string name = 1;
+  CheckStatus status = 2;
+  // What the check found, in English for the administrator: the marker's store id, or why the store is offline.
+  string detail = 3;
+  // Free space on a filesystem store; absent on an object store.
+  optional int64 free_bytes = 4;
+}
+
+// Which jobs to list.
+message ListJobsRequest {
+  // Unspecified lists every status.
+  JobStatus status = 1;
+  // Empty lists every type.
+  string type = 2;
+  // At most 500; 0 means 100.
+  int32 page_size = 3;
+  // From a previous response.
+  string page_token = 4;
+}
+
+// A page of jobs.
+message ListJobsResponse {
+  repeated Job jobs = 1;
+  // Empty on the last page.
+  string next_page_token = 2;
+}
+
+// A job of the queue.
+message Job {
+  string job_id = 1;
+  string type = 2;
+  JobStatus status = 3;
+  int32 attempts = 4;
+  // The last failure.
+  string error = 5;
+  uint32 progress_percent = 6;
+  // What the job is for, such as `render:<asset>:<role>:<spec>`; empty if unkeyed.
+  string key = 7;
+  google.protobuf.Timestamp created_at = 8;
+  // When it may run next.
+  google.protobuf.Timestamp run_at = 9;
+}
+
+// The job to retry.
+message RetryJobRequest {
+  string job_id = 1;
+}
+
+// A job that was neither dead nor cancelled is failed_precondition `job.not_retryable`.
+message RetryJobResponse {}
+
+// The job to cancel.
+message CancelJobRequest {
+  string job_id = 1;
+}
+
+// A job that was neither queued nor running is failed_precondition `job.not_cancellable`.
+message CancelJobResponse {}
+
+// The type to pause and for how long.
+message PauseJobTypeRequest {
+  string type = 1;
+  // 1 to 1440, or to 10080 (7 days) for backup, storage-purge and scrub; 0 means 60.
+  uint32 pause_minutes = 2;
+}
+
+// The pause.
+message PauseJobTypeResponse {
+  JobPause pause = 1;
+}
+
+// The type to resume.
+message ResumeJobTypeRequest {
+  string type = 1;
+}
+
+// A type that was not paused is failed_precondition `job.not_paused`.
+message ResumeJobTypeResponse {}
+
+// What to redo for the assets of a scope.
+enum ReprocessKind {
+  REPROCESS_KIND_UNSPECIFIED = 0;
+  // Read the original's metadata again: a `metadata` job per asset.
+  REPROCESS_KIND_METADATA = 1;
+  // Render every rendition again: a `renditions` job per asset.
+  REPROCESS_KIND_RENDITIONS = 2;
+  // Detect faces again: a `faces` job per asset.
+  REPROCESS_KIND_FACES = 3;
+}
+
+// A scope and what to redo in it: either assets, or a library and optionally a folder in it. Private libraries are
+// skipped: their devices process them.
+message ReprocessRequest {
+  // A selection.
+  repeated string asset_ids = 1;
+  string library_id = 2;
+  // A folder of the library's originals, with its subfolders, as `2024/05`; empty means the whole library.
+  string folder = 3;
+  // At least one.
+  repeated ReprocessKind kinds = 4;
+}
+
+// What was queued.
+message ReprocessResponse {
+  int64 job_count = 1;
+}
+
+// Which events to list.
+message ListAuditEventsRequest {
+  // At most 500; 0 means 100.
+  int32 page_size = 1;
+  // From a previous response.
+  string page_token = 2;
+}
+
+// A page of events.
+message ListAuditEventsResponse {
+  repeated AuditEvent events = 1;
+  // Empty on the last page.
+  string next_page_token = 2;
+}
+
+// An event of the hash-chained audit log.
+message AuditEvent {
+  // Its place in the chain.
+  int64 sequence = 1;
+  google.protobuf.Timestamp recorded_at = 2;
+  // Empty when the change was made around photolibd.
+  string actor_user_id = 3;
+  // Such as `user.update` or `settings.update`.
+  string action = 4;
+  // JSON objects.
+  string target_json = 5;
+  string details_json = 6;
+}
+
+// How many lines to return.
+message TailLogsRequest {
+  // At most 1000; 0 means 200.
+  uint32 line_count = 1;
+}
+
+// The newest lines, oldest first.
+message TailLogsResponse {
+  repeated string lines = 1;
+}
+
+// The instance's policies and defaults (OPS-20, OPS-23).
+message Settings {
+  // Accounts without a passkey or TOTP can do nothing but set one up (ADR-0088).
+  bool require_two_factor = 1;
+  // Whether face recognition starts switched on for new accounts; each user may change it.
+  bool face_recognition_default = 2;
+  // How long trashed items stay, 1 to 3650.
+  uint32 trash_retention_days = 3;
+  // Uploads pause while a filesystem they fill has less free space than this share of its size, or than
+  // min_free_disk_gb if that is less (ADR-0063); 0 to 50.
+  uint32 min_free_disk_percent = 4;
+  // The scrub checks every original once in this many days, 1 to 3650; 0 in an update keeps it, as older clients send.
+  uint32 scrub_days = 5;
+  // A device that has not reported its backup for this many hours is silent, 1 to 8760; 0 in an update keeps it.
+  uint32 backup_silent_hours = 6;
+  // The free space in GB (10^9 bytes) below which uploads pause, if less than min_free_disk_percent; 0 to 100000.
+  uint32 min_free_disk_gb = 7;
+}
+
+// Asks for the settings.
+message GetSettingsRequest {}
+
+// The settings.
+message GetSettingsResponse {
+  Settings settings = 1;
+  // The fields the configuration file pins, such as `trash_retention_days`: read-only.
+  repeated string pinned = 2;
+}
+
+// The new settings, every field.
+message UpdateSettingsRequest {
+  Settings settings = 1;
+}
+
+// The settings as stored.
+message UpdateSettingsResponse {
+  Settings settings = 1;
+}
+
+// A capability the server's policy switches (design 15 §10); off, the server refuses what needs it to everyone.
+enum Capability {
+  CAPABILITY_UNSPECIFIED = 0;
+  // Managed libraries: none is created, and none takes uploads.
+  CAPABILITY_MANAGED_LIBRARIES = 1;
+  // Uploads from devices, the web and the CLI.
+  CAPABILITY_UPLOADS = 2;
+  // Browsing a library's folders.
+  CAPABILITY_FOLDER_BROWSER = 3;
+  // Device folders in the apps connected to the server.
+  CAPABILITY_DEVICE_FOLDERS = 4;
+  // Sharing and public links: no album, partner share or link gives access, and none is made.
+  CAPABILITY_SHARING = 5;
+  // Editing assets.
+  CAPABILITY_EDITS = 6;
+  // Trashing and deleting assets.
+  CAPABILITY_DELETES = 7;
+  // Writing XMP sidecars.
+  CAPABILITY_XMP_WRITES = 8;
+  // Faces and people.
+  CAPABILITY_FACE_RECOGNITION = 9;
+  // Smart search.
+  CAPABILITY_ML_SEARCH = 10;
+}
+
+// The level a capability's effective value comes from: the narrowest that sets it, unless the configuration pins it.
+enum PolicySource {
+  POLICY_SOURCE_UNSPECIFIED = 0;
+  // No level sets it: on.
+  POLICY_SOURCE_DEFAULT = 1;
+  POLICY_SOURCE_SERVER = 2;
+  POLICY_SOURCE_USER = 3;
+  POLICY_SOURCE_LIBRARY = 4;
+  // Pinned in the configuration file: read-only.
+  POLICY_SOURCE_CONFIG = 5;
+}
+
+// A capability's switch as a level sees it.
+message PolicySwitch {
+  Capability capability = 1;
+  // The effective value.
+  bool enabled = 2;
+  PolicySource source = 3;
+  // What the level asked about sets itself; unset when it leaves the capability to the wider levels.
+  optional bool set = 4;
+}
+
+// A level: a library's when `library_id` is set, else an account's when `user_id` is, else the server's. A library's
+// effective values are its owner's there, or those of the account `user_id` names; an unknown account or library is
+// not_found `user.not_found` or `library.not_found`.
+message GetPolicyRequest {
+  string user_id = 1;
+  string library_id = 2;
+}
+
+// Every capability, in the order of `Capability`.
+message GetPolicyResponse {
+  repeated PolicySwitch switches = 1;
+}
+
+// One capability's switch at the level `user_id` and `library_id` name, as in GetPolicyRequest.
+message UpdatePolicyRequest {
+  string user_id = 1;
+  string library_id = 2;
+  Capability capability = 3;
+  // Unset clears the level's own value.
+  optional bool enabled = 4;
+}
+
+// The level's switches after the change.
+message UpdatePolicyResponse {
+  repeated PolicySwitch switches = 1;
+}
+
+// A set of switches for a kind of server (design 15 §10, ADR-0240).
+enum Preset {
+  PRESET_UNSPECIFIED = 0;
+  // External read-only libraries are the only source of truth: only browsing, sharing, faces and smart search on.
+  PRESET_ARCHIVE_VIEWER = 1;
+  // A household backs up and shares: everything on but XMP writes.
+  PRESET_FAMILY_BACKUP = 2;
+  // One person: everything on but sharing and public links.
+  PRESET_PERSONAL = 3;
+}
+
+// The preset to apply.
+message ApplyPresetRequest {
+  Preset preset = 1;
+}
+
+// The server's switches after the preset.
+message ApplyPresetResponse {
+  repeated PolicySwitch switches = 1;
+}
+
+// Asks for the diagnostics.
+message GetDiagnosticsRequest {}
+
+// The doctor's checks and the bundle.
+message GetDiagnosticsResponse {
+  repeated Check checks = 1;
+  // Versions, the configuration's differences from the defaults (secrets hidden), the checks and the log tail, as
+  // JSON to attach to a bug report.
+  string bundle_json = 2;
+}
+
+// One check of `photolibd doctor`.
+message Check {
+  // Such as `postgres` or `store b2`.
+  string name = 1;
+  CheckStatus status = 2;
+  // What the check found, in English for the administrator.
+  string detail = 3;
+}
+
+// The external library to add.
+message CreateExternalLibraryRequest {
+  // Whose library it is; not_found `user.not_found` when there is no such account.
+  string owner_user_id = 1;
+  string name = 2;
+  // An absolute path on the server, such as `/srv/photos/ann`.
+  string root = 3;
+  // How many files the server may list or open in it per second, and how many bytes it may read whole (to render or
+  // hash them) per second, to spare a spinning disk or a NAS. Unset: 1000 files and 64 MiB; 0: no limit.
+  optional uint32 files_per_second = 4;
+  optional uint64 bytes_per_second = 5;
+}
+
+// The new library, scanning.
+message CreateExternalLibraryResponse {
+  string library_id = 1;
+}
+
+// The library to scan.
+message ScanLibraryRequest {
+  string library_id = 1;
+}
+
+// No such library is not_found `library.not_found`; a managed one is failed_precondition `library.not_external`, and
+// one being scanned `library.scanning`.
+message ScanLibraryResponse {}
+
+// Asks for a backup.
+message BackUpNowRequest {}
+
+// The queued backup.
+message BackUpNowResponse {
+  string job_id = 1;
+}
+
+// The backup to restore.
+message RestoreBackupRequest {
+  string store = 1;
+  // Its key, as `Backup.name` gives it.
+  string name = 2;
+}
+
+// photolibd stops once it has answered.
+message RestoreBackupResponse {}
+// The scan to confirm.
+message ConfirmScanRequest {
+  string library_id = 1;
+  // The token of LibraryStatus.held. Another is failed_precondition `confirmation.required`, with the count, total and
+  // token of what would be hidden now as parameters.
+  string confirmation_token = 2;
+}
+
+// What was hidden. No such library is not_found `library.not_found`; one whose last scan holds nothing back is
+// failed_precondition `library.nothing_held`.
+message ConfirmScanResponse {
+  int64 hidden_count = 1;
+}
+
+// The paths a sync tool wrote.
+message HintPathsRequest {
+  string library_id = 1;
+  // Files or folders, absolute under the library's root or relative to it; at most 1000, else invalid_argument
+  // `field.invalid` on `paths`, as is one outside the root.
+  repeated string paths = 2;
+}
+
+// The folders are queued. No such library is not_found `library.not_found`, a managed one failed_precondition
+// `library.not_external`.
+message HintPathsResponse {}
+
+// Where the library is now.
+message RelocateLibraryRequest {
+  string library_id = 1;
+  // An absolute path on the server.
+  string root = 2;
+}
+
+// The library, scanning at its new root; while it scans already, failed_precondition `library.scanning`.
+message RelocateLibraryResponse {}

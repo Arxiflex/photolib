@@ -1,0 +1,33 @@
+name: Cancel queue runs
+
+# ci.yml cancels a superseded run of the same branch (concurrency group ci-<ref>), but every Mergify queue pull request
+# has a branch of its own (mergify/merge-queue/<hash>), so the runs of a closed one (dequeued, failed or replaced batch)
+# would go on for their full length and compete with the live batches for machines. One group for all queue branches
+# would cancel the second batch of max_parallel_checks: 2, so this cancels by branch when its draft pull request closes.
+# The only workflow that runs on a pull request: tools/tests/check_ci.py pins its trigger, its token and its filter.
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  actions: write
+
+jobs:
+  cancel:
+    # Only this repository's queue branches: a fork's token is read-only and a fork cannot name one of ours
+    if: >-
+      startsWith(github.head_ref, 'mergify/merge-queue/')
+      && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Cancel the branch's runs that have not finished
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ github.head_ref }}
+        run: |
+          for status in in_progress queued; do
+            gh run list --repo "$GITHUB_REPOSITORY" --branch "$BRANCH" --status "$status" \
+              --json databaseId --jq '.[].databaseId' |
+              xargs -r -n1 gh run cancel --repo "$GITHUB_REPOSITORY"
+          done

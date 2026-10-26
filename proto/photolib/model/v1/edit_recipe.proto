@@ -1,0 +1,162 @@
+syntax = "proto3";
+
+package photolib.model.v1;
+
+// How a photo is edited, as data: the ordered operations that turn an original into one version of it, the outputs of
+// models those operations use (so that a render never runs a model again) and where the edit came from (roadmap M8-01,
+// ADR-0391). It is the plaintext of `versions.recipe`; versions are immutable, an edit is a new version.
+//
+// A render applies the operations in three stages, each in the order of the list: the local operations to the original
+// as shown (its EXIF orientation applied), then the geometry operations, then the global adjustments, summed. The
+// stored outputs are therefore in the original's frame, and a crop changed later keeps them valid.
+message EditRecipe {
+  // 1 for this layout; a reader refuses a number it does not know and migrates the older ones.
+  uint32 schema_version = 1;
+  // At most 256.
+  repeated Operation operations = 2;
+  // What the stored outputs and the edit's tool say about how it was made.
+  Provenance provenance = 3;
+  // The outputs of models that operations refer to by id; at most 64, each used by an operation.
+  repeated StoredOutput outputs = 4;
+}
+
+// One step of an edit.
+message Operation {
+  // Names the step within its recipe, so that two versions compare step by step: a UUIDv7 or any string of at most 64
+  // characters, unique in the recipe.
+  string operation_id = 1;
+  // A step kept in the recipe but not rendered.
+  bool disabled = 2;
+  oneof kind {
+    TurnOperation turn = 10;
+    FlipOperation flip = 11;
+    CropOperation crop = 12;
+    AdjustOperation adjust = 13;
+    LutOperation lut = 14;
+    LocalAdjustOperation local_adjust = 15;
+    InpaintOperation inpaint = 16;
+  }
+}
+
+// Turns the image clockwise by quarter turns (geometry, without resampling).
+message TurnOperation {
+  // 1 to 3.
+  uint32 quarter_turns = 1;
+}
+
+// Mirrors the image left to right (geometry).
+message FlipOperation {
+  // Mirrors top to bottom instead.
+  bool vertical = 1;
+}
+
+// Keeps a rectangle of the image as it is at this point of the geometry steps (geometry).
+message CropOperation {
+  // Fractions of the width and height, from 0 to 1: the rectangle's left and top, and its size; it lies inside the
+  // image and is not empty.
+  float x = 1;
+  float y = 2;
+  float width = 3;
+  float height = 4;
+}
+
+// The adjustments of the editor, each neutral at 0 (design 11 §2.2; the definitions are the kernel's `develop.rs`).
+// The global adjustments of a recipe add up, each clamped to its range, after every other step.
+message AdjustOperation {
+  // White balance, -1 (cool, green) to 1 (warm, magenta).
+  float temperature = 1;
+  float tint = 2;
+  // In EV, -8 to 8.
+  float exposure = 3;
+  // -1 to 1.
+  float contrast = 4;
+  float clarity = 5;
+  float saturation = 6;
+}
+
+// A 3D colour lookup table applied after the adjustments; of several, the last one enabled counts.
+message LutOperation {
+  // Entries per side, 2 to 256.
+  uint32 size = 1;
+  // size³ sRGB-encoded RGB entries, red fastest, as 16-bit little-endian values.
+  bytes rgb16 = 2;
+}
+
+// Adjusts only where a stored mask says so (local, in the original's frame).
+message LocalAdjustOperation {
+  // The `StoredOutput` of kind mask that weighs the adjustment.
+  string output_id = 1;
+  AdjustOperation adjust = 2;
+}
+
+// Puts a stored patch over a rectangle of the original (local, in the original's frame): the result of an inpainting
+// model, kept so that the model never runs again.
+message InpaintOperation {
+  // The `StoredOutput` of kind patch.
+  string output_id = 1;
+  // Fractions of the original's width and height where the patch goes, inside the image.
+  float x = 2;
+  float y = 3;
+  float width = 4;
+  float height = 5;
+}
+
+// What a stored output is.
+enum StoredOutputKind {
+  STORED_OUTPUT_KIND_UNSPECIFIED = 0;
+  // 8-bit weights, one byte per pixel, 0 (untouched) to 255 (fully adjusted).
+  STORED_OUTPUT_KIND_MASK = 1;
+  // 8-bit RGBA, sRGB, straight alpha, four bytes per pixel.
+  STORED_OUTPUT_KIND_PATCH = 2;
+}
+
+// A result of a model, stored with the recipe: a segmentation mask or an inpainting patch. Its bytes are untrusted
+// input to every reader (threat model T34): sizes are checked against the limits and against the dimensions.
+message StoredOutput {
+  string output_id = 1;
+  StoredOutputKind kind = 2;
+  // Pixels, 1 to 8192 each side.
+  uint32 width = 3;
+  uint32 height = 4;
+  // Raw pixels row by row: width × height bytes for a mask, ×4 for a patch.
+  bytes data = 5;
+  // The model that made it.
+  ModelUse model = 6;
+}
+
+// A model and the parameters it ran with.
+message ModelUse {
+  // The registry id of the model (ADR-0064), e.g. "sam2-tiny".
+  string model_id = 1;
+  string model_version = 2;
+  // The parameters it ran with (prompt, seed, thresholds), as pairs in the order recorded; at most 32.
+  repeated Parameter parameters = 3;
+}
+
+// One recorded parameter.
+message Parameter {
+  string name = 1;
+  string value = 2;
+}
+
+// IPTC's DigitalSourceType vocabulary, the values an export can state (cv.iptc.org/newscodes/digitalsourcetype).
+enum DigitalSourceType {
+  DIGITAL_SOURCE_TYPE_UNSPECIFIED = 0;
+  // Edited by a person with tools that apply no model: `humanEdits`.
+  DIGITAL_SOURCE_TYPE_HUMAN_EDITS = 1;
+  // A model enhanced it, e.g. a mask made by a segmentation model: `algorithmicallyEnhanced`.
+  DIGITAL_SOURCE_TYPE_ALGORITHMICALLY_ENHANCED = 2;
+  // Content a generative model made was composited into it, e.g. an inpainting patch:
+  // `compositeWithTrainedAlgorithmicMedia`.
+  DIGITAL_SOURCE_TYPE_COMPOSITE_WITH_TRAINED_ALGORITHMIC_MEDIA = 3;
+}
+
+// Where an edit came from (feature EDP-30): recorded with every version and written to every export.
+message Provenance {
+  // The editor, with its version, e.g. "photolib/1.4.0 (android)".
+  string tool = 1;
+  // Every model the recipe's outputs came from, once each; the kernel fills it from the outputs.
+  repeated ModelUse models = 2;
+  // What the export states; the kernel derives it from the operations and the outputs, and replaces any other value.
+  DigitalSourceType digital_source_type = 3;
+}

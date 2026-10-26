@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package photolib.kernel.v1;
+
+import "photolib/kernel/v1/keys.proto";
+
+// The algorithm of a key pair whose 32-byte seed is in the keyring.
+enum KeyPair {
+  KEY_PAIR_UNSPECIFIED = 0;
+  // An Ed25519 signing key.
+  KEY_PAIR_ED25519 = 1;
+  // An X-Wing decryption key: an identity, device or drop key.
+  KEY_PAIR_X_WING = 2;
+}
+
+// Asks for the public key of a seed in the keyring.
+message PublicKeyRequest {
+  uint32 key = 1;
+  KeyPair key_pair = 2;
+}
+
+// A public key and its pk_id, SHA-256(public_key)[0..16).
+message PublicKeyResponse {
+  bytes public_key = 1;
+  bytes key_id = 2;
+}
+
+// Sends a key to an X-Wing public key as a PLH.
+message ShareKeyRequest {
+  uint32 key = 1;
+  // The recipient's X-Wing public key, 1216 bytes.
+  bytes public_key = 2;
+  uint32 wrapped_type = 3;
+  WrapContext context = 4;
+  // The pk_id of the sender's identity signing key; empty for anonymous senders.
+  bytes sender_key_id = 5;
+  // 64 random bytes.
+  bytes randomness = 6;
+}
+
+// A PLH, 1224 bytes.
+message ShareKeyResponse {
+  bytes wrap = 1;
+}
+
+// Opens a PLH into the keyring with the recipient's X-Wing seed, if a verified log entry names it.
+message AcceptKeyRequest {
+  uint32 key = 1;
+  uint32 wrapped_type = 2;
+  WrapContext context = 3;
+  bytes wrap = 4;
+  // The SHA-256 that the verified log entry delivering the wrap names for this recipient (a SignedWrap).
+  bytes signed_sha256 = 5;
+}

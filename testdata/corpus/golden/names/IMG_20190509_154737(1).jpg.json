@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "path": "names/IMG_20190509_154737(1).jpg",
+  "size": 3409,
+  "sha256": "08301aace91b55c021c5e6b6a21ae3fe480eea349124befc091154621c3e5d1d",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F01",
+      "F02",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F01",
+        "kind": "local",
+        "value": "2019-05-09T15:47:37",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-05-09T15:47:37",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F01",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

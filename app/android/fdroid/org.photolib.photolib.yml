@@ -1,0 +1,96 @@
+# F-Droid's build recipe of the libre flavour, submitted to fdroiddata as metadata/org.photolib.photolib.yml with each
+# release (docs/dev/releasing.md). F-Droid builds every ABI from source, the kernel with Rust; the listing is the app's
+# Triple-T one. Once the release's upload key exists, Binaries and AllowedAPKSigningKeys (its SHA-256) make F-Droid
+# publish our signed APK when its build matches it byte for byte (reproducible builds).
+Categories:
+  - Cloud Storage & File Sync
+  - Gallery
+License: AGPL-3.0-only
+AuthorName: Photolib
+SourceCode: https://github.com/Arxiflex/photolib
+IssueTracker: https://github.com/Arxiflex/photolib/issues
+
+AutoName: Photolib
+
+RepoType: git
+Repo: https://github.com/Arxiflex/photolib.git
+
+Builds:
+  - versionName: 0.1.0
+    versionCode: 1001
+    commit: v0.1.0
+    subdir: app
+    sudo:
+      - apt-get update
+      - apt-get install -y python3
+    output: build/app/outputs/flutter-apk/app-armeabi-v7a-libre-release.apk
+    srclibs:
+      - flutter@3.47.7
+      - rustup@1.28.2
+    rm:
+      - app/ios
+      - app/macos
+      - app/windows
+      - app/web
+    prebuild: $$rustup$$/rustup-init.sh -y --profile minimal --default-toolchain none
+    build:
+      - export PATH=$$flutter$$/bin:$HOME/.cargo/bin:$PATH
+      - python3 ../tools/kernel/build.py --out build/kernel android-arm
+      - flutter build apk --flavor libre --split-per-abi --target-platform android-arm
+    ndk: r28c
+
+  - versionName: 0.1.0
+    versionCode: 2001
+    commit: v0.1.0
+    subdir: app
+    sudo:
+      - apt-get update
+      - apt-get install -y python3
+    output: build/app/outputs/flutter-apk/app-arm64-v8a-libre-release.apk
+    srclibs:
+      - flutter@3.47.7
+      - rustup@1.28.2
+    rm:
+      - app/ios
+      - app/macos
+      - app/windows
+      - app/web
+    prebuild: $$rustup$$/rustup-init.sh -y --profile minimal --default-toolchain none
+    build:
+      - export PATH=$$flutter$$/bin:$HOME/.cargo/bin:$PATH
+      - python3 ../tools/kernel/build.py --out build/kernel android-arm64
+      - flutter build apk --flavor libre --split-per-abi --target-platform android-arm64
+    ndk: r28c
+
+  - versionName: 0.1.0
+    versionCode: 4001
+    commit: v0.1.0
+    subdir: app
+    sudo:
+      - apt-get update
+      - apt-get install -y python3
+    output: build/app/outputs/flutter-apk/app-x86_64-libre-release.apk
+    srclibs:
+      - flutter@3.47.7
+      - rustup@1.28.2
+    rm:
+      - app/ios
+      - app/macos
+      - app/windows
+      - app/web
+    prebuild: $$rustup$$/rustup-init.sh -y --profile minimal --default-toolchain none
+    build:
+      - export PATH=$$flutter$$/bin:$HOME/.cargo/bin:$PATH
+      - python3 ../tools/kernel/build.py --out build/kernel android-x64
+      - flutter build apk --flavor libre --split-per-abi --target-platform android-x64
+    ndk: r28c
+
+AutoUpdateMode: Version
+UpdateCheckMode: Tags ^v[0-9.]+$
+VercodeOperation:
+  - 1000 + %c
+  - 2000 + %c
+  - 4000 + %c
+UpdateCheckData: app/pubspec.yaml|version:\s.+\+(\d+)|.|version:\s(.+)\+
+CurrentVersion: 0.1.0
+CurrentVersionCode: 4001

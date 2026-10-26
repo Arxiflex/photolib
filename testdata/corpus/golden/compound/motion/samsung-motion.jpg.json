@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "path": "compound/motion/samsung-motion.jpg",
+  "size": 81850,
+  "sha256": "d63f26c37d210e843c95edd54e02720649454b054b343d7b0d23632812043660",
+  "origin": "synthetic",
+  "notes": "The embedded motion video is a placeholder.",
+  "format": "jpeg",
+  "vendor": "samsung",
+  "quirks": [
+    "motion_photo_sef",
+    "trailing_data"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 4000,
+    "height": 3000,
+    "make": "samsung",
+    "model": "SM-S911B",
+    "motion": {
+      "offset": 81067,
+      "length": 751
+    }
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2023-04-08T11:12:13",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+09:00"
+      }
+    ],
+    "resolved": {
+      "local": "2023-04-08T11:12:13",
+      "utc": "2023-04-08T02:12:13Z",
+      "offset": "+09:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

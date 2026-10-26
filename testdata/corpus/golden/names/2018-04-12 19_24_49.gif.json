@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "path": "names/2018-04-12 19_24_49.gif",
+  "size": 1493,
+  "sha256": "5c25a810f369109b4154e27e885836a581cb603ae579bdf065905d3f96aebcd5",
+  "origin": "synthetic",
+  "original_name": "2018-04-12 19:24:49.gif",
+  "format": "gif",
+  "quirks": [],
+  "media": {
+    "container": "gif",
+    "mime": "image/gif",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": [
+      "F52",
+      "F54"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F52",
+        "kind": "local",
+        "value": "2018-04-12T19:24:49",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2018-04-12T19:24:49",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F52",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

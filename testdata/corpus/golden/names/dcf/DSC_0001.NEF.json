@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "path": "names/dcf/DSC_0001.NEF",
+  "size": 25675,
+  "sha256": "0e5b9b60fbc98374991494a6e4da959c88025c383863abde8306073779da5545",
+  "origin": "synthetic",
+  "notes": "Placeholder sensor data, not a camera mosaic; the embedded JPEG preview decodes.",
+  "format": "nef",
+  "vendor": "nikon",
+  "quirks": [
+    "counter_not_time"
+  ],
+  "media": {
+    "container": "tiff",
+    "mime": "image/x-nikon-nef",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120,
+    "make": "NIKON CORPORATION"
+  },
+  "filename": {
+    "matches": [
+      "F43"
+    ]
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

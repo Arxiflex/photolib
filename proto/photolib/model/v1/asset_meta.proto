@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package photolib.model.v1;
+
+import "photolib/model/v1/capture_time.proto";
+
+// The core metadata of an asset. Private libraries store it as an encrypted blob, so it carries its own version.
+message AssetMetaCore {
+  // Version of this message's meaning, bumped with a migration whenever a field's semantics change.
+  uint32 schema_version = 1;
+  // Identifier of the asset (UUIDv7) the metadata belongs to.
+  string asset_id = 2;
+  CaptureTime capture_time = 3;
+}

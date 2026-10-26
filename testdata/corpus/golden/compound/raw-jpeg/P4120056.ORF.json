@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "path": "compound/raw-jpeg/P4120056.ORF",
+  "size": 26017,
+  "sha256": "c145ac8aecc66cd808a62b1afa6c929f6ba8f706c871ef1695350b673d5997de",
+  "origin": "synthetic",
+  "notes": "Placeholder sensor data, not a camera mosaic; the embedded JPEG preview decodes.",
+  "format": "orf",
+  "vendor": "olympus",
+  "quirks": [
+    "raw_jpeg_pair"
+  ],
+  "media": {
+    "container": "tiff",
+    "mime": "image/x-olympus-orf",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120,
+    "make": "OLYMPUS CORPORATION",
+    "model": "E-M5"
+  },
+  "group": {
+    "kind": "raw_jpeg",
+    "key": "P4120056",
+    "role": "raw_alt"
+  },
+  "filename": {
+    "matches": [
+      "F44"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2016-04-12T08:08:08",
+        "precision": "s",
+        "event": "capture"
+      },
+      {
+        "source": "filename:F44",
+        "kind": "local",
+        "value": null,
+        "precision": null,
+        "event": "capture",
+        "rejected": "no_year"
+      }
+    ],
+    "resolved": {
+      "local": "2016-04-12T08:08:08",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

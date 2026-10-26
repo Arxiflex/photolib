@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "path": "video/pixel-av1.mp4",
+  "size": 751,
+  "sha256": "1f2fd3086aa1be06f672f930aa610056d7e8bc008c5ad192b01539826bf98eaf",
+  "origin": "synthetic",
+  "notes": "Placeholder av1 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mp4",
+  "vendor": "google",
+  "quirks": [],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "av1",
+    "make": "Google",
+    "model": "Pixel 7"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "qt_mvhd_phone",
+        "kind": "utc",
+        "value": "2023-10-27T08:00:00Z",
+        "precision": "s",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": null,
+      "utc": "2023-10-27T08:00:00Z",
+      "offset": null,
+      "tz_source": "device_default",
+      "precision": "s",
+      "bound": "exact",
+      "source": "qt_mvhd_phone",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

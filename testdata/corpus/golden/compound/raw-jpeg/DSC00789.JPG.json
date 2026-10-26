@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "path": "compound/raw-jpeg/DSC00789.JPG",
+  "size": 151883,
+  "sha256": "b2c2ee564c39e60a3d8a40c3e0e5fc2be47827221f53e74f3b419d6ea8180db7",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "sony",
+  "quirks": [
+    "raw_jpeg_pair"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 6000,
+    "height": 4000,
+    "make": "SONY",
+    "model": "ILCE-7RM4"
+  },
+  "group": {
+    "kind": "raw_jpeg",
+    "key": "DSC00789",
+    "role": "primary"
+  },
+  "filename": {
+    "matches": [
+      "F43"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2021-03-14T14:15:16",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+01:00"
+      }
+    ],
+    "resolved": {
+      "local": "2021-03-14T14:15:16",
+      "utc": "2021-03-14T13:15:16Z",
+      "offset": "+01:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

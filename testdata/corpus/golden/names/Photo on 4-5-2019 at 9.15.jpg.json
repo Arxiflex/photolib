@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "path": "names/Photo on 4-5-2019 at 9.15.jpg",
+  "size": 3412,
+  "sha256": "bc32d1c6a95f677f585711732d97b55f4eab688f82e95b83c61a91e223dc26b0",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "ambiguous_date_order"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F51"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F51",
+        "kind": "local",
+        "value": null,
+        "precision": null,
+        "event": "capture",
+        "rejected": "ambiguous_order"
+      }
+    ],
+    "resolved": null
+  }
+}

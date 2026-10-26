@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "path": "names/Photo on 31-12-2023 at 12.34.jpg",
+  "size": 3451,
+  "sha256": "a973f4da6c5040a9a81219d75e5d6248e0fea9ab8d22209584be53089c4545b0",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F51"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F51",
+        "kind": "local",
+        "value": "2023-12-31T12:34",
+        "precision": "min",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12-31T12:34",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "min",
+      "bound": "exact",
+      "source": "filename:F51",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

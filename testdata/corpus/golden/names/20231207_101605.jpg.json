@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "path": "names/20231207_101605.jpg",
+  "size": 3368,
+  "sha256": "ce5dcb3ba1435ae407c0168fd57f82e8eeaca43ea34a4a4bc1a2eed55b7b0e22",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "samsung",
+  "quirks": [],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F05",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F05",
+        "kind": "local",
+        "value": "2023-12-07T10:16:05",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12-07T10:16:05",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F05",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

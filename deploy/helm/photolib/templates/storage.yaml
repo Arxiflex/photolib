@@ -1,0 +1,21 @@
+{{- range $name, $claim := .Values.persistence }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ $.Release.Name }}-{{ $name }}
+  labels:
+    {{- include "photolib.labels" $ | nindent 4 }}
+  annotations:
+    # helm uninstall keeps the library and its keys.
+    helm.sh/resource-policy: keep
+spec:
+  accessModes:
+    - {{ $claim.accessMode }}
+  {{- with $claim.storageClass }}
+  storageClassName: {{ . }}
+  {{- end }}
+  resources:
+    requests:
+      storage: {{ $claim.size }}
+{{- end }}

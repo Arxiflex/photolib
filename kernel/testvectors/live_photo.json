@@ -1,0 +1,17 @@
+{
+  "cases": [
+    {
+      "method": 20,
+      "name": "equal content identifiers, whatever the names; else folder, name up to the first dot in any case, a clip of at most 4 s within 2 s, the closest still first",
+      "request": "ChkKEkRDSU0vSU1HXzAwMDEuSEVJQxoBQSAAChoKEEV4cG9ydHMvY2xpcC5tb3YQARoBQSioRgoWChFEQ0lNL0lNR18wMDAyLkpQRyCQTgobChFEQ0lNL2ltZ18wMDAyLm1vdhABIOxZKKAfChQKDkRDSU0vUFhMXzEuanBnIKCcAQoYCg9EQ0lNL1BYTF8xLmhlaWMaAUIgiKQBChwKEURDSU0vUFhMXzEuTVAubXA0EAEg0KUBKLgX",
+      "response": "ChAKAhABCgQIAhADCgQIBRAG"
+    },
+    {
+      "method": 20,
+      "name": "no pair: a longer clip, 2.001 s apart, an unknown time, two identifiers, another folder, two stills, the ends of time",
+      "request": "ChUKEURDSU0vSU1HXzAwMDMuSlBHIAAKGgoRRENJTS9JTUdfMDAwMy5NT1YQASAAKKEfChUKEURDSU0vSU1HXzAwMDQuSlBHIAAKGwoRRENJTS9JTUdfMDAwNC5NT1YQASDRDyi4FwoTChFEQ0lNL0lNR18wMDA1LkpQRwoaChFEQ0lNL0lNR18wMDA1Lk1PVhABIAAouBcKGQoSRENJTS9JTUdfMDAwNi5IRUlDGgFDIAAKHQoRRENJTS9JTUdfMDAwNi5NT1YQARoBRCAAKLgXChYKEk90aGVyL0lNR18wMDA3LkpQRyAAChoKEURDSU0vSU1HXzAwMDcuTU9WEAEgACi4FwoYChFEQ0lNL0lNR18wMDA4LkpQRxoBRSAAChkKEkRDSU0vSU1HXzAwMDguSEVJQxoBRSAACh4KEURDSU0vSU1HXzAwMDkuSlBHIICAgICAgICAgAEKIgoRRENJTS9JTUdfMDAwOS5NT1YQASD//////////38ouBc=",
+      "response": "CgA="
+    }
+  ],
+  "description": "Live Photo pairing (design doc 08 §3.4)."
+}

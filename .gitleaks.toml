@@ -1,0 +1,17 @@
+# Secret scan of the gate (tools/tests/test_secrets.sh): gitleaks' default rules, plus allowlists.
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Live Photo ContentIdentifiers (UUIDs) in the golden records of the synthetic media corpus"
+condition = "AND"
+targetRules = ["generic-api-key"]
+paths = ['''^testdata/corpus/golden/.+\.json$''']
+regexes = ['''^[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}$''']
+
+[[allowlists]]
+description = "Hex keys of the crypto known-answer vectors: public test values (fixed seeds, published RFC vectors)"
+condition = "AND"
+targetRules = ["generic-api-key"]
+paths = ['''^kernel/testvectors/crypto/.+\.json$''', '''^tools/cryptoref/.+\.(json|py)$''']
+regexes = ['''^[0-9a-f]{64}(?:[0-9a-f]{64})?$''']

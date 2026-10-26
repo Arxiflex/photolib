@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "path": "names/WIN_20231231_12_35_10_Pro.mp4",
+  "size": 747,
+  "sha256": "959da139da278f84989c21e3cd97a6ecc0654315eaf6ddd3e0fdf6d506417fb7",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mp4",
+  "vendor": "microsoft",
+  "quirks": [
+    "mvhd_zero"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "h264"
+  },
+  "filename": {
+    "matches": [
+      "F11",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F11",
+        "kind": "local",
+        "value": "2023-12-31T12:35:10",
+        "precision": "s",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12-31T12:35:10",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F11",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "path": "hdr/ultra-hdr.jpg",
+  "size": 84811,
+  "sha256": "77aadefd239e2faa691137f9e8c58080bfb17b77137bda98e00c31bbdf055ae5",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "google",
+  "quirks": [
+    "mpf",
+    "ultra_hdr"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 4032,
+    "height": 3024,
+    "make": "Google",
+    "model": "Pixel 8 Pro"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2023-10-12T08:11:20",
+        "precision": "s",
+        "event": "capture",
+        "offset": "-07:00"
+      }
+    ],
+    "resolved": {
+      "local": "2023-10-12T08:11:20",
+      "utc": "2023-10-12T15:11:20Z",
+      "offset": "-07:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

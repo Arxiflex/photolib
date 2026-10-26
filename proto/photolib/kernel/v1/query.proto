@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package photolib.kernel.v1;
+
+// Parses the text of a search query. Parsing never fails: what is not an operator is text.
+message ParseQueryRequest {
+  string query = 1;
+}
+
+// The parsed query; the root is absent when the query is empty.
+message ParseQueryResponse {
+  QueryNode root = 1;
+}
+
+// A node of a query tree.
+message QueryNode {
+  oneof node {
+    QueryTerm term = 1;
+    // Matches what its operand does not match: `-x` or `NOT x`.
+    QueryNode negated = 2;
+    // Matches what all of its operands match: words side by side.
+    QueryNodeList all = 3;
+    // Matches what any of its operands matches: `x OR y`.
+    QueryNodeList any = 4;
+  }
+}
+
+// The operands of an all or any node.
+message QueryNodeList {
+  repeated QueryNode nodes = 1;
+}
+
+// A word, a quoted phrase or a key:value operator.
+message QueryTerm {
+  // The operator, e.g. "tag" in tag:beach; empty for free text.
+  string key = 1;
+  string value = 2;
+  // The value was quoted, so it matches as an exact phrase.
+  bool phrase = 3;
+}

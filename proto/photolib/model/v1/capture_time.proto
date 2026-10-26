@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package photolib.model.v1;
+
+// How finely a capture time is known; a scan of a 1985 photo may only be known to the year.
+enum CaptureTimePrecision {
+  CAPTURE_TIME_PRECISION_UNSPECIFIED = 0;
+  CAPTURE_TIME_PRECISION_YEAR = 1;
+  CAPTURE_TIME_PRECISION_MONTH = 2;
+  CAPTURE_TIME_PRECISION_DAY = 3;
+  CAPTURE_TIME_PRECISION_MINUTE = 4;
+  CAPTURE_TIME_PRECISION_SECOND = 5;
+  CAPTURE_TIME_PRECISION_MILLISECOND = 6;
+}
+
+// When a photo or video was taken. The wall clock is always kept and the zone is explicit; an unknown zone is
+// absent, never UTC, so a bare instant is not a capture time.
+message CaptureTime {
+  // Wall-clock time as the camera showed it, ISO 8601 without a zone, e.g. "2025-07-14T16:03:09.250".
+  string local_datetime = 1;
+  // Offset of the wall clock from UTC in minutes, e.g. 120 for UTC+02:00; absent when unknown.
+  optional sint32 offset_minutes = 2;
+  // IANA zone name, e.g. "Europe/Berlin"; absent when unknown.
+  optional string zone = 3;
+  CaptureTimePrecision precision = 4;
+  // The winning evidence, e.g. "exif:DateTimeOriginal", "filename:F03" or "unknown".
+  string source = 5;
+  // Confidence in the time from 0 to 100.
+  uint32 confidence = 6;
+}

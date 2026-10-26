@@ -1,0 +1,47 @@
+{
+ "construction": "OPAQUE-3DH registration and login, suite v1 configuration",
+ "spec": "docs/dev/crypto-v1.md#opaque",
+ "configuration": "ristretto255-SHA512 OPRF, HKDF-SHA512, HMAC-SHA512, SHA-512, ristretto255, KSF Argon2id(S = 16 zero bytes, p = 1, T = 64, m and t from ksf_params); ksf_params here are below the account floor so the vector runs quickly",
+ "inputs": {
+  "password": "636f727265637420686f727365206261747465727920737461706c65",
+  "credential_identifier": "8372984cbc87a239b291582768d26fb4",
+  "oprf_seed": "a9faa5cd8d8136387d42431d953f23a15aac00ddd0a868c98207f9fee28304f795aad8d66943d4ab29a51dfb46bf7589f26614612db1e8edb90ed0705ec6415f",
+  "server_private_key": "f0a8b222e35dc0b2dc0ded0adecae7ae40162367d818e9f098cf8e9a315f260c",
+  "server_public_key": "540288ac3ae5717c7bc17baee8074572c1dd0fbebb5e8daf30c7dbfef016ec54",
+  "ksf_params": "0100000040000000030100000000000000000000000000000000",
+  "context": "70686f746f6c69622f76312f6f7061717565",
+  "blind_registration": "da2f01777e875332e7cdd96f8cfde07918abd0d4999a48e1e6374e6abea43f03",
+  "envelope_nonce": "d719e014d097ad9de683b2fbd5f9e78c2cd4e6bb3cedffcb7acd361d77a6c86d",
+  "blind_login": "817fdc451cd820719a9a3a46c357c1f95e0a610cbda9e67a3188d8015a451c03",
+  "client_nonce": "d189a6b6be760cd27f5411ec57a2773da0bde12819a1542eb0ab956fddf7c88a",
+  "client_keyshare_seed": "1fb7d39713f3fb64cf570c8810942059d1c49e214b61c48ef086c93476f7ada8",
+  "masking_nonce": "b88423aeec30a6cf8eda51e80ec14cf92ffcaa5bcdc08ffad35e015d2146b9fc",
+  "server_nonce": "9cd07d6bcd49f369db66e279e465bd6b042c4236b9d1cb2238dca33f7ac5ab37",
+  "server_keyshare_seed": "57f0dfae8569458d4f4cde791505f87903aa8087c593968af9fc0580e77573ca"
+ },
+ "outputs": {
+  "registration_request": "9c464ebb2f3b8d996daf637f348da6ce2ee8fc71894fe3e6732de2ed4228d01d",
+  "registration_response": "0a8d59a1d8b8aaaff9747bf22784ce7421a3acbbe11f11d565b419e76aa1966d540288ac3ae5717c7bc17baee8074572c1dd0fbebb5e8daf30c7dbfef016ec54",
+  "registration_record": "d49daa3d538317f2eeef0697060e8ce049d19fbf68ec71f336afc0561258e20da37c7fe2f175507cc8bd0390b4a77e73a75823bc16dc75b36026e136b3ed7c49b4986d0446232133d62632e53051c5a6b9aeeb61f0456dc4573686727479394fd719e014d097ad9de683b2fbd5f9e78c2cd4e6bb3cedffcb7acd361d77a6c86df6f3567a77f594c83cf7e03a6c3d8570fb7f3d836a4ba5fc2a449c9045edaefee9d938adbed4a0ea076c699d541f71838528000ee163bc0a7cf95068954b1264",
+  "export_key": "328e182ea6f47e82182b1c1988ba199ca523ab368913bfea0e036a7511e0f3f69f4efe7b8379be6fdaff2308eb1a61e270b9f900b5f2ca48ad407cb50eb5f64c",
+  "KE1": "624d4f18bfeb5294d00f33d46dfeaeac00cf2eda91068abfb40eb6499f29d22dd189a6b6be760cd27f5411ec57a2773da0bde12819a1542eb0ab956fddf7c88a8ac06c6334bbc0c20e6904f40f250486facea4bab76788d1b5c92e2e70dd4d64",
+  "KE2": "60b1163ad218d7d9edb5d50292c5bb1c5bf37fbf121a026f5762c457d2fca82cb88423aeec30a6cf8eda51e80ec14cf92ffcaa5bcdc08ffad35e015d2146b9fc31bc61c7287a47c37c972ff41972b8ad02cfb86fc954128f12f5baf1e82e04b400591cb4a319a3bc5d28db58cc83980dd96b3cd938e351e7b12180587ea2f10b1ebc57c32b3a90a862313db7a554db96201434e43a94296e9fe51a49a365f8df88133676fc2fa79a30b2e436738fd95122058c414fe3c09f43f44b13d3a75d009cd07d6bcd49f369db66e279e465bd6b042c4236b9d1cb2238dca33f7ac5ab37ec6412f6a9fe7cce60861fb5c135c9fcf60d90c03c7b1ef6ea96ad3aa7c9d34a122f1b85ae26d763e0bfbdb3a654668ece8957ea6bfae8c144582d2e006e35a2281dbf9184c2ccdc87148a76b684d934d5efab8859716c7e3ad3244d1db141eb",
+  "KE3": "d4feb6d2b2b50ce36cd526efd459d0f5c6831736c555983905be9c0b6dd1d0e4dd3a5a8be23b6420d67e38d04cb14b2a7b9e28a85ad718b45487e7f930dd5be2",
+  "session_key": "f89a72750e6d912c0d42bd17537f85545d22916c2effbb0f09481618a400aa00b34a8d8e5d7a085fa03b0b75cc63652599fa314eadbab2df4cd06c0543c78591"
+ },
+ "invalid": [
+  {
+   "id": "opaque-wrong-password",
+   "description": "the envelope does not open",
+   "password": "636f727265637420686f727365206261747465727920737461706c6572",
+   "error": "envelope_recovery"
+  },
+  {
+   "id": "opaque-substituted-server-key",
+   "description": "a server answering with another key pair: the envelope binds the registered server public key",
+   "server_private_key": "397e8d73cee22462bff3fa8ff0c29d28c22c57979ee65aab62e87fcac661cf09",
+   "server_public_key": "140cf2825e7bca626cd413aa7240612d9fc0b236813af2f0c5b128ff61965245",
+   "error": "envelope_recovery"
+  }
+ ]
+}

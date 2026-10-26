@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "path": "compound/pano/IMG_20201031_094049_00_189.insp",
+  "size": 122597,
+  "sha256": "a52fb4222d0264c319b3909b6f0d0b7add4476b8b1a801b9772aa1ae2fc2f27f",
+  "origin": "synthetic",
+  "format": "insp",
+  "vendor": "insta360",
+  "quirks": [
+    "photo_sphere"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 6080,
+    "height": 3040,
+    "make": "Insta360",
+    "model": "Insta360 ONE X2",
+    "pano": {
+      "projection": "equirectangular",
+      "cropped": false
+    }
+  },
+  "filename": {
+    "matches": [
+      "F01",
+      "F02",
+      "F42",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2020-10-31T09:40:49",
+        "precision": "s",
+        "event": "capture"
+      },
+      {
+        "source": "filename:F42",
+        "kind": "local",
+        "value": "2020-10-31T09:40:49",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2020-10-31T09:40:49",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

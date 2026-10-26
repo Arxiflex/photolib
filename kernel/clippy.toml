@@ -1,0 +1,35 @@
+# The kernel is pure (ADR-0004): no I/O, threads, clocks, environment or processes. src/lib.rs makes these errors;
+# tests and tools that legitimately do I/O allow them explicitly.
+disallowed-methods = [
+  "std::env::args",
+  "std::env::var",
+  "std::env::vars",
+  "std::fs::copy",
+  "std::fs::create_dir_all",
+  "std::fs::metadata",
+  "std::fs::read",
+  "std::fs::read_dir",
+  "std::fs::read_to_string",
+  "std::fs::remove_file",
+  "std::fs::rename",
+  "std::fs::write",
+  "std::io::stderr",
+  "std::io::stdin",
+  "std::io::stdout",
+  "std::thread::spawn",
+]
+disallowed-types = [
+  "std::fs::File",
+  "std::fs::OpenOptions",
+  "std::net::TcpListener",
+  "std::net::TcpStream",
+  "std::net::UdpSocket",
+  "std::process::Command",
+  "std::thread::Builder",
+  "std::time::Instant",
+  "std::time::SystemTime",
+]
+
+# The rest of the project's limits (docs/dev/lint.md).
+too-many-lines-threshold = 80
+cognitive-complexity-threshold = 20

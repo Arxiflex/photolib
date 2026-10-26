@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "path": "video/xvid.avi",
+  "size": 320,
+  "sha256": "23361a5f66d82b94c516535fe9f7433d2b3fd1624a1bf08478bb6276dd6b16be",
+  "origin": "synthetic",
+  "notes": "Placeholder xvid payload: the structure and metadata are real, the video does not decode.",
+  "format": "avi",
+  "quirks": [],
+  "media": {
+    "container": "avi",
+    "mime": "video/x-msvideo",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "duration_ms": 1000,
+    "codec": "xvid"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

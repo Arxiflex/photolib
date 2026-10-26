@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "path": "compound/gopro/GL010001.LRV",
+  "size": 747,
+  "sha256": "629db90fdde12f20c7eaf829ff47cbb9331239aa84d8562aef2517d10b6c1917",
+  "origin": "synthetic",
+  "notes": "Placeholder hevc payload: the structure and metadata are real, the video does not decode.",
+  "format": "lrv",
+  "vendor": "gopro",
+  "quirks": [
+    "camera_proxy"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "mp41",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 360,
+    "duration_ms": 3000,
+    "codec": "hevc",
+    "make": "GoPro",
+    "model": "HERO11 Black"
+  },
+  "group": {
+    "kind": "camera_aux",
+    "key": "GH010001",
+    "role": "camera_aux"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "qt_mvhd_camera",
+        "kind": "local",
+        "value": "2023-07-09T10:20:30",
+        "precision": "s",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": "2023-07-09T10:20:30",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "qt_mvhd_camera",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

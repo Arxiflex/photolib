@@ -1,0 +1,64 @@
+# CasaOS App Store entry: deploy/nas/compose.yaml in CasaOS's form, its files in /DATA/AppData/photolib.
+name: photolib
+
+services:
+  photolibd:
+    image: ghcr.io/arxiflex/photolib:0.1.0
+    user: $PUID:$PGID
+    read_only: true
+    restart: unless-stopped
+    environment:
+      PHOTOLIB_DATABASE__URL: postgres://photolib:photolib@postgres/photolib
+      PHOTOLIB_OPAQUE_KEY_FILE: /keys/opaque.key
+    ports:
+      - target: 8080
+        published: "8080"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/$AppID/data
+        target: /data
+      - type: bind
+        source: /DATA/AppData/$AppID/keys
+        target: /keys
+    tmpfs: [/tmp]
+    depends_on: [postgres]
+    x-casaos:
+      volumes:
+        - container: /data
+          description:
+            en_us: Libraries and database dumps
+        - container: /keys
+          description:
+            en_us: The sign-in key; back it up apart from the libraries
+
+  postgres:
+    image: postgres:18.6@sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336
+    user: $PUID:$PGID
+    read_only: true
+    restart: unless-stopped
+    # Only photolibd reaches it, on this app's own network.
+    environment:
+      POSTGRES_USER: photolib
+      POSTGRES_PASSWORD: photolib
+    volumes:
+      - type: bind
+        source: /DATA/AppData/$AppID/postgres
+        target: /var/lib/postgresql
+    tmpfs: [/tmp, /var/run/postgresql]
+
+x-casaos:
+  architectures: [amd64, arm64]
+  main: photolibd
+  category: Gallery
+  author: Photolib
+  developer: Photolib
+  icon: https://raw.githubusercontent.com/Arxiflex/photolib/main/app/web/icons/Icon-512.png
+  tagline:
+    en_us: Your own photo and video library
+  description:
+    en_us: Back up, browse and share photos and videos from every device, on your own server.
+  title:
+    en_us: Photolib
+  index: /
+  port_map: "8080"

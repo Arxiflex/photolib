@@ -1,0 +1,28 @@
+# Server errors are codes and parameters, never prose (F-13). Every constructor of connectrpc's ConnectError takes a
+# message, so server code builds rpc::ApiError instead, whose conversion is the one allowed use. The conformance server
+# allows them because the suite checks that messages round-trip. tests/lints.rs proves that the rule fails clippy.
+disallowed-methods = [
+  { path = "connectrpc::ConnectError::new", reason = "send an rpc::ApiError: a code and params, never prose" },
+  { path = "connectrpc::ConnectError::unsupported_media_type", reason = "send an rpc::ApiError: a code and params, never prose" },
+  { path = "connectrpc::ConnectError::method_not_allowed", reason = "send an rpc::ApiError: a code and params, never prose" },
+  { path = "connectrpc::ConnectError::canceled", reason = "send an rpc::ApiError: a code and params, never prose" },
+  { path = "connectrpc::ConnectError::unknown", reason = "send an rpc::ApiError: a code and params, never prose" },
+  { path = "connectrpc::ConnectError::invalid_argument", reason = "send an rpc::ApiError: a code and params, never prose" },
+  { path = "connectrpc::ConnectError::deadline_exceeded", reason = "send an rpc::ApiError: a code and params, never prose" },
+  { path = "connectrpc::ConnectError::not_found", reason = "send an rpc::ApiError: a code and params, never prose" },
+  { path = "connectrpc::ConnectError::already_exists", reason = "send an rpc::ApiError: a code and params, never prose" },
+  { path = "connectrpc::ConnectError::permission_denied", reason = "send an rpc::ApiError: a code and params, never prose" },
+  { path = "connectrpc::ConnectError::resource_exhausted", reason = "send an rpc::ApiError: a code and params, never prose" },
+  { path = "connectrpc::ConnectError::failed_precondition", reason = "send an rpc::ApiError: a code and params, never prose" },
+  { path = "connectrpc::ConnectError::aborted", reason = "send an rpc::ApiError: a code and params, never prose" },
+  { path = "connectrpc::ConnectError::out_of_range", reason = "send an rpc::ApiError: a code and params, never prose" },
+  { path = "connectrpc::ConnectError::unimplemented", reason = "send an rpc::ApiError: a code and params, never prose" },
+  { path = "connectrpc::ConnectError::internal", reason = "send an rpc::ApiError: a code and params, never prose" },
+  { path = "connectrpc::ConnectError::unavailable", reason = "send an rpc::ApiError: a code and params, never prose" },
+  { path = "connectrpc::ConnectError::data_loss", reason = "send an rpc::ApiError: a code and params, never prose" },
+  { path = "connectrpc::ConnectError::unauthenticated", reason = "send an rpc::ApiError: a code and params, never prose" },
+]
+
+# The rest of the project's limits (docs/dev/lint.md).
+too-many-lines-threshold = 80
+cognitive-complexity-threshold = 20

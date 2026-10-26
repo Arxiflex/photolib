@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "path": "names/signal-2024-01-30-09-57-18-123.jpg",
+  "size": 3516,
+  "sha256": "6b8393a84b58b63e3a0a0763fd4854d62689efb15bafea0ab9a1bb431d91e418",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "messenger_copy",
+    "upper_bound_name"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F30",
+      "F52",
+      "F54"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F30",
+        "kind": "local",
+        "value": "2024-01-30T09:57:18.123",
+        "precision": "ms",
+        "event": "receive"
+      }
+    ],
+    "resolved": {
+      "local": "2024-01-30T09:57:18.123",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "ms",
+      "bound": "upper",
+      "source": "filename:F30",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

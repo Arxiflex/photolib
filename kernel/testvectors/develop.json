@@ -1,0 +1,35 @@
+{
+  "cases": [
+    {
+      "method": 36,
+      "name": "a neutral develop",
+      "request": "EmYIBhAEGmAAWgD/JWUB/0pwBP9vewn/lIYQ/7mRGf/enCT/A6cx/yiyQP9NvVH/cshk/5fTef+83pD/4emp/wb0xP8r/+H/UAoA/3UVIf+aIET/vytp/+Q2kP8JQbn/Lkzk/1NXEf8=",
+      "response": "CtABCmYIBhAEGmAAWgD/JWUB/0pwBP9vewn/lIYQ/7mRGf/enCT/A6cx/yiyQP9NvVH/cshk/5fTef+83pD/4emp/wb0xP8r/+H/UAoA/3UVIf+aIET/vytp/+Q2kP8JQbn/Lkzk/1NXEf8aZggGEAQaYKjbMMAeNSfAS7cbwO92EcDeYQnAFdECwLOGFMAfMQ/AAIMMwJN0D8CgQhXAQ6oYwJEXDsDBOgrADYMNwO3WGsAA2SvA1ns3wK+FIcBUsxvAtTQfwOOZLsCU20HA7WlPwA=="
+    },
+    {
+      "method": 36,
+      "name": "every adjustment",
+      "request": "ClQNzcxMPhWamZm+HZqZGT8lMzMzPy3NzEw/NQAAAD86NAgCEjAAAAAAAAD//wAAAAAAAP//AAD/////AAAAAAAAQJz//wAA//8AAP////////////8ShwMIDBAIGoADAFoA/yVlAf9KcAT/b3sJ/5SGEP+5kRn/3pwk/wOnMf8oskD/Tb1R/3LIZP+X03n/vN6Q/+Hpqf8G9MT/K//h/1AKAP91FSH/miBE/78raf/kNpD/CUG5/y5M5P9TVxH/eGJA/51tcf/CeKT/54PZ/wyOEP8xmUn/VqSE/3uvwf+gugD/xcVB/+rQhP8P28n/NOYQ/1nxWf9+/KT/owfx/8gSQP/tHZH/Eijk/zczOf9cPpD/gUnp/6ZURP/LX6H/8GoA/xV1Yf86gMT/X4sp/4SWkP+pofn/zqxk//O30f8YwkD/Pc2x/2LYJP+H45n/rO4Q/9H5if/2BAT/Gw+B/0AaAP9lJYH/ijAE/687if/URhD/+VGZ/x5cJP9DZ7H/aHJA/4190f+yiGT/15P5//yekP8hqSn/RrTE/2u/Yf+QygD/tdWh/9rgRP//6+n/JPaQ/0kBOf9uDOT/kxeR/7giQP/dLfH/Ajik/ydDWf9MThD/cVnJ/5ZkhP+7b0H/",
+      "response": "CpQGCocDCAwQCBqAAwBkAP8AdwD/LYsA/4OkAP/bwwD//9cA///kAP8A9AD/AP0A/wD/AP8i/wD/sf8A//7/Pf///5j/AP/2/wD///9WAAD/lAAA/9IAJf/8AGb//wC0/wAxnv8AO7P/S1YA/5BlAP/UdWX//47a//+m//8A0gD/AOwA/wD5nP+A////5P8A////AP///wD/AP///wD/AP8A/wD/AP99/+IA9P//AAP//wDK/wAAnP8qJRz/YimO/6Um4f/gQAD//0XK//9VAP8AjUL/AKrb/1PPAP+658H/+fH////8AP//////AP8A/wD/6f8A/wD/Sf99/9j/AP///wD//wAA/wkAYf89CQD/eQF9/7oMAP/yAKf//wQA//8AyP8AYgD/FG6x/2uGAP/Nrfn//8wu///V////55n/AP8A/wD///8V/wD/sv8A//j/rP///wD//////wD/Hv9LACH/jwDU/9IAs///ABD//wD//wApj/8HPT//Rk0A/4xW4f/PaJX//HkA/xqHAwgMEAgagAPpvyzA/VYiwMfAGcCr9xbAya4WwIOIEsA+6wnAsKoAwEb+8L9PZuG/3MbSv6dZx78+9gvAvA8GwLzzBcC6GQ/AKMYawGahHsB62BjAivEOwL5IBcD63/m/4IPsv8wq4788Ium/sKDnv6Bi9b+OlgrAzS4bwCugIsA+tB/ApvkWwE8+DMAa3gHAqSjzvwLn578FK9K/jhLev9v6+L9TDg/AFPkdwGMkI8BICiDAguIXwBiXDMDvywDAqxbuv1gh4L9yH86/EH3ovzqwB8AyRRvAtkkmwLNFJsDpih/A5XEVwCVOCcAuJvu/Jl3ov6Qy2r/+dtq/A8cAwGDWFsCmHijAp8guwIN4K8AH/iLAKLgXwC6BCsBmGfy/+I7ov76/2b+gNfG/kIQTwDDdKMD+JzPAZkM0wJFpMcCbVy3AT6QlwGw2GMDzjAjAoyT2v4Zk4r9iOwLAvY8nwAYwPcCQBEDAOpw7wJsdO8B12z7AO9I9wDcrMcCoQx3AN2oKwOza+b8="
+    },
+    {
+      "method": 36,
+      "name": "a tile with the guide of the whole image",
+      "request": "ClQNzcxMPhWamZm+HZqZGT8lMzMzPy3NzEw/NQAAAD86NAgCEjAAAAAAAAD//wAAAAAAAP//AAD/////AAAAAAAAQJz//wAA//8AAP////////////8SQggFEAMaPABaAP8lZQH/SnAE/297Cf+UhhD/uZEZ/96cJP8DpzH/KLJA/029Uf9yyGT/l9N5/7zekP/h6an/BvTE/yKHAwgMEAgagAPpvyzA/VYiwMfAGcCr9xbAya4WwIOIEsA+6wnAsKoAwEb+8L9PZuG/3MbSv6dZx78+9gvAvA8GwLzzBcC6GQ/AKMYawGahHsB62BjAivEOwL5IBcD63/m/4IPsv8wq4788Ium/sKDnv6Bi9b+OlgrAzS4bwCugIsA+tB/ApvkWwE8+DMAa3gHAqSjzvwLn578FK9K/jhLev9v6+L9TDg/AFPkdwGMkI8BICiDAguIXwBiXDMDvywDAqxbuv1gh4L9yH86/EH3ovzqwB8AyRRvAtkkmwLNFJsDpih/A5XEVwCVOCcAuJvu/Jl3ov6Qy2r/+dtq/A8cAwGDWFsCmHijAp8guwIN4K8AH/iLAKLgXwC6BCsBmGfy/+I7ov76/2b+gNfG/kIQTwDDdKMD+JzPAZkM0wJFpMcCbVy3AT6QlwGw2GMDzjAjAoyT2v4Zk4r9iOwLAvY8nwAYwPcCQBEDAOpw7wJsdO8B12z7AO9I9wDcrMcCoQx3AN2oKwOza+b8oDDAIOAdABQ==",
+      "response": "CkQKQggFEAMaPABiAP8AcwD/KoUA/3eWAP/CqgD//9wA///nAP8A9wD/AP4A/wD/AP8m/wD/vv8A//7/Pv///5j/AP/2/w=="
+    },
+    {
+      "method": 36,
+      "name": "a gain map recomputed after an edit",
+      "request": "CgcdAACAP0ABEmYIBBAGGmAAWgD/JWUB/0pwBP9vewn/lIYQ/7mRGf/enCT/A6cx/yiyQP9NvVH/cshk/5fTef+83pD/4emp/wb0xP8r/+H/UAoA/3UVIf+aIET/vytp/+Q2kP8JQbn/Lkzk/1NXEf8aMQoWCAIQAhoQAFoA/yVlAf9KcAT/b3sJ/x0AAABAJQAAgD8tAACAPDUAAIA8RQAAAEA=",
+      "response": "EhUIAhIRCgVmaWVsZBIIZ2Fpbl9tYXA="
+    },
+    {
+      "method": 36,
+      "name": "an image shorter than its size",
+      "request": "Eg0IAhABGgcAAAAAAAAA",
+      "response": "EhIIAhIOCgVmaWVsZBIFaW1hZ2U="
+    }
+  ],
+  "description": "The editor spike's CPU reference renderer (ADR-0054); its output pins every binding to the same pixels."
+}

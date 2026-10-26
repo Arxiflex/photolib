@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "path": "names/IMG_20190221_112113042_BURST000_COVER_TOP.MP4",
+  "size": 747,
+  "sha256": "a30b705df5da36eb149250cc205e9222b0a9ff5b315ebefadf019c94e3291f68",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mp4",
+  "quirks": [
+    "burst",
+    "mvhd_zero"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "h264"
+  },
+  "group": {
+    "kind": "burst",
+    "key": "20190221_112113042",
+    "role": "burst_cover"
+  },
+  "filename": {
+    "matches": [
+      "F02",
+      "F08"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F02",
+        "kind": "local",
+        "value": "2019-02-21T11:21:13.042",
+        "precision": "ms",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": "2019-02-21T11:21:13.042",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "ms",
+      "bound": "exact",
+      "source": "filename:F02",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

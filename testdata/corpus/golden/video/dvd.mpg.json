@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "path": "video/dvd.mpg",
+  "size": 101,
+  "sha256": "498e0c0a5d0a86e42f538819f79885ff54e15675014fb31d46228f07bf289b5b",
+  "origin": "synthetic",
+  "notes": "Placeholder mpeg2 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mpeg",
+  "quirks": [],
+  "media": {
+    "container": "mpegps",
+    "mime": "video/mpeg",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 720,
+    "height": 576,
+    "duration_ms": 2000,
+    "codec": "mpeg2"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

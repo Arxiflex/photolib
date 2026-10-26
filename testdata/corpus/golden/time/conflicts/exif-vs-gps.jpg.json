@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "path": "time/conflicts/exif-vs-gps.jpg",
+  "size": 3352,
+  "sha256": "2d34a37136116bee7955d8356a6e7fe0b4a40263a439106b8d53024040f3eb04",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "canon",
+  "quirks": [
+    "time_conflict"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "make": "Canon",
+    "model": "Canon EOS 5D Mark IV",
+    "gps": {
+      "lat": 48.8584,
+      "lon": 2.2945
+    }
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2023-05-01T10:00:00",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+02:00"
+      },
+      {
+        "source": "gps_datetime",
+        "kind": "utc",
+        "value": "2023-05-01T09:00:00Z",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2023-05-01T10:00:00",
+      "utc": "2023-05-01T08:00:00Z",
+      "offset": "+02:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "medium",
+      "flags": [
+        "needs_review"
+      ]
+    }
+  }
+}

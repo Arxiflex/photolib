@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+package photolib.api.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// The keys of private mode (design 06 §4 and §6, ADR-0255): an account's identity, its account master key (AMK)
+// wrapped once per unlock path, and its recovery kit. Clients make and wrap every key; the server keeps the wraps and
+// reads only their headers, so nothing it holds opens anything. It accepts no upload to a private library from an
+// account with fewer than two unlock paths or an unverified recovery kit (`keys.recovery_incomplete`).
+service KeyService {
+  // The caller's keys, and whether its account has a password. Only a password sign-in returns the password path's
+  // wrap (FinishLoginResponse.password_path), so that a session alone cannot test guesses at the password offline.
+  rpc GetKeys(GetKeysRequest) returns (GetKeysResponse);
+  // Creates the caller's keys, once (`keys.exist`). A password path needs the account's password (`keys.no_password`).
+  rpc CreateKeys(CreateKeysRequest) returns (CreateKeysResponse);
+  // Adds an unlock path or replaces the one of its kind (`keys.none` before CreateKeys). A new recovery kit is
+  // unverified until VerifyRecoveryKit.
+  rpc PutUnlockPath(PutUnlockPathRequest) returns (PutUnlockPathResponse);
+  // Records that the person proved they hold the recovery kit: at setup by typing words of it again, in a drill by
+  // unlocking with it. `kit_id` names the kit (`keys.kit_mismatch` when it is not the current one).
+  rpc VerifyRecoveryKit(VerifyRecoveryKitRequest) returns (VerifyRecoveryKitResponse);
+}
+
+// A way into the AMK.
+enum UnlockKind {
+  UNLOCK_KIND_UNSPECIFIED = 0;
+  // The account's password, a vault passphrase for one that signs in with OpenID Connect: KEK_pw.
+  UNLOCK_KIND_PASSWORD = 1;
+  // The recovery kit's phrase: KEK_rec.
+  UNLOCK_KIND_RECOVERY = 2;
+}
+
+// The AMK wrapped for one way in.
+message UnlockPath {
+  UnlockKind kind = 1;
+  // A PLW of the AMK (wrapped type 1) under the path's key: its wrapped_key_id is the AMK's key_id, as in every
+  // path's, and its wrapping_key_id the path key's. Empty in GetKeys for the password.
+  bytes wrap = 2;
+  // The password's Argon2id parameters, 26 bytes within the account policy; empty for other kinds.
+  bytes params = 3;
+  google.protobuf.Timestamp created_at = 4;
+}
+
+// An account's keys.
+message AccountKeys {
+  // The genesis entry of the account's identity log (a PLS signed by its identity signing key).
+  bytes identity = 1;
+  // The seeds of the identity's signing and decryption keys, each a PLW under the AMK (wrapped types 8 and 9).
+  bytes signing_key = 2;
+  bytes decryption_key = 3;
+  repeated UnlockPath paths = 4;
+  // When the recovery kit was last verified; unset until it is.
+  google.protobuf.Timestamp recovery_verified_at = 5;
+  // When the next recovery drill is due: six months after the last verification.
+  google.protobuf.Timestamp drill_due_at = 6;
+  // Two unlock paths and a verified recovery kit: the server accepts private uploads.
+  bool ready = 7;
+}
+
+// Asks for the caller's keys.
+message GetKeysRequest {}
+
+// The caller's keys, unset before CreateKeys.
+message GetKeysResponse {
+  AccountKeys keys = 1;
+  // The account has a password, which a password path needs: one that signs in with OpenID Connect sets one as its
+  // vault passphrase with StartPasswordSetup.
+  bool password = 2;
+  // The caller's account id, which its identity log and wraps name.
+  string user_id = 3;
+}
+
+// The keys a client made: the identity log's genesis for the caller, its key seeds wrapped under the AMK, and paths.
+message CreateKeysRequest {
+  bytes identity = 1;
+  bytes signing_key = 2;
+  bytes decryption_key = 3;
+  // At most one of each kind.
+  repeated UnlockPath paths = 4;
+}
+
+// The keys as stored.
+message CreateKeysResponse {
+  AccountKeys keys = 1;
+}
+
+// An unlock path of the AMK the caller's keys wrap.
+message PutUnlockPathRequest {
+  UnlockPath path = 1;
+}
+
+// The keys as stored.
+message PutUnlockPathResponse {
+  AccountKeys keys = 1;
+}
+
+// The key_id of the KEK_rec the person reached with the kit.
+message VerifyRecoveryKitRequest {
+  bytes kit_id = 1;
+}
+
+// The keys as stored.
+message VerifyRecoveryKitResponse {
+  AccountKeys keys = 1;
+}

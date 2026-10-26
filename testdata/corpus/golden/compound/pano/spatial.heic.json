@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "path": "compound/pano/spatial.heic",
+  "size": 991,
+  "sha256": "a61a82696b8480bc7b99988b96fca8c56cafede27e464687e9a46c7758529f27",
+  "origin": "synthetic",
+  "notes": "Placeholder HEVC payload: the structure and metadata are real, the image does not decode.",
+  "format": "heic",
+  "vendor": "apple",
+  "quirks": [
+    "spatial_photo"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "heic",
+    "mime": "image/heic",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 3840,
+    "height": 2160,
+    "make": "Apple",
+    "model": "iPhone 15 Pro",
+    "gps": {
+      "lat": 48.8584,
+      "lon": 2.2945
+    }
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2024-03-09T15:00:00",
+        "precision": "s",
+        "event": "capture",
+        "offset": "-05:00"
+      },
+      {
+        "source": "gps_datetime",
+        "kind": "utc",
+        "value": "2021-07-14T10:15:42Z",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2024-03-09T21:00:00",
+      "utc": "2024-03-09T20:00:00Z",
+      "offset": "+01:00",
+      "tz_source": "gps_polygon",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": [
+        "needs_review",
+        "zone_mismatch"
+      ]
+    }
+  }
+}

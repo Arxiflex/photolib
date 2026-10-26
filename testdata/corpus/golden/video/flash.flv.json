@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "path": "video/flash.flv",
+  "size": 141,
+  "sha256": "4f8789218b30502230017a0d94d2c549e1f459b655a5fed4b654db9a09ac99db",
+  "origin": "synthetic",
+  "notes": "Placeholder flv1 payload: the structure and metadata are real, the video does not decode.",
+  "format": "flv",
+  "quirks": [],
+  "media": {
+    "container": "flv",
+    "mime": "video/x-flv",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 320,
+    "height": 240,
+    "duration_ms": 3000,
+    "codec": "flv1"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

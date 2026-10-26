@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "path": "names/2023-12-31_12-34.png",
+  "size": 1857,
+  "sha256": "0339f79214581defc846cac24e23f126dc6316868a75800e5b44fba9ab16a2b2",
+  "origin": "synthetic",
+  "format": "png",
+  "quirks": [
+    "screenshot"
+  ],
+  "media": {
+    "container": "png",
+    "mime": "image/png",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": [
+      "F24",
+      "F54"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F24",
+        "kind": "local",
+        "value": "2023-12-31T12:34",
+        "precision": "min",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12-31T12:34",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "min",
+      "bound": "exact",
+      "source": "filename:F24",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

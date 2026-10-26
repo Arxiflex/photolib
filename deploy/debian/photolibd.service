@@ -1,0 +1,23 @@
+# photolibd as a system service with its own PostgreSQL cluster (docs/admin/install.md#without-docker).
+[Unit]
+Description=Photolib server
+Documentation=https://arxiflex.github.io/photolib/admin/install/
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/photolibd --config /etc/photolib/photolibd.yaml
+DynamicUser=yes
+StateDirectory=photolib photolib/data photolib/keys photolib/postgres
+StateDirectoryMode=0700
+# photolibd stops its PostgreSQL itself once it has drained.
+KillMode=mixed
+TimeoutStopSec=90
+Restart=on-failure
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=read-only
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

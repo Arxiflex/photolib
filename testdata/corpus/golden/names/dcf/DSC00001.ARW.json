@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "path": "names/dcf/DSC00001.ARW",
+  "size": 25892,
+  "sha256": "1b01106da055a2d885873a6ed7630993814c64abbb669fb34c4025ba5ae72b8b",
+  "origin": "synthetic",
+  "notes": "Placeholder sensor data, not a camera mosaic; the embedded JPEG preview decodes.",
+  "format": "arw",
+  "vendor": "sony",
+  "quirks": [
+    "counter_not_time"
+  ],
+  "media": {
+    "container": "tiff",
+    "mime": "image/x-sony-arw",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120,
+    "make": "SONY"
+  },
+  "filename": {
+    "matches": [
+      "F43"
+    ]
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

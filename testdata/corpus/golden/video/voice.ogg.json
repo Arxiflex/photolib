@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "path": "video/voice.ogg",
+  "size": 58,
+  "sha256": "90371036127aab126a202451b9ef015abfe8205069679ab4de6142bac2944e88",
+  "origin": "synthetic",
+  "notes": "Placeholder audio payload: the structure and metadata are real, the audio does not decode.",
+  "format": "unknown",
+  "quirks": [],
+  "media": {
+    "container": "ogg",
+    "mime": "audio/ogg",
+    "kind": "audio",
+    "support": "unsupported"
+  },
+  "metadata": {},
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

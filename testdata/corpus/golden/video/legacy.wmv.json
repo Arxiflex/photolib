@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "path": "video/legacy.wmv",
+  "size": 280,
+  "sha256": "5cb51d611d942d23462975ca34e18b92d52529fe52258ee065746f4e4454e8fb",
+  "origin": "synthetic",
+  "notes": "Placeholder wmv payload: the structure and metadata are real, the video does not decode.",
+  "format": "wmv",
+  "quirks": [],
+  "media": {
+    "container": "asf",
+    "mime": "video/x-ms-wmv",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "duration_ms": 3000,
+    "codec": "wmv"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

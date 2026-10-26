@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "path": "stills/lossy.webp",
+  "size": 1672,
+  "sha256": "96cbb63b7aaaef3f35f8774c3948f191b9b65711cc8d3793240b1b5ce70e4e74",
+  "origin": "synthetic",
+  "format": "webp",
+  "quirks": [],
+  "media": {
+    "container": "webp",
+    "mime": "image/webp",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

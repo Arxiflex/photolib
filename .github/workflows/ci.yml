@@ -1,0 +1,75 @@
+name: CI
+
+# The only pipeline in this repo. It runs when Mergify pushes a merge-queue branch (dev plus the queued pull requests);
+# nothing runs on normal pull requests or pushes.
+#
+# Five blocks, each a workflow of its own, all started at once on twenty four-core machines:
+#
+#   static   2 machines   repo; commits, proto, node, docs and lint                        block-static.yml
+#   rust     5 machines   lint, the server's tests in two halves, the kernel's, msrv       block-rust.yml
+#   dart     5 machines   lint, the app's tests, the store's, its timed ones, packages     block-dart.yml
+#   web      4 machines   node and the rest, api/kernel/ml, data/workers, editor/app       block-web.yml
+#   perf     4 machines   instruction counts; the budgets: server, timeline, the rest      block-perf.yml
+#
+# Each machine runs `bash tools/check.sh <parts>` (tools/README.md) through .github/actions/lane, narrowed by CHECK_STEPS
+# so that the machines of one part cover its steps between them: in a split part every machine but one picks its steps
+# (steps), and the last runs all the others do not (except, the others' steps joined by |). A machine whose source is
+# not in the repository yet does not run its steps. Every test gets three retries: shell tests by CHECK_RETRIES=3,
+# Dart tests by `retry: 3` in dart_test.yaml and Rust tests by `cargo nextest --retries 3` (tools/check.sh). The gate
+# job passes only when every block does: it is the one check the merge queue waits for.
+on:
+  push:
+    branches: ['mergify/merge-queue/**']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static:
+    uses: ./.github/workflows/block-static.yml
+  rust:
+    uses: ./.github/workflows/block-rust.yml
+  dart:
+    uses: ./.github/workflows/block-dart.yml
+  web:
+    uses: ./.github/workflows/block-web.yml
+  perf:
+    uses: ./.github/workflows/block-perf.yml
+  gate:
+    name: gate
+    if: always()
+    needs: [static, rust, dart, web, perf]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      # The run's jobs, with their results and times, for the report
+      actions: read
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          sparse-checkout: tools/ci_report.py
+          sparse-checkout-cone-mode: false
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: report-*
+          path: ${{ runner.temp }}/reports
+          merge-multiple: true
+      # One report of the run in its summary: every job, the failed and flaky steps, the slowest ones
+      - name: Report
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --paginate "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/attempts/$GITHUB_RUN_ATTEMPT/jobs" \
+            --jq '.jobs[]' | jq -s . > "$RUNNER_TEMP/jobs.json"
+          shopt -s nullglob
+          python3 tools/ci_report.py --jobs "$RUNNER_TEMP/jobs.json" "$RUNNER_TEMP"/reports/*.tsv >> "$GITHUB_STEP_SUMMARY"
+      - env:
+          RESULTS: ${{ join(needs.*.result, ' ') }}
+        run: |
+          echo "blocks: $RESULTS"
+          for result in $RESULTS; do [ "$result" = success ] || exit 1; done

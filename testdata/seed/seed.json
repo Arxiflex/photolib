@@ -1,0 +1,11 @@
+{
+  "users": [
+    {"id": "alice", "name": "Alice Example", "email": "alice@example.test", "admin": true},
+    {"id": "bob", "name": "Bob Example", "email": "bob@example.test", "admin": false},
+    {"id": "carol", "name": "Carol Example", "email": "carol@example.test", "admin": false}
+  ],
+  "libraries": [
+    {"id": "family", "name": "Family", "owner": "alice", "members": ["bob"]},
+    {"id": "travel", "name": "Travel", "owner": "bob", "members": []}
+  ]
+}

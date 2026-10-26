@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "path": "names/dcf/IMG_0001.JPG",
+  "size": 2937,
+  "sha256": "fbfb3143ea4941de93b67450a236173f56ce41875e69518fe9d2a8f3605a70e7",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "counter_not_time"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F10",
+      "F43"
+    ]
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

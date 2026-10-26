@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "path": "compound/exif/garbage-text.jpg",
+  "size": 3152,
+  "sha256": "5aef2863b932e7c66485c2b912011a8ab15be6b5868f9f5bcc602c7acdf720c9",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "exif_garbage_text"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "make": "Canon",
+    "model": "Canon EOS 5D Mark IV"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": null,
+        "precision": null,
+        "event": "capture",
+        "rejected": "invalid"
+      }
+    ],
+    "resolved": null
+  }
+}

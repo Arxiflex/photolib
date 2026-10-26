@@ -1,0 +1,32 @@
+name: photolib_video
+description: Prototype video executors of the M0-35 spike, one edit decision list planned in Dart and run by FFmpeg on desktops, Media3 on Android and AVFoundation on iOS and macOS.
+publish_to: none
+
+environment:
+  sdk: ^3.9.0
+  flutter: ">=3.35.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  dart_code_linter: ^4.4.2
+  flutter_test:
+    sdk: flutter
+  photolib_harness:
+    path: ../photolib_harness
+  very_good_analysis: ^11.0.0
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: org.photolib.video
+        pluginClass: PhotolibVideoPlugin
+      ios:
+        pluginClass: PhotolibVideoPlugin
+        sharedDarwinSource: true
+      macos:
+        pluginClass: PhotolibVideoPlugin
+        sharedDarwinSource: true

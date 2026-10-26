@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "path": "hdr/hlg.avif",
+  "size": 358,
+  "sha256": "aa01611ff748e42b5e34664ee464ea7391fc7622dd170d2a3c6f6cf52d82a51b",
+  "origin": "synthetic",
+  "notes": "Placeholder AV1 payload: the structure and metadata are real, the image does not decode.",
+  "format": "avif",
+  "quirks": [
+    "bit_depth_10",
+    "hdr_hlg"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "avif",
+    "mime": "image/avif",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 3840,
+    "height": 2160
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

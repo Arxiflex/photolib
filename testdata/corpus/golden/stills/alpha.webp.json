@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "path": "stills/alpha.webp",
+  "size": 20804,
+  "sha256": "34ba8b9c1bc6e71d64028db258ff97c4d7c0da5e1d9317bb3d430cabd7f3b4c8",
+  "origin": "synthetic",
+  "format": "webp",
+  "quirks": [
+    "alpha"
+  ],
+  "media": {
+    "container": "webp",
+    "mime": "image/webp",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

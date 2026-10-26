@@ -1,0 +1,5 @@
+# Corpus fixtures are exact bytes: no line-ending conversion, no text diffs (testdata/corpus/README.md).
+testdata/corpus/files/** -text -diff
+# Most items add notes here: keep both sides' lines instead of a conflict (AGENTS.md says how to add them).
+AGENTS.md merge=union
+tools/README.md merge=union

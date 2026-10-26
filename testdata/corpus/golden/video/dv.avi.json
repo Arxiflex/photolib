@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "path": "video/dv.avi",
+  "size": 320,
+  "sha256": "48fc9a803b365626826675906d15101015c7b162493e21f78e528f225f1c4846",
+  "origin": "synthetic",
+  "notes": "Placeholder dv payload: the structure and metadata are real, the video does not decode.",
+  "format": "avi",
+  "quirks": [],
+  "media": {
+    "container": "avi",
+    "mime": "video/x-msvideo",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 720,
+    "height": 576,
+    "duration_ms": 1000,
+    "codec": "dv"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

@@ -1,0 +1,287 @@
+{
+ "construction": "Lockbox: the DeviceDataKey under each unlock factor",
+ "spec": "docs/dev/crypto-v1.md#lockbox",
+ "note": "invalid cases open slot 0, or slot, with that slot's key unless they give one",
+ "valid": [
+  {
+   "id": "lockbox-l1",
+   "description": "level L1: the keystore key alone",
+   "ddk": "50390f1e0351f64e4b3890a379e9d96b2c09e5a6e3db24c8d5d40afb7e98a644",
+   "device_id": "a9e6501b4d0e085571c911364d5fa47e",
+   "slots": [
+    {
+     "factor": 1,
+     "binding": 0,
+     "user_id": "00000000000000000000000000000000",
+     "params": "0000000000000000000000000000000000000000000000000000",
+     "key": "3dc75b8298e111baed37e0d015d45042ecfde3da4e7dd196a1d7315a640d92cc",
+     "nonce": "14bb97c3c5ccce7fabc49aeb2d4edfacd0e91c1c69045e60"
+    }
+   ],
+   "lockbox": "504c4c0101010000a9e6501b4d0e085571c911364d5fa47e67eeaa6ba7c7c9ce23f3f43a8bd152850100000000000000000000000000000000000000000000000000000000000000000000000000000000000000504c5701010c0000f1866887521b1b311ea6028eaf10b7ee67eeaa6ba7c7c9ce23f3f43a8bd1528514bb97c3c5ccce7fabc49aeb2d4edfacd0e91c1c69045e6051cd05f5f722b9871555eec87c7b69d1473ed841c7a3a67ab9ec9735561584648f8b16afc3b00e048e432f274574c734d8f00113e3a3465016dec03d6cb86ed2450db368059a24212162edd84a484888"
+  },
+  {
+   "id": "lockbox-l2",
+   "description": "level L2: passcode with hardware binding, biometrics, recovery code, account",
+   "ddk": "50390f1e0351f64e4b3890a379e9d96b2c09e5a6e3db24c8d5d40afb7e98a644",
+   "device_id": "a9e6501b4d0e085571c911364d5fa47e",
+   "slots": [
+    {
+     "factor": 2,
+     "binding": 1,
+     "user_id": "00000000000000000000000000000000",
+     "params": "01000100000000000301e7d2307d9783eb12f16e53f9ff11d67d",
+     "key": "d8a9e758b905c7dcd23fdab38d07c8627ac0d45662a9071cd513f73a73d3374b",
+     "nonce": "e3107e479938c8e1e63d84e1b3b6ed37423c132a89f5222b"
+    },
+    {
+     "factor": 3,
+     "binding": 0,
+     "user_id": "00000000000000000000000000000000",
+     "params": "0000000000000000000000000000000000000000000000000000",
+     "key": "6858ef9ea353c115468d73baa2a921e367c6bf2027fddaa432e54dc86eb356df",
+     "nonce": "93df44e0b80abdcba44d56fc9550cd28ef9bcc68b8a893ad"
+    },
+    {
+     "factor": 4,
+     "binding": 0,
+     "user_id": "00000000000000000000000000000000",
+     "params": "0000000000000000000000000000000000000000000000000000",
+     "key": "5a32fd8ed281f0b87cf342d809706a0c94140b6044d48356c8ba2adf5059ee80",
+     "nonce": "75e89404a93fe55c33dcf56255105dc67463ce0860f5f8ca"
+    },
+    {
+     "factor": 5,
+     "binding": 0,
+     "user_id": "8372984cbc87a239b291582768d26fb4",
+     "params": "0000000000000000000000000000000000000000000000000000",
+     "key": "b12c1711b2ba4da88446b0500b77b05432f8cceb284d718c41b77b659fd2638b",
+     "nonce": "17cb752ab41741fb9f5c9a986882181ab65ad5537ccfb9d3"
+    }
+   ],
+   "lockbox": "504c4c0101040000a9e6501b4d0e085571c911364d5fa47e67eeaa6ba7c7c9ce23f3f43a8bd1528502010000000000000000000000000000000001000100000000000301e7d2307d9783eb12f16e53f9ff11d67d504c5701010c000045d9466bc448d226a0ade7601eb98dbc67eeaa6ba7c7c9ce23f3f43a8bd15285e3107e479938c8e1e63d84e1b3b6ed37423c132a89f5222b2aa41033e3f504632863ad6171c1c7988bdc2829203a24af85beabe897ee0207424971ec938b1b9f5d439109cba5cdfa6a58a7d6243a0d362d7691e6e6e105b14ccaa8789b751a4916659fdf8c7052d00300000000000000000000000000000000000000000000000000000000000000000000000000000000000000504c5701010c0000fa1f2f4809209917cd16c5639d7693d567eeaa6ba7c7c9ce23f3f43a8bd1528593df44e0b80abdcba44d56fc9550cd28ef9bcc68b8a893ad6b9d60f4d9cccf36e1a320808d736ca27bea9645afc6b454aed2b09a5f4957a5677ee4cfca9c912938bef53b1b35ab193ab06b9b309e7fd7a991f2196c39831dac947c93a6643f1b7413789ec20726980400000000000000000000000000000000000000000000000000000000000000000000000000000000000000504c5701010c0000c3b5f1da8a141a09db171494cb85b2e967eeaa6ba7c7c9ce23f3f43a8bd1528575e89404a93fe55c33dcf56255105dc67463ce0860f5f8ca83bb4559f2a0d48b8c9f30b532955984957d0d34f8c4db0461063c9ee14e9798c7cbc0c6356ac9dda63d142bed41536d661bac073dbfe2c137d48216a57d6a0942831b3f1a828a4b852083754e4f00ac05008372984cbc87a239b291582768d26fb40000000000000000000000000000000000000000000000000000504c5701010c00000b0223f4a9f28525f7289c908bf7cd6367eeaa6ba7c7c9ce23f3f43a8bd1528517cb752ab41741fb9f5c9a986882181ab65ad5537ccfb9d38117dc162d4a0dc033be97b141292705cce0f520334e957809436c9d654495650a5cc7085c4d49e8c5d4881d1170bb298964d0828ba82145099559af19954c76ea2e4e60e9f7f60f2d398b4236adf04a"
+  }
+ ],
+ "invalid": [
+  {
+   "id": "lockbox-short-header",
+   "description": "shorter than the 40-byte header",
+   "base": "lockbox-l2",
+   "mutations": [
+    {
+     "truncate": 39
+    }
+   ],
+   "error": "bad_length"
+  },
+  {
+   "id": "lockbox-wrong-type",
+   "description": "a wrap where a lockbox is expected",
+   "base": "lockbox-l2",
+   "mutations": [
+    {
+     "set": [
+      2,
+      "57"
+     ]
+    }
+   ],
+   "error": "wrong_type"
+  },
+  {
+   "id": "lockbox-no-slots",
+   "description": "count 0",
+   "base": "lockbox-l2",
+   "mutations": [
+    {
+     "set": [
+      5,
+      "00"
+     ]
+    }
+   ],
+   "error": "bad_header"
+  },
+  {
+   "id": "lockbox-too-many-slots",
+   "description": "count 9",
+   "base": "lockbox-l2",
+   "mutations": [
+    {
+     "set": [
+      5,
+      "09"
+     ]
+    }
+   ],
+   "error": "bad_header"
+  },
+  {
+   "id": "lockbox-reserved",
+   "description": "reserved bytes must be zero",
+   "base": "lockbox-l2",
+   "mutations": [
+    {
+     "set": [
+      6,
+      "01"
+     ]
+    }
+   ],
+   "error": "bad_header"
+  },
+  {
+   "id": "lockbox-bad-length",
+   "description": "one byte short of count slots",
+   "base": "lockbox-l2",
+   "mutations": [
+    {
+     "truncate": 791
+    }
+   ],
+   "error": "bad_length"
+  },
+  {
+   "id": "lockbox-unknown-factor",
+   "description": "factor 6 is not assigned",
+   "base": "lockbox-l2",
+   "mutations": [
+    {
+     "set": [
+      228,
+      "06"
+     ]
+    }
+   ],
+   "error": "bad_header"
+  },
+  {
+   "id": "lockbox-binding-on-biometric",
+   "description": "binding applies to the passcode only",
+   "base": "lockbox-l2",
+   "mutations": [
+    {
+     "set": [
+      229,
+      "01"
+     ]
+    }
+   ],
+   "error": "bad_header"
+  },
+  {
+   "id": "lockbox-user-on-passcode",
+   "description": "user_id applies to the account only",
+   "base": "lockbox-l2",
+   "mutations": [
+    {
+     "set": [
+      42,
+      "8372984cbc87a239b291582768d26fb4"
+     ]
+    }
+   ],
+   "error": "bad_header"
+  },
+  {
+   "id": "lockbox-duplicate-factor",
+   "description": "two passcode slots",
+   "base": "lockbox-l2",
+   "mutations": [
+    {
+     "set": [
+      228,
+      "02"
+     ]
+    }
+   ],
+   "error": "bad_header"
+  },
+  {
+   "id": "lockbox-wrapped-type",
+   "description": "a slot wrapping an AMK instead of a DeviceDataKey",
+   "base": "lockbox-l2",
+   "mutations": [
+    {
+     "set": [
+      89,
+      "01"
+     ]
+    }
+   ],
+   "error": "bad_header"
+  },
+  {
+   "id": "lockbox-key-id-mismatch",
+   "description": "the slots wrap another key than the lockbox names",
+   "base": "lockbox-l2",
+   "mutations": [
+    {
+     "flip": 24
+    }
+   ],
+   "error": "bad_header"
+  },
+  {
+   "id": "lockbox-weak-params",
+   "description": "passcode parameters of 32 MiB, below the device floor",
+   "base": "lockbox-l2",
+   "mutations": [
+    {
+     "set": [
+      59,
+      "00008000"
+     ]
+    }
+   ],
+   "error": "kdf_params_rejected"
+  },
+  {
+   "id": "lockbox-other-device",
+   "description": "copied to another device: the device id is in every slot's context",
+   "base": "lockbox-l2",
+   "mutations": [
+    {
+     "set": [
+      8,
+      "04867fca9f0be4a25da4a14df8946bea"
+     ]
+    }
+   ],
+   "error": "auth_failed"
+  },
+  {
+   "id": "lockbox-slot-tampered",
+   "description": "a bit of the passcode slot's sealed key flipped",
+   "base": "lockbox-l2",
+   "mutations": [
+    {
+     "flip": 184
+    }
+   ],
+   "error": "auth_failed"
+  },
+  {
+   "id": "lockbox-other-account",
+   "description": "the account slot moved to another user",
+   "base": "lockbox-l2",
+   "mutations": [
+    {
+     "set": [
+      606,
+      "1c470570bd91c18af3ade0dde09a0982"
+     ]
+    }
+   ],
+   "slot": 3,
+   "error": "auth_failed"
+  },
+  {
+   "id": "lockbox-wrong-passcode",
+   "description": "another passcode: rejected by the commitment",
+   "base": "lockbox-l2",
+   "key": "9efb774158218ece2cd606561d8cf16dc2186dbde9e3ed66ca720f96d8055499",
+   "error": "commitment_mismatch"
+  }
+ ]
+}

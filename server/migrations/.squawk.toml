@@ -1,0 +1,11 @@
+# squawk lints server/migrations/ in the gate (tools/migrations.sh); the rules of docs/dev/migrations.md.
+assume_in_transaction = true
+pg_version = "16.0"
+excluded_rules = [
+  # Ids are UUIDs; integer columns hold bounded values such as pixels, ratings and priorities.
+  "prefer-bigint-over-int",
+  "prefer-bigint-over-smallint",
+  # An upgrade runs at startup, in one transaction, before anything is served.
+  "require-lock-timeout",
+  "require-statement-timeout",
+]

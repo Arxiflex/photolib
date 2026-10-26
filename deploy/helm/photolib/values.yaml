@@ -1,0 +1,29 @@
+# The origin people and apps reach photolibd at, such as https://photos.example.com (required).
+publicUrl: ""
+image:
+  repository: ghcr.io/arxiflex/photolib
+  # Defaults to the chart's appVersion.
+  tag: ""
+database:
+  # A Secret whose key `url` is the postgres:// URL of PostgreSQL 16 or newer (required).
+  secret: ""
+# One Deployment per photolibd process and the roles it runs (docs/admin/configuration.md). A scaled install, on
+# storage every node reaches: --set deployments.all=null,deployments.api.roles=api,deployments.api.replicas=2,...
+deployments:
+  all:
+    roles: all
+    replicas: 1
+# More settings as PHOTOLIB_* variables, such as PHOTOLIB_TRUSTED_PROXIES for the ingress controller's addresses.
+env: []
+resources: {}
+persistence:
+  data:
+    size: 100Gi
+    accessMode: ReadWriteOnce
+    storageClass: ""
+  keys:
+    size: 16Mi
+    accessMode: ReadWriteOnce
+    storageClass: ""
+service:
+  port: 8080

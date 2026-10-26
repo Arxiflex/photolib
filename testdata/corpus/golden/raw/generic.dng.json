@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "path": "raw/generic.dng",
+  "size": 25712,
+  "sha256": "8241946a060348b57d4ef4e937e9109cf3de530a0a0c1f61027fd5e16e5c4ad6",
+  "origin": "synthetic",
+  "notes": "Placeholder sensor data, not a camera mosaic; the embedded JPEG preview decodes.",
+  "format": "dng",
+  "quirks": [],
+  "media": {
+    "container": "tiff",
+    "mime": "image/x-adobe-dng",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120,
+    "make": "Leica Camera AG",
+    "model": "LEICA M10"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2018-04-12T19:24:49",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2018-04-12T19:24:49",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

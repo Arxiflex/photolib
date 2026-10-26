@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package photolib.api.v1;
+
+// How a client can prove who it is to this server.
+enum AuthMethod {
+  AUTH_METHOD_UNSPECIFIED = 0;
+  AUTH_METHOD_OPAQUE = 1;
+  AUTH_METHOD_OIDC = 2;
+  AUTH_METHOD_PASSKEY = 3;
+}
+
+// What a client needs to know before it talks to a server.
+service ServerInfoService {
+  // Returns the server's API version, capabilities and sign-in methods; needs no authentication.
+  rpc GetServerInfo(GetServerInfoRequest) returns (GetServerInfoResponse);
+}
+
+// Asks for the server information.
+message GetServerInfoRequest {}
+
+// The server information.
+message GetServerInfoResponse {
+  // Version of the API the server implements, e.g. "1.0".
+  string api_version = 1;
+  // Oldest app version the server still serves.
+  string min_client_version = 2;
+  // Behaviours the server supports, e.g. "sync.stream.v2"; clients feature-detect on these.
+  repeated string capabilities = 3;
+  // Changes when the server is restored from a backup, so clients re-verify their backup state.
+  string epoch = 4;
+  repeated AuthMethod auth_methods = 5;
+  // The OpenID Connect providers people sign in with, for AUTH_METHOD_OIDC.
+  repeated OidcProvider oidc_providers = 6;
+}
+
+// An OpenID Connect provider of this server.
+message OidcProvider {
+  // What AuthService.StartOidc names.
+  string id = 1;
+  // What the sign-in button says, such as "Authentik".
+  string name = 2;
+}

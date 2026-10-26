@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "path": "names/Screenshot_20201215-090626.png",
+  "size": 2792,
+  "sha256": "233b2fef962eebc245aa44356aa091408f6285b7ab1c816454a8b3b031acce2d",
+  "origin": "synthetic",
+  "format": "png",
+  "quirks": [
+    "screenshot"
+  ],
+  "media": {
+    "container": "png",
+    "mime": "image/png",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": [
+      "F12",
+      "F13",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F12",
+        "kind": "local",
+        "value": "2020-12-15T09:06:26",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2020-12-15T09:06:26",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F12",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

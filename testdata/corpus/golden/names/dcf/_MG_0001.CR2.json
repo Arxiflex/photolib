@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "path": "names/dcf/_MG_0001.CR2",
+  "size": 25532,
+  "sha256": "20e877760ba088f496e6c82d8741468a8c4ff6597d024574565dd5b462a6df69",
+  "origin": "synthetic",
+  "notes": "Placeholder sensor data, not a camera mosaic; the embedded JPEG preview decodes.",
+  "format": "cr2",
+  "vendor": "canon",
+  "quirks": [
+    "counter_not_time"
+  ],
+  "media": {
+    "container": "tiff",
+    "mime": "image/x-canon-cr2",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": [
+      "F43"
+    ]
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

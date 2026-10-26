@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "path": "names/screen-20240131-142530.mp4",
+  "size": 747,
+  "sha256": "b21f6f464c8102a47268cda490543a0f7872cac8019665661adcc5dd7d11cd11",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mp4",
+  "quirks": [
+    "mvhd_zero",
+    "screen_recording"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "h264"
+  },
+  "filename": {
+    "matches": [
+      "F15",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F15",
+        "kind": "local",
+        "value": "2024-01-31T14:25:30",
+        "precision": "s",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": "2024-01-31T14:25:30",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F15",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

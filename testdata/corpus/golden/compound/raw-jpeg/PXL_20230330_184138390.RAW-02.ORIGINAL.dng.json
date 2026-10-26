@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "path": "compound/raw-jpeg/PXL_20230330_184138390.RAW-02.ORIGINAL.dng",
+  "size": 25259,
+  "sha256": "eb7af1f69820ee7f18d2860ab4f339eeb8a59a94bdab23498e40a4e5fb2da826",
+  "origin": "synthetic",
+  "notes": "Placeholder sensor data, not a camera mosaic; the embedded JPEG preview decodes.",
+  "format": "dng",
+  "vendor": "google",
+  "quirks": [
+    "pixel_utc_name",
+    "raw_jpeg_pair"
+  ],
+  "media": {
+    "container": "tiff",
+    "mime": "image/x-adobe-dng",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120,
+    "make": "Google",
+    "model": "Pixel 7"
+  },
+  "group": {
+    "kind": "raw_jpeg",
+    "key": "PXL_20230330_184138390",
+    "role": "raw_alt"
+  },
+  "filename": {
+    "matches": [
+      "F03"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2023-03-30T14:41:38.390",
+        "precision": "ms",
+        "event": "capture",
+        "offset": "-04:00"
+      },
+      {
+        "source": "filename:F03",
+        "kind": "utc",
+        "value": "2023-03-30T18:41:38.390Z",
+        "precision": "ms",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2023-03-30T14:41:38.390",
+      "utc": "2023-03-30T18:41:38.390Z",
+      "offset": "-04:00",
+      "tz_source": "explicit_offset",
+      "precision": "ms",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

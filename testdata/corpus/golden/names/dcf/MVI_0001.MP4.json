@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "path": "names/dcf/MVI_0001.MP4",
+  "size": 747,
+  "sha256": "773f7016b2b25129a3f745c204335a81f50131011c24ed654b814cd00d310ed9",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mp4",
+  "quirks": [
+    "counter_not_time",
+    "mvhd_zero"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "h264"
+  },
+  "filename": {
+    "matches": [
+      "F43"
+    ]
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package photolib.kernel.v1;
+
+// The client's OPAQUE registration: without a response, the registration request; with the server's response, the
+// record to upload. Both steps take the same randomness.
+message OpaqueRegisterRequest {
+  string password = 1;
+  // The account's Argon2id parameter set; the KSF takes m and t from it.
+  bytes params = 2;
+  // 96 random bytes.
+  bytes randomness = 3;
+  bytes response = 4;
+}
+
+// The client's OPAQUE login: without KE2, KE1; with the server's KE2, KE3. Both steps take the same randomness.
+message OpaqueLoginRequest {
+  string password = 1;
+  bytes params = 2;
+  // 128 random bytes.
+  bytes randomness = 3;
+  bytes ke2 = 4;
+}
+
+// The client's next message; after login, the protocol's session and export keys (crypto v1 derives no key from them).
+message OpaqueClientResponse {
+  bytes message = 1;
+  bytes session_key = 2;
+  bytes export_key = 3;
+}
+
+// The server's answer to a registration request.
+message OpaqueServerRegisterRequest {
+  // 64 bytes.
+  bytes oprf_seed = 1;
+  // The server's ristretto255 private key.
+  bytes private_key = 2;
+  // The user id.
+  bytes credential_id = 3;
+  bytes request = 4;
+}
+
+// The server's side of a login: without KE3, KE2; with the client's KE3, its check. Both steps take the same randomness.
+message OpaqueServerLoginRequest {
+  bytes oprf_seed = 1;
+  bytes private_key = 2;
+  bytes credential_id = 3;
+  // The registration record.
+  bytes record = 4;
+  // 96 random bytes.
+  bytes randomness = 5;
+  bytes ke1 = 6;
+  bytes ke3 = 7;
+}
+
+// The server's next message; after login, the session key.
+message OpaqueServerResponse {
+  bytes message = 1;
+  bytes session_key = 2;
+}

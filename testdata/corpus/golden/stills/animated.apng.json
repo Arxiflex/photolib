@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "path": "stills/animated.apng",
+  "size": 5447,
+  "sha256": "f2aa4b52c5f5099f92cb141e1738d7a3b722555af5dfa7802482272ab579047d",
+  "origin": "synthetic",
+  "format": "apng",
+  "quirks": [
+    "animated"
+  ],
+  "media": {
+    "container": "png",
+    "mime": "image/apng",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

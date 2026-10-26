@@ -1,0 +1,366 @@
+{
+ "construction": "PLB blob envelope and PLX manifest",
+ "spec": "docs/dev/crypto-v1.md#plb-blob-envelope",
+ "pattern": "plaintext_length means plaintext byte i = i mod 251",
+ "valid": [
+  {
+   "id": "plb-empty",
+   "description": "empty plaintext: one empty final chunk",
+   "type": "B",
+   "kind": 1,
+   "chunk_log2": 16,
+   "padded": false,
+   "key": "ccc4318181ce717f0c1f4c1cd6986b77a6c210857c52ca8e50fe6e6a3bc770d7",
+   "salt": "85085d4d490833f5df095d4718021851ecb8737fb3d3cc218abee39bfbb44270",
+   "plaintext": "",
+   "envelope": "504c4201010110007479e7af95b52cad8b16101020d9b08585085d4d490833f5df095d4718021851ecb8737fb3d3cc218abee39bfbb4427043925d29975d1eb293b623af25aa0e9614664d8aa38c55024a3b80a92d663ccaba948b4d872087e519566c079c7334f1"
+  },
+  {
+   "id": "plb-short",
+   "description": "a short original in one final chunk",
+   "type": "B",
+   "kind": 1,
+   "chunk_log2": 16,
+   "padded": false,
+   "key": "ccc4318181ce717f0c1f4c1cd6986b77a6c210857c52ca8e50fe6e6a3bc770d7",
+   "salt": "19a0c55f471a333823e7eac4c867e19ec9abe8a33caf98441c4e388a349c7257",
+   "plaintext": "70686f746f6c69622063727970746f207631",
+   "envelope": "504c4201010110007479e7af95b52cad8b16101020d9b08519a0c55f471a333823e7eac4c867e19ec9abe8a33caf98441c4e388a349c7257443dbabbf920900afaac23d777c201e968e474dcc1753509102aefe5682e3b9dd3711e39364c21ae250e746a5caf6afdd4f3a2d14dce4931c1e9fa5eaea4760bbe6c"
+  },
+  {
+   "id": "plb-padded",
+   "description": "metadata padded: 20 bytes + 0x80 marker -> Padme(21) = 22",
+   "type": "B",
+   "kind": 4,
+   "chunk_log2": 16,
+   "padded": true,
+   "key": "a6d15da2f55474b01e213279ff3f86a3f1e22732c8501c170672f6e82055c8a4",
+   "salt": "1b05f323ea731ff78be9acbf6134de1261164f5438cc928eed0aeb0cc473df00",
+   "plaintext": "0a126361707475726520323032362d31302d3135",
+   "envelope": "504c420101041001a255f461ddaef1f87319eebe284c57ba1b05f323ea731ff78be9acbf6134de1261164f5438cc928eed0aeb0cc473df00608aefccc1f41d84b83006b1a76f974babfc8c7d212445616f3402817b97fa99426741722c5df0da807327bb8c5e9eb4a12fad49707e8c0260c4e154d8a9363da3b2ac91d81f"
+  },
+  {
+   "id": "plb-one-full-chunk",
+   "description": "exactly one 64 KiB chunk: the full chunk is the final one",
+   "type": "B",
+   "kind": 1,
+   "chunk_log2": 16,
+   "padded": false,
+   "key": "ccc4318181ce717f0c1f4c1cd6986b77a6c210857c52ca8e50fe6e6a3bc770d7",
+   "salt": "a90206979b66d62b0d745cf97f65ef4538c564049320dcb7636bcc03ef50010f",
+   "plaintext_length": 65536,
+   "envelope_length": 65640,
+   "envelope_sha256": "1836ee602f2ec75e9b3eae2f7d8975d585387b76d38cd15f136d2d4ff0f03d77"
+  },
+  {
+   "id": "plb-three-chunks",
+   "description": "two full chunks and a partial final chunk",
+   "type": "B",
+   "kind": 1,
+   "chunk_log2": 16,
+   "padded": false,
+   "key": "ccc4318181ce717f0c1f4c1cd6986b77a6c210857c52ca8e50fe6e6a3bc770d7",
+   "salt": "8a36db7a47ace48a42687dbb63626e7181ff6c788787ba8008c28df78b728995",
+   "plaintext_length": 132072,
+   "envelope_length": 132208,
+   "envelope_sha256": "9f2e8dbfe7832035f14f76d4d9f92bee9edb17ab5b742405a03951de30f9e50f"
+  },
+  {
+   "id": "plb-chunk-log2-17",
+   "description": "readers accept chunk_log2 16..22 (writers emit 16)",
+   "type": "B",
+   "kind": 1,
+   "chunk_log2": 17,
+   "padded": false,
+   "key": "ccc4318181ce717f0c1f4c1cd6986b77a6c210857c52ca8e50fe6e6a3bc770d7",
+   "salt": "96b0d353328255f995d434e2c69f7c1bf0dd7577a112b90abafdf0fed069a71a",
+   "plaintext_length": 70000,
+   "envelope_length": 70104,
+   "envelope_sha256": "dfc64523ada395b8ee7c3395a34875beba3ab3e17b0ef2c4039046c05d88b792"
+  },
+  {
+   "id": "plx-manifest",
+   "description": "a link or export manifest (type X, kind manifest)",
+   "type": "X",
+   "kind": 10,
+   "chunk_log2": 16,
+   "padded": false,
+   "key": "209b7ff204b0f3c7737a6d8b18ed3e945a2c3d198922f428fda76c0e52a92bc4",
+   "salt": "ec53bbeed9b3371bc5bad46665a10e2f73362b48f8377fab9a89b7acd4aabc2c",
+   "plaintext": "6d616e6966657374",
+   "envelope": "504c5801010a10005b126f47166ebfa3d4b1997ae959d0a4ec53bbeed9b3371bc5bad46665a10e2f73362b48f8377fab9a89b7acd4aabc2c0f02519608c95eb222178e34560d70d9dfd17e0c23c3492b181cb2b9320c32e052fe9d1ef3b11b5c31684011cb4682f65a1ce7ad72e7990a"
+  }
+ ],
+ "invalid": [
+  {
+   "id": "plb-bad-magic",
+   "description": "magic is not PL",
+   "base": "plb-short",
+   "mutations": [
+    {
+     "set": [
+      0,
+      "514c"
+     ]
+    }
+   ],
+   "error": "bad_magic"
+  },
+  {
+   "id": "plb-wrong-type",
+   "description": "a wrap where a blob is expected",
+   "base": "plb-short",
+   "mutations": [
+    {
+     "set": [
+      2,
+      "57"
+     ]
+    }
+   ],
+   "error": "wrong_type"
+  },
+  {
+   "id": "plb-unsupported-version",
+   "description": "format version 2 is unknown",
+   "base": "plb-short",
+   "mutations": [
+    {
+     "set": [
+      3,
+      "02"
+     ]
+    }
+   ],
+   "error": "unsupported_version"
+  },
+  {
+   "id": "plb-unsupported-suite",
+   "description": "suite 2 is not defined",
+   "base": "plb-short",
+   "mutations": [
+    {
+     "set": [
+      4,
+      "02"
+     ]
+    }
+   ],
+   "error": "unsupported_suite"
+  },
+  {
+   "id": "plb-experimental-suite",
+   "description": "experimental suites (0xF0-0xFE) are rejected by release builds",
+   "base": "plb-short",
+   "mutations": [
+    {
+     "set": [
+      4,
+      "f0"
+     ]
+    }
+   ],
+   "error": "unsupported_suite"
+  },
+  {
+   "id": "plb-chunk-log2-15",
+   "description": "chunk_log2 below 16",
+   "base": "plb-short",
+   "mutations": [
+    {
+     "set": [
+      6,
+      "0f"
+     ]
+    }
+   ],
+   "error": "bad_header"
+  },
+  {
+   "id": "plb-chunk-log2-23",
+   "description": "chunk_log2 above 22",
+   "base": "plb-short",
+   "mutations": [
+    {
+     "set": [
+      6,
+      "17"
+     ]
+    }
+   ],
+   "error": "bad_header"
+  },
+  {
+   "id": "plb-unknown-flag",
+   "description": "flag bit 1 is reserved",
+   "base": "plb-short",
+   "mutations": [
+    {
+     "set": [
+      7,
+      "02"
+     ]
+    }
+   ],
+   "error": "bad_header"
+  },
+  {
+   "id": "plb-short-header",
+   "description": "shorter than the 88-byte header",
+   "base": "plb-short",
+   "mutations": [
+    {
+     "truncate": 87
+    }
+   ],
+   "error": "bad_length"
+  },
+  {
+   "id": "plb-short-chunk",
+   "description": "a final chunk shorter than its tag",
+   "base": "plb-short",
+   "mutations": [
+    {
+     "truncate": 103
+    }
+   ],
+   "error": "bad_length"
+  },
+  {
+   "id": "plb-header-tampered",
+   "description": "key_id changed: the header is the AAD of every chunk",
+   "base": "plb-short",
+   "mutations": [
+    {
+     "flip": 8
+    }
+   ],
+   "error": "auth_failed"
+  },
+  {
+   "id": "plb-kind-swapped",
+   "description": "content kind changed in the header",
+   "base": "plb-short",
+   "mutations": [
+    {
+     "set": [
+      5,
+      "02"
+     ]
+    }
+   ],
+   "error": "auth_failed"
+  },
+  {
+   "id": "plb-commitment-tampered",
+   "description": "commitment changed",
+   "base": "plb-short",
+   "mutations": [
+    {
+     "flip": 60
+    }
+   ],
+   "error": "commitment_mismatch"
+  },
+  {
+   "id": "plb-ciphertext-tampered",
+   "description": "a ciphertext bit flipped",
+   "base": "plb-short",
+   "mutations": [
+    {
+     "flip": 90
+    }
+   ],
+   "error": "auth_failed"
+  },
+  {
+   "id": "plb-tag-tampered",
+   "description": "a tag bit flipped",
+   "base": "plb-short",
+   "mutations": [
+    {
+     "flip": 121
+    }
+   ],
+   "error": "auth_failed"
+  },
+  {
+   "id": "plb-truncated",
+   "description": "the final chunk dropped: chunk 1 was not sealed as final",
+   "base": "plb-three-chunks",
+   "mutations": [
+    {
+     "truncate": 131192
+    }
+   ],
+   "error": "auth_failed"
+  },
+  {
+   "id": "plb-reordered",
+   "description": "chunks 0 and 1 swapped: the index is in the nonce",
+   "base": "plb-three-chunks",
+   "mutations": [
+    {
+     "swap": [
+      88,
+      65640,
+      65552
+     ]
+    }
+   ],
+   "error": "auth_failed"
+  },
+  {
+   "id": "plb-extended",
+   "description": "a copy of chunk 0 appended",
+   "base": "plb-three-chunks",
+   "mutations": [
+    {
+     "repeat": [
+      88,
+      65552
+     ]
+    }
+   ],
+   "error": "auth_failed"
+  },
+  {
+   "id": "plb-wrong-key",
+   "description": "opened with another key: rejected before decryption",
+   "base": "plb-short",
+   "key": "91dc85652ff62e449860605b904a2ceed38fad466a3f4aaa1fe50a2298037205",
+   "error": "commitment_mismatch"
+  },
+  {
+   "id": "plb-wrong-kind",
+   "description": "a preview served where the original was asked for",
+   "base": "plb-short",
+   "expected_kind": 2,
+   "error": "wrong_kind"
+  },
+  {
+   "id": "plx-as-blob",
+   "description": "a manifest presented as a blob",
+   "base": "plx-manifest",
+   "mutations": [
+    {
+     "set": [
+      2,
+      "42"
+     ]
+    }
+   ],
+   "type": "B",
+   "error": "bad_header"
+  },
+  {
+   "id": "plb-bad-padding",
+   "description": "padded flag set but no 0x80 marker",
+   "type": "B",
+   "kind": 4,
+   "key": "ccc4318181ce717f0c1f4c1cd6986b77a6c210857c52ca8e50fe6e6a3bc770d7",
+   "error": "bad_padding",
+   "envelope": "504c4201010410017479e7af95b52cad8b16101020d9b08533b1d4f68bc7dee81a32aa55fe85d7ae6a8945a767c56e57501ca1b1aab8edd22074f0a66e4c03f1ae1228fab2362f6a337d9de7f00fa21082a861138e0db54e1f569d5a2beeeb0a16e6fe4ff9da7e4a64ea1331b3366ba93c"
+  }
+ ]
+}

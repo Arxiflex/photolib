@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "path": "names/00000PORTRAIT_00000_BURST20190828181853475.jpg",
+  "size": 3904,
+  "sha256": "22554d10609a894de42469bdd50689a7bb4120f6aa43bf12b3f0be4542448fb4",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "burst"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F04",
+      "F53"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F04",
+        "kind": "local",
+        "value": "2019-08-28T18:18:53.475",
+        "precision": "ms",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-08-28T18:18:53.475",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "ms",
+      "bound": "exact",
+      "source": "filename:F04",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

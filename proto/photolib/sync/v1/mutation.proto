@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package photolib.sync.v1;
+
+import "google/protobuf/timestamp.proto";
+import "photolib/sync/v1/sync.proto";
+
+// A hybrid logical clock reading: wall-clock milliseconds plus a counter that orders events within one millisecond.
+message Hlc {
+  // Milliseconds since the Unix epoch, UTC.
+  int64 physical_ms = 1;
+  uint32 counter = 2;
+  // Device that produced the reading (UUIDv7); breaks ties between equal readings.
+  string device_id = 3;
+}
+
+// The envelope of one user action sent from a device's outbox.
+message Mutation {
+  // Idempotency key (UUIDv7): the server ignores a mutation_id it has already applied.
+  string mutation_id = 1;
+  Hlc hlc = 2;
+  // When the device recorded the action, for audit trails; ordering always uses hlc.
+  google.protobuf.Timestamp recorded_at = 3;
+  // What the action changes.
+  oneof change {
+    FieldEdit edit = 4;
+    MemberEdit member = 5;
+    VersionEdit version = 6;
+  }
+}
+
+// Sets user fields of one row. Each field keeps the value of its latest edit by hlc, wherever and in whatever order
+// the edits arrive (per-field last-writer-wins, design 05 §5).
+message FieldEdit {
+  // The table, as sync names it: "assets" (title, description, rating, color_label, archived, trashed_at,
+  // current_version_id: the id of one of the asset's versions, which makes a revert one edit),
+  // "asset_user_state" (favorite, hidden_from_memories), "album_items" (sort_key) or "albums" (title, description).
+  // The first edit of an id no album has creates it for the caller under that id.
+  string entity = 1;
+  // The row's id; of asset_user_state, the asset's.
+  string id = 2;
+  // The new value of each field, typed as sync sends it; a value of no kind is NULL. A trashed_at of any time trashes
+  // the asset at the edit's hlc, NULL restores it.
+  map<string, Value> fields = 3;
+}
+
+// Adds an element to a set or removes it. The latest operation on an element by hlc decides, so an add and a remove
+// made offline on two devices end the same everywhere (OR-set semantics, design 05 §5).
+message MemberEdit {
+  // The set's table, as sync names it: "album_items", the assets of an album. An asset's item in an album has the
+  // UUIDv8 of the first 16 bytes of SHA-256("photolib.album_item" ‖ album id ‖ asset id), ids as 16 bytes, so that
+  // every device names it alike.
+  string entity = 1;
+  // The set: the album.
+  string set_id = 2;
+  // The element: the asset.
+  string element_id = 3;
+  bool present = 4;
+  // Where an added element goes in the set's custom order: a fractional index key of digits and ASCII letters,
+  // ordered bytewise, ties by the item's id.
+  string sort_key = 5;
+}
+
+// Adds an immutable version to an asset's history: the recipe of one edit of the asset's picture (roadmap M8-01,
+// ADR-0391). It is an insert, never merged: a version id the server holds already is the same version (its recipe must
+// be the same) and nothing happens. Making the version the asset's current one is a separate `FieldEdit` of
+// `assets.current_version_id`, sent after it, so that a revert to any version is the same edit.
+message VersionEdit {
+  // The asset edited (UUIDv7); a standard library's, since a private library keeps its recipes on devices.
+  string asset_id = 1;
+  // The new version's id (UUIDv7), made by the device so that it can name the version offline.
+  string version_id = 2;
+  // The version this edit continues, one of the asset's; empty for none.
+  string parent_id = 3;
+  // What the user called it; at most 200 characters.
+  string label = 4;
+  // The `photolib.model.v1.EditRecipe`, encoded; the server checks it with the kernel and keeps its canonical form.
+  bytes recipe = 5;
+}
+
+// Mutations drained from a device's outbox in causal order.
+message MutationBatch {
+  repeated Mutation mutations = 1;
+}

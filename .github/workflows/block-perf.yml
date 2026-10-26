@@ -1,0 +1,53 @@
+name: block-perf
+
+# Performance on four machines: the instruction counts, and the timed budgets alone on three of their own, a share each
+# (PERF_UNITS, tools/perf/run.sh): the server's benchmarks, the timeline's fixtures, and every other budget. Called by
+# ci.yml; it has no trigger of its own.
+on: workflow_call
+
+permissions:
+  contents: read
+
+jobs:
+  lane:
+    name: ${{ matrix.name }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    # The runner's C.UTF-8 matches none of the app's locales, so Flutter falls back to the first, ar, and the
+    # benchmarks that open the viewer fail on a null MaterialLocalizations: English, as on the reference machine
+    env:
+      LANG: en_US.UTF-8
+      LANGUAGE: en_US:en
+      PERF_UNITS: ${{ matrix.units }}
+      PERF_UNITS_EXCEPT: ${{ matrix.units-except }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: perf-instructions
+            except: 'perf/run\.sh'
+          # The server's benchmarks run beside nothing the app measures, on a machine of their own
+          - name: perf-budgets-server
+            steps: 'perf/run\.sh'
+            units: server
+          - name: perf-budgets-timeline
+            steps: 'perf/run\.sh'
+            units: 1m,albums-10k,folders-5k,near-duplicates-100k,one-day-50k,one-timestamp-100k,timeline-300k
+          # Every budget the others do not measure: folder-10k, the videos, device folders, server tiles, cold start
+          - name: perf-budgets-rest
+            steps: 'perf/run\.sh'
+            units-except: server,1m,albums-10k,folders-5k,near-duplicates-100k,one-day-50k,one-timestamp-100k,timeline-300k
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # The history the commits part, the lint ratchet and the proto breaking check compare with
+          fetch-depth: 0
+      - uses: ./.github/actions/lane
+        with:
+          name: ${{ matrix.name }}
+          guard: app/pubspec.yaml
+          tools: flutter rust apt
+          parts: perf
+          steps: ${{ matrix.steps }}
+          except: ${{ matrix.except }}
+          partition: ${{ matrix.partition }}

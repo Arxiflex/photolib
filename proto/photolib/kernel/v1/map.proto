@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package photolib.kernel.v1;
+
+// Builds a map index of geotagged assets in the keyring; its handle is used by the other map calls until it is dropped.
+// An asset is named by its position in the lists. Assets whose coordinates are not finite or lie off the map are kept
+// out of every result, and times the list may omit.
+message MapIndexBuildRequest {
+  // Latitude in degrees, one per asset.
+  repeated double latitudes = 1 [packed = true];
+  // Longitude in degrees, one per asset; as many as latitudes, else the request is invalid.
+  repeated double longitudes = 2 [packed = true];
+  // Capture time in seconds since the epoch, one per asset, or none at all.
+  repeated sint64 times = 3 [packed = true];
+}
+
+// The index the keyring now holds.
+message MapIndexBuildResponse {
+  // The handle of the index in the keyring.
+  uint32 index = 1;
+  // How many assets the map shows (those with a position on the map).
+  uint32 mapped = 2;
+}
+
+// Which assets a map call considers: all of them when nothing is set.
+message MapFilter {
+  // Capture time in seconds, both ends included; absent means unbounded.
+  optional sint64 time_from = 1;
+  optional sint64 time_to = 2;
+  // A lasso: the vertices of a polygon as latitude, longitude pairs (at least three); empty means no polygon.
+  repeated double polygon = 3 [packed = true];
+}
+
+// The clusters of a map viewport at an integer zoom; west > east means the box crosses the antimeridian.
+message MapQueryRequest {
+  uint32 index = 1;
+  double west = 2;
+  double south = 3;
+  double east = 4;
+  double north = 5;
+  uint32 zoom = 6;
+  MapFilter filter = 7;
+}
+
+// The markers of the viewport.
+message MapQueryResponse {
+  repeated MapCluster clusters = 1;
+}
+
+// One marker: a group of assets, or one asset.
+message MapCluster {
+  double latitude = 1;
+  double longitude = 2;
+  uint32 count = 3;
+  // For a single asset, its position in the build request.
+  optional uint32 asset = 4;
+}
+
+// The assets in a viewport that pass the filter, for the map as a search filter and for a lasso selection.
+message MapAssetsRequest {
+  uint32 index = 1;
+  double west = 2;
+  double south = 3;
+  double east = 4;
+  double north = 5;
+  MapFilter filter = 6;
+  // At most this many assets, in ascending order; 0 means all.
+  uint32 limit = 7;
+}
+
+// The assets of the viewport that pass the filter.
+message MapAssetsResponse {
+  // Positions in the build request, ascending.
+  repeated uint32 assets = 1 [packed = true];
+  // How many assets pass the filter in all, which exceeds the list when the limit cut it.
+  uint32 total = 2;
+}
+
+// Forgets an index.
+message MapIndexDropRequest {
+  uint32 index = 1;
+}
+
+// Nothing: the index is gone.
+message MapIndexDropResponse {}

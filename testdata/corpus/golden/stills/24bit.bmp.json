@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "path": "stills/24bit.bmp",
+  "size": 57654,
+  "sha256": "3af0475b4c0646ec055c0d3f205a80ea14b33d149f7a565623b1932a58b0d3a0",
+  "origin": "synthetic",
+  "format": "bmp",
+  "quirks": [],
+  "media": {
+    "container": "bmp",
+    "mime": "image/bmp",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

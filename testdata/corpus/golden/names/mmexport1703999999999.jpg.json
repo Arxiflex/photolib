@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "path": "names/mmexport1703999999999.jpg",
+  "size": 3452,
+  "sha256": "efafbdc6cc8a9367347093a37582c34280a64c6e4c70f7014aded8c797204d5e",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "epoch_name",
+    "messenger_copy",
+    "upper_bound_name"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F32",
+      "F55"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F32",
+        "kind": "utc",
+        "value": "2023-12-31T05:19:59.999Z",
+        "precision": "ms",
+        "event": "save"
+      }
+    ],
+    "resolved": {
+      "local": null,
+      "utc": "2023-12-31T05:19:59.999Z",
+      "offset": null,
+      "tz_source": "device_default",
+      "precision": "ms",
+      "bound": "upper",
+      "source": "filename:F32",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

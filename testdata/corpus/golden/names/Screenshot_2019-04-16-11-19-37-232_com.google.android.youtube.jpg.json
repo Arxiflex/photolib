@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "path": "names/Screenshot_2019-04-16-11-19-37-232_com.google.android.youtube.jpg",
+  "size": 4038,
+  "sha256": "0aaa3b641f356f19b16a9fb457d2656540fbcd1cbdb433675d094a672aa92e6b",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "xiaomi",
+  "quirks": [
+    "screenshot"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F14",
+      "F52",
+      "F54"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F14",
+        "kind": "local",
+        "value": "2019-04-16T11:19:37.232",
+        "precision": "ms",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-04-16T11:19:37.232",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "ms",
+      "bound": "exact",
+      "source": "filename:F14",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

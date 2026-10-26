@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "path": "stills/cmyk.jpg",
+  "size": 1414,
+  "sha256": "9efe2aa0ec8419a7862a1869b28dd051be5f90a8dbf46d082c43b314aff6a719",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "cmyk"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 320,
+    "height": 240
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

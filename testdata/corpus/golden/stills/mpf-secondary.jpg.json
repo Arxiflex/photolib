@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "path": "stills/mpf-secondary.jpg",
+  "size": 10951,
+  "sha256": "7469128299f7efaf23d20c723ab873321e5d8593c398b706269f653d0fc32db5",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "mpf"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

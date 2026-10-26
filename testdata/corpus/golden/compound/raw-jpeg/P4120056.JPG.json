@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "path": "compound/raw-jpeg/P4120056.JPG",
+  "size": 151874,
+  "sha256": "32c23c45d6d5351c4408a134c02da5d41c420a1dd979e5f44681803d9ad715cf",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "olympus",
+  "quirks": [
+    "raw_jpeg_pair"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 6000,
+    "height": 4000,
+    "make": "OLYMPUS CORPORATION",
+    "model": "E-M5"
+  },
+  "group": {
+    "kind": "raw_jpeg",
+    "key": "P4120056",
+    "role": "primary"
+  },
+  "filename": {
+    "matches": [
+      "F44"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2016-04-12T08:08:08",
+        "precision": "s",
+        "event": "capture"
+      },
+      {
+        "source": "filename:F44",
+        "kind": "local",
+        "value": null,
+        "precision": null,
+        "event": "capture",
+        "rejected": "no_year"
+      }
+    ],
+    "resolved": {
+      "local": "2016-04-12T08:08:08",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

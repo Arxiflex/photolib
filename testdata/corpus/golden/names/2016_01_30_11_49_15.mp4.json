@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "path": "names/2016_01_30_11_49_15.mp4",
+  "size": 747,
+  "sha256": "49e93376b41d0dd9f1d89cd7c9360691a8f21ae5f23922da723fdd17b29adab7",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mp4",
+  "quirks": [
+    "mvhd_zero"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "h264"
+  },
+  "filename": {
+    "matches": [
+      "F52",
+      "F54"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F52",
+        "kind": "local",
+        "value": "2016-01-30T11:49:15",
+        "precision": "s",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": "2016-01-30T11:49:15",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F52",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

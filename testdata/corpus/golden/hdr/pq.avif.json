@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "path": "hdr/pq.avif",
+  "size": 358,
+  "sha256": "e883e67e639580a1aaafa0a0691b2414038fc7e974151301960e86cdec19141e",
+  "origin": "synthetic",
+  "notes": "Placeholder AV1 payload: the structure and metadata are real, the image does not decode.",
+  "format": "avif",
+  "quirks": [
+    "bit_depth_10",
+    "hdr_pq"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "avif",
+    "mime": "image/avif",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 3840,
+    "height": 2160
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

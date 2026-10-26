@@ -1,0 +1,41 @@
+name: block-web
+
+# The app and the kernel in browsers, on four machines: the API client, kernel and ML packages; the store and the
+# workers; the editor and the app; everything else (node's browser suites, the server's passkeys). Called by ci.yml;
+# it has no trigger of its own.
+on: workflow_call
+
+permissions:
+  contents: read
+
+jobs:
+  lane:
+    name: ${{ matrix.name }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: web-node
+            except: '^\[app/packages/photolib_(api|kernel|ml)\] |^\[app/packages/photolib_(data|workers)\] |^\[(app/packages/photolib_editor|app)\] flutter test'
+          - name: web-api
+            steps: '^\[app/packages/photolib_(api|kernel|ml)\] '
+          - name: web-data
+            steps: '^\[app/packages/photolib_(data|workers)\] '
+          - name: web-app
+            steps: '^\[(app/packages/photolib_editor|app)\] flutter test'
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # The history the commits part, the lint ratchet and the proto breaking check compare with
+          fetch-depth: 0
+      - uses: ./.github/actions/lane
+        with:
+          name: ${{ matrix.name }}
+          guard: app/pubspec.yaml
+          tools: flutter rust node apt
+          parts: web
+          steps: ${{ matrix.steps }}
+          except: ${{ matrix.except }}
+          partition: ${{ matrix.partition }}

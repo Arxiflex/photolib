@@ -1,0 +1,34 @@
+{
+  "issuer": "https://auth.127.0.0.1.nip.io:9091",
+  "client_id": "photolib",
+  "nonce": "bdeedBLH6fnQeu9Sk_Fq2jim2CiU3f6E",
+  "jwks": {
+    "keys": [
+      {
+        "use": "sig",
+        "kty": "RSA",
+        "kid": "main",
+        "alg": "RS256",
+        "n": "s0EXUpc_BvZjIMGw8NhtU67aLVuKTwmDVJC91DZpLMVgi6U_YnmLrC60QAFoojQ0IzNiqsznRgfy1btmZJx2N5YG-OrsTc1Dw-L571f5u0SgAFOw2YEuUme4THufMzuCZYD9OxFzpP-9nEvcXMP8HrpRaPtNFVEBKDdl9YHNSpp3FPoy2LXN4jh8uR3Ud6qdC6YIJYrQoRbGX-mC19tXFiYg_SmabfgycdtUiFE48Lcmj8oiI9Y2mnuKm9QM1oj6IpM6g6gog0iIXWNenK8e6x7qrLJHgI4nLb98xE8PL24uTNiveiAKEp1eXWOCVl3bopq3gCR7icdY952L595q3w",
+        "e": "AQAB"
+      }
+    ]
+  },
+  "id_token_parts": [
+    "eyJhbGciOiJSUzI1NiIsImtpZCI6Im1haW4iLCJ0eXAiOiJKV1QifQ",
+    "eyJhbXIiOlsicHdkIiwia2JhIl0sImF0X2hhc2giOiI0a3NwaC1scTh2Q1JWamc3ZV9LLXN3IiwiYXVkIjpbInBob3RvbGliIl0sImF1dGhfdGltZSI6MTc5MjIxMjY3MCwiYXpwIjoicGhvdG9saWIiLCJleHAiOjE3OTIyMTYyNzEsImlhdCI6MTc5MjIxMjY3MSwiaXNzIjoiaHR0cHM6Ly9hdXRoLjEyNy4wLjAuMS5uaXAuaW86OTA5MSIsImp0aSI6ImYyNDZkOGNmLTM3MmMtNGFkYS1hZDlhLTlkNzRmZWRjMDY4MSIsIm5vbmNlIjoiYmRlZWRCTEg2Zm5RZXU5U2tfRnEyamltMkNpVTNmNkUiLCJzdWIiOiJkZDdmYjNkYy1kYzVmLTQ3ODQtYmYyOS04NDMyODg3ZDBkODQifQ",
+    "RJpJRBIUtWEz0gffLHW4wS4kO0yHdlgmKorVxFlTaEQT0fDxFxEzzx_1lo4Ro-x-eqino_FyUZugMg0PmnrwVYYZp9uUvexJIYfLR32eBzfVGbfOYvC9NEWitnNS9vUzcTdYib01mYrvJn4Pb9Pkql--3xnt-K_6TyYX7uMIpaq0nM1bayHBOZoILgO1Pt_UNLc5R1ioyg1ZBGxaN1fRyjpSPK1WUpoLyo8zqy8CNcJRcBS6ukRsFO3cpbJu6rISn0jBtyHArqX-fHypyXK71OMKpAssHRfUjoNh5gb7t6W09fQiQrsnIvbYzWolPhgXdPojyNumrRWHHmS5bOneWw"
+  ],
+  "userinfo": {
+    "email": "cy@example.org",
+    "email_verified": true,
+    "groups": [
+      "family"
+    ],
+    "name": "Cy Doe",
+    "preferred_username": "cy",
+    "rat": 1792212669,
+    "sub": "dd7fb3dc-dc5f-4784-bf29-8432887d0d84",
+    "updated_at": 1792212671
+  }
+}

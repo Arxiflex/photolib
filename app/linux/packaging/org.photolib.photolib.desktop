@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Photolib
+Exec=photolib %U
+Icon=org.photolib.photolib
+Terminal=false
+Categories=Graphics;Photography;Viewer;
+MimeType=image/jpeg;image/png;image/gif;image/webp;image/heic;image/heif;image/avif;image/jxl;image/bmp;image/tiff;image/x-adobe-dng;image/x-canon-cr2;image/x-canon-cr3;image/x-nikon-nef;image/x-sony-arw;image/x-olympus-orf;image/x-panasonic-rw2;image/x-fuji-raf;image/x-samsung-srw;image/x-pentax-pef;video/mp4;video/quicktime;video/x-m4v;video/x-msvideo;video/x-matroska;video/webm;video/3gpp;video/mp2t;x-scheme-handler/photolib;

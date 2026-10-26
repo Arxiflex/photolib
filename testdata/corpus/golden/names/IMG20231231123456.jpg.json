@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "path": "names/IMG20231231123456.jpg",
+  "size": 3295,
+  "sha256": "04cff355c998da7e22a3b0cb329094de0812a49947100c52f165db7ad553f172",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "oneplus",
+  "quirks": [],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F07",
+      "F52",
+      "F53"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F07",
+        "kind": "local",
+        "value": "2023-12-31T12:34:56",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12-31T12:34:56",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F07",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

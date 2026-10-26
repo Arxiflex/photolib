@@ -1,0 +1,65 @@
+{
+ "construction": "The recovery phrase and KEK_rec",
+ "spec": "docs/dev/crypto-v1.md#recovery-phrase",
+ "valid": [
+  {
+   "id": "recovery-phrase",
+   "entropy": "d62098008627d430184269b732a5f5e9cdb028ef7111dd28af8d1d67ed8cab47",
+   "phrase": "stomach age ability arrange later blossom genre essay rescue news latin squeeze swallow behave saddle captain tag earth today depart learn shock public trouble",
+   "output": "2224bb392280dd1482c9c0e3557e09697cc922391d06a17c456f2e97d90f7e84"
+  },
+  {
+   "id": "recovery-other",
+   "entropy": "86a585739c5b46f95fe7e3c3245f72964765d1303c953e1c4171227a84c4358e",
+   "phrase": "mammal club friend december refuse lake legend wise segment carry syrup clutch iron trigger science naive dignity tilt fox eager portion ginger stomach spoil",
+   "output": "8ff83e9b58944637ae31c47b7c3dac2006431c0f9f75b7f4a7161ce392c427f6"
+  },
+  {
+   "id": "recovery-typed",
+   "entropy": "d62098008627d430184269b732a5f5e9cdb028ef7111dd28af8d1d67ed8cab47",
+   "phrase": "  stomach\tAGE\tability\tARRANGE\tlater\tBLOSSOM\tgenre\tESSAY\trescue\tNEWS\tlatin\tSQUEEZE\nswallow behave saddle captain tag earth today depart learn shock public trouble",
+   "output": "2224bb392280dd1482c9c0e3557e09697cc922391d06a17c456f2e97d90f7e84",
+   "description": "case and whitespace as typed: ASCII letters in any case, any run of ASCII whitespace"
+  }
+ ],
+ "invalid": [
+  {
+   "id": "recovery-bad-checksum",
+   "description": "the last word changed",
+   "phrase": "stomach age ability arrange later blossom genre essay rescue news latin squeeze swallow behave saddle captain tag earth today depart learn shock public truck",
+   "error": "bad_checksum"
+  },
+  {
+   "id": "recovery-unknown-word",
+   "description": "word 7 is not in the list",
+   "phrase": "stomach age ability arrange later blossom photolib essay rescue news latin squeeze swallow behave saddle captain tag earth today depart learn shock public trouble",
+   "error": "unknown_word",
+   "word": 7
+  },
+  {
+   "id": "recovery-non-ascii-letter",
+   "description": "word 3 is 'kite' with U+212A KELVIN SIGN, a k only outside ASCII",
+   "phrase": "stomach age Kite arrange later blossom genre essay rescue news latin squeeze swallow behave saddle captain tag earth today depart learn shock public trouble",
+   "error": "unknown_word",
+   "word": 3
+  },
+  {
+   "id": "recovery-23-words",
+   "description": "the last word missing",
+   "phrase": "stomach age ability arrange later blossom genre essay rescue news latin squeeze swallow behave saddle captain tag earth today depart learn shock public",
+   "error": "bad_length"
+  },
+  {
+   "id": "recovery-25-words",
+   "description": "a word too many",
+   "phrase": "stomach age ability arrange later blossom genre essay rescue news latin squeeze swallow behave saddle captain tag earth today depart learn shock public trouble abandon",
+   "error": "bad_length"
+  },
+  {
+   "id": "recovery-12-words",
+   "description": "a valid 12-word BIP-39 phrase: only 24 words encode the 32-byte entropy",
+   "phrase": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about",
+   "error": "bad_length"
+  }
+ ]
+}

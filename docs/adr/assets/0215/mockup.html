@@ -1,0 +1,110 @@
+<!doctype html>
+<!-- ADR-0215's grid mock-up: mockup.html?density=months|days|comfortable&theme=light|dark, captured at 390 x 780 CSS px,
+     device scale 2, by headless Chrome (the ADR gives the command). Tiles are drawn scenes, no photos; glyphs are
+     Material Icons (Apache-2.0), the font Flutter's Icons draw from. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  body { margin: 0; width: 390px; height: 780px; overflow: hidden; font-family: Roboto, "Noto Sans", sans-serif; }
+  .light { --surface: #f7f9ff; --on: #181c20; --variant: #41474d; --nav: #ebeef3; --pill: #cde5ff; }
+  .dark { --surface: #101418; --on: #e0e2e8; --variant: #c1c7ce; --nav: #1c2024; --pill: #354a5f; }
+  body { background: var(--surface); color: var(--on); }
+  header { height: 56px; display: flex; align-items: center; padding: 0 16px; font-size: 22px; }
+  header span { flex: 1; }
+  header svg, nav svg { width: 24px; height: 24px; fill: var(--variant); margin-left: 20px; }
+  h2 { font: 500 14px Roboto, sans-serif; margin: 0; padding: 14px 16px 8px; color: var(--variant); }
+  .grid { display: grid; gap: 2px; }
+  .tile { position: relative; aspect-ratio: 1; overflow: hidden; }
+  .mark { position: absolute; display: flex; align-items: center; gap: 2px; background: rgb(0 0 0 / 60%);
+    border-radius: 4px; color: #fff; font-weight: 500; font-variant-numeric: tabular-nums; }
+  .mark svg { fill: #fff; }
+  nav { position: absolute; bottom: 0; width: 390px; height: 72px; background: var(--nav); display: flex;
+    justify-content: space-around; align-items: center; }
+  nav b { display: grid; place-items: center; width: 64px; height: 32px; border-radius: 16px; }
+  nav b.on { background: var(--pill); }
+  nav svg { margin: 0; fill: var(--on); }
+</style>
+</head>
+<body>
+<script>
+const P = {
+  sphere: 'M12 7C6.48 7 2 9.24 2 12c0 2.24 2.94 4.13 7 4.77V20l4-4-4-4v2.73c-3.15-.56-5-1.9-5-2.73 0-1.06 3.04-3 8-3s8 1.94 8 3c0 .73-1.46 1.89-4 2.53v2.05c3.53-.77 6-2.53 6-4.58 0-2.76-4.48-5-10-5z',
+  motion: 'M2.88,7.88l1.54,1.54C4.15,10.23,4,11.1,4,12c0,4.41,3.59,8,8,8s8-3.59,8-8s-3.59-8-8-8c-0.9,0-1.77,0.15-2.58,0.42 L7.89,2.89C9.15,2.32,10.54,2,12,2c5.52,0,10,4.48,10,10s-4.48,10-10,10S2,17.52,2,12C2,10.53,2.32,9.14,2.88,7.88z M6,12 c0-3.31,2.69-6,6-6s6,2.69,6,6s-2.69,6-6,6S6,15.31,6,12z M7,5.5C7,6.33,6.33,7,5.5,7S4,6.33,4,5.5S4.67,4,5.5,4S7,4.67,7,5.5z',
+  panorama: 'M20 6.54v10.91c-2.6-.77-5.28-1.16-8-1.16-2.72 0-5.4.39-8 1.16V6.54c2.6.77 5.28 1.16 8 1.16 2.72.01 5.4-.38 8-1.16M21.43 4c-.1 0-.2.02-.31.06C18.18 5.16 15.09 5.7 12 5.7c-3.09 0-6.18-.55-9.12-1.64-.11-.04-.22-.06-.31-.06-.34 0-.57.23-.57.63v14.75c0 .39.23.62.57.62.1 0 .2-.02.31-.06 2.94-1.1 6.03-1.64 9.12-1.64 3.09 0 6.18.55 9.12 1.64.11.04.21.06.31.06.33 0 .57-.23.57-.63V4.63c0-.4-.24-.63-.57-.63z',
+  animated: 'M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M9.5,13v-1h1v1c0,0.55-0.45,1-1,1h-1 c-0.55,0-1-0.45-1-1v-2c0-0.55,0.45-1,1-1h1c0.55,0,1,0.45,1,1h-2v2H9.5z M12.5,14h-1v-4h1V14z M16.5,11h-2v0.5H16v1h-1.5V14h-1v-4 h3V11z',
+  raw: 'M6.5,9H3v6h1.5v-2h1.1l0.9,2H8l-0.9-2.1C7.6,12.6,8,12.1,8,11.5v-1C8,9.7,7.3,9,6.5,9z M6.5,11.5h-2v-1h2V11.5z M10.25,9l-1.5,6h1.5l0.38-1.5h1.75l0.37,1.5h1.5l-1.5-6H10.25z M11,12l0.25-1h0.5L12,12H11z M19.98,9L19.24,12 18.5,9 16.98,9 16.24,12 15.5,9 14,9 15.5,15 16.98,15 17.74,11.96 18.5,15 19.98,15 21.48,9z',
+  stack: 'M3 5H1v16c0 1.1.9 2 2 2h16v-2H3V5zm18-4H7c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm0 16H7V3h14v14z',
+  favourite: 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z',
+  cloudOff: 'M19.35 10.04C18.67 6.59 15.64 4 12 4c-1.48 0-2.85.43-4.01 1.17l1.46 1.46C10.21 6.23 11.08 6 12 6c3.04 0 5.5 2.46 5.5 5.5v.5H19c1.66 0 3 1.34 3 3 0 1.13-.64 2.11-1.56 2.62l1.45 1.45C23.16 18.16 24 16.68 24 15c0-2.64-2.05-4.78-4.65-4.96zM3 5.27l2.75 2.74C2.56 8.15 0 10.77 0 14c0 3.31 2.69 6 6 6h11.73l2 2L21 20.73 4.27 4 3 5.27zM7.73 10l8 8H6c-2.21 0-4-1.79-4-4s1.79-4 4-4h1.73z',
+  slomo: 'M13.05 9.79L10 7.5v9l3.05-2.29L16 12zM11 4.07V2.05c-2.01.2-3.84 1-5.32 2.21L7.1 5.69c1.11-.86 2.44-1.44 3.9-1.62zM5.69 7.1L4.26 5.68C3.05 7.16 2.25 8.99 2.05 11h2.02c.18-1.46.76-2.79 1.62-3.9zM4.07 13H2.05c.2 2.01 1 3.84 2.21 5.32l1.43-1.43c-.86-1.1-1.44-2.43-1.62-3.89zm1.61 6.74C7.16 20.95 9 21.75 11 21.95v-2.02c-1.46-.18-2.79-.76-3.9-1.62l-1.42 1.43zM22 12c0 5.16-3.92 9.42-8.95 9.95v-2.02C16.97 19.41 20 16.05 20 12s-3.03-7.41-6.95-7.93V2.05C18.08 2.58 22 6.84 22 12z',
+  timelapse: 'M16.24 7.76C15.07 6.59 13.54 6 12 6v6l-4.24 4.24c2.34 2.34 6.14 2.34 8.49 0 2.34-2.34 2.34-6.14-.01-8.48zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z',
+  search: 'M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z',
+  more: 'M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z',
+  photos: 'M22 16V4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2zm-11-4l2.03 2.71L16 11l4 5H8l3-4zM2 6v14c0 1.1.9 2 2 2h14v-2H4V6H2z',
+};
+const svg = (name, size) => `<svg viewBox="0 0 24 24" width="${size}" height="${size}"><path d="${P[name]}"/></svg>`;
+
+// The same items at every density: kind (top end), duration (bottom end), state (bottom start), scene.
+const ITEMS = [
+  {kind: null, dur: '0:37', scene: 'snow'}, {kind: 'motion'}, {kind: 'sphere'}, {kind: 'stack', count: 5},
+  {kind: 'animated', scene: 'night'}, {kind: 'raw', fav: true}, {kind: 'panorama', scene: 'snow'},
+  {kind: 'sphere', dur: '2:41'}, {}, {kind: 'slomo', dur: '0:08'}, {fav: true}, {kind: 'timelapse', dur: '0:21'},
+  {dur: '1:04:31', scene: 'night'}, {}, {kind: 'motion', fav: true}, {}, {dur: '0:05'}, {kind: 'motion'},
+  {cloudOff: true}, {}, {kind: 'raw'}, {}, {dur: '12:09', scene: 'snow'}, {kind: 'stack', count: 12},
+];
+let seed = 7;
+const random = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+const hsl = (h, s, l) => `hsl(${h} ${s}% ${l}%)`;
+function scene(item) {
+  if (item.scene === 'snow') return `linear-gradient(${hsl(205, 30, 96)} 55%, #fff 55%)`;
+  if (item.scene === 'night') return `radial-gradient(circle at 70% 30%, #f6e7a8 6%, transparent 7%),
+    linear-gradient(${hsl(230, 45, 12)} 60%, ${hsl(230, 25, 20)} 60%)`;
+  const sky = hsl(195 + random() * 30, 55, 55 + random() * 30), ground = hsl(30 + random() * 100, 40, 25 + random() * 30);
+  const horizon = 40 + random() * 30, sun = random() < 0.4;
+  return `${sun ? `radial-gradient(circle at ${20 + random() * 60}% ${15 + random() * 15}%, #fff3c4 9%, transparent 10%), ` : ''}
+    radial-gradient(ellipse at ${random() * 100}% 100%, ${hsl(100 + random() * 60, 35, 30)} 40%, transparent 41%),
+    linear-gradient(${sky} ${horizon}%, ${ground} ${horizon}%)`;
+}
+
+const params = new URLSearchParams(location.search);
+const density = params.get('density') || 'days';
+document.body.className = params.get('theme') || 'light';
+const columns = {months: 7, days: 4, comfortable: 2}[density];
+const side = (390 - 2 * (columns - 1)) / columns;
+// Marks hide below 64 dp; from 160 dp they grow one step.
+const look = side < 64 ? null : side < 160 ? {glyph: 16, pad: 2, text: 12, inset: 4} : {glyph: 20, pad: 2, text: 14, inset: 6};
+
+function marks(item) {
+  if (!look) return '';
+  const {glyph, pad, text, inset} = look, height = glyph + 2 * pad;
+  const box = (where, inner, extra = '') =>
+    `<div class="mark" style="${where}; height:${height}px; padding:0 ${pad}px; font-size:${text}px;${extra}">${inner}</div>`;
+  let html = '';
+  if (item.kind) {
+    const inner = svg(item.kind, glyph) + (item.count ? `<span style="padding-right:${pad + 1}px">${item.count}</span>` : '');
+    html += box(`top:${inset}px; right:${inset}px`, inner);
+  }
+  if (item.dur) html += box(`bottom:${inset}px; right:${inset}px`, item.dur, `padding:0 ${text / 3}px`);
+  const state = (item.cloudOff ? svg('cloudOff', glyph) : '') + (item.fav ? svg('favourite', glyph) : '');
+  if (state) html += box(`bottom:${inset}px; left:${inset}px`, state);
+  return html;
+}
+
+const days = density === 'months' ? ['October 2026', 'September 2026'] : ['Today', 'Saturday, 12 October'];
+let html = `<header><span>Photos</span>${svg('search', 24)}${svg('more', 24)}</header>`;
+let index = 0;
+for (const [i, day] of days.entries()) {
+  const count = density === 'months' ? (i ? 70 : 40) : (i ? 24 : 12);
+  html += `<h2>${day}</h2><div class="grid" style="grid-template-columns:repeat(${columns}, 1fr)">`;
+  for (let n = 0; n < count; n++, index++) {
+    const item = ITEMS[index] ?? {};
+    html += `<div class="tile" style="background:${scene(item)}">${marks(item)}</div>`;
+  }
+  html += '</div>';
+}
+html += `<nav><b class="on">${svg('photos', 24)}</b><b>${svg('stack', 24)}</b><b>${svg('search', 24)}</b></nav>`;
+document.body.innerHTML = html;
+</script>
+</body>
+</html>

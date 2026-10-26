@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "path": "compound/raw-jpeg/IMGP0034.PEF",
+  "size": 26047,
+  "sha256": "18e39e9694812607883964c8018ead2b976078b0af4764a8eb12c66a42b0204c",
+  "origin": "synthetic",
+  "notes": "Placeholder sensor data, not a camera mosaic; the embedded JPEG preview decodes.",
+  "format": "pef",
+  "vendor": "pentax",
+  "quirks": [
+    "raw_jpeg_pair"
+  ],
+  "media": {
+    "container": "tiff",
+    "mime": "image/x-pentax-pef",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120,
+    "make": "PENTAX Corporation",
+    "model": "PENTAX K-1"
+  },
+  "group": {
+    "kind": "raw_jpeg",
+    "key": "IMGP0034",
+    "role": "raw_alt"
+  },
+  "filename": {
+    "matches": [
+      "F43"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2015-12-24T17:00:01",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2015-12-24T17:00:01",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

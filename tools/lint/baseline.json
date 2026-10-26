@@ -1,0 +1,2357 @@
+{
+ "clang-tidy app/linux": {},
+ "clippy kernel": {
+  "kernel/benches/instructions.rs": {
+   "clippy::cast_sign_loss": 2
+  },
+  "kernel/ffi/src/lib.rs": {
+   "clippy::use_self": 1
+  },
+  "kernel/src/blob.rs": {
+   "clippy::arithmetic_side_effects": 32,
+   "clippy::expect_used": 3,
+   "clippy::indexing_slicing": 15,
+   "clippy::single_match_else": 1,
+   "clippy::unnecessary_wraps": 1,
+   "unreachable_pub": 10
+  },
+  "kernel/src/capture_time.rs": {
+   "clippy::arithmetic_side_effects": 44,
+   "clippy::cast_possible_truncation": 2,
+   "clippy::indexing_slicing": 28,
+   "clippy::many_single_char_names": 2,
+   "clippy::needless_collect": 1,
+   "clippy::or_fun_call": 1,
+   "clippy::too_many_lines": 1,
+   "clippy::use_self": 9,
+   "unreachable_pub": 1
+  },
+  "kernel/src/capture_time/names.rs": {
+   "clippy::arithmetic_side_effects": 7,
+   "clippy::expect_used": 1,
+   "clippy::indexing_slicing": 9,
+   "unreachable_pub": 2
+  },
+  "kernel/src/develop.rs": {
+   "clippy::arithmetic_side_effects": 50,
+   "clippy::cast_possible_truncation": 10,
+   "clippy::cast_precision_loss": 15,
+   "clippy::cast_sign_loss": 8,
+   "clippy::indexing_slicing": 26,
+   "clippy::many_single_char_names": 2,
+   "clippy::or_fun_call": 2,
+   "clippy::suboptimal_flops": 16,
+   "clippy::unreadable_literal": 4,
+   "unreachable_pub": 1
+  },
+  "kernel/src/keys.rs": {
+   "clippy::arithmetic_side_effects": 7,
+   "clippy::expect_used": 6,
+   "clippy::indexing_slicing": 25,
+   "clippy::needless_pass_by_ref_mut": 1,
+   "clippy::needless_pass_by_value": 5,
+   "clippy::unnecessary_box_returns": 1,
+   "unreachable_pub": 28
+  },
+  "kernel/src/lib.rs": {
+   "clippy::arithmetic_side_effects": 5,
+   "clippy::expect_used": 1,
+   "clippy::needless_pass_by_value": 1,
+   "clippy::panic": 2,
+   "clippy::use_self": 3,
+   "missing_docs": 7
+  },
+  "kernel/src/live_photo.rs": {
+   "clippy::cast_possible_truncation": 2,
+   "clippy::indexing_slicing": 5,
+   "unreachable_pub": 1
+  },
+  "kernel/src/local.rs": {
+   "clippy::arithmetic_side_effects": 2,
+   "clippy::expect_used": 1,
+   "clippy::indexing_slicing": 20,
+   "clippy::needless_pass_by_value": 5,
+   "unreachable_pub": 7
+  },
+  "kernel/src/logs.rs": {
+   "clippy::arithmetic_side_effects": 9,
+   "clippy::cast_possible_truncation": 2,
+   "clippy::expect_used": 2,
+   "clippy::indexing_slicing": 44,
+   "clippy::needless_pass_by_value": 4,
+   "clippy::unnecessary_wraps": 1,
+   "unreachable_pub": 5
+  },
+  "kernel/src/metadata.rs": {
+   "clippy::arithmetic_side_effects": 14,
+   "clippy::indexing_slicing": 4,
+   "clippy::too_many_lines": 1,
+   "unreachable_pub": 5
+  },
+  "kernel/src/metadata/containers.rs": {
+   "clippy::arithmetic_side_effects": 47,
+   "clippy::cast_possible_truncation": 6,
+   "clippy::indexing_slicing": 32,
+   "clippy::items_after_statements": 1,
+   "clippy::or_fun_call": 1,
+   "clippy::unnecessary_wraps": 1,
+   "unreachable_pub": 8
+  },
+  "kernel/src/metadata/exif.rs": {
+   "clippy::arithmetic_side_effects": 10,
+   "clippy::cast_possible_truncation": 10,
+   "clippy::cast_possible_wrap": 1,
+   "clippy::cast_precision_loss": 1,
+   "clippy::cast_sign_loss": 4,
+   "clippy::indexing_slicing": 1,
+   "clippy::iter_on_single_items": 1,
+   "clippy::too_many_lines": 1,
+   "unreachable_pub": 3
+  },
+  "kernel/src/metadata/file.rs": {
+   "clippy::arithmetic_side_effects": 1,
+   "clippy::indexing_slicing": 1,
+   "clippy::use_self": 1,
+   "unreachable_pub": 8
+  },
+  "kernel/src/metadata/iptc.rs": {
+   "clippy::arithmetic_side_effects": 10,
+   "clippy::cast_possible_truncation": 2,
+   "clippy::indexing_slicing": 2,
+   "unreachable_pub": 3
+  },
+  "kernel/src/metadata/motion.rs": {
+   "clippy::arithmetic_side_effects": 7,
+   "clippy::cast_possible_truncation": 1,
+   "clippy::indexing_slicing": 2,
+   "unreachable_pub": 1
+  },
+  "kernel/src/metadata/movie.rs": {
+   "clippy::arithmetic_side_effects": 30,
+   "clippy::cast_possible_truncation": 2,
+   "clippy::cast_possible_wrap": 1,
+   "clippy::indexing_slicing": 4,
+   "clippy::or_fun_call": 2,
+   "clippy::semicolon_if_nothing_returned": 1,
+   "unreachable_pub": 2
+  },
+  "kernel/src/metadata/xmp.rs": {
+   "clippy::arithmetic_side_effects": 6,
+   "clippy::cast_possible_truncation": 6,
+   "clippy::cast_sign_loss": 4,
+   "clippy::if_not_else": 1,
+   "clippy::or_fun_call": 1,
+   "clippy::single_match_else": 1,
+   "clippy::too_many_lines": 2,
+   "clippy::use_self": 12,
+   "unreachable_pub": 3
+  },
+  "kernel/src/opaque.rs": {
+   "unreachable_pub": 4
+  },
+  "kernel/src/query.rs": {
+   "clippy::arithmetic_side_effects": 2,
+   "unreachable_pub": 1
+  },
+  "kernel/src/share.rs": {
+   "clippy::expect_used": 3,
+   "clippy::indexing_slicing": 6,
+   "unreachable_pub": 4
+  },
+  "kernel/tests/corpus.rs": {
+   "clippy::needless_pass_by_value": 1,
+   "clippy::stable_sort_primitive": 1,
+   "clippy::too_many_lines": 1
+  },
+  "kernel/tests/develop.rs": {
+   "clippy::cast_sign_loss": 1,
+   "clippy::float_cmp": 1,
+   "clippy::suboptimal_flops": 4,
+   "clippy::unnecessary_wraps": 1
+  },
+  "kernel/tests/fuzz.rs": {
+   "clippy::format_collect": 3,
+   "clippy::large_stack_arrays": 1,
+   "clippy::match_wild_err_arm": 1,
+   "clippy::too_many_lines": 1
+  },
+  "kernel/tests/vectors.rs": {
+   "clippy::needless_collect": 1,
+   "clippy::needless_pass_by_value": 1,
+   "clippy::redundant_clone": 1,
+   "clippy::too_many_lines": 1,
+   "clippy::use_self": 1
+  },
+  "kernel/tests/vectors/capture_time.rs": {
+   "clippy::needless_pass_by_value": 2,
+   "clippy::too_many_lines": 2,
+   "clippy::unnecessary_wraps": 1,
+   "unreachable_pub": 2
+  },
+  "kernel/tests/vectors/crypto.rs": {
+   "clippy::assigning_clones": 1,
+   "clippy::format_collect": 1,
+   "clippy::iter_on_single_items": 1,
+   "clippy::needless_pass_by_value": 5,
+   "clippy::or_fun_call": 3,
+   "clippy::semicolon_if_nothing_returned": 1,
+   "clippy::single_match_else": 1,
+   "clippy::too_many_lines": 3,
+   "clippy::unnecessary_wraps": 2,
+   "clippy::unreadable_literal": 2,
+   "unreachable_pub": 8
+  },
+  "kernel/tests/vectors/metadata.rs": {
+   "clippy::decimal_bitwise_operands": 1,
+   "clippy::format_collect": 1,
+   "clippy::iter_on_single_items": 1,
+   "clippy::needless_pass_by_value": 2,
+   "clippy::redundant_closure_for_method_calls": 1,
+   "clippy::too_many_lines": 1,
+   "clippy::trivially_copy_pass_by_ref": 4,
+   "clippy::use_self": 1,
+   "unreachable_pub": 11
+  },
+  "kernel/tests/vectors/sharing.rs": {
+   "clippy::or_fun_call": 2,
+   "clippy::redundant_clone": 1,
+   "clippy::too_many_lines": 2,
+   "unreachable_pub": 3
+  },
+  "kernel/wasm/src/lib.rs": {
+   "missing_docs": 3
+  },
+  "tools/perf/harness.rs": {
+   "unreachable_pub": 5
+  }
+ },
+ "clippy server": {
+  "server/crates/photolib-authz/src/lib.rs": {
+   "clippy::expect_used": 1,
+   "clippy::needless_pass_by_value": 1
+  },
+  "server/crates/photolib-cli/src/client.rs": {
+   "clippy::arithmetic_side_effects": 4,
+   "clippy::cast_possible_truncation": 1,
+   "clippy::expect_used": 1,
+   "clippy::future_not_send": 1,
+   "clippy::indexing_slicing": 1,
+   "clippy::needless_pass_by_value": 2,
+   "clippy::use_self": 8,
+   "unreachable_pub": 8
+  },
+  "server/crates/photolib-cli/src/journal.rs": {
+   "clippy::expect_used": 4,
+   "clippy::let_underscore_must_use": 2,
+   "clippy::use_self": 2,
+   "unreachable_pub": 8
+  },
+  "server/crates/photolib-cli/src/main.rs": {
+   "clippy::arithmetic_side_effects": 1,
+   "clippy::indexing_slicing": 3,
+   "clippy::needless_pass_by_value": 1,
+   "clippy::or_fun_call": 1
+  },
+  "server/crates/photolib-cli/src/upload.rs": {
+   "clippy::expect_used": 3,
+   "clippy::future_not_send": 2,
+   "clippy::or_fun_call": 1,
+   "clippy::single_match_else": 1,
+   "clippy::use_self": 2,
+   "unreachable_pub": 4,
+   "unused_qualifications": 1
+  },
+  "server/crates/photolib-cli/tests/upload.rs": {
+   "clippy::cast_possible_wrap": 2,
+   "clippy::cast_sign_loss": 2,
+   "clippy::iter_on_single_items": 1,
+   "clippy::needless_collect": 2,
+   "unused_qualifications": 1
+  },
+  "server/crates/photolib-conformance/build.rs": {
+   "missing_docs": 1
+  },
+  "server/crates/photolib-conformance/src/main.rs": {
+   "clippy::cast_possible_truncation": 1,
+   "clippy::unused_async_trait_impl": 4
+  },
+  "server/crates/photolib-db/build.rs": {
+   "clippy::format_collect": 1,
+   "clippy::unnecessary_debug_formatting": 1,
+   "clippy::unwrap_used": 7
+  },
+  "server/crates/photolib-db/src/data.rs": {
+   "clippy::arithmetic_side_effects": 1,
+   "clippy::cast_possible_wrap": 2,
+   "clippy::needless_pass_by_value": 1,
+   "clippy::unnecessary_literal_bound": 4,
+   "missing_docs": 8
+  },
+  "server/crates/photolib-db/src/dump.rs": {
+   "clippy::let_underscore_must_use": 1,
+   "clippy::match_bool": 1,
+   "missing_docs": 3
+  },
+  "server/crates/photolib-db/src/lint.rs": {
+   "clippy::arithmetic_side_effects": 12,
+   "clippy::expect_used": 1,
+   "clippy::indexing_slicing": 5
+  },
+  "server/crates/photolib-db/src/migrate.rs": {
+   "clippy::arithmetic_side_effects": 3,
+   "clippy::cast_possible_truncation": 1,
+   "clippy::panic": 1,
+   "clippy::semicolon_if_nothing_returned": 2,
+   "clippy::tuple_array_conversions": 1,
+   "clippy::use_self": 2,
+   "missing_docs": 16
+  },
+  "server/crates/photolib-db/src/sync.rs": {
+   "clippy::arithmetic_side_effects": 1,
+   "clippy::cast_possible_wrap": 2,
+   "clippy::cast_sign_loss": 1,
+   "clippy::duration_suboptimal_units": 1,
+   "clippy::match_bool": 1,
+   "clippy::needless_pass_by_value": 1,
+   "clippy::redundant_closure_for_method_calls": 1,
+   "clippy::use_self": 2,
+   "missing_docs": 22
+  },
+  "server/crates/photolib-db/src/testpg.rs": {
+   "missing_docs": 3
+  },
+  "server/crates/photolib-db/tests/upgrade_path.rs": {
+   "clippy::format_push_string": 1
+  },
+  "server/crates/photolib-jobs/src/cron.rs": {
+   "clippy::arithmetic_side_effects": 13,
+   "clippy::cast_lossless": 2,
+   "clippy::cast_sign_loss": 1,
+   "clippy::use_self": 1,
+   "missing_docs": 1
+  },
+  "server/crates/photolib-jobs/src/reconcile.rs": {
+   "clippy::arithmetic_side_effects": 1,
+   "clippy::cast_possible_wrap": 1,
+   "missing_docs": 5
+  },
+  "server/crates/photolib-jobs/src/scheduler.rs": {
+   "clippy::cast_precision_loss": 2
+  },
+  "server/crates/photolib-jobs/src/testing.rs": {
+   "unreachable_pub": 8
+  },
+  "server/crates/photolib-jobs/src/worker.rs": {
+   "clippy::arithmetic_side_effects": 3,
+   "clippy::assert_is_empty": 2,
+   "clippy::cast_possible_wrap": 1,
+   "clippy::float_cmp": 1,
+   "clippy::indexing_slicing": 1,
+   "clippy::return_self_not_must_use": 1,
+   "clippy::semicolon_if_nothing_returned": 1,
+   "clippy::use_self": 1,
+   "clippy::while_float": 1,
+   "missing_docs": 5
+  },
+  "server/crates/photolib-jobs/tests/chaos.rs": {
+   "clippy::cast_possible_wrap": 3
+  },
+  "server/crates/photolib-jobs/tests/idle.rs": {
+   "clippy::cast_sign_loss": 1
+  },
+  "server/crates/photolib-media/src/child.rs": {
+   "clippy::arithmetic_side_effects": 1,
+   "clippy::or_fun_call": 1,
+   "missing_docs": 4
+  },
+  "server/crates/photolib-media/src/exiftool.rs": {
+   "clippy::use_self": 1,
+   "missing_docs": 1
+  },
+  "server/crates/photolib-media/src/lib.rs": {
+   "clippy::expect_used": 1,
+   "clippy::use_self": 2,
+   "missing_docs": 11
+  },
+  "server/crates/photolib-media/src/probe.rs": {
+   "clippy::arithmetic_side_effects": 9,
+   "missing_docs": 8,
+   "unreachable_pub": 2
+  },
+  "server/crates/photolib-media/src/render.rs": {
+   "clippy::arithmetic_side_effects": 8,
+   "clippy::cast_possible_truncation": 1,
+   "clippy::cast_possible_wrap": 1,
+   "clippy::cast_sign_loss": 7,
+   "clippy::derive_partial_eq_without_eq": 1,
+   "clippy::expect_used": 1,
+   "clippy::indexing_slicing": 9,
+   "clippy::match_bool": 1,
+   "clippy::or_fun_call": 1,
+   "clippy::unwrap_used": 1,
+   "clippy::use_self": 1,
+   "missing_docs": 11
+  },
+  "server/crates/photolib-media/src/worker.rs": {
+   "clippy::arithmetic_side_effects": 3,
+   "clippy::cast_possible_wrap": 2,
+   "clippy::future_not_send": 1,
+   "clippy::indexing_slicing": 1,
+   "clippy::let_underscore_must_use": 3,
+   "clippy::unwrap_used": 4,
+   "clippy::use_self": 2,
+   "missing_docs": 2
+  },
+  "server/crates/photolib-models/src/lib.rs": {
+   "clippy::expect_used": 1,
+   "clippy::indexing_slicing": 2,
+   "missing_docs": 26
+  },
+  "server/crates/photolib-models/src/store.rs": {
+   "clippy::arithmetic_side_effects": 1,
+   "clippy::indexing_slicing": 1,
+   "clippy::or_fun_call": 3,
+   "missing_docs": 4
+  },
+  "server/crates/photolib-models/tests/common/mod.rs": {
+   "unreachable_pub": 2
+  },
+  "server/crates/photolib-models/tests/fetch.rs": {
+   "clippy::duration_suboptimal_units": 1
+  },
+  "server/crates/photolib-proto/src/lib.rs": {
+   "missing_docs": 2
+  },
+  "server/crates/photolib-server/benches/instructions.rs": {
+   "clippy::cast_sign_loss": 1
+  },
+  "server/crates/photolib-server/src/accounts.rs": {
+   "clippy::arithmetic_side_effects": 1,
+   "clippy::assert_is_empty": 1,
+   "clippy::cast_sign_loss": 1,
+   "clippy::enum_glob_use": 1,
+   "clippy::redundant_closure_for_method_calls": 1,
+   "clippy::use_self": 6,
+   "missing_docs": 6
+  },
+  "server/crates/photolib-server/src/auth.rs": {
+   "clippy::arithmetic_side_effects": 6,
+   "clippy::duration_suboptimal_units": 1,
+   "clippy::expect_used": 4,
+   "clippy::format_collect": 1,
+   "clippy::indexing_slicing": 4,
+   "clippy::needless_for_each": 1,
+   "clippy::unwrap_used": 2,
+   "missing_docs": 3,
+   "unused_qualifications": 3
+  },
+  "server/crates/photolib-server/src/config.rs": {
+   "clippy::assert_is_empty": 1,
+   "clippy::redundant_closure_for_method_calls": 2,
+   "clippy::too_many_lines": 1,
+   "clippy::unwrap_used": 1,
+   "clippy::use_self": 5,
+   "missing_docs": 40
+  },
+  "server/crates/photolib-server/src/db.rs": {
+   "missing_docs": 7
+  },
+  "server/crates/photolib-server/src/doctor.rs": {
+   "clippy::duration_suboptimal_units": 1,
+   "clippy::indexing_slicing": 2,
+   "clippy::items_after_statements": 1,
+   "clippy::match_bool": 3,
+   "clippy::or_fun_call": 2,
+   "clippy::semicolon_if_nothing_returned": 2,
+   "clippy::single_match_else": 2,
+   "clippy::unreadable_literal": 4,
+   "clippy::unwrap_used": 2,
+   "missing_docs": 21
+  },
+  "server/crates/photolib-server/src/external.rs": {
+   "clippy::arithmetic_side_effects": 6,
+   "clippy::assert_is_empty": 1,
+   "clippy::cast_possible_truncation": 1,
+   "clippy::cast_possible_wrap": 2,
+   "clippy::cast_precision_loss": 4,
+   "clippy::cast_sign_loss": 4,
+   "clippy::expect_used": 3,
+   "clippy::indexing_slicing": 3,
+   "clippy::let_underscore_must_use": 1,
+   "clippy::match_bool": 1,
+   "clippy::use_self": 6,
+   "missing_docs": 6,
+   "unused_qualifications": 1
+  },
+  "server/crates/photolib-server/src/http.rs": {
+   "clippy::cast_possible_truncation": 1,
+   "clippy::default_trait_access": 4,
+   "clippy::expect_used": 1,
+   "clippy::indexing_slicing": 1,
+   "clippy::match_bool": 1,
+   "missing_docs": 7,
+   "unused_qualifications": 1
+  },
+  "server/crates/photolib-server/src/ingest.rs": {
+   "clippy::arithmetic_side_effects": 5,
+   "clippy::cast_possible_truncation": 1,
+   "clippy::cast_possible_wrap": 8,
+   "clippy::cast_precision_loss": 4,
+   "clippy::cast_sign_loss": 2,
+   "clippy::expect_used": 2,
+   "clippy::indexing_slicing": 11,
+   "clippy::let_underscore_must_use": 3,
+   "clippy::nonminimal_bool": 2,
+   "clippy::single_match_else": 1,
+   "clippy::struct_field_names": 1,
+   "clippy::too_many_lines": 1,
+   "clippy::use_self": 2,
+   "unused_qualifications": 1
+  },
+  "server/crates/photolib-server/src/ingest/commit.rs": {
+   "clippy::cast_possible_truncation": 2,
+   "clippy::cast_possible_wrap": 5,
+   "clippy::cast_precision_loss": 1,
+   "clippy::indexing_slicing": 2,
+   "clippy::match_bool": 1,
+   "clippy::too_many_lines": 1,
+   "clippy::unreachable": 1,
+   "unreachable_pub": 2
+  },
+  "server/crates/photolib-server/src/ingest/extract.rs": {
+   "clippy::arithmetic_side_effects": 3,
+   "clippy::cast_possible_truncation": 1,
+   "clippy::indexing_slicing": 1,
+   "missing_docs": 2,
+   "unreachable_pub": 1
+  },
+  "server/crates/photolib-server/src/ingest/group.rs": {
+   "clippy::arithmetic_side_effects": 7,
+   "clippy::default_trait_access": 1,
+   "clippy::indexing_slicing": 14,
+   "clippy::iter_on_single_items": 1,
+   "clippy::use_self": 3,
+   "missing_docs": 7
+  },
+  "server/crates/photolib-server/src/ingest/sniff.rs": {
+   "clippy::arithmetic_side_effects": 10,
+   "clippy::cast_possible_truncation": 3,
+   "clippy::enum_glob_use": 1,
+   "clippy::ignored_unit_patterns": 4,
+   "clippy::match_bool": 2,
+   "clippy::trivially_copy_pass_by_ref": 1,
+   "clippy::unnested_or_patterns": 1,
+   "clippy::unwrap_used": 2,
+   "missing_docs": 10,
+   "unreachable_pub": 1
+  },
+  "server/crates/photolib-server/src/instance.rs": {
+   "clippy::arithmetic_side_effects": 1,
+   "unused_qualifications": 1
+  },
+  "server/crates/photolib-server/src/jobs.rs": {
+   "clippy::arithmetic_side_effects": 1,
+   "clippy::cast_possible_wrap": 1,
+   "clippy::default_trait_access": 1,
+   "clippy::too_many_lines": 1,
+   "missing_docs": 9,
+   "unused_qualifications": 2
+  },
+  "server/crates/photolib-server/src/keys.rs": {
+   "clippy::arithmetic_side_effects": 1,
+   "clippy::cast_possible_wrap": 2,
+   "clippy::cast_precision_loss": 1,
+   "clippy::cast_sign_loss": 2,
+   "clippy::redundant_closure_for_method_calls": 1,
+   "clippy::use_self": 3,
+   "missing_docs": 5
+  },
+  "server/crates/photolib-server/src/lib.rs": {
+   "missing_docs": 12
+  },
+  "server/crates/photolib-server/src/library.rs": {
+   "clippy::arithmetic_side_effects": 1,
+   "clippy::cast_possible_wrap": 1,
+   "clippy::cast_sign_loss": 2,
+   "clippy::duration_suboptimal_units": 1,
+   "clippy::indexing_slicing": 2,
+   "clippy::items_after_statements": 1,
+   "clippy::let_underscore_must_use": 1,
+   "clippy::match_bool": 2,
+   "clippy::use_self": 4,
+   "missing_docs": 4
+  },
+  "server/crates/photolib-server/src/library/template.rs": {
+   "clippy::arithmetic_side_effects": 4,
+   "clippy::match_bool": 1,
+   "clippy::use_self": 2,
+   "missing_docs": 5
+  },
+  "server/crates/photolib-server/src/logging.rs": {
+   "clippy::default_trait_access": 1,
+   "clippy::let_underscore_must_use": 1,
+   "clippy::unwrap_used": 2,
+   "clippy::use_self": 2,
+   "missing_docs": 1,
+   "unused_qualifications": 2
+  },
+  "server/crates/photolib-server/src/main.rs": {
+   "clippy::expect_used": 1,
+   "clippy::unreachable": 1,
+   "missing_docs": 1
+  },
+  "server/crates/photolib-server/src/media.rs": {
+   "clippy::arithmetic_side_effects": 8,
+   "clippy::cast_sign_loss": 2,
+   "clippy::expect_used": 1,
+   "clippy::format_collect": 1,
+   "clippy::indexing_slicing": 1,
+   "clippy::match_bool": 1,
+   "clippy::redundant_closure_for_method_calls": 1,
+   "clippy::use_self": 2,
+   "missing_docs": 2
+  },
+  "server/crates/photolib-server/src/metrics.rs": {
+   "clippy::cast_possible_wrap": 2,
+   "clippy::expect_used": 1,
+   "clippy::use_self": 2,
+   "missing_docs": 3,
+   "unused_qualifications": 3
+  },
+  "server/crates/photolib-server/src/mounts.rs": {
+   "clippy::arithmetic_side_effects": 5,
+   "clippy::or_fun_call": 1,
+   "missing_docs": 5
+  },
+  "server/crates/photolib-server/src/oidc.rs": {
+   "clippy::arithmetic_side_effects": 2,
+   "clippy::flat_map_option": 1,
+   "clippy::indexing_slicing": 3,
+   "clippy::needless_pass_by_value": 1,
+   "clippy::redundant_closure_for_method_calls": 1,
+   "clippy::single_match_else": 1,
+   "clippy::unwrap_used": 4,
+   "clippy::use_self": 2,
+   "clippy::wildcard_imports": 1,
+   "missing_docs": 7
+  },
+  "server/crates/photolib-server/src/pg.rs": {
+   "clippy::arithmetic_side_effects": 1,
+   "clippy::assert_is_empty": 1,
+   "clippy::cast_possible_truncation": 1,
+   "clippy::tuple_array_conversions": 1,
+   "clippy::use_self": 2,
+   "missing_docs": 1
+  },
+  "server/crates/photolib-server/src/proxy.rs": {
+   "clippy::arithmetic_side_effects": 1,
+   "clippy::cast_possible_truncation": 2,
+   "clippy::significant_drop_in_scrutinee": 1,
+   "clippy::unwrap_used": 1,
+   "clippy::use_self": 2,
+   "missing_docs": 5,
+   "unused_qualifications": 1
+  },
+  "server/crates/photolib-server/src/render.rs": {
+   "clippy::cast_possible_truncation": 1,
+   "clippy::cast_possible_wrap": 1,
+   "clippy::cast_sign_loss": 1,
+   "clippy::expect_used": 3,
+   "clippy::indexing_slicing": 2,
+   "clippy::let_underscore_must_use": 2,
+   "clippy::significant_drop_in_scrutinee": 1,
+   "clippy::single_match_else": 1,
+   "clippy::too_many_lines": 1,
+   "clippy::use_self": 2,
+   "missing_docs": 6
+  },
+  "server/crates/photolib-server/src/role.rs": {
+   "clippy::redundant_closure_for_method_calls": 1,
+   "clippy::use_self": 9,
+   "missing_docs": 12
+  },
+  "server/crates/photolib-server/src/rpc.rs": {
+   "clippy::redundant_closure_for_method_calls": 2,
+   "clippy::unused_async_trait_impl": 1
+  },
+  "server/crates/photolib-server/src/rpc/admin.rs": {
+   "clippy::cast_possible_truncation": 2,
+   "clippy::cast_possible_wrap": 6,
+   "clippy::cast_sign_loss": 2,
+   "clippy::items_after_statements": 1,
+   "clippy::match_bool": 3,
+   "clippy::nonminimal_bool": 1,
+   "clippy::too_many_lines": 2,
+   "clippy::unused_async_trait_impl": 1,
+   "missing_docs": 1
+  },
+  "server/crates/photolib-server/src/rpc/auth.rs": {
+   "clippy::arithmetic_side_effects": 4,
+   "clippy::cast_possible_truncation": 1,
+   "clippy::cast_possible_wrap": 3,
+   "clippy::cast_sign_loss": 1,
+   "clippy::default_trait_access": 1,
+   "clippy::expect_used": 2,
+   "clippy::format_collect": 1,
+   "clippy::indexing_slicing": 1,
+   "clippy::manual_let_else": 1,
+   "clippy::match_bool": 2,
+   "clippy::return_self_not_must_use": 2,
+   "clippy::unused_async_trait_impl": 1,
+   "clippy::use_self": 6,
+   "missing_docs": 7,
+   "unused_qualifications": 1
+  },
+  "server/crates/photolib-server/src/rpc/auth/factor_tests.rs": {
+   "clippy::too_many_lines": 1
+  },
+  "server/crates/photolib-server/src/rpc/authz.rs": {
+   "clippy::too_many_lines": 1
+  },
+  "server/crates/photolib-server/src/rpc/deprecation.rs": {
+   "clippy::arithmetic_side_effects": 1,
+   "clippy::expect_used": 1,
+   "missing_docs": 3,
+   "unreachable_pub": 1
+  },
+  "server/crates/photolib-server/src/rpc/errors.rs": {
+   "clippy::arithmetic_side_effects": 3,
+   "clippy::cast_possible_truncation": 1,
+   "clippy::indexing_slicing": 3,
+   "clippy::iter_on_single_items": 1,
+   "clippy::needless_pass_by_value": 1,
+   "clippy::return_self_not_must_use": 1,
+   "clippy::unwrap_used": 1,
+   "clippy::use_self": 2,
+   "missing_docs": 1,
+   "unreachable_pub": 1,
+   "unused_qualifications": 1
+  },
+  "server/crates/photolib-server/src/rpc/keys.rs": {
+   "clippy::needless_pass_by_value": 1
+  },
+  "server/crates/photolib-server/src/rpc/oidc.rs": {
+   "clippy::case_sensitive_file_extension_comparisons": 1,
+   "clippy::match_bool": 1,
+   "clippy::or_fun_call": 1,
+   "clippy::redundant_closure_for_method_calls": 1,
+   "clippy::too_many_lines": 1,
+   "clippy::unnecessary_wraps": 1,
+   "unused_qualifications": 1
+  },
+  "server/crates/photolib-server/src/rpc/sync.rs": {
+   "clippy::arithmetic_side_effects": 1,
+   "clippy::assert_is_empty": 1,
+   "clippy::cast_lossless": 1,
+   "clippy::cast_possible_truncation": 1,
+   "clippy::cast_possible_wrap": 1,
+   "clippy::cast_sign_loss": 1,
+   "clippy::duration_suboptimal_units": 1,
+   "clippy::expect_used": 8,
+   "clippy::ignored_unit_patterns": 1,
+   "clippy::indexing_slicing": 7,
+   "clippy::let_underscore_must_use": 1,
+   "clippy::match_bool": 1,
+   "clippy::redundant_closure_for_method_calls": 1,
+   "clippy::stable_sort_primitive": 1,
+   "clippy::unused_async_trait_impl": 1,
+   "clippy::use_self": 3,
+   "missing_docs": 2
+  },
+  "server/crates/photolib-server/src/rpc/users.rs": {
+   "clippy::use_self": 4,
+   "missing_docs": 1
+  },
+  "server/crates/photolib-server/src/run.rs": {
+   "clippy::duration_suboptimal_units": 1,
+   "clippy::let_underscore_must_use": 1,
+   "clippy::match_bool": 1,
+   "clippy::too_many_lines": 1,
+   "clippy::useless_let_if_seq": 2,
+   "missing_docs": 2
+  },
+  "server/crates/photolib-server/src/secret.rs": {
+   "clippy::expect_used": 1,
+   "clippy::format_collect": 1,
+   "clippy::use_self": 1,
+   "missing_docs": 2
+  },
+  "server/crates/photolib-server/src/storage.rs": {
+   "clippy::semicolon_if_nothing_returned": 1,
+   "unused_qualifications": 1
+  },
+  "server/crates/photolib-server/src/sync.rs": {
+   "clippy::arithmetic_side_effects": 1,
+   "clippy::duration_suboptimal_units": 3,
+   "clippy::match_bool": 1
+  },
+  "server/crates/photolib-server/src/testing.rs": {
+   "clippy::default_trait_access": 7,
+   "clippy::match_bool": 1,
+   "clippy::redundant_closure_for_method_calls": 1,
+   "clippy::too_many_lines": 1,
+   "clippy::use_self": 15,
+   "unreachable_pub": 33,
+   "unused_qualifications": 1
+  },
+  "server/crates/photolib-server/src/totp.rs": {
+   "clippy::arithmetic_side_effects": 3,
+   "clippy::expect_used": 1,
+   "clippy::indexing_slicing": 4,
+   "clippy::unwrap_used": 1
+  },
+  "server/crates/photolib-server/src/upgrade.rs": {
+   "clippy::match_bool": 1,
+   "clippy::single_match_else": 1,
+   "unused_qualifications": 1
+  },
+  "server/crates/photolib-server/src/uploads.rs": {
+   "clippy::arithmetic_side_effects": 4,
+   "clippy::cast_possible_truncation": 2,
+   "clippy::cast_possible_wrap": 3,
+   "clippy::cast_precision_loss": 2,
+   "clippy::cast_sign_loss": 2,
+   "clippy::expect_used": 5,
+   "clippy::indexing_slicing": 2,
+   "clippy::match_bool": 2,
+   "clippy::needless_pass_by_value": 2,
+   "clippy::use_self": 2,
+   "missing_docs": 2
+  },
+  "server/crates/photolib-server/src/video.rs": {
+   "clippy::arithmetic_side_effects": 6,
+   "clippy::cast_possible_truncation": 6,
+   "clippy::cast_possible_wrap": 1,
+   "clippy::cast_precision_loss": 1,
+   "clippy::cast_sign_loss": 5,
+   "clippy::indexing_slicing": 3,
+   "clippy::let_underscore_must_use": 1,
+   "clippy::or_fun_call": 1,
+   "clippy::single_match_else": 1,
+   "clippy::suboptimal_flops": 1,
+   "clippy::too_many_lines": 1,
+   "clippy::unwrap_used": 3,
+   "clippy::use_self": 4,
+   "missing_docs": 4
+  },
+  "server/crates/photolib-server/src/webauthn.rs": {
+   "clippy::arithmetic_side_effects": 7,
+   "clippy::cast_sign_loss": 2,
+   "clippy::decimal_bitwise_operands": 3,
+   "clippy::indexing_slicing": 9,
+   "clippy::match_bool": 1,
+   "clippy::range_plus_one": 1,
+   "clippy::unwrap_used": 1,
+   "clippy::use_self": 11,
+   "missing_docs": 7,
+   "unreachable_pub": 7
+  },
+  "server/crates/photolib-server/tests/external.rs": {
+   "clippy::cast_possible_wrap": 11,
+   "clippy::duration_suboptimal_units": 1,
+   "clippy::needless_pass_by_value": 1,
+   "clippy::too_many_lines": 1
+  },
+  "server/crates/photolib-server/tests/media.rs": {
+   "clippy::case_sensitive_file_extension_comparisons": 1
+  },
+  "server/crates/photolib-server/tests/photolibd.rs": {
+   "clippy::default_trait_access": 1,
+   "clippy::needless_pass_by_value": 1,
+   "clippy::too_many_lines": 1
+  },
+  "server/crates/photolib-server/tests/proxies.rs": {
+   "clippy::default_trait_access": 1,
+   "clippy::format_push_string": 2,
+   "clippy::needless_pass_by_value": 1,
+   "clippy::too_many_lines": 2,
+   "clippy::unused_async": 1
+  },
+  "server/crates/photolib-server/tests/renditions.rs": {
+   "clippy::cast_lossless": 1,
+   "clippy::stable_sort_primitive": 1,
+   "clippy::use_self": 2,
+   "clippy::while_float": 1
+  },
+  "server/crates/photolib-server/tests/serving.rs": {
+   "clippy::cast_possible_wrap": 3,
+   "clippy::cast_sign_loss": 1,
+   "clippy::manual_assert_eq": 1,
+   "clippy::too_many_lines": 2,
+   "clippy::unreadable_literal": 2
+  },
+  "server/crates/photolib-server/tests/uploads.rs": {
+   "clippy::cast_sign_loss": 1,
+   "clippy::format_push_string": 2,
+   "clippy::too_many_lines": 1
+  },
+  "server/crates/photolib-server/tests/video.rs": {
+   "clippy::cast_possible_wrap": 2,
+   "clippy::cast_precision_loss": 1,
+   "clippy::float_cmp": 1,
+   "clippy::format_push_string": 1,
+   "clippy::ignored_unit_patterns": 3,
+   "clippy::items_after_statements": 1,
+   "clippy::too_many_lines": 2
+  },
+  "server/crates/photolib-storage/src/fs.rs": {
+   "clippy::arithmetic_side_effects": 5,
+   "clippy::cast_possible_truncation": 1,
+   "clippy::cast_possible_wrap": 1,
+   "clippy::cast_sign_loss": 1,
+   "clippy::expect_used": 1,
+   "clippy::indexing_slicing": 3,
+   "clippy::let_underscore_must_use": 1,
+   "clippy::needless_pass_by_value": 1,
+   "clippy::return_self_not_must_use": 2,
+   "clippy::unused_self": 1,
+   "clippy::use_self": 6,
+   "missing_docs": 10
+  },
+  "server/crates/photolib-storage/src/hash.rs": {
+   "clippy::arithmetic_side_effects": 2,
+   "clippy::use_self": 8,
+   "missing_docs": 2
+  },
+  "server/crates/photolib-storage/src/journal.rs": {
+   "clippy::arithmetic_side_effects": 5,
+   "clippy::cast_possible_wrap": 2,
+   "clippy::cast_sign_loss": 1,
+   "clippy::duration_suboptimal_units": 1,
+   "clippy::let_underscore_must_use": 2,
+   "clippy::match_bool": 1,
+   "clippy::return_self_not_must_use": 1,
+   "clippy::use_self": 5,
+   "missing_docs": 7,
+   "unused_qualifications": 2
+  },
+  "server/crates/photolib-storage/src/lib.rs": {
+   "clippy::use_self": 9,
+   "missing_docs": 14
+  },
+  "server/crates/photolib-storage/src/marker.rs": {
+   "clippy::expect_used": 2,
+   "clippy::future_not_send": 1,
+   "clippy::use_self": 2,
+   "missing_docs": 7
+  },
+  "server/crates/photolib-storage/src/pool.rs": {
+   "clippy::expect_used": 1,
+   "clippy::unnecessary_wraps": 1,
+   "clippy::use_self": 2,
+   "unreachable_pub": 3
+  },
+  "server/crates/photolib-storage/src/s3.rs": {
+   "clippy::arithmetic_side_effects": 5,
+   "clippy::expect_used": 1,
+   "clippy::indexing_slicing": 1,
+   "clippy::let_underscore_must_use": 2,
+   "clippy::match_bool": 2,
+   "clippy::needless_pass_by_value": 1,
+   "clippy::return_self_not_must_use": 2,
+   "clippy::semicolon_if_nothing_returned": 1,
+   "clippy::use_self": 4,
+   "missing_docs": 9
+  },
+  "server/crates/photolib-storage/tests/journal.rs": {
+   "clippy::duration_suboptimal_units": 1,
+   "clippy::future_not_send": 2,
+   "clippy::match_bool": 1,
+   "clippy::redundant_closure_for_method_calls": 1,
+   "clippy::use_self": 2
+  },
+  "tools/perf/harness.rs": {
+   "unreachable_pub": 5
+  }
+ },
+ "clippy tools/synthlib": {
+  "tools/synthlib/src/lib.rs": {
+   "clippy::arithmetic_side_effects": 61,
+   "clippy::cast_lossless": 2,
+   "clippy::cast_possible_truncation": 11,
+   "clippy::cast_possible_wrap": 8,
+   "clippy::cast_precision_loss": 5,
+   "clippy::cast_sign_loss": 4,
+   "clippy::indexing_slicing": 12,
+   "clippy::many_single_char_names": 2,
+   "clippy::or_fun_call": 2,
+   "clippy::suboptimal_flops": 1,
+   "clippy::too_many_lines": 2,
+   "clippy::unreadable_literal": 8,
+   "clippy::unwrap_used": 2,
+   "clippy::use_self": 4,
+   "missing_docs": 8
+  },
+  "tools/synthlib/src/main.rs": {
+   "clippy::or_fun_call": 2,
+   "missing_docs": 1
+  },
+  "tools/synthlib/src/png.rs": {
+   "clippy::arithmetic_side_effects": 2,
+   "clippy::cast_lossless": 3,
+   "clippy::cast_possible_truncation": 1,
+   "clippy::expect_used": 1,
+   "clippy::indexing_slicing": 1,
+   "unreachable_pub": 1
+  },
+  "tools/synthlib/tests/cli.rs": {
+   "missing_docs": 1
+  },
+  "tools/synthlib/tests/fixture.rs": {
+   "clippy::cast_lossless": 1,
+   "clippy::naive_bytecount": 1,
+   "clippy::semicolon_if_nothing_returned": 1,
+   "clippy::stable_sort_primitive": 1,
+   "missing_docs": 1
+  }
+ },
+ "dart app": {
+  "app/benchmark/store_cost_test.dart": {
+   "lines_longer_than_80_chars": 1
+  },
+  "app/integration_test/hdr_probe.dart": {
+   "always_declare_return_types": 1,
+   "avoid_slow_async_io": 1,
+   "source-lines-of-code": 1
+  },
+  "app/lib/core/device_health.dart": {
+   "inference_failure_on_function_invocation": 1
+  },
+  "app/lib/core/feature_flags.dart": {
+   "public_member_api_docs": 5,
+   "unnecessary_const_in_enum_constructor": 1,
+   "unnecessary_type_name_in_constructor": 3
+  },
+  "app/lib/core/keystore.dart": {
+   "lines_longer_than_80_chars": 3,
+   "public_member_api_docs": 3,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/lib/core/media_store.dart": {
+   "always_use_package_imports": 1,
+   "cast_nullable_to_non_nullable": 6,
+   "public_member_api_docs": 1,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/lib/core/memory_web.dart": {
+   "avoid-non-null-assertion": 1,
+   "unused-code": 1
+  },
+  "app/lib/core/observers.dart": {
+   "always_use_package_imports": 1,
+   "public_member_api_docs": 1,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/lib/core/photo_kit.dart": {
+   "always_use_package_imports": 1,
+   "public_member_api_docs": 1,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/lib/features/admin/admin_page.dart": {
+   "avoid-non-null-assertion": 13,
+   "file-length": 1,
+   "source-lines-of-code": 1
+  },
+  "app/lib/features/collections/collections.dart": {
+   "prefer_if_elements_to_conditional_expressions": 1,
+   "public_member_api_docs": 13,
+   "unnecessary_type_name_in_constructor": 2
+  },
+  "app/lib/features/collections/collections_page.dart": {
+   "public_member_api_docs": 2,
+   "source-lines-of-code": 1,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/lib/features/download/download.dart": {
+   "always_use_package_imports": 1,
+   "discarded_futures": 4,
+   "public_member_api_docs": 13,
+   "unnecessary_type_name_in_constructor": 4
+  },
+  "app/lib/features/download/download_action.dart": {
+   "async_return_with_no_await": 1,
+   "avoid-non-null-assertion": 1,
+   "lines_longer_than_80_chars": 1,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/lib/features/download/download_io.dart": {
+   "always_use_package_imports": 2,
+   "avoid_slow_async_io": 1,
+   "comment_references": 1,
+   "no_default_cases": 1,
+   "public_member_api_docs": 1,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/lib/features/download/download_web.dart": {
+   "always_use_package_imports": 2,
+   "avoid-non-null-assertion": 2,
+   "public_member_api_docs": 2
+  },
+  "app/lib/features/download/zip.dart": {
+   "avoid_multiple_declarations_per_line": 2,
+   "source-lines-of-code": 1,
+   "specify_nonobvious_property_types": 1,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/lib/features/library/timeline/benchmark.dart": {
+   "always_put_required_named_parameters_first": 2,
+   "always_use_package_imports": 9,
+   "async_return_with_no_await": 2,
+   "avoid-non-null-assertion": 3,
+   "avoid_multiple_declarations_per_line": 2,
+   "discarded_futures": 1,
+   "lines_longer_than_80_chars": 1,
+   "public_member_api_docs": 4,
+   "source-lines-of-code": 1,
+   "specify_nonobvious_property_types": 1,
+   "unnecessary_type_name_in_constructor": 3
+  },
+  "app/lib/features/library/timeline/benchmark_io.dart": {
+   "always_use_package_imports": 4
+  },
+  "app/lib/features/library/timeline/benchmark_web.dart": {
+   "always_use_package_imports": 1,
+   "async_return_with_no_await": 1,
+   "avoid-non-null-assertion": 1,
+   "public_member_api_docs": 1,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/lib/features/library/timeline/buckets.dart": {
+   "avoid_multiple_declarations_per_line": 1,
+   "public_member_api_docs": 7,
+   "unnecessary_type_name_in_constructor": 2
+  },
+  "app/lib/features/library/timeline/ffmpeg.dart": {
+   "always_use_package_imports": 2,
+   "avoid_slow_async_io": 1,
+   "no_adjacent_strings_in_list": 1
+  },
+  "app/lib/features/library/timeline/freedesktop.dart": {
+   "always_use_package_imports": 1,
+   "avoid_slow_async_io": 1
+  },
+  "app/lib/features/library/timeline/layout.dart": {
+   "always_use_package_imports": 1,
+   "avoid_multiple_declarations_per_line": 2,
+   "public_member_api_docs": 18,
+   "unnecessary_const_in_enum_constructor": 1,
+   "unnecessary_type_name_in_constructor": 2
+  },
+  "app/lib/features/library/timeline/native_pipeline.dart": {
+   "always_use_package_imports": 7,
+   "async_return_with_no_await": 1,
+   "public_member_api_docs": 1
+  },
+  "app/lib/features/library/timeline/pages.dart": {
+   "avoid_multiple_declarations_per_line": 1,
+   "comment_references": 2,
+   "discarded_futures": 1,
+   "public_member_api_docs": 3,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/lib/features/library/timeline/platform_thumbnails.dart": {
+   "always_use_package_imports": 2
+  },
+  "app/lib/features/library/timeline/providers.dart": {
+   "always_use_package_imports": 2
+  },
+  "app/lib/features/library/timeline/selection.dart": {
+   "avoid_multiple_declarations_per_line": 1,
+   "parameter_assignments": 1,
+   "public_member_api_docs": 7,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/lib/features/library/timeline/sliver.dart": {
+   "always_put_required_named_parameters_first": 2,
+   "always_use_package_imports": 1,
+   "public_member_api_docs": 6,
+   "unnecessary_type_name_in_constructor": 2
+  },
+  "app/lib/features/library/timeline/thumb_hash.dart": {
+   "avoid_multiple_declarations_per_line": 5,
+   "lines_longer_than_80_chars": 1,
+   "prefer_if_elements_to_conditional_expressions": 1,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/lib/features/library/timeline/thumbnail_at.dart": {
+   "always_use_package_imports": 2,
+   "avoid-non-null-assertion": 1,
+   "avoid_multiple_declarations_per_line": 1,
+   "public_member_api_docs": 9,
+   "unnecessary_type_name_in_constructor": 2
+  },
+  "app/lib/features/library/timeline/thumbnails.dart": {
+   "always_put_required_named_parameters_first": 1,
+   "always_use_package_imports": 2,
+   "argument_type_not_assignable": 2,
+   "avoid-non-null-assertion": 8,
+   "avoid_dynamic_calls": 4,
+   "avoid_multiple_declarations_per_line": 5,
+   "cascade_invocations": 1,
+   "cyclomatic-complexity": 1,
+   "discarded_futures": 2,
+   "non_bool_operand": 1,
+   "public_member_api_docs": 12,
+   "specify_nonobvious_property_types": 1,
+   "type_annotate_public_apis": 8,
+   "unnecessary_type_name_in_constructor": 5
+  },
+  "app/lib/features/library/timeline/warmup.dart": {
+   "always_use_package_imports": 2,
+   "avoid-non-null-assertion": 1,
+   "no_adjacent_strings_in_list": 1,
+   "public_member_api_docs": 6,
+   "specify_nonobvious_property_types": 1,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/lib/features/library/timeline/web_pipeline.dart": {
+   "always_use_package_imports": 3,
+   "async_return_with_no_await": 1,
+   "public_member_api_docs": 1
+  },
+  "app/lib/features/settings/diagnostics.dart": {
+   "always_use_package_imports": 8,
+   "avoid-non-null-assertion": 2,
+   "prefer_if_elements_to_conditional_expressions": 1,
+   "public_member_api_docs": 2,
+   "source-lines-of-code": 1,
+   "specify_nonobvious_property_types": 2,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/lib/features/viewer/deep_zoom.dart": {
+   "always_put_required_named_parameters_first": 3,
+   "avoid-non-null-assertion": 1,
+   "avoid_multiple_declarations_per_line": 1,
+   "discarded_futures": 1,
+   "public_member_api_docs": 8,
+   "unnecessary_type_name_in_constructor": 2
+  },
+  "app/lib/features/viewer/hdr_leaf.dart": {
+   "always_put_required_named_parameters_first": 2,
+   "always_use_package_imports": 1,
+   "discarded_futures": 1,
+   "public_member_api_docs": 8,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/lib/features/viewer/info_panel.dart": {
+   "specify_nonobvious_property_types": 1
+  },
+  "app/lib/features/viewer/regions.dart": {
+   "always_use_package_imports": 3,
+   "async_return_with_no_await": 1,
+   "avoid-non-null-assertion": 2,
+   "public_member_api_docs": 4,
+   "specify_nonobvious_property_types": 1,
+   "unnecessary_type_name_in_constructor": 2
+  },
+  "app/lib/features/viewer/viewer_page.dart": {
+   "always_put_required_named_parameters_first": 9,
+   "avoid-non-null-assertion": 3,
+   "avoid_multiple_declarations_per_line": 2,
+   "avoid_redundant_argument_values": 1,
+   "cyclomatic-complexity": 1,
+   "discarded_futures": 3,
+   "file-length": 1,
+   "public_member_api_docs": 4,
+   "source-lines-of-code": 1,
+   "specify_nonobvious_property_types": 2,
+   "unnecessary_type_name_in_constructor": 4,
+   "use_late_for_private_fields_and_variables": 1
+  },
+  "app/lib/gallery.dart": {
+   "public_member_api_docs": 3,
+   "source-lines-of-code": 1,
+   "specify_nonobvious_property_types": 1,
+   "unnecessary_type_name_in_constructor": 2
+  },
+  "app/lib/l10n/formats.dart": {
+   "always_use_package_imports": 1,
+   "public_member_api_docs": 8,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/lib/main.dart": {
+   "always_use_package_imports": 6,
+   "cascade_invocations": 1
+  },
+  "app/lib/ui/adaptive.dart": {
+   "always_put_required_named_parameters_first": 1,
+   "public_member_api_docs": 6,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/lib/ui/commands.dart": {
+   "always_put_required_named_parameters_first": 2,
+   "always_use_package_imports": 1,
+   "prefer_final_locals": 2,
+   "public_member_api_docs": 8,
+   "unnecessary_type_name_in_constructor": 3
+  },
+  "app/lib/ui/empty_state.dart": {
+   "always_put_required_named_parameters_first": 2,
+   "always_use_package_imports": 1,
+   "public_member_api_docs": 5,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/lib/ui/motion.dart": {
+   "public_member_api_docs": 6,
+   "specify_nonobvious_property_types": 1,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/lib/ui/swipe_to_dismiss.dart": {
+   "always_put_required_named_parameters_first": 2,
+   "always_use_package_imports": 1,
+   "public_member_api_docs": 5,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/lib/ui/theme.dart": {
+   "always_use_package_imports": 2
+  },
+  "app/lib/ui/tokens.dart": {
+   "avoid-non-null-assertion": 1,
+   "public_member_api_docs": 9,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/test/app_test.dart": {
+   "avoid_redundant_argument_values": 1
+  },
+  "app/test/core/errors_test.dart": {
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/test/core/logging_test.dart": {
+   "cascade_invocations": 1
+  },
+  "app/test/core/media_store_test.dart": {
+   "no_adjacent_strings_in_list": 2
+  },
+  "app/test/features/collections_test.dart": {
+   "cascade_invocations": 2
+  },
+  "app/test/features/download/download_test.dart": {
+   "no_adjacent_strings_in_list": 1
+  },
+  "app/test/features/download/zip_test.dart": {
+   "avoid_multiple_declarations_per_line": 3
+  },
+  "app/test/features/hdr_leaf_test.dart": {
+   "lines_longer_than_80_chars": 1,
+   "specify_nonobvious_property_types": 1
+  },
+  "app/test/features/library/library_test.dart": {
+   "unnecessary_statements": 2
+  },
+  "app/test/features/library/timeline/benchmark_test.dart": {
+   "avoid_escaping_inner_quotes": 1
+  },
+  "app/test/features/library/timeline/buckets_test.dart": {
+   "avoid_escaping_inner_quotes": 1,
+   "avoid_redundant_argument_values": 1
+  },
+  "app/test/features/library/timeline/layout_test.dart": {
+   "prefer_if_elements_to_conditional_expressions": 1,
+   "prefer_int_literals": 1
+  },
+  "app/test/features/library/timeline/pages_test.dart": {
+   "avoid_redundant_argument_values": 1,
+   "unnecessary_statements": 1
+  },
+  "app/test/features/library/timeline/platform_thumbnails_test.dart": {
+   "avoid_escaping_inner_quotes": 1,
+   "directives_ordering": 1,
+   "inference_failure_on_instance_creation": 9
+  },
+  "app/test/features/library/timeline/sliver_test.dart": {
+   "lines_longer_than_80_chars": 1
+  },
+  "app/test/features/library/timeline/thumbnails_test.dart": {
+   "avoid_escaping_inner_quotes": 1,
+   "cascade_invocations": 9
+  },
+  "app/test/features/library/timeline/warmup_test.dart": {
+   "cascade_invocations": 1,
+   "no_adjacent_strings_in_list": 1
+  },
+  "app/test/features/library/timeline/web_clip.dart": {
+   "unused-code": 1,
+   "unused-files": 1
+  },
+  "app/test/features/viewer/deep_zoom_test.dart": {
+   "avoid_multiple_declarations_per_line": 2,
+   "inference_failure_on_collection_literal": 1,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/test/features/viewer/sphere_web_assets.dart": {
+   "unused-code": 1,
+   "unused-files": 1
+  },
+  "app/test/l10n_test.dart": {
+   "specify_nonobvious_property_types": 1
+  },
+  "app/test/support/pages.dart": {
+   "directives_ordering": 1
+  },
+  "app/test/support/photolibd.dart": {
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/test/ui/commands_test.dart": {
+   "specify_nonobvious_property_types": 1
+  },
+  "app/test/ui/swipe_to_dismiss_test.dart": {
+   "avoid_multiple_declarations_per_line": 1
+  },
+  "app/tool/i18n_lint.dart": {
+   "type_annotate_public_apis": 1,
+   "unnecessary_raw_strings": 1,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/tool/pseudo_locales.dart": {
+   "avoid-non-null-assertion": 1,
+   "avoid_positional_boolean_parameters": 1,
+   "lines_longer_than_80_chars": 1,
+   "type_annotate_public_apis": 1,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/tool/root_isolate_lint.dart": {
+   "unnecessary_raw_strings": 1,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/tool/single_writer_lint.dart": {
+   "cyclomatic-complexity": 1
+  }
+ },
+ "dart app/packages/photolib_api": {
+  "app/packages/photolib_api/lib/media_proxy.dart": {
+   "always_use_package_imports": 1,
+   "avoid-non-null-assertion": 2,
+   "avoid_catching_errors": 1,
+   "avoid_multiple_declarations_per_line": 1,
+   "avoid_positional_boolean_parameters": 1,
+   "lines_longer_than_80_chars": 14,
+   "parameter_assignments": 1,
+   "public_member_api_docs": 2,
+   "specify_nonobvious_property_types": 1,
+   "unnecessary_type_name_in_constructor": 2,
+   "use_null_aware_elements": 1
+  },
+  "app/packages/photolib_api/lib/photolib_api.dart": {
+   "lines_longer_than_80_chars": 1
+  },
+  "app/packages/photolib_api/lib/src/network.dart": {
+   "always_use_package_imports": 1,
+   "lines_longer_than_80_chars": 12,
+   "public_member_api_docs": 2,
+   "unnecessary_type_name_in_constructor": 2
+  },
+  "app/packages/photolib_api/lib/src/server.dart": {
+   "always_use_package_imports": 4,
+   "async_return_with_no_await": 5,
+   "curly_braces_in_flow_control_structures": 4,
+   "discarded_futures": 1,
+   "lines_longer_than_80_chars": 19,
+   "parameter_assignments": 1,
+   "public_member_api_docs": 9,
+   "specify_nonobvious_property_types": 3,
+   "unnecessary_parenthesis": 1,
+   "unnecessary_type_name_in_constructor": 4
+  },
+  "app/packages/photolib_api/lib/src/stack_io.dart": {
+   "lines_longer_than_80_chars": 1,
+   "public_member_api_docs": 1
+  },
+  "app/packages/photolib_api/lib/src/stack_web.dart": {
+   "lines_longer_than_80_chars": 1
+  },
+  "app/packages/photolib_api/lib/sync.dart": {
+   "lines_longer_than_80_chars": 1
+  },
+  "app/packages/photolib_api/test/media_proxy_test.dart": {
+   "async_return_with_no_await": 1,
+   "avoid_escaping_inner_quotes": 1,
+   "avoid_multiple_declarations_per_line": 1,
+   "avoid_positional_boolean_parameters": 2,
+   "cascade_invocations": 1,
+   "lines_longer_than_80_chars": 7,
+   "specify_nonobvious_property_types": 2
+  },
+  "app/packages/photolib_api/test/network_test.dart": {
+   "lines_longer_than_80_chars": 14
+  },
+  "app/packages/photolib_api/test/support/pki.dart": {
+   "lines_longer_than_80_chars": 6,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/packages/photolib_api/test/support/servers.dart": {
+   "async_return_with_no_await": 1,
+   "cancel_subscriptions": 1,
+   "curly_braces_in_flow_control_structures": 1,
+   "lines_longer_than_80_chars": 10,
+   "specify_nonobvious_property_types": 1,
+   "unnecessary_type_name_in_constructor": 2
+  },
+  "app/packages/photolib_api/test/support/web_server.dart": {
+   "lines_longer_than_80_chars": 2,
+   "unused-code": 1,
+   "unused-files": 1
+  },
+  "app/packages/photolib_api/test/sync_test.dart": {
+   "lines_longer_than_80_chars": 5,
+   "no_adjacent_strings_in_list": 1
+  },
+  "app/packages/photolib_api/tool/decrypting_proxy.dart": {
+   "avoid_positional_boolean_parameters": 1,
+   "avoid_print": 1,
+   "lines_longer_than_80_chars": 2
+  }
+ },
+ "dart app/packages/photolib_data": {
+  "app/packages/photolib_data/lib/photolib_data.dart": {
+   "lines_longer_than_80_chars": 2
+  },
+  "app/packages/photolib_data/lib/src/browser_folders.dart": {
+   "async_return_with_no_await": 4,
+   "avoid-non-null-assertion": 2,
+   "avoid_catches_without_on_clauses": 8,
+   "cast_nullable_to_non_nullable": 5,
+   "lines_longer_than_80_chars": 11,
+   "public_member_api_docs": 1
+  },
+  "app/packages/photolib_data/lib/src/browser_posters.dart": {
+   "avoid-non-null-assertion": 3,
+   "lines_longer_than_80_chars": 5,
+   "prefer_int_literals": 2,
+   "public_member_api_docs": 3,
+   "source-lines-of-code": 1,
+   "unawaited_futures": 1
+  },
+  "app/packages/photolib_data/lib/src/file_system.dart": {
+   "avoid-non-null-assertion": 3,
+   "lines_longer_than_80_chars": 4,
+   "specify_nonobvious_property_types": 8
+  },
+  "app/packages/photolib_data/lib/src/files_native.dart": {
+   "async_return_with_no_await": 1,
+   "avoid_slow_async_io": 3,
+   "lines_longer_than_80_chars": 1
+  },
+  "app/packages/photolib_data/lib/src/files_web.dart": {
+   "async_return_with_no_await": 1,
+   "avoid-non-null-assertion": 1,
+   "cascade_invocations": 1,
+   "cast_nullable_to_non_nullable": 3,
+   "lines_longer_than_80_chars": 2,
+   "specify_nonobvious_property_types": 1,
+   "unused-code": 2
+  },
+  "app/packages/photolib_data/lib/src/folder_watcher.dart": {
+   "avoid-non-null-assertion": 2,
+   "avoid_multiple_declarations_per_line": 3,
+   "comment_references": 1,
+   "discarded_futures": 2,
+   "lines_longer_than_80_chars": 6,
+   "public_member_api_docs": 5,
+   "specify_nonobvious_property_types": 1
+  },
+  "app/packages/photolib_data/lib/src/folders.dart": {
+   "lines_longer_than_80_chars": 5,
+   "parameter_assignments": 1
+  },
+  "app/packages/photolib_data/lib/src/ignore.dart": {
+   "cyclomatic-complexity": 1,
+   "lines_longer_than_80_chars": 6,
+   "parameter_assignments": 3
+  },
+  "app/packages/photolib_data/lib/src/journal.dart": {
+   "lines_longer_than_80_chars": 3
+  },
+  "app/packages/photolib_data/lib/src/keyed.dart": {
+   "cast_nullable_to_non_nullable": 1,
+   "lines_longer_than_80_chars": 4,
+   "public_member_api_docs": 2
+  },
+  "app/packages/photolib_data/lib/src/keys.dart": {
+   "lines_longer_than_80_chars": 4,
+   "parameter_assignments": 1,
+   "prefer_final_locals": 3,
+   "public_member_api_docs": 8
+  },
+  "app/packages/photolib_data/lib/src/local_only.dart": {
+   "avoid-non-null-assertion": 1,
+   "avoid_catches_without_on_clauses": 1,
+   "avoid_escaping_inner_quotes": 1,
+   "lines_longer_than_80_chars": 8,
+   "unnecessary_raw_strings": 1
+  },
+  "app/packages/photolib_data/lib/src/media_store.dart": {
+   "avoid_multiple_declarations_per_line": 5,
+   "lines_longer_than_80_chars": 22,
+   "prefer_const_constructors": 2,
+   "public_member_api_docs": 27,
+   "source-lines-of-code": 1
+  },
+  "app/packages/photolib_data/lib/src/metadata.dart": {
+   "avoid-non-null-assertion": 3
+  },
+  "app/packages/photolib_data/lib/src/open_native.dart": {
+   "avoid_catches_without_on_clauses": 1,
+   "avoid_catching_errors": 1,
+   "lines_longer_than_80_chars": 14,
+   "unawaited_futures": 1
+  },
+  "app/packages/photolib_data/lib/src/photo_kit.dart": {
+   "lines_longer_than_80_chars": 19,
+   "public_member_api_docs": 5
+  },
+  "app/packages/photolib_data/lib/src/port_channel.dart": {
+   "lines_longer_than_80_chars": 3
+  },
+  "app/packages/photolib_data/lib/src/replica.dart": {
+   "matching_super_parameters": 1
+  },
+  "app/packages/photolib_data/lib/src/replica.steps.dart": {
+   "file-length": 1,
+   "unused-code": 1
+  },
+  "app/packages/photolib_data/lib/src/search.dart": {
+   "avoid-non-null-assertion": 1,
+   "avoid_multiple_declarations_per_line": 2,
+   "comment_references": 2,
+   "lines_longer_than_80_chars": 9,
+   "public_member_api_docs": 12,
+   "specify_nonobvious_property_types": 1
+  },
+  "app/packages/photolib_data/lib/src/store_cost.dart": {
+   "avoid_multiple_declarations_per_line": 1,
+   "cascade_invocations": 5,
+   "comment_references": 2,
+   "lines_longer_than_80_chars": 36,
+   "no_adjacent_strings_in_list": 1,
+   "omit_local_variable_types": 1
+  },
+  "app/packages/photolib_data/lib/src/stored_native.dart": {
+   "lines_longer_than_80_chars": 1
+  },
+  "app/packages/photolib_data/lib/src/stored_web.dart": {
+   "async_return_with_no_await": 1,
+   "avoid-non-null-assertion": 1,
+   "cast_nullable_to_non_nullable": 9,
+   "lines_longer_than_80_chars": 2
+  },
+  "app/packages/photolib_data/lib/src/sync_message.dart": {
+   "lines_longer_than_80_chars": 2,
+   "public_member_api_docs": 8
+  },
+  "app/packages/photolib_data/lib/src/vault.dart": {
+   "async_return_with_no_await": 2,
+   "avoid-non-null-assertion": 1,
+   "avoid_multiple_declarations_per_line": 1,
+   "lines_longer_than_80_chars": 10,
+   "public_member_api_docs": 15,
+   "specify_nonobvious_property_types": 1
+  },
+  "app/packages/photolib_data/lib/src/vault_cache.dart": {
+   "avoid-non-null-assertion": 3,
+   "for_in_of_invalid_type": 1,
+   "lines_longer_than_80_chars": 3,
+   "prefer_final_locals": 2,
+   "public_member_api_docs": 4
+  },
+  "app/packages/photolib_data/lib/testing.dart": {
+   "avoid-non-null-assertion": 1,
+   "cascade_invocations": 2,
+   "lines_longer_than_80_chars": 6,
+   "public_member_api_docs": 2,
+   "source-lines-of-code": 1
+  },
+  "app/packages/photolib_data/test/extraction_test.dart": {
+   "async_return_with_no_await": 1,
+   "avoid_print": 1,
+   "lines_longer_than_80_chars": 5,
+   "specify_nonobvious_property_types": 2
+  },
+  "app/packages/photolib_data/test/ignore_test.dart": {
+   "argument_type_not_assignable": 3,
+   "for_in_of_invalid_type": 3
+  },
+  "app/packages/photolib_data/test/journal_test.dart": {
+   "avoid_escaping_inner_quotes": 1
+  },
+  "app/packages/photolib_data/test/media_store_test.dart": {
+   "avoid_print": 1,
+   "cascade_invocations": 1,
+   "lines_longer_than_80_chars": 4,
+   "no_adjacent_strings_in_list": 1,
+   "prefer_foreach": 1,
+   "unnecessary_parenthesis": 1
+  },
+  "app/packages/photolib_data/test/native_test.dart": {
+   "lines_longer_than_80_chars": 6
+  },
+  "app/packages/photolib_data/test/photo_kit_test.dart": {
+   "avoid_multiple_declarations_per_line": 1,
+   "avoid_print": 1,
+   "lines_longer_than_80_chars": 7,
+   "prefer_foreach": 2,
+   "specify_nonobvious_property_types": 1,
+   "type_annotate_public_apis": 4
+  },
+  "app/packages/photolib_data/test/search_test.dart": {
+   "avoid_escaping_inner_quotes": 1,
+   "avoid_print": 1,
+   "avoid_redundant_argument_values": 3,
+   "lines_longer_than_80_chars": 9
+  },
+  "app/packages/photolib_data/test/slow_queries_test.dart": {
+   "prefer_const_constructors": 1
+  },
+  "app/packages/photolib_data/test/store_cost_test.dart": {
+   "avoid_print": 1,
+   "lines_longer_than_80_chars": 4
+  },
+  "app/packages/photolib_data/test/support/photolibd.dart": {
+   "avoid_print": 2,
+   "lines_longer_than_80_chars": 2
+  },
+  "app/packages/photolib_data/test/support/sync_rows.dart": {
+   "lines_longer_than_80_chars": 3,
+   "specify_nonobvious_property_types": 1
+  },
+  "app/packages/photolib_data/test/sync_test.dart": {
+   "lines_longer_than_80_chars": 11
+  },
+  "app/packages/photolib_data/test/timeline_test.dart": {
+   "avoid_redundant_argument_values": 2,
+   "lines_longer_than_80_chars": 1
+  },
+  "app/packages/photolib_data/test/vault_test.dart": {
+   "avoid_escaping_inner_quotes": 1,
+   "lines_longer_than_80_chars": 5
+  },
+  "app/packages/photolib_data/test/video_twins.dart": {
+   "avoid_slow_async_io": 1,
+   "lines_longer_than_80_chars": 4,
+   "missing_whitespace_between_adjacent_strings": 1,
+   "unused-code": 1,
+   "unused-files": 1
+  },
+  "app/packages/photolib_data/test/web_assets.dart": {
+   "unused-code": 1,
+   "unused-files": 1
+  }
+ },
+ "dart app/packages/photolib_editor": {
+  "app/packages/photolib_editor/lib/photolib_editor.dart": {
+   "avoid-non-null-assertion": 1,
+   "avoid_multiple_declarations_per_line": 2,
+   "avoid_redundant_argument_values": 1,
+   "lines_longer_than_80_chars": 7,
+   "prefer_asserts_with_message": 1,
+   "public_member_api_docs": 11,
+   "unnecessary_type_name_in_constructor": 3
+  },
+  "app/packages/photolib_editor/lib/testing.dart": {
+   "always_put_required_named_parameters_first": 1,
+   "always_use_package_imports": 1,
+   "avoid-non-null-assertion": 1,
+   "avoid_multiple_declarations_per_line": 3,
+   "lines_longer_than_80_chars": 19,
+   "parameter_assignments": 1,
+   "prefer_if_elements_to_conditional_expressions": 1,
+   "prefer_int_literals": 1,
+   "public_member_api_docs": 5,
+   "specify_nonobvious_property_types": 1,
+   "unnecessary_type_name_in_constructor": 1
+  },
+  "app/packages/photolib_editor/test/editor_test.dart": {
+   "lines_longer_than_80_chars": 1
+  },
+  "app/packages/photolib_editor/test/probe.dart": {
+   "lines_longer_than_80_chars": 2
+  },
+  "app/packages/photolib_editor/test/web_assets.dart": {
+   "lines_longer_than_80_chars": 1,
+   "unused-code": 1,
+   "unused-files": 1
+  },
+  "app/packages/photolib_editor/test/web_test.dart": {
+   "lines_longer_than_80_chars": 2
+  }
+ },
+ "dart app/packages/photolib_harness": {},
+ "dart app/packages/photolib_kernel": {
+  "app/packages/photolib_kernel/hook/build.dart": {
+   "lines_longer_than_80_chars": 3
+  },
+  "app/packages/photolib_kernel/lib/keyring.dart": {
+   "lines_longer_than_80_chars": 2
+  },
+  "app/packages/photolib_kernel/lib/photolib_kernel.dart": {
+   "always_use_package_imports": 1,
+   "lines_longer_than_80_chars": 6,
+   "public_member_api_docs": 4
+  },
+  "app/packages/photolib_kernel/lib/photolib_kernel_web.dart": {
+   "always_use_package_imports": 1,
+   "avoid-non-null-assertion": 1,
+   "lines_longer_than_80_chars": 11,
+   "public_member_api_docs": 2
+  },
+  "app/packages/photolib_kernel/lib/testing.dart": {
+   "avoid-non-null-assertion": 2,
+   "avoid_dynamic_calls": 1,
+   "lines_longer_than_80_chars": 3
+  },
+  "app/packages/photolib_kernel/test/bench.dart": {
+   "lines_longer_than_80_chars": 12,
+   "parameter_assignments": 1,
+   "prefer_final_locals": 2
+  },
+  "app/packages/photolib_kernel/test/bench_test.dart": {
+   "lines_longer_than_80_chars": 2
+  },
+  "app/packages/photolib_kernel/test/cases.dart": {
+   "lines_longer_than_80_chars": 3,
+   "strict_raw_type": 2
+  },
+  "app/packages/photolib_kernel/test/hook_test.dart": {
+   "lines_longer_than_80_chars": 2
+  },
+  "app/packages/photolib_kernel/test/vectors_test.dart": {
+   "avoid_print": 1,
+   "lines_longer_than_80_chars": 1
+  },
+  "app/packages/photolib_kernel/test/wasm_server.dart": {
+   "avoid_print": 1,
+   "lines_longer_than_80_chars": 1,
+   "specify_nonobvious_property_types": 1,
+   "unused-code": 1,
+   "unused-files": 1
+  }
+ },
+ "dart app/packages/photolib_log": {
+  "app/packages/photolib_log/lib/photolib_log.dart": {
+   "avoid-non-null-assertion": 2,
+   "lines_longer_than_80_chars": 6,
+   "public_member_api_docs": 30,
+   "specify_nonobvious_property_types": 1,
+   "type_annotate_public_apis": 2,
+   "unnecessary_type_name_in_constructor": 3
+  },
+  "app/packages/photolib_log/test/photolib_log_test.dart": {
+   "directives_ordering": 1,
+   "use_raw_strings": 1
+  }
+ },
+ "dart app/packages/photolib_ml": {
+  "app/packages/photolib_ml/lib/photolib_ml.dart": {
+   "avoid_multiple_declarations_per_line": 2,
+   "lines_longer_than_80_chars": 8,
+   "public_member_api_docs": 10,
+   "specify_nonobvious_property_types": 20,
+   "unnecessary_type_name_in_constructor": 6
+  },
+  "app/packages/photolib_ml/lib/photolib_ml_web.dart": {
+   "avoid-non-null-assertion": 2,
+   "avoid_setters_without_getters": 2,
+   "lines_longer_than_80_chars": 7,
+   "public_member_api_docs": 6,
+   "unnecessary_type_name_in_constructor": 4
+  },
+  "app/packages/photolib_ml/test/ml_server.dart": {
+   "lines_longer_than_80_chars": 1,
+   "unused-code": 1,
+   "unused-files": 1
+  },
+  "app/packages/photolib_ml/test/native_test.dart": {
+   "avoid_multiple_declarations_per_line": 1,
+   "avoid_print": 1,
+   "lines_longer_than_80_chars": 4,
+   "specify_nonobvious_property_types": 1
+  },
+  "app/packages/photolib_ml/test/spike.dart": {
+   "avoid_multiple_declarations_per_line": 1,
+   "comment_references": 1,
+   "lines_longer_than_80_chars": 7,
+   "prefer_const_constructors": 8,
+   "specify_nonobvious_property_types": 1,
+   "unnecessary_type_name_in_constructor": 1
+  }
+ },
+ "dart app/packages/photolib_video": {
+  "app/packages/photolib_video/lib/src/edl.dart": {
+   "avoid_catching_errors": 2,
+   "cast_nullable_to_non_nullable": 1,
+   "lines_longer_than_80_chars": 2,
+   "prefer_const_constructors": 1,
+   "public_member_api_docs": 11,
+   "strict_raw_type": 3
+  },
+  "app/packages/photolib_video/lib/src/executor.dart": {
+   "always_use_package_imports": 1,
+   "lines_longer_than_80_chars": 1,
+   "public_member_api_docs": 1
+  },
+  "app/packages/photolib_video/lib/src/ffmpeg.dart": {
+   "always_use_package_imports": 2,
+   "avoid-non-null-assertion": 3,
+   "avoid_dynamic_calls": 5,
+   "cast_nullable_to_non_nullable": 3,
+   "lines_longer_than_80_chars": 14,
+   "prefer_if_elements_to_conditional_expressions": 2,
+   "public_member_api_docs": 2,
+   "strict_raw_type": 1
+  },
+  "app/packages/photolib_video/lib/src/native.dart": {
+   "always_use_package_imports": 2,
+   "avoid-non-null-assertion": 1,
+   "lines_longer_than_80_chars": 1
+  },
+  "app/packages/photolib_video/lib/src/plan.dart": {
+   "always_put_required_named_parameters_first": 4,
+   "always_use_package_imports": 1,
+   "avoid-non-null-assertion": 2,
+   "avoid_equals_and_hash_code_on_mutable_classes": 2,
+   "cast_nullable_to_non_nullable": 8,
+   "lines_longer_than_80_chars": 13,
+   "prefer_if_elements_to_conditional_expressions": 1,
+   "public_member_api_docs": 38,
+   "specify_nonobvious_property_types": 1
+  },
+  "app/packages/photolib_video/test/ffmpeg_test.dart": {
+   "avoid_escaping_inner_quotes": 1,
+   "avoid_multiple_declarations_per_line": 2,
+   "lines_longer_than_80_chars": 21,
+   "specify_nonobvious_property_types": 1,
+   "strict_raw_type": 7,
+   "unnecessary_raw_strings": 1
+  },
+  "app/packages/photolib_video/test/fixtures.dart": {
+   "argument_type_not_assignable": 1
+  },
+  "app/packages/photolib_video/test/native_test.dart": {
+   "lines_longer_than_80_chars": 1
+  },
+  "app/packages/photolib_video/test/plan_test.dart": {
+   "argument_type_not_assignable": 2,
+   "avoid_escaping_inner_quotes": 2,
+   "avoid_multiple_declarations_per_line": 2,
+   "avoid_redundant_argument_values": 1,
+   "lines_longer_than_80_chars": 14,
+   "specify_nonobvious_property_types": 6
+  }
+ },
+ "dart app/packages/photolib_workers": {
+  "app/packages/photolib_workers/lib/src/pool.dart": {
+   "always_use_package_imports": 1,
+   "avoid-non-null-assertion": 1,
+   "avoid_catches_without_on_clauses": 1,
+   "comment_references": 3,
+   "discarded_futures": 1,
+   "lines_longer_than_80_chars": 9,
+   "public_member_api_docs": 15,
+   "strict_raw_type": 6
+  },
+  "app/packages/photolib_workers/lib/src/spawn_native.dart": {
+   "always_use_package_imports": 1,
+   "public_member_api_docs": 1,
+   "strict_raw_type": 2
+  },
+  "app/packages/photolib_workers/lib/src/spawn_web.dart": {
+   "always_use_package_imports": 1,
+   "lines_longer_than_80_chars": 2,
+   "public_member_api_docs": 1,
+   "strict_raw_type": 1,
+   "unnecessary_lambdas": 1
+  },
+  "app/packages/photolib_workers/lib/src/testing/frames_native.dart": {
+   "always_use_package_imports": 1,
+   "lines_longer_than_80_chars": 1
+  },
+  "app/packages/photolib_workers/lib/src/testing/frames_web.dart": {
+   "always_use_package_imports": 1,
+   "avoid-non-null-assertion": 2,
+   "avoid_multiple_declarations_per_line": 2,
+   "cast_nullable_to_non_nullable": 1,
+   "lines_longer_than_80_chars": 3,
+   "public_member_api_docs": 1,
+   "unused-code": 1
+  },
+  "app/packages/photolib_workers/lib/testing.dart": {
+   "always_put_required_named_parameters_first": 1,
+   "always_use_package_imports": 1,
+   "avoid_multiple_declarations_per_line": 3,
+   "avoid_print": 2,
+   "lines_longer_than_80_chars": 15,
+   "public_member_api_docs": 8
+  },
+  "app/packages/photolib_workers/lib/worker.dart": {
+   "always_use_package_imports": 1,
+   "discarded_futures": 1,
+   "lines_longer_than_80_chars": 1,
+   "public_member_api_docs": 1,
+   "strict_raw_type": 1
+  },
+  "app/packages/photolib_workers/test/frames_test.dart": {
+   "avoid_multiple_declarations_per_line": 1,
+   "lines_longer_than_80_chars": 1
+  },
+  "app/packages/photolib_workers/test/pool_tests.dart": {
+   "cascade_invocations": 1,
+   "lines_longer_than_80_chars": 2
+  },
+  "app/packages/photolib_workers/test/tasks.dart": {
+   "lines_longer_than_80_chars": 1,
+   "strict_raw_type": 1
+  },
+  "app/packages/photolib_workers/test/web_assets.dart": {
+   "unused-code": 1,
+   "unused-files": 1
+  }
+ },
+ "eslint .": {},
+ "ktlint .": {
+  "app/android/app/src/main/kotlin/org/photolib/photolib/HdrLeaf.kt": {
+   "standard:argument-list-wrapping": 2,
+   "standard:class-signature": 4,
+   "standard:filename": 1,
+   "standard:function-signature": 17,
+   "standard:multiline-expression-wrapping": 4,
+   "standard:no-empty-first-line-in-class-body": 1,
+   "standard:statement-wrapping": 3
+  },
+  "app/android/app/src/main/kotlin/org/photolib/photolib/MediaStoreChannel.kt": {
+   "not-null-assertion": 6,
+   "standard:argument-list-wrapping": 40,
+   "standard:binary-expression-wrapping": 1,
+   "standard:blank-line-before-declaration": 1,
+   "standard:blank-line-between-when-conditions": 10,
+   "standard:chain-method-continuation": 7,
+   "standard:class-signature": 3,
+   "standard:function-signature": 17,
+   "standard:max-line-length": 6,
+   "standard:multiline-expression-wrapping": 9,
+   "standard:statement-wrapping": 3,
+   "standard:when-entry-bracing": 10,
+   "standard:wrapping": 6
+  },
+  "app/android/app/src/main/kotlin/org/photolib/photolib/ThumbnailChannel.kt": {
+   "standard:blank-line-between-when-conditions": 2,
+   "standard:chain-method-continuation": 1,
+   "standard:class-signature": 3,
+   "standard:function-signature": 4,
+   "standard:multiline-expression-wrapping": 2,
+   "standard:when-entry-bracing": 1
+  },
+  "app/packages/photolib_video/android/src/main/kotlin/org/photolib/video/PhotolibVideoPlugin.kt": {
+   "not-null-assertion": 7,
+   "standard:argument-list-wrapping": 11,
+   "standard:chain-method-continuation": 13,
+   "standard:class-signature": 2,
+   "standard:function-literal": 2,
+   "standard:function-signature": 21,
+   "standard:if-else-wrapping": 2,
+   "standard:max-line-length": 2,
+   "standard:multiline-expression-wrapping": 10,
+   "standard:multiline-if-else": 2,
+   "standard:parameter-list-wrapping": 5,
+   "standard:paren-spacing": 2,
+   "standard:wrapping": 7
+  }
+ },
+ "ruff .": {
+  "tools/corpus/build.py": {
+   "EXE001": 1
+  },
+  "tools/corpus/catalog_compound.py": {
+   "C408": 1
+  },
+  "tools/corpus/catalog_time.py": {
+   "C408": 1,
+   "E501": 2
+  },
+  "tools/corpus/catalog_video.py": {
+   "C408": 3,
+   "E501": 2
+  },
+  "tools/corpus/containers.py": {
+   "E501": 6,
+   "I001": 1,
+   "UP017": 2
+  },
+  "tools/corpus/filename_rules.py": {
+   "E501": 2
+  },
+  "tools/corpus/images.py": {
+   "E501": 3,
+   "UP012": 1
+  },
+  "tools/corpus/jpegscan.py": {
+   "E501": 1
+  },
+  "tools/corpus/picture.py": {
+   "SIM905": 1
+  },
+  "tools/corpus/validate.py": {
+   "E501": 1,
+   "EXE001": 1,
+   "FURB188": 1,
+   "RUF100": 2,
+   "UP017": 2
+  },
+  "tools/corpus/webpcode.py": {
+   "E501": 1
+  },
+  "tools/cryptoref/opaque.py": {
+   "I001": 1
+  },
+  "tools/cryptoref/vectors.py": {
+   "B023": 33,
+   "C417": 1,
+   "E501": 3,
+   "EXE001": 1,
+   "ISC004": 2
+  },
+  "tools/dart_licenses.py": {
+   "EXE001": 1
+  },
+  "tools/dev/seed.py": {
+   "E501": 5,
+   "UP017": 1
+  },
+  "tools/flutter_upgrade_gate.py": {
+   "EXE001": 1,
+   "FURB167": 2,
+   "PLW1510": 1
+  },
+  "tools/ios/probe.py": {
+   "EXE001": 1
+  },
+  "tools/kernel/build.py": {
+   "EXE001": 1,
+   "PLW1510": 1
+  },
+  "tools/ml/fetch.py": {
+   "EXE001": 1
+  },
+  "tools/node_licenses.py": {
+   "EXE001": 1
+  },
+  "tools/oidc/signin.py": {
+   "B006": 1,
+   "I001": 1
+  },
+  "tools/page_size.py": {
+   "E501": 1,
+   "EXE001": 1
+  },
+  "tools/sbom.py": {
+   "E501": 1,
+   "EXE001": 1,
+   "FURB167": 2
+  },
+  "tools/scan_libre.py": {
+   "EXE001": 1
+  },
+  "tools/tests/check_compose.py": {
+   "E501": 1,
+   "EXE001": 1,
+   "FURB167": 2
+  },
+  "tools/tests/check_devenv.py": {
+   "E501": 9
+  },
+  "tools/tests/check_devstack.py": {
+   "E501": 17,
+   "FURB167": 5
+  },
+  "tools/tests/check_outbound.py": {
+   "E501": 1,
+   "EXE001": 1
+  },
+  "tools/tests/check_seed.py": {
+   "E501": 10
+  },
+  "tools/tests/corpus_decode.py": {
+   "EXE001": 1,
+   "PLR0402": 1,
+   "RUF100": 1
+  },
+  "tools/tests/corpus_format_tests.py": {
+   "E501": 5,
+   "EXE001": 1,
+   "RUF015": 4,
+   "RUF100": 4
+  },
+  "tools/tests/corpus_tests.py": {
+   "EXE001": 1,
+   "I001": 1,
+   "RUF012": 1,
+   "RUF100": 3
+  },
+  "tools/tests/mdlint.py": {
+   "EXE001": 1
+  },
+  "tools/tests/miniyaml.py": {
+   "E501": 2
+  },
+  "tools/timeline_bench.py": {
+   "E501": 2,
+   "EXE001": 1,
+   "PLW1510": 2
+  }
+ },
+ "shellcheck .": {
+  "tools/android_sdk.sh": {
+   "SC2034": 1
+  },
+  "tools/codegen.sh": {
+   "SC2034": 1
+  },
+  "tools/data/web.sh": {
+   "SC2174": 1
+  },
+  "tools/perf/instructions.sh": {
+   "SC2174": 1
+  },
+  "tools/tests/test_accounts_docs.sh": {
+   "SC2016": 3
+  },
+  "tools/tests/test_android_gallery.sh": {
+   "SC2016": 8
+  },
+  "tools/tests/test_api_clients_docs.sh": {
+   "SC2016": 1
+  },
+  "tools/tests/test_app.sh": {
+   "SC2016": 7
+  },
+  "tools/tests/test_capture_time_docs.sh": {
+   "SC2016": 1
+  },
+  "tools/tests/test_ci.sh": {
+   "SC2016": 1
+  },
+  "tools/tests/test_codegen.sh": {
+   "SC2016": 4
+  },
+  "tools/tests/test_compose.sh": {
+   "SC2115": 1
+  },
+  "tools/tests/test_corpus.sh": {
+   "SC2174": 1
+  },
+  "tools/tests/test_crypto.sh": {
+   "SC2016": 3
+  },
+  "tools/tests/test_data_web.sh": {
+   "SC2016": 2
+  },
+  "tools/tests/test_desktop_thumbnails.sh": {
+   "SC2013": 2
+  },
+  "tools/tests/test_folder_sources.sh": {
+   "SC2016": 1
+  },
+  "tools/tests/test_governance.sh": {
+   "SC2016": 2
+  },
+  "tools/tests/test_jobs_docs.sh": {
+   "SC2016": 1
+  },
+  "tools/tests/test_journal_docs.sh": {
+   "SC2016": 2
+  },
+  "tools/tests/test_kernel_build.sh": {
+   "SC2016": 3
+  },
+  "tools/tests/test_kernel_fuzz.sh": {
+   "SC2016": 2
+  },
+  "tools/tests/test_kernel_gate.sh": {
+   "SC2013": 1
+  },
+  "tools/tests/test_licence_policy.sh": {
+   "SC2086": 1
+  },
+  "tools/tests/test_links.sh": {
+   "SC2016": 1
+  },
+  "tools/tests/test_local_store_spike.sh": {
+   "SC1087": 2,
+   "SC2016": 3
+  },
+  "tools/tests/test_markdown.sh": {
+   "SC2016": 1
+  },
+  "tools/tests/test_media_sandbox_docs.sh": {
+   "SC2016": 3
+  },
+  "tools/tests/test_migrations.sh": {
+   "SC2016": 4
+  },
+  "tools/tests/test_ml_runtime.sh": {
+   "SC2016": 1
+  },
+  "tools/tests/test_movies_docs.sh": {
+   "SC2016": 1
+  },
+  "tools/tests/test_outbound.sh": {
+   "SC2016": 1,
+   "SC2028": 1
+  },
+  "tools/tests/test_photo_kit.sh": {
+   "SC2016": 1
+  },
+  "tools/tests/test_smoke.sh": {
+   "SC2016": 5
+  },
+  "tools/tests/test_test_helpers.sh": {
+   "SC2034": 3
+  },
+  "tools/tests/test_threat_model.sh": {
+   "SC2016": 2
+  },
+  "tools/tests/test_timeline_bench.sh": {
+   "SC1087": 1,
+   "SC2016": 1
+  },
+  "tools/tests/test_upgrade_path.sh": {
+   "SC2016": 1
+  },
+  "tools/tests/test_uploads_docs.sh": {
+   "SC2016": 2
+  },
+  "tools/tests/test_video.sh": {
+   "SC2016": 1
+  }
+ },
+ "swiftlint .": {
+  "app/ios/Runner/PhotoKitChannel.swift": {
+   "force_cast": 3,
+   "force_unwrapping": 2,
+   "opening_brace": 1,
+   "optional_data_string_conversion": 2,
+   "trailing_comma": 2
+  },
+  "app/ios/Runner/ThumbnailChannel.swift": {
+   "force_cast": 5,
+   "force_unwrapping": 1
+  },
+  "app/ios/RunnerTests/PhotoKitProbe.swift": {
+   "identifier_name": 1
+  },
+  "app/macos/Runner/FolderAccess.swift": {
+   "force_cast": 4
+  },
+  "app/macos/Runner/ThumbnailChannel.swift": {
+   "force_cast": 5,
+   "force_unwrapping": 1,
+   "trailing_comma": 1
+  },
+  "app/packages/photolib_video/darwin/photolib_video/Sources/photolib_video/PhotolibVideoPlugin.swift": {
+   "force_cast": 16,
+   "force_unwrapping": 6,
+   "line_length": 1,
+   "opening_brace": 1,
+   "shorthand_operator": 1,
+   "trailing_comma": 3
+  }
+ }
+}

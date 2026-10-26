@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "path": "compound/motion/PXL_20230514_100000000.jpg",
+  "size": 80626,
+  "sha256": "c38c989dfc31f9e33e6e721cd88c4054386215fb87aa2be319b2c79077788b36",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "google",
+  "quirks": [
+    "live_photo",
+    "motion_flag_stale"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 4080,
+    "height": 3072,
+    "make": "Google",
+    "model": "Pixel 7"
+  },
+  "group": {
+    "kind": "live_photo",
+    "key": null,
+    "role": "primary"
+  },
+  "filename": {
+    "matches": [
+      "F03"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2023-05-14T12:00:00.000",
+        "precision": "ms",
+        "event": "capture",
+        "offset": "+02:00"
+      },
+      {
+        "source": "filename:F03",
+        "kind": "utc",
+        "value": "2023-05-14T10:00:00.000Z",
+        "precision": "ms",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2023-05-14T12:00:00.000",
+      "utc": "2023-05-14T10:00:00.000Z",
+      "offset": "+02:00",
+      "tz_source": "explicit_offset",
+      "precision": "ms",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

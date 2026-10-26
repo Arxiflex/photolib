@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "path": "stills/xmp-itxt.png",
+  "size": 1979,
+  "sha256": "231745264a7eeca3597858e02d0bd526c8dd23e69cf8cf962f9384857ef2fdae",
+  "origin": "synthetic",
+  "format": "png",
+  "quirks": [],
+  "media": {
+    "container": "png",
+    "mime": "image/png",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "xmp_date_with_offset",
+        "kind": "local",
+        "value": "2018-08-20T09:30:15",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+02:00"
+      }
+    ],
+    "resolved": {
+      "local": "2018-08-20T09:30:15",
+      "utc": "2018-08-20T07:30:15Z",
+      "offset": "+02:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "xmp_date_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

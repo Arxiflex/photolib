@@ -1,0 +1,58 @@
+{{- range $name, $process := .Values.deployments }}
+{{- if $process }}
+{{- $roles := regexSplit "\\s*,\\s*" $process.roles -1 }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $.Release.Name }}-{{ $name }}
+  labels:
+    {{- include "photolib.labels" $ | nindent 4 }}
+spec:
+  replicas: {{ $process.replicas }}
+  {{- if eq (int $process.replicas) 1 }}
+  strategy:
+    type: Recreate
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "photolib.labels" $ | nindent 6 }}
+      app.kubernetes.io/component: {{ $name }}
+  template:
+    metadata:
+      labels:
+        {{- include "photolib.labels" $ | nindent 8 }}
+        app.kubernetes.io/component: {{ $name }}
+        photolib.org/api: {{ or (has "all" $roles) (has "api" $roles) | quote }}
+    spec:
+      {{- include "photolib.pod" $ | nindent 6 }}
+      containers:
+        - {{ include "photolib.container" (dict "root" $ "roles" $process.roles) | nindent 10 | trim }}
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: http
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+{{- if gt (int $process.replicas) 1 }}
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ $.Release.Name }}-{{ $name }}
+  labels:
+    {{- include "photolib.labels" $ | nindent 4 }}
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      {{- include "photolib.labels" $ | nindent 6 }}
+      app.kubernetes.io/component: {{ $name }}
+{{- end }}
+{{- end }}
+{{- end }}

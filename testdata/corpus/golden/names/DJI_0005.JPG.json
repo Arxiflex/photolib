@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "path": "names/DJI_0005.JPG",
+  "size": 2930,
+  "sha256": "4039f0557fc8aaa8d8e0ec1d902cd45edf4596c634894088eb66c3ed2fddcce5",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "dji",
+  "quirks": [
+    "counter_not_time"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F39"
+    ]
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

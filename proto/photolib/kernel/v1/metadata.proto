@@ -1,0 +1,243 @@
+syntax = "proto3";
+
+package photolib.kernel.v1;
+
+import "photolib/model/v1/capture_time.proto";
+
+// Reads the metadata embedded in an image or a video, or an XMP sidecar on its own: EXIF, XMP and IPTC IIM in JPEG,
+// TIFF (DNG and the TIFF-based RAW formats among them), HEIC, AVIF, PNG, WebP and GIF; the boxes of ISOBMFF and
+// QuickTime movies; AVI's headers. Damaged data is skipped, never an error.
+message ReadMetadataRequest {
+  // Pieces of the file at their offsets, usually just its first 64 KiB; nothing is assumed about the bytes between.
+  repeated FileRange ranges = 1;
+  // The file's length in bytes, 0 when unknown: what is found from the end of a file, such as a motion photo's video,
+  // needs it.
+  uint64 size = 2;
+}
+
+// Bytes of a file from an offset.
+message FileRange {
+  uint64 offset = 1;
+  bytes data = 2;
+}
+
+// A span of a file.
+message ByteSpan {
+  uint64 offset = 1;
+  uint64 length = 2;
+}
+
+// What the file says about itself. Where its EXIF, XMP and IIM disagree, the rules of the Metadata Working Group
+// pick one value: EXIF first, then XMP or IIM as the IPTC digest decides. Every date is kept.
+message ReadMetadataResponse {
+  // The container the magic bytes name, whatever the file's extension.
+  FileFormat format = 1;
+  // Stored pixels, before orientation (a video's sample size); 0 when unknown.
+  uint32 width = 2;
+  uint32 height = 3;
+  // EXIF numbering, 1 to 8, which HEIF's irot and imir and a video track's matrix also map onto; 0 when the file has
+  // none, and for a video that is not turned.
+  uint32 orientation = 4;
+  string make = 5;
+  string model = 6;
+  // Absent when the file has none, and for 0,0.
+  GeoPoint location = 7;
+  // Every date in the file as written, unchecked and unrated (confidence 0), for the capture-time resolver: values
+  // such as "0000-00-00T00:00:00" pass through, and local_datetime is empty when the text is no date at all. The
+  // source names the tag: "exif:DateTimeOriginal", "exif:CreateDate" and "exif:ModifyDate" with their SubSecTime and
+  // OffsetTime tags, "exif:GPSDateTime" (UTC, so offset 0), "xmp-exif:DateTimeOriginal", "xmp-photoshop:DateCreated",
+  // "xmp-xmp:CreateDate", "xmp-xmp:ModifyDate", "xmp-xmp:MetadataDate" and "iptc:DateCreated"; in movies
+  // "quicktime:CreationDate" (the key com.apple.quicktime.creationdate, with its offset), "quicktime:ContentCreateDate"
+  // (©day) and "quicktime:CreateDate" (mvhd, unless 0), which has no offset: UTC by the specification, it is the wall
+  // clock on many cameras.
+  repeated photolib.model.v1.CaptureTime times = 8;
+  string title = 9;
+  // Camera boilerplate such as "OLYMPUS DIGITAL CAMERA" counts as no description.
+  string description = 10;
+  // Flat keywords: dc:subject or IIM Keywords.
+  repeated string keywords = 11;
+  // Hierarchical keywords from lr:hierarchicalSubject and digiKam:TagsList, without duplicates.
+  repeated KeywordPath keyword_paths = 12;
+  // xmp:Rating: -1 for rejected, else 0 to 5 stars.
+  optional sint32 rating = 13;
+  // xmp:Label, the colour label, e.g. "Red".
+  string label = 14;
+  repeated string creators = 15;
+  string copyright = 16;
+  // Where the photo was taken, as text: photoshop:City, State and Country, or their IIM datasets.
+  string city = 17;
+  string state = 18;
+  string country = 19;
+  // mwg-rs regions, such as faces.
+  repeated ImageRegion regions = 20;
+  // Present for photo spheres and 360° videos whose metadata says so (GPano, Spherical Video V2 or else V1), never
+  // guessed from the aspect ratio.
+  Panorama panorama = 21;
+  // Present when the XMP marks a motion photo.
+  MotionPhotoMarkers motion_photo = 22;
+  // Spans the reader needed but was not given. Read them, as far as the file goes, and call again with every range,
+  // until no span that the file holds is missing.
+  repeated ByteSpan missing = 23;
+  // A video's length; 0 for stills and when unknown.
+  uint64 duration_ms = 24;
+  // A video's codec: "h264", "hevc", "av1", "vp9", "h263", "mjpeg", "prores", "xvid" (MPEG-4 Part 2) or "dv"; empty
+  // when unknown.
+  string codec = 25;
+  // The colour's transfer characteristics as ITU-T H.273 numbers them, from a colr box: 16 is PQ and 18 is HLG, the HDR
+  // ones; 0 when the file does not say.
+  uint32 transfer = 26;
+  // A video track has a Dolby Vision configuration.
+  bool dolby_vision = 27;
+  // How a stereoscopic video packs its two views (Spherical Video V2's st3d, or V1's StereoMode).
+  StereoMode stereo_mode = 28;
+  // The identifier that a Live Photo's still and video share: Apple's MakerNote ContentIdentifier, or the QuickTime
+  // key com.apple.quicktime.content.identifier.
+  string content_identifier = 29;
+  // The burst the photo belongs to: Apple's MakerNote BurstUUID or Google's Camera:BurstID.
+  string burst_id = 30;
+  // Where a motion photo's video is, once found there: from the Container directory, MicroVideoOffset, HEIF's mpvd box
+  // or Samsung's trailer. It needs the request's size, and the markers alone are not enough: they can be stale.
+  ByteSpan motion_video = 31;
+  // The smallest JPEG the file holds as a picture of itself, which a host decodes long before the original (the
+  // thumbnails' T2.5): EXIF IFD1's thumbnail, a TIFF-based RAW's preview, RAF's JPEG or a HEIF thumbnail item coded as
+  // JPEG. Absent when there is none, or it does not fit in the request's size; its bytes are not asked for.
+  ByteSpan preview = 32;
+  // A video's frames a second, on average: its first video track's samples over the track's length (stts and mdhd),
+  // or a million over AVI's microseconds a frame; 0 for stills and when unknown, as in a fragmented movie.
+  double frame_rate = 33;
+  // The file holds a stereo pair, shown in 2D by its first view: a spatial photo (HEIF's ster entity group) or a
+  // spatial video (MV-HEVC, which Apple's vexu box or an lhvC configuration marks).
+  bool spatial = 34;
+  // The file keeps a depth map or a portrait matte beside its picture, for a refocus later: a HEIF auxiliary image of
+  // depth or Apple's portrait matte, GDepth's XMP, a Dynamic Depth item (a Container:Directory item of semantic
+  // "Depth") or Samsung's DepthMap_Data trailer block.
+  bool depth = 35;
+  // How a video's time runs against the time it recorded.
+  Pace pace = 36;
+  // The largest of the JPEGs that preview is the smallest of: a RAW's full-size preview or CR3's PRVW, which a host
+  // shows, turned by the file's orientation, where nothing decodes the RAW (docs/08 §2.1). Its bytes are not asked for.
+  ByteSpan largest_preview = 37;
+  // The still carries a gain map that platform decoders apply for HDR headroom: Ultra HDR's (hdrgm:Version in the
+  // XMP), ISO 21496-1's (a JPEG's APP2, HEIF's tmap item) or Apple's (HEIF's auxiliary image). Samsung's SEF one is
+  // not: no platform applies it.
+  bool gain_map = 38;
+}
+
+// How a video's time runs against the time it recorded.
+enum Pace {
+  // Real time, or not said.
+  PACE_UNSPECIFIED = 0;
+  // Recorded faster than it plays: Samsung's Slow_Motion_Data trailer block, Android's com.android.capture.fps over 60,
+  // or a frame rate of 100 and more, as iPhones and action cameras record slow motion.
+  PACE_SLOW_MOTION = 1;
+  // Recorded slower than it plays: Android's com.android.capture.fps below the frame rate.
+  PACE_TIME_LAPSE = 2;
+}
+
+// A file format, by its magic bytes.
+enum FileFormat {
+  FILE_FORMAT_UNSPECIFIED = 0;
+  FILE_FORMAT_JPEG = 1;
+  // TIFF and BigTIFF, with DNG and the TIFF-based RAW formats (CR2, NEF, ARW, ORF, RW2, PEF).
+  FILE_FORMAT_TIFF = 2;
+  // HEIC and AVIF.
+  FILE_FORMAT_HEIF = 3;
+  FILE_FORMAT_PNG = 4;
+  FILE_FORMAT_WEBP = 5;
+  FILE_FORMAT_GIF = 6;
+  // An XMP packet on its own, such as a sidecar.
+  FILE_FORMAT_XMP = 7;
+  // A Fujifilm RAW file, read through its embedded JPEG.
+  FILE_FORMAT_RAF = 8;
+  // An ISOBMFF or QuickTime movie: MP4, MOV, 3GP and the formats built on them, such as GoPro's LRV.
+  FILE_FORMAT_QUICKTIME = 9;
+  // A RIFF AVI movie.
+  FILE_FORMAT_AVI = 10;
+  // Canon's CR3, a RAW still in ISOBMFF.
+  FILE_FORMAT_CR3 = 11;
+}
+
+// How a stereoscopic video packs its two views into each frame, numbered as Spherical Video V2's st3d box does.
+enum StereoMode {
+  // Monoscopic, or not said.
+  STEREO_MODE_UNSPECIFIED = 0;
+  STEREO_MODE_TOP_BOTTOM = 1;
+  STEREO_MODE_LEFT_RIGHT = 2;
+  // As the projection's mesh lays them out.
+  STEREO_MODE_CUSTOM = 3;
+  STEREO_MODE_RIGHT_LEFT = 4;
+}
+
+// A position on the WGS 84 ellipsoid.
+message GeoPoint {
+  // Degrees north, -90 to 90.
+  double latitude = 1;
+  // Degrees east, -180 to 180.
+  double longitude = 2;
+  // Metres above sea level.
+  optional double altitude_m = 3;
+}
+
+// One hierarchical keyword, root first: "Places|France|Paris" is ["Places", "France", "Paris"].
+message KeywordPath {
+  repeated string nodes = 1;
+}
+
+// A named area of the image, in the displayed frame (orientation applied), from the top-left corner and normalised
+// to the image's width and height.
+message ImageRegion {
+  string name = 1;
+  // The mwg-rs type: "Face", "Pet", "Focus" or "BarCode".
+  string type = 2;
+  double x = 3;
+  double y = 4;
+  double width = 5;
+  double height = 6;
+}
+
+// A photo sphere's or 360° video's projection; for a sphere, where its pixels lie in the full panorama (GPano).
+message Panorama {
+  // GPano:ProjectionType, e.g. "equirectangular"; for a video "equirectangular", "cubemap" or "mesh".
+  string projection = 1;
+  // GPano:UsePanoramaViewer; absent when not set, which viewers read as true.
+  optional bool use_panorama_viewer = 2;
+  // GPano's pixels; for a video, from its Spherical Video V2 projection bounds, and 0 when it has none.
+  uint32 full_width = 3;
+  uint32 full_height = 4;
+  uint32 cropped_left = 5;
+  uint32 cropped_top = 6;
+  uint32 cropped_width = 7;
+  uint32 cropped_height = 8;
+  // GPano:PoseHeadingDegrees: the compass heading of the full panorama's middle, in degrees clockwise from true north,
+  // in [0, 360); absent when not given.
+  optional double pose_heading_degrees = 9;
+}
+
+// The XMP markers of a Google or Samsung motion photo, which say where its video is. They can be stale: the video
+// must still be found.
+message MotionPhotoMarkers {
+  // Camera:MotionPhoto is 1.
+  bool motion_photo = 1;
+  // Camera:MotionPhotoVersion.
+  uint32 version = 2;
+  // Camera:MotionPhotoPresentationTimestampUs or MicroVideoPresentationTimestampUs: the frame the still shows.
+  optional int64 presentation_timestamp_us = 3;
+  // The legacy Camera:MicroVideo is 1.
+  bool micro_video = 4;
+  // Camera:MicroVideoOffset: where the video starts, counted back from the end of the file.
+  uint64 micro_video_offset_bytes = 5;
+  // Container:Directory, in file order, the primary image first.
+  repeated ContainerItem items = 6;
+}
+
+// A file appended to the primary image, from a Container:Directory.
+message ContainerItem {
+  // Item:Mime, e.g. "video/mp4".
+  string mime = 1;
+  // Item:Semantic, e.g. "Primary", "MotionPhoto" or "GainMap".
+  string semantic = 2;
+  // Item:Length; 0 for the primary image.
+  uint64 length_bytes = 3;
+  // Item:Padding, the bytes before the next item.
+  uint64 padding_bytes = 4;
+}

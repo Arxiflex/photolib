@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "path": "names/signal-2020-10-26-163832.jpg",
+  "size": 3448,
+  "sha256": "75a665c3bd3907c3db6c3e3f6440c3229101620a19987fae9003887232543dd8",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "messenger_copy",
+    "upper_bound_name"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F30",
+      "F52",
+      "F54"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F30",
+        "kind": "local",
+        "value": "2020-10-26T16:38:32",
+        "precision": "s",
+        "event": "receive"
+      }
+    ],
+    "resolved": {
+      "local": "2020-10-26T16:38:32",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "upper",
+      "source": "filename:F30",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "path": "compound/raw-jpeg/DSCF0012.JPG",
+  "size": 159896,
+  "sha256": "7167c423996b385986b25beace16be8fcb5a3cb36d911868b5ccd010b4f66657",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "fujifilm",
+  "quirks": [
+    "raw_jpeg_pair"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 6240,
+    "height": 4160,
+    "make": "FUJIFILM",
+    "model": "X-T4"
+  },
+  "group": {
+    "kind": "raw_jpeg",
+    "key": "DSCF0012",
+    "role": "primary"
+  },
+  "filename": {
+    "matches": [
+      "F43"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2022-05-01T10:11:12",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2022-05-01T10:11:12",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

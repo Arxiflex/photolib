@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "path": "compound/sphere/stereo-top-bottom.mp4",
+  "size": 764,
+  "sha256": "5706d772daffa57607b4d2ebcaba6731b1fcf14c974b7817ba4fd08c30098775",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mp4",
+  "vendor": "canon",
+  "quirks": [
+    "stereo_top_bottom"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "h264",
+    "make": "Canon",
+    "model": "EOS R5"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "qt_mvhd_camera",
+        "kind": "local",
+        "value": "2021-02-14T10:00:00",
+        "precision": "s",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": "2021-02-14T10:00:00",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "qt_mvhd_camera",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

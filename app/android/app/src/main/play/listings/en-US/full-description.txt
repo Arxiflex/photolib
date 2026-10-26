@@ -1,0 +1,1 @@
+Photolib keeps your photos and videos on a server you run yourself. Browse your whole library, on this device and on the server, back up new photos and videos as you take them, and share albums with the people you choose.

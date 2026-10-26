@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "path": "raw/fuji.raf",
+  "size": 1996,
+  "sha256": "b4c87961f7b6819fff38bed32802285085254d5a3369f4e08b162c929079069a",
+  "origin": "synthetic",
+  "notes": "Placeholder sensor data, not a camera mosaic; the embedded JPEG preview decodes.",
+  "format": "raf",
+  "vendor": "fujifilm",
+  "quirks": [
+    "embedded_preview"
+  ],
+  "media": {
+    "container": "raf",
+    "mime": "image/x-fuji-raf",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120,
+    "orientation": 8,
+    "make": "FUJIFILM",
+    "model": "X-T4"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2022-05-01T10:11:12",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2022-05-01T10:11:12",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

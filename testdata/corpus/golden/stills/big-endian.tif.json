@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "path": "stills/big-endian.tif",
+  "size": 19436,
+  "sha256": "f7494355839577d12a8912980ac24824f9bc3bdd0ac086cf227b7a1c6be5605a",
+  "origin": "synthetic",
+  "format": "tiff",
+  "vendor": "canon",
+  "quirks": [
+    "exif_big_endian"
+  ],
+  "media": {
+    "container": "tiff",
+    "mime": "image/tiff",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120,
+    "make": "Canon",
+    "model": "Canon EOS 5D Mark IV"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2019-05-09T15:47:33",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-05-09T15:47:33",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "path": "names/dcf/IMGP0001.JPG",
+  "size": 2952,
+  "sha256": "58c5ee5f9ab57a001314dca1cfede2545923a36a4572d05cfa06d032b2a94072",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "counter_not_time"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F43"
+    ]
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

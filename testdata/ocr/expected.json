@@ -1,0 +1,7 @@
+{
+  "latin": "Lisboa Estação 2026",
+  "cyrillic": "Красная площадь, Москва",
+  "cjk": "東京駅 丸の内",
+  "xss": "<img src=x onerror=alert(1)>",
+  "lines": "Lisboa Estação 2026\nRua Augusta 118"
+}

@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package photolib.api.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// Faces in photos and videos (ADR-0389). Nothing is found, stored or computed about faces for an account that has not
+// agreed to the notice: the account's consent is the one switch, and withdrawing it deletes what was found.
+service FaceService {
+  // Returns whether the account agreed to face recognition, and the version of the notice apps show.
+  rpc GetFaceConsent(GetFaceConsentRequest) returns (GetFaceConsentResponse);
+  // Agrees to the notice, or withdraws: withdrawing deletes the faces and embeddings found for the account's assets in
+  // the same transaction. Only the account signed in decides, never an API key.
+  rpc SetFaceConsent(SetFaceConsentRequest) returns (SetFaceConsentResponse);
+  // Returns the faces found in an asset the caller may view, relative to the original, without their embeddings.
+  rpc ListFaces(ListFacesRequest) returns (ListFacesResponse);
+}
+
+// The question.
+message GetFaceConsentRequest {}
+
+// Where the account stands.
+message FaceConsentState {
+  // The version of the consent notice this server asks for; apps show the text of that version.
+  uint32 notice_version = 1;
+  // Whether the account agreed, and to which version of the notice (0 while it has not).
+  bool granted = 2;
+  uint32 granted_version = 3;
+  // When it agreed; absent while it has not.
+  google.protobuf.Timestamp granted_at = 4;
+  // Whether the server's policy allows face recognition for the account at all. When it does not, agreeing changes
+  // nothing and no face is found.
+  bool available = 5;
+}
+
+// The answer.
+message GetFaceConsentResponse {
+  FaceConsentState state = 1;
+}
+
+// Agrees or withdraws.
+message SetFaceConsentRequest {
+  bool granted = 1;
+  // The version of the notice the account was shown: required, and the current one, when `granted`.
+  uint32 notice_version = 2;
+}
+
+// The account's state after the change.
+message SetFaceConsentResponse {
+  FaceConsentState state = 1;
+}
+
+// The asset to list the faces of.
+message ListFacesRequest {
+  string asset_id = 1;
+}
+
+// A face of an asset: where it is, in fractions of the original photo or video frame (upright, as shown).
+message AssetFace {
+  string face_id = 1;
+  // The box: its top left corner and size.
+  float x = 2;
+  float y = 3;
+  float width = 4;
+  float height = 5;
+  // The right eye, left eye, nose and right and left mouth corners as x, y pairs; empty when not kept.
+  repeated float landmarks = 6;
+  // The detector's confidence, 0 to 1.
+  float score = 7;
+  // For a video, the moment of the keyframe the face was found in, in milliseconds.
+  optional uint32 time_ms = 8;
+  // The embedding model, such as `sface@2021dec`.
+  string model_id = 9;
+}
+
+// The faces found in the asset, best first; empty while none are, or the account has not agreed.
+message ListFacesResponse {
+  repeated AssetFace faces = 1;
+}

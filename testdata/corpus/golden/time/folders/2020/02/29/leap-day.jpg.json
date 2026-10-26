@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "path": "time/folders/2020/02/29/leap-day.jpg",
+  "size": 3112,
+  "sha256": "10abbdc8818d97f043fd15acac7ca3fad597dd13a1adbf73b157c69eab3eb8af",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "nikon",
+  "quirks": [
+    "path_date"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "make": "NIKON CORPORATION",
+    "model": "NIKON D850"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2020-02-29T18:03:11",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+01:00"
+      },
+      {
+        "source": "path:ymd",
+        "kind": "local",
+        "value": "2020-02-29",
+        "precision": "day",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2020-02-29T18:03:11",
+      "utc": "2020-02-29T17:03:11Z",
+      "offset": "+01:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

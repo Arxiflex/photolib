@@ -1,0 +1,389 @@
+{
+ "construction": "Key derivations, Argon2id parameters, safety codes and padding",
+ "spec": "docs/dev/crypto-v1.md#key-derivation",
+ "note": "kek_password and kek_passcode use m = 64 KiB to stay fast; the policies are the separate check_account_params and check_device_params",
+ "cases": [
+  {
+   "function": "key_id",
+   "key": "46df682bb6bc6fbcf1c31e92c9ac5b58d38cb52d70c10a588017c5daddb4cbaa",
+   "output": "b74c79e80862291bdb2b4f5d257a344b"
+  },
+  {
+   "function": "public_key_id",
+   "public_key": "8ade9fa2c8ffd9218fab17ddeb72baa0f82f45c1fe2fafee4bf7b241ab4fd4da",
+   "output": "3271236c86508220d5a082f2c193bd96"
+  },
+  {
+   "function": "kek_password",
+   "password": "correct horse battery staple",
+   "password_nfc_utf8": "636f727265637420686f727365206261747465727920737461706c65",
+   "params": "0100000040000000030190b9bac544f6264f838d8ef412341e57",
+   "argon2id": "46fcb365fb5c54c45459914fdcd07a7988bc2a58cacb6e57355bfbbf76b341bf",
+   "output": "202c6b38e63045f8efb3eebb5e4bce1590cd11f0a38ec59f830c97451f70e079"
+  },
+  {
+   "function": "kek_password",
+   "password": "Café été",
+   "password_nfc_utf8": "436166c3a920c3a974c3a9",
+   "params": "0100000040000000030190b9bac544f6264f838d8ef412341e57",
+   "argon2id": "cbfc8e97a36096c3dd76353e6757e7b975122180955d3808d069f3c4bac21bc9",
+   "output": "1d372101d60505175b67d7b19c9f220ceea3be26e3e029046724b54e268009a1"
+  },
+  {
+   "function": "kek_password",
+   "password": "Café été",
+   "password_nfc_utf8": "436166c3a920c3a974c3a9",
+   "params": "0100000040000000030190b9bac544f6264f838d8ef412341e57",
+   "argon2id": "cbfc8e97a36096c3dd76353e6757e7b975122180955d3808d069f3c4bac21bc9",
+   "output": "1d372101d60505175b67d7b19c9f220ceea3be26e3e029046724b54e268009a1"
+  },
+  {
+   "function": "kek_passcode",
+   "passcode": "123456",
+   "passcode_nfc_utf8": "313233343536",
+   "params": "0100000040000000030190b9bac544f6264f838d8ef412341e57",
+   "hardware": "",
+   "argon2id": "0c55ccb184c297f57597f7316f0e3a22d11edbff83a72827c2391408c4ebd969",
+   "output": "0d0a4a48fe88a9ca02302e58b9b519f3b79978e0f63a95ed5db6c0a439b94099"
+  },
+  {
+   "function": "kek_passcode",
+   "passcode": "123456",
+   "passcode_nfc_utf8": "313233343536",
+   "params": "0100000040000000030190b9bac544f6264f838d8ef412341e57",
+   "hardware": "534d70ef9a11d331c2176d69af62713cf954a6e9108fe1645e6b073d80d1a732",
+   "argon2id": "0c55ccb184c297f57597f7316f0e3a22d11edbff83a72827c2391408c4ebd969",
+   "output": "09e020f334bb4134ab2e3c7f554502cdd96e1e888c4397fb012b69455fa23416"
+  },
+  {
+   "function": "kek_passcode",
+   "passcode": "Café au lait",
+   "passcode_nfc_utf8": "436166c3a9206175206c616974",
+   "params": "0100000040000000030190b9bac544f6264f838d8ef412341e57",
+   "hardware": "",
+   "argon2id": "3ca22502565188b8b50c8e82fd649a7680e70ae519d7566dc205b3a2bfad0eed",
+   "output": "e64bf134e3b4be0d0459360003b257517c5111c6aaadbdd27bef50cb8169f83d"
+  },
+  {
+   "function": "subkey",
+   "label": "kek/recovery",
+   "key": "d62098008627d430184269b732a5f5e9cdb028ef7111dd28af8d1d67ed8cab47",
+   "output": "2224bb392280dd1482c9c0e3557e09697cc922391d06a17c456f2e97d90f7e84"
+  },
+  {
+   "function": "subkey",
+   "label": "kek/passkey",
+   "key": "dd4b556f223b0682ed7fb774e37b2e3a69280f8416944a8d1f2c4120b9195c2c",
+   "output": "b29fec734a6d2f61dc4daf358d1076101805b920bb7544501dec2004c11d0dc1"
+  },
+  {
+   "function": "subkey",
+   "label": "kek/kit",
+   "key": "cb9cf3e338e19c54b6e774475d00c0d46a38dc09aea2a3a1879ef04a8d836bff",
+   "output": "c7abf69f208ffc96b68730fb60c0a2dbe89cb4568be194196d6e0929767c218d"
+  },
+  {
+   "function": "subkey",
+   "label": "amk/dedup",
+   "key": "b12c1711b2ba4da88446b0500b77b05432f8cceb284d718c41b77b659fd2638b",
+   "output": "e4d6e80d748c6ab5e02e501cd1f310feafbe7e240c9f2b0506603b3ab0b724b7"
+  },
+  {
+   "function": "subkey",
+   "label": "amk/local-index",
+   "key": "b12c1711b2ba4da88446b0500b77b05432f8cceb284d718c41b77b659fd2638b",
+   "output": "d3d80ba1928f2854af3c274cb9462ae39bc552855da0f77ab62c559d14d597dc"
+  },
+  {
+   "function": "subkey",
+   "label": "amk/settings",
+   "key": "b12c1711b2ba4da88446b0500b77b05432f8cceb284d718c41b77b659fd2638b",
+   "output": "fdc4686c00464c96a2add092d4b02e84abef76fff841d017c189a9c140722ca5"
+  },
+  {
+   "function": "subkey",
+   "label": "grant/return",
+   "key": "fae9b213bbf45f632574787fe2acc92cd52590e65b8c1bcdac5237cb6d8ad51b",
+   "output": "1a5245b49143a8160bdff6a82487e57b913d54ecda3d735132aa9bcffb411a22"
+  },
+  {
+   "function": "subkey",
+   "label": "local/cache",
+   "key": "50390f1e0351f64e4b3890a379e9d96b2c09e5a6e3db24c8d5d40afb7e98a644",
+   "output": "c1caaecb9e81418c748dc64e88c0a4fe25b92de19cd810a45e473622ab008f80"
+  },
+  {
+   "function": "subkey",
+   "label": "local/inbox",
+   "key": "50390f1e0351f64e4b3890a379e9d96b2c09e5a6e3db24c8d5d40afb7e98a644",
+   "output": "9d991b05a9255495de07296a5efec6d70ad048058d7f3f84a911929c14b754a9"
+  },
+  {
+   "function": "subkey",
+   "label": "local/settings",
+   "key": "50390f1e0351f64e4b3890a379e9d96b2c09e5a6e3db24c8d5d40afb7e98a644",
+   "output": "370245e1d4dbfe636df9c6ffc72d1cf2e2e791c47247481ae1fb1215062d2996"
+  },
+  {
+   "function": "subkey",
+   "label": "local/db",
+   "key": "50390f1e0351f64e4b3890a379e9d96b2c09e5a6e3db24c8d5d40afb7e98a644",
+   "context": "3904b3ff11d5a5260075c66c5e9dff02",
+   "output": "14cc8e7db44e66286f875530e29a7e04696bc0ba98a0907f81fc47d66136395b"
+  },
+  {
+   "function": "subkey",
+   "label": "local/object",
+   "key": "c1caaecb9e81418c748dc64e88c0a4fe25b92de19cd810a45e473622ab008f80",
+   "context": "e130f20c26186cec61181e302383fa3d",
+   "output": "34a19893ddef66442a6be6cac01329694c51c0d797e6c7e521a270b9b53dc53a"
+  },
+  {
+   "function": "object_key",
+   "file_key": "46df682bb6bc6fbcf1c31e92c9ac5b58d38cb52d70c10a588017c5daddb4cbaa",
+   "kind": 1,
+   "output": "ccc4318181ce717f0c1f4c1cd6986b77a6c210857c52ca8e50fe6e6a3bc770d7"
+  },
+  {
+   "function": "object_key",
+   "file_key": "46df682bb6bc6fbcf1c31e92c9ac5b58d38cb52d70c10a588017c5daddb4cbaa",
+   "kind": 2,
+   "output": "91dc85652ff62e449860605b904a2ceed38fad466a3f4aaa1fe50a2298037205"
+  },
+  {
+   "function": "object_key",
+   "file_key": "46df682bb6bc6fbcf1c31e92c9ac5b58d38cb52d70c10a588017c5daddb4cbaa",
+   "kind": 3,
+   "output": "8c1797fa2d930f1f0ed7bf77d632dfa76597429f47f95b8823f64592ed7641e6"
+  },
+  {
+   "function": "object_key",
+   "file_key": "46df682bb6bc6fbcf1c31e92c9ac5b58d38cb52d70c10a588017c5daddb4cbaa",
+   "kind": 4,
+   "output": "a6d15da2f55474b01e213279ff3f86a3f1e22732c8501c170672f6e82055c8a4"
+  },
+  {
+   "function": "object_key",
+   "file_key": "46df682bb6bc6fbcf1c31e92c9ac5b58d38cb52d70c10a588017c5daddb4cbaa",
+   "kind": 5,
+   "output": "723fbc79f5ab716e7a61f25281c614ce4458aef97f95f15339bdb669b362c053"
+  },
+  {
+   "function": "object_key",
+   "file_key": "46df682bb6bc6fbcf1c31e92c9ac5b58d38cb52d70c10a588017c5daddb4cbaa",
+   "kind": 6,
+   "output": "1983296bfcb299173ac5b895208a499ffb12f9d053fe4c4b06bd30b3f589931b"
+  },
+  {
+   "function": "object_key",
+   "file_key": "46df682bb6bc6fbcf1c31e92c9ac5b58d38cb52d70c10a588017c5daddb4cbaa",
+   "kind": 7,
+   "output": "337f119f99666c3ef9bc0075d130db6c663bc8ef05ba4d4c33ad9a374c0df28b"
+  },
+  {
+   "function": "object_key",
+   "file_key": "46df682bb6bc6fbcf1c31e92c9ac5b58d38cb52d70c10a588017c5daddb4cbaa",
+   "kind": 8,
+   "output": "872e8b58f2f2b7e3a364b9fd11029eaf608cbe645461674acecd4a7fae7aff1e"
+  },
+  {
+   "function": "object_key",
+   "file_key": "46df682bb6bc6fbcf1c31e92c9ac5b58d38cb52d70c10a588017c5daddb4cbaa",
+   "kind": 9,
+   "output": "30655291b12d26a0839de658644f74cc15860709681f3856ecfa0136bf1f6029"
+  },
+  {
+   "function": "object_key",
+   "file_key": "46df682bb6bc6fbcf1c31e92c9ac5b58d38cb52d70c10a588017c5daddb4cbaa",
+   "kind": 10,
+   "output": "91f57955cb27803177b3ae1f720fea8c7e6b2c479e967892f169e00efe40fcec"
+  },
+  {
+   "function": "object_key",
+   "file_key": "46df682bb6bc6fbcf1c31e92c9ac5b58d38cb52d70c10a588017c5daddb4cbaa",
+   "kind": 11,
+   "output": "21874ea249713d767647531950bfc8034aca460e29caa1fa27776a7c2bd25a88"
+  },
+  {
+   "function": "dedup_token",
+   "dedup_key": "e4d6e80d748c6ab5e02e501cd1f310feafbe7e240c9f2b0506603b3ab0b724b7",
+   "content": "70686f746f206279746573",
+   "output": "afcf70cbf9c0a2994323148194ce45d9b477a77a15c32db7951a3c8fe4b5de4d"
+  },
+  {
+   "function": "argon2id",
+   "id": "argon2id-account-floor",
+   "secret": "636f727265637420686f727365206261747465727920737461706c65",
+   "params": "0100020000000000030190b9bac544f6264f838d8ef412341e57",
+   "output": "982ddad331a03952c79014daad69beea1eaed8af1c0319450e9217f7fbf6df0d"
+  },
+  {
+   "function": "argon2id",
+   "id": "argon2id-link-password",
+   "secret": "68756e74657232",
+   "params": "01000100000000000301ad9395fe2e87cef89dee4df348f2e01a",
+   "output": "eebacbdedc424718fe72e6c344227d269564eec28ad282f34b5b2996d7a798c2"
+  },
+  {
+   "function": "link_keys",
+   "secret": "f29cbbf59d2cd311271cbf87aa1f9ee41b9110a610c6d69394e50ed386a08552",
+   "link_id": "ad9395fe2e87cef89dee4df348f2e01a",
+   "password_hash": "",
+   "link_key": "5f665a3c77d1e204036da044c7f8111273b7ea46bc3381756ac1d27cb6657cff",
+   "link_auth": "1de3adf88f2bd769f813d57b316c533352657ee67ddc62d90b843946b40ee952",
+   "verifier": "21205e70ce822cdf38728f7d40d924c30b698498174bf21fe81303b89c5eea42",
+   "fragment": "v1.rZOV_i6Hzvid7k3zSPLgGg.8py79Z0s0xEnHL-Hqh-e5BuREKYQxtaTlOUO04aghVI.ZkRDNM_EfYE",
+   "manifest": "6d616e6966657374206279746573"
+  },
+  {
+   "function": "link_keys",
+   "secret": "f29cbbf59d2cd311271cbf87aa1f9ee41b9110a610c6d69394e50ed386a08552",
+   "link_id": "ad9395fe2e87cef89dee4df348f2e01a",
+   "password_hash": "eebacbdedc424718fe72e6c344227d269564eec28ad282f34b5b2996d7a798c2",
+   "link_key": "4176413a675a1668e4bc71e1aead1096f8a1aa61a6c077bc2944778bee8f0a9a",
+   "link_auth": "1de3adf88f2bd769f813d57b316c533352657ee67ddc62d90b843946b40ee952",
+   "verifier": "21205e70ce822cdf38728f7d40d924c30b698498174bf21fe81303b89c5eea42",
+   "fragment": "v1.rZOV_i6Hzvid7k3zSPLgGg.8py79Z0s0xEnHL-Hqh-e5BuREKYQxtaTlOUO04aghVI.p.ZkRDNM_EfYE",
+   "manifest": "6d616e6966657374206279746573"
+  },
+  {
+   "function": "check_account_params",
+   "params": "0100020000000000030100000000000000000000000000000000",
+   "error": null
+  },
+  {
+   "function": "check_account_params",
+   "params": "0100040000000000030100000000000000000000000000000000",
+   "error": null
+  },
+  {
+   "function": "check_account_params",
+   "params": "0100200000000000400100000000000000000000000000000000",
+   "error": null
+  },
+  {
+   "function": "check_account_params",
+   "params": "010001ffff000000030100000000000000000000000000000000",
+   "error": "kdf_params_rejected"
+  },
+  {
+   "function": "check_account_params",
+   "params": "0100020000000000020100000000000000000000000000000000",
+   "error": "kdf_params_rejected"
+  },
+  {
+   "function": "check_account_params",
+   "params": "0100020000000000030400000000000000000000000000000000",
+   "error": "kdf_params_rejected"
+  },
+  {
+   "function": "check_account_params",
+   "params": "0100200001000000030100000000000000000000000000000000",
+   "error": "kdf_params_rejected"
+  },
+  {
+   "function": "check_account_params",
+   "params": "0100020000000000410100000000000000000000000000000000",
+   "error": "kdf_params_rejected"
+  },
+  {
+   "function": "check_account_params",
+   "params": "01000200000000000301000000000000000000000000000000",
+   "error": "kdf_params_rejected"
+  },
+  {
+   "function": "check_account_params",
+   "params": "0200000040000000030190b9bac544f6264f838d8ef412341e57",
+   "error": "kdf_params_rejected"
+  },
+  {
+   "function": "check_device_params",
+   "params": "0100010000000000030100000000000000000000000000000000",
+   "error": null
+  },
+  {
+   "function": "check_device_params",
+   "params": "0100200000000000400100000000000000000000000000000000",
+   "error": null
+  },
+  {
+   "function": "check_device_params",
+   "params": "010000ffff000000030100000000000000000000000000000000",
+   "error": "kdf_params_rejected"
+  },
+  {
+   "function": "check_device_params",
+   "params": "0100010000000000020100000000000000000000000000000000",
+   "error": "kdf_params_rejected"
+  },
+  {
+   "function": "check_device_params",
+   "params": "0100010000000000030200000000000000000000000000000000",
+   "error": "kdf_params_rejected"
+  },
+  {
+   "function": "check_device_params",
+   "params": "01000100000000000301000000000000000000000000000000",
+   "error": "kdf_params_rejected"
+  },
+  {
+   "function": "padme",
+   "length": 1,
+   "output": 1
+  },
+  {
+   "function": "padme",
+   "length": 2,
+   "output": 2
+  },
+  {
+   "function": "padme",
+   "length": 7,
+   "output": 7
+  },
+  {
+   "function": "padme",
+   "length": 8,
+   "output": 8
+  },
+  {
+   "function": "padme",
+   "length": 9,
+   "output": 10
+  },
+  {
+   "function": "padme",
+   "length": 100,
+   "output": 104
+  },
+  {
+   "function": "padme",
+   "length": 1000,
+   "output": 1024
+  },
+  {
+   "function": "padme",
+   "length": 65537,
+   "output": 67584
+  },
+  {
+   "function": "padme",
+   "length": 1000000,
+   "output": 1015808
+  },
+  {
+   "function": "verification_code",
+   "user_a": "1c470570bd91c18af3ade0dde09a0982",
+   "signing_pk_a": "09556d7cba734e01b8522e05480e334c8d8df68f2976d567816a8ddeb428eb63",
+   "user_b": "8372984cbc87a239b291582768d26fb4",
+   "signing_pk_b": "8ade9fa2c8ffd9218fab17ddeb72baa0f82f45c1fe2fafee4bf7b241ab4fd4da",
+   "output": "35666 66992 20142 54842 35720 97261 02328 35013 72210 51356 21321 13499"
+  },
+  {
+   "function": "epoch_code",
+   "log_id": "2e029f6d53f5d5a7ed6f6956e473d455",
+   "head": "14bc5abb3c2cf7f5fdf394daa48fc5d4a42629959f1028073012932cee8a9334",
+   "output": "40400 20033 86521 83086"
+  }
+ ]
+}

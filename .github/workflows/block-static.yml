@@ -1,0 +1,33 @@
+name: block-static
+
+# The repository's tests on one machine, the cheap parts on another: commits, proto, node, docs and lint. Called by
+# ci.yml; it has no trigger of its own.
+on: workflow_call
+
+permissions:
+  contents: read
+
+jobs:
+  lane:
+    name: ${{ matrix.name }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: repo
+            parts: repo
+          - name: light
+            parts: commits proto node docs lint
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # The history the commits part, the lint ratchet and the proto breaking check compare with
+          fetch-depth: 0
+      - uses: ./.github/actions/lane
+        with:
+          name: ${{ matrix.name }}
+          # The repository tests and the linters reach into every part's toolchain; each setup waits for its source
+          tools: flutter rust node apt
+          parts: ${{ matrix.parts }}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "path": "stills/progressive.jpg",
+  "size": 3028,
+  "sha256": "ca23b370abe6a833e22a69d2ba3184d629668a56f1044b1511a7e0d0acf4875a",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "nikon",
+  "quirks": [
+    "progressive"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 800,
+    "height": 600,
+    "make": "NIKON CORPORATION",
+    "model": "NIKON D850"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2020-02-29T18:03:11",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+01:00"
+      }
+    ],
+    "resolved": {
+      "local": "2020-02-29T18:03:11",
+      "utc": "2020-02-29T17:03:11Z",
+      "offset": "+01:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

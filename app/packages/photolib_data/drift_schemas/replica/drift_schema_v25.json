@@ -1,0 +1,4581 @@
+{
+  "_meta": {
+    "description": "This file contains a serialized version of schema entities for drift.",
+    "version": "1.3.0"
+  },
+  "options": {
+    "store_date_time_values_as_text": false
+  },
+  "entities": [
+    {
+      "id": 0,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "library",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "owner_id",
+            "getter_name": "ownerId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "kind",
+            "getter_name": "kind",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "privacy",
+            "getter_name": "privacy",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "access",
+            "getter_name": "access",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "root_uri",
+            "getter_name": "rootUri",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "is_upload_target",
+            "getter_name": "isUploadTarget",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "state",
+            "getter_name": "state",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "txid",
+            "getter_name": "txid",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "strict": true
+      }
+    },
+    {
+      "id": 1,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "asset",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "library_id",
+            "getter_name": "libraryId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "owner_id",
+            "getter_name": "ownerId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "original_filename",
+            "getter_name": "originalFilename",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "source",
+            "getter_name": "source",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "source_ref",
+            "getter_name": "sourceRef",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "content_hash",
+            "getter_name": "contentHash",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "media_kind",
+            "getter_name": "mediaKind",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "facets",
+            "getter_name": "facets",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT ''",
+            "default_dart": "const CustomExpression('\\'\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "taken_local",
+            "getter_name": "takenLocal",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "tz_offset_min",
+            "getter_name": "tzOffsetMin",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "tz_name",
+            "getter_name": "tzName",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "taken_utc",
+            "getter_name": "takenUtc",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "time_source",
+            "getter_name": "timeSource",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 'unknown'",
+            "default_dart": "const CustomExpression('\\'unknown\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "time_confidence",
+            "getter_name": "timeConfidence",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "time_precision",
+            "getter_name": "timePrecision",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "tz_assumed",
+            "getter_name": "tzAssumed",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "lat",
+            "getter_name": "lat",
+            "moor_type": "double",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "lon",
+            "getter_name": "lon",
+            "moor_type": "double",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "alt",
+            "getter_name": "alt",
+            "moor_type": "double",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "accuracy_m",
+            "getter_name": "accuracyM",
+            "moor_type": "double",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "location_source",
+            "getter_name": "locationSource",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "place_id",
+            "getter_name": "placeId",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "width",
+            "getter_name": "width",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "height",
+            "getter_name": "height",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "orientation",
+            "getter_name": "orientation",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "duration_ms",
+            "getter_name": "durationMs",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "file_size_total",
+            "getter_name": "fileSizeTotal",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "make",
+            "getter_name": "make",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "model",
+            "getter_name": "model",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "lens",
+            "getter_name": "lens",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "title",
+            "getter_name": "title",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "description",
+            "getter_name": "description",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "rating",
+            "getter_name": "rating",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "color_label",
+            "getter_name": "colorLabel",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "archived",
+            "getter_name": "archived",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "locked",
+            "getter_name": "locked",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "trashed_at",
+            "getter_name": "trashedAt",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "stack_id",
+            "getter_name": "stackId",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "stack_order",
+            "getter_name": "stackOrder",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "current_version_id",
+            "getter_name": "currentVersionId",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "created_at",
+            "getter_name": "createdAt",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "txid",
+            "getter_name": "txid",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "fps",
+            "getter_name": "fps",
+            "moor_type": "double",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "thumbhash",
+            "getter_name": "thumbhash",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "strict": true
+      }
+    },
+    {
+      "id": 2,
+      "references": [
+        1
+      ],
+      "type": "index",
+      "data": {
+        "on": 1,
+        "name": "asset_taken",
+        "sql": "CREATE INDEX asset_taken ON asset (taken_utc DESC, id);",
+        "unique": false,
+        "columns": []
+      }
+    },
+    {
+      "id": 3,
+      "references": [
+        1
+      ],
+      "type": "index",
+      "data": {
+        "on": 1,
+        "name": "asset_library",
+        "sql": "CREATE INDEX asset_library ON asset (library_id);",
+        "unique": false,
+        "columns": []
+      }
+    },
+    {
+      "id": 4,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "asset_user_state",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "asset_id",
+            "getter_name": "assetId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "favorite",
+            "getter_name": "favorite",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "hidden_from_memories",
+            "getter_name": "hiddenFromMemories",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "last_viewed_at",
+            "getter_name": "lastViewedAt",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "playback_position_ms",
+            "getter_name": "playbackPositionMs",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "txid",
+            "getter_name": "txid",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "strict": true
+      }
+    },
+    {
+      "id": 5,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "asset_file",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "asset_id",
+            "getter_name": "assetId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "role",
+            "getter_name": "role",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "mime",
+            "getter_name": "mime",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "size",
+            "getter_name": "size",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "content_hash",
+            "getter_name": "contentHash",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "state",
+            "getter_name": "state",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "txid",
+            "getter_name": "txid",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "strict": true
+      }
+    },
+    {
+      "id": 6,
+      "references": [
+        5
+      ],
+      "type": "index",
+      "data": {
+        "on": 5,
+        "name": "asset_file_asset",
+        "sql": "CREATE INDEX asset_file_asset ON asset_file (asset_id);",
+        "unique": false,
+        "columns": []
+      }
+    },
+    {
+      "id": 7,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "asset_version",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "asset_id",
+            "getter_name": "assetId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "parent_id",
+            "getter_name": "parentId",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "kind",
+            "getter_name": "kind",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "label",
+            "getter_name": "label",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "recipe",
+            "getter_name": "recipe",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "render_file_id",
+            "getter_name": "renderFileId",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "created_at",
+            "getter_name": "createdAt",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "txid",
+            "getter_name": "txid",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "strict": true
+      }
+    },
+    {
+      "id": 8,
+      "references": [
+        7
+      ],
+      "type": "index",
+      "data": {
+        "on": 7,
+        "name": "asset_version_asset",
+        "sql": "CREATE INDEX asset_version_asset ON asset_version (asset_id);",
+        "unique": false,
+        "columns": []
+      }
+    },
+    {
+      "id": 9,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "stack",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "owner_id",
+            "getter_name": "ownerId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "kind",
+            "getter_name": "kind",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "cover_asset_id",
+            "getter_name": "coverAssetId",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "review_state",
+            "getter_name": "reviewState",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 'unreviewed'",
+            "default_dart": "const CustomExpression('\\'unreviewed\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "txid",
+            "getter_name": "txid",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "strict": true
+      }
+    },
+    {
+      "id": 10,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "album_folder",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "owner_id",
+            "getter_name": "ownerId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "parent_id",
+            "getter_name": "parentId",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "name",
+            "getter_name": "name",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "sort_key",
+            "getter_name": "sortKey",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "txid",
+            "getter_name": "txid",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "strict": true
+      }
+    },
+    {
+      "id": 11,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "album",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "owner_id",
+            "getter_name": "ownerId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "folder_id",
+            "getter_name": "folderId",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "title",
+            "getter_name": "title",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "description",
+            "getter_name": "description",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "cover_asset_id",
+            "getter_name": "coverAssetId",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "sort_mode",
+            "getter_name": "sortMode",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 'custom'",
+            "default_dart": "const CustomExpression('\\'custom\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "layout",
+            "getter_name": "layout",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 'grid'",
+            "default_dart": "const CustomExpression('\\'grid\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "privacy",
+            "getter_name": "privacy",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 'standard'",
+            "default_dart": "const CustomExpression('\\'standard\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "created_at",
+            "getter_name": "createdAt",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "txid",
+            "getter_name": "txid",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "strict": true
+      }
+    },
+    {
+      "id": 12,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "album_item",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "album_id",
+            "getter_name": "albumId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "kind",
+            "getter_name": "kind",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "asset_id",
+            "getter_name": "assetId",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "anchor_asset_id",
+            "getter_name": "anchorAssetId",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "payload",
+            "getter_name": "payload",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "sort_key",
+            "getter_name": "sortKey",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "txid",
+            "getter_name": "txid",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "strict": true
+      }
+    },
+    {
+      "id": 13,
+      "references": [
+        12
+      ],
+      "type": "index",
+      "data": {
+        "on": 12,
+        "name": "album_item_order",
+        "sql": "CREATE INDEX album_item_order ON album_item (album_id, sort_key);",
+        "unique": false,
+        "columns": []
+      }
+    },
+    {
+      "id": 14,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "album_member",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "album_id",
+            "getter_name": "albumId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "user_id",
+            "getter_name": "userId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "role",
+            "getter_name": "role",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "txid",
+            "getter_name": "txid",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [
+          "PRIMARY KEY(album_id, user_id)"
+        ],
+        "strict": true,
+        "explicit_pk": [
+          "album_id",
+          "user_id"
+        ]
+      }
+    },
+    {
+      "id": 15,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "tag",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "owner_id",
+            "getter_name": "ownerId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "parent_id",
+            "getter_name": "parentId",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "name",
+            "getter_name": "name",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "path",
+            "getter_name": "path",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "color",
+            "getter_name": "color",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "is_album",
+            "getter_name": "isAlbum",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "origin",
+            "getter_name": "origin",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 'user'",
+            "default_dart": "const CustomExpression('\\'user\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "txid",
+            "getter_name": "txid",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "strict": true
+      }
+    },
+    {
+      "id": 16,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "asset_tag",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "asset_id",
+            "getter_name": "assetId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "tag_id",
+            "getter_name": "tagId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "origin",
+            "getter_name": "origin",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 'user'",
+            "default_dart": "const CustomExpression('\\'user\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "confidence",
+            "getter_name": "confidence",
+            "moor_type": "double",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "created_at",
+            "getter_name": "createdAt",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "txid",
+            "getter_name": "txid",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [
+          "PRIMARY KEY(asset_id, tag_id)"
+        ],
+        "strict": true,
+        "explicit_pk": [
+          "asset_id",
+          "tag_id"
+        ]
+      }
+    },
+    {
+      "id": 17,
+      "references": [
+        16
+      ],
+      "type": "index",
+      "data": {
+        "on": 16,
+        "name": "asset_tag_tag",
+        "sql": "CREATE INDEX asset_tag_tag ON asset_tag (tag_id);",
+        "unique": false,
+        "columns": []
+      }
+    },
+    {
+      "id": 18,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "person",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "owner_id",
+            "getter_name": "ownerId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "kind",
+            "getter_name": "kind",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 'human'",
+            "default_dart": "const CustomExpression('\\'human\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "name",
+            "getter_name": "name",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "birth_date",
+            "getter_name": "birthDate",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "cover_face_id",
+            "getter_name": "coverFaceId",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "hidden",
+            "getter_name": "hidden",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "merged_into",
+            "getter_name": "mergedInto",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "txid",
+            "getter_name": "txid",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "strict": true
+      }
+    },
+    {
+      "id": 19,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "face",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "asset_id",
+            "getter_name": "assetId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "bbox",
+            "getter_name": "bbox",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "quality",
+            "getter_name": "quality",
+            "moor_type": "double",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "person_id",
+            "getter_name": "personId",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "assignment",
+            "getter_name": "assignment",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 'auto'",
+            "default_dart": "const CustomExpression('\\'auto\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "txid",
+            "getter_name": "txid",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "strict": true
+      }
+    },
+    {
+      "id": 20,
+      "references": [
+        19
+      ],
+      "type": "index",
+      "data": {
+        "on": 19,
+        "name": "face_person",
+        "sql": "CREATE INDEX face_person ON face (person_id);",
+        "unique": false,
+        "columns": []
+      }
+    },
+    {
+      "id": 21,
+      "references": [
+        19
+      ],
+      "type": "index",
+      "data": {
+        "on": 19,
+        "name": "face_asset",
+        "sql": "CREATE INDEX face_asset ON face (asset_id);",
+        "unique": false,
+        "columns": []
+      }
+    },
+    {
+      "id": 22,
+      "references": [
+        1,
+        5,
+        7,
+        19
+      ],
+      "type": "trigger",
+      "data": {
+        "on": 1,
+        "references_in_body": [
+          1,
+          5,
+          7,
+          19
+        ],
+        "name": "asset_deleted",
+        "sql": "CREATE TRIGGER asset_deleted AFTER DELETE ON asset BEGIN\n  DELETE FROM asset_file WHERE asset_id = old.id;\n  DELETE FROM asset_version WHERE asset_id = old.id;\n  DELETE FROM face WHERE asset_id = old.id;\nEND;"
+      }
+    },
+    {
+      "id": 23,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "partner_share",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "owner_id",
+            "getter_name": "ownerId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "partner_id",
+            "getter_name": "partnerId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "taken_since",
+            "getter_name": "takenSince",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "txid",
+            "getter_name": "txid",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [
+          "PRIMARY KEY(owner_id, partner_id)"
+        ],
+        "strict": true,
+        "explicit_pk": [
+          "owner_id",
+          "partner_id"
+        ]
+      }
+    },
+    {
+      "id": 24,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "partner_library",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "owner_id",
+            "getter_name": "ownerId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "library_id",
+            "getter_name": "libraryId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "whole",
+            "getter_name": "whole",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [
+          "PRIMARY KEY(owner_id, library_id)"
+        ],
+        "strict": true,
+        "explicit_pk": [
+          "owner_id",
+          "library_id"
+        ]
+      }
+    },
+    {
+      "id": 25,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "local_asset",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "source",
+            "getter_name": "source",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "volume",
+            "getter_name": "volume",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT ''",
+            "default_dart": "const CustomExpression('\\'\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "source_id",
+            "getter_name": "sourceId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "generation",
+            "getter_name": "generation",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "size",
+            "getter_name": "size",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "mtime",
+            "getter_name": "mtime",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "content_hash",
+            "getter_name": "contentHash",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "asset_id",
+            "getter_name": "assetId",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "path",
+            "getter_name": "path",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "file_id",
+            "getter_name": "fileId",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "state",
+            "getter_name": "state",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 'present'",
+            "default_dart": "const CustomExpression('\\'present\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "name",
+            "getter_name": "name",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "bucket_id",
+            "getter_name": "bucketId",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "bucket_name",
+            "getter_name": "bucketName",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "mime",
+            "getter_name": "mime",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "taken",
+            "getter_name": "taken",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "width",
+            "getter_name": "width",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "height",
+            "getter_name": "height",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "orientation",
+            "getter_name": "orientation",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "duration_ms",
+            "getter_name": "durationMs",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "favorite",
+            "getter_name": "favorite",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "trashed",
+            "getter_name": "trashed",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "expires",
+            "getter_name": "expires",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "extracted",
+            "getter_name": "extracted",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "taken_local",
+            "getter_name": "takenLocal",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "tz_offset_min",
+            "getter_name": "tzOffsetMin",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "taken_utc",
+            "getter_name": "takenUtc",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "time_source",
+            "getter_name": "timeSource",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "time_confidence",
+            "getter_name": "timeConfidence",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "time_precision",
+            "getter_name": "timePrecision",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "lat",
+            "getter_name": "lat",
+            "moor_type": "double",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "lon",
+            "getter_name": "lon",
+            "moor_type": "double",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "make",
+            "getter_name": "make",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "model",
+            "getter_name": "model",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "facets",
+            "getter_name": "facets",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "cloud_id",
+            "getter_name": "cloudId",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "burst_id",
+            "getter_name": "burstId",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "edited",
+            "getter_name": "edited",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "added",
+            "getter_name": "added",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "thumbhash",
+            "getter_name": "thumbhash",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "motion_offset",
+            "getter_name": "motionOffset",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "motion_length",
+            "getter_name": "motionLength",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "frame_rate",
+            "getter_name": "frameRate",
+            "moor_type": "double",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "projection",
+            "getter_name": "projection",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "crop",
+            "getter_name": "crop",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "stereo",
+            "getter_name": "stereo",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "folder",
+            "getter_name": "folder",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "heading",
+            "getter_name": "heading",
+            "moor_type": "double",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "hidden",
+            "getter_name": "hidden",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "archived",
+            "getter_name": "archived",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "bin",
+            "getter_name": "bin",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "fingerprint",
+            "getter_name": "fingerprint",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [
+          "UNIQUE(source, volume, source_id)"
+        ],
+        "strict": true,
+        "unique_keys": [
+          [
+            "source",
+            "volume",
+            "source_id"
+          ]
+        ]
+      }
+    },
+    {
+      "id": 26,
+      "references": [
+        25
+      ],
+      "type": "index",
+      "data": {
+        "on": 25,
+        "name": "local_asset_path",
+        "sql": "CREATE INDEX local_asset_path ON local_asset (volume, path);",
+        "unique": false,
+        "columns": []
+      }
+    },
+    {
+      "id": 27,
+      "references": [
+        25
+      ],
+      "type": "index",
+      "data": {
+        "on": 25,
+        "name": "local_asset_hash",
+        "sql": "CREATE INDEX local_asset_hash ON local_asset (content_hash) WHERE content_hash IS NOT NULL;",
+        "unique": false,
+        "columns": []
+      }
+    },
+    {
+      "id": 28,
+      "references": [
+        25
+      ],
+      "type": "index",
+      "data": {
+        "on": 25,
+        "name": "local_asset_file",
+        "sql": "CREATE INDEX local_asset_file ON local_asset (volume, file_id);",
+        "unique": false,
+        "columns": []
+      }
+    },
+    {
+      "id": 29,
+      "references": [
+        25
+      ],
+      "type": "index",
+      "data": {
+        "on": 25,
+        "name": "local_asset_pending",
+        "sql": "CREATE INDEX local_asset_pending ON local_asset (COALESCE(taken, mtime) DESC, id DESC) WHERE extracted IS NULL;",
+        "unique": false,
+        "columns": []
+      }
+    },
+    {
+      "id": 30,
+      "references": [
+        25
+      ],
+      "type": "index",
+      "data": {
+        "on": 25,
+        "name": "local_asset_root",
+        "sql": "CREATE INDEX local_asset_root ON local_asset (volume, state) WHERE source = 'folder';",
+        "unique": false,
+        "columns": []
+      }
+    },
+    {
+      "id": 31,
+      "references": [
+        25
+      ],
+      "type": "view",
+      "data": {
+        "name": "timeline_item",
+        "sql": "CREATE VIEW timeline_item AS SELECT id, source, volume, source_id, path, size, mtime, mime, thumbhash, projection, favorite, hidden, archived, COALESCE(added, 0) AS added, CAST(COALESCE(strftime('%Y%m%d', taken_local), strftime('%Y%m%d', COALESCE(taken, mtime) / 1000, 'unixepoch')) AS INTEGER) AS day, COALESCE(taken_utc, taken, mtime) AS sort_key, folder, facets FROM local_asset WHERE state = 'present' AND trashed = 0",
+        "dart_info_name": "TimelineItem",
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "source",
+            "getter_name": "source",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "volume",
+            "getter_name": "volume",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "source_id",
+            "getter_name": "sourceId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "path",
+            "getter_name": "path",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "size",
+            "getter_name": "size",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "mtime",
+            "getter_name": "mtime",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "mime",
+            "getter_name": "mime",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "thumbhash",
+            "getter_name": "thumbhash",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "projection",
+            "getter_name": "projection",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "favorite",
+            "getter_name": "favorite",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "hidden",
+            "getter_name": "hidden",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "archived",
+            "getter_name": "archived",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "added",
+            "getter_name": "added",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "day",
+            "getter_name": "day",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "sort_key",
+            "getter_name": "sortKey",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "folder",
+            "getter_name": "folder",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "facets",
+            "getter_name": "facets",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ]
+      }
+    },
+    {
+      "id": 32,
+      "references": [
+        25
+      ],
+      "type": "index",
+      "data": {
+        "on": 25,
+        "name": "local_asset_timeline",
+        "sql": "CREATE INDEX local_asset_timeline ON local_asset (\n  CAST(COALESCE(strftime('%Y%m%d', taken_local), strftime('%Y%m%d', COALESCE(taken, mtime) / 1000, 'unixepoch'))\n    AS INTEGER) DESC,\n  COALESCE(taken_utc, taken, mtime) DESC, id DESC, folder) WHERE state = 'present' AND trashed = 0;",
+        "unique": false,
+        "columns": []
+      }
+    },
+    {
+      "id": 33,
+      "references": [
+        25
+      ],
+      "type": "index",
+      "data": {
+        "on": 25,
+        "name": "local_asset_added",
+        "sql": "CREATE INDEX local_asset_added ON local_asset (COALESCE(added, 0) DESC, id DESC, folder)\n  WHERE state = 'present' AND trashed = 0;",
+        "unique": false,
+        "columns": []
+      }
+    },
+    {
+      "id": 34,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "device_folder",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "volume",
+            "getter_name": "volume",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "path",
+            "getter_name": "path",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "name",
+            "getter_name": "name",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT ''",
+            "default_dart": "const CustomExpression('\\'\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "visibility",
+            "getter_name": "visibility",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 'inherit'",
+            "default_dart": "const CustomExpression('\\'inherit\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "fresh",
+            "getter_name": "fresh",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [
+          "UNIQUE(volume, path)"
+        ],
+        "strict": true,
+        "unique_keys": [
+          [
+            "volume",
+            "path"
+          ]
+        ]
+      }
+    },
+    {
+      "id": 35,
+      "references": [
+        34
+      ],
+      "type": "index",
+      "data": {
+        "on": 34,
+        "name": "device_folder_own",
+        "sql": "CREATE INDEX device_folder_own ON device_folder (volume, path) WHERE visibility <> 'inherit';",
+        "unique": false,
+        "columns": []
+      }
+    },
+    {
+      "id": 36,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "device_folder_mode",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY CHECK (id = 0)",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "only_chosen",
+            "getter_name": "onlyChosen",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "reveal_until",
+            "getter_name": "revealUntil",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "strict": true
+      }
+    },
+    {
+      "id": 37,
+      "references": [
+        34,
+        36
+      ],
+      "type": "view",
+      "data": {
+        "name": "excluded_folder",
+        "sql": "CREATE VIEW excluded_folder AS SELECT id FROM device_folder AS f WHERE IFNULL((SELECT g.visibility FROM device_folder AS g WHERE g.volume = f.volume AND g.visibility <> 'inherit' AND g.path <= f.path AND substr(f.path, 1, length(g.path)) = g.path ORDER BY g.path DESC LIMIT 1), (SELECT IIF(only_chosen, 'hidden', 'shown') FROM device_folder_mode)) = 'hidden'",
+        "dart_info_name": "ExcludedFolder",
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ]
+      }
+    },
+    {
+      "id": 38,
+      "references": [
+        37,
+        36
+      ],
+      "type": "view",
+      "data": {
+        "name": "hidden_folder",
+        "sql": "CREATE VIEW hidden_folder AS SELECT id FROM excluded_folder WHERE NOT EXISTS (SELECT 1 FROM device_folder_mode WHERE reveal_until > unixepoch() * 1000)",
+        "dart_info_name": "HiddenFolder",
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ]
+      }
+    },
+    {
+      "id": 39,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "timeline_day",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "day",
+            "getter_name": "day",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "folder",
+            "getter_name": "folder",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "veiled",
+            "getter_name": "veiled",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "count",
+            "getter_name": "count",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": true,
+        "constraints": [
+          "PRIMARY KEY(day, folder, veiled)"
+        ],
+        "strict": true,
+        "explicit_pk": [
+          "day",
+          "folder",
+          "veiled"
+        ]
+      }
+    },
+    {
+      "id": 40,
+      "references": [
+        25,
+        39,
+        31
+      ],
+      "type": "trigger",
+      "data": {
+        "on": 25,
+        "references_in_body": [
+          25,
+          39,
+          31
+        ],
+        "name": "timeline_day_insert",
+        "sql": "CREATE TRIGGER timeline_day_insert AFTER INSERT ON local_asset BEGIN\n  INSERT INTO timeline_day SELECT day, folder, hidden + archived > 0, 1 FROM timeline_item WHERE id = new.id\n    ON CONFLICT DO UPDATE SET count = count + 1;\nEND;"
+      }
+    },
+    {
+      "id": 41,
+      "references": [
+        25,
+        39
+      ],
+      "type": "trigger",
+      "data": {
+        "on": 25,
+        "references_in_body": [
+          25,
+          39
+        ],
+        "name": "timeline_day_delete",
+        "sql": "CREATE TRIGGER timeline_day_delete AFTER DELETE ON local_asset WHEN old.state = 'present' AND old.trashed = 0 BEGIN\n  UPDATE timeline_day SET count = count - 1 WHERE folder = old.folder AND veiled = (old.hidden + old.archived > 0)\n    AND day = CAST(COALESCE(strftime('%Y%m%d', old.taken_local),\n      strftime('%Y%m%d', COALESCE(old.taken, old.mtime) / 1000, 'unixepoch')) AS INTEGER);\nEND;"
+      }
+    },
+    {
+      "id": 42,
+      "references": [
+        25,
+        39,
+        31
+      ],
+      "type": "trigger",
+      "data": {
+        "on": 25,
+        "references_in_body": [
+          25,
+          39,
+          31
+        ],
+        "name": "timeline_day_update",
+        "sql": "CREATE TRIGGER timeline_day_update\n  AFTER UPDATE OF state, trashed, taken_local, taken, mtime, folder, hidden, archived ON local_asset\nBEGIN\n  UPDATE timeline_day SET count = count - 1 WHERE old.state = 'present' AND old.trashed = 0 AND folder = old.folder\n    AND veiled = (old.hidden + old.archived > 0) AND day = CAST(COALESCE(strftime('%Y%m%d', old.taken_local),\n      strftime('%Y%m%d', COALESCE(old.taken, old.mtime) / 1000, 'unixepoch')) AS INTEGER);\n  INSERT INTO timeline_day SELECT day, folder, hidden + archived > 0, 1 FROM timeline_item WHERE id = new.id\n    ON CONFLICT DO UPDATE SET count = count + 1;\nEND;"
+      }
+    },
+    {
+      "id": 43,
+      "references": [
+        39
+      ],
+      "type": "trigger",
+      "data": {
+        "on": 39,
+        "references_in_body": [
+          39
+        ],
+        "name": "timeline_day_empty",
+        "sql": "CREATE TRIGGER timeline_day_empty AFTER UPDATE OF count ON timeline_day WHEN new.count = 0 BEGIN\n  DELETE FROM timeline_day WHERE day = new.day AND folder = new.folder AND veiled = new.veiled;\nEND;"
+      }
+    },
+    {
+      "id": 44,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "timeline_added",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "slot",
+            "getter_name": "slot",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "folder",
+            "getter_name": "folder",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "veiled",
+            "getter_name": "veiled",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "count",
+            "getter_name": "count",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": true,
+        "constraints": [
+          "PRIMARY KEY(slot, folder, veiled)"
+        ],
+        "strict": true,
+        "explicit_pk": [
+          "slot",
+          "folder",
+          "veiled"
+        ]
+      }
+    },
+    {
+      "id": 45,
+      "references": [
+        25,
+        44,
+        31
+      ],
+      "type": "trigger",
+      "data": {
+        "on": 25,
+        "references_in_body": [
+          25,
+          44,
+          31
+        ],
+        "name": "timeline_added_insert",
+        "sql": "CREATE TRIGGER timeline_added_insert AFTER INSERT ON local_asset BEGIN\n  INSERT INTO timeline_added SELECT added / 900000, folder, hidden + archived > 0, 1 FROM timeline_item\n    WHERE id = new.id ON CONFLICT DO UPDATE SET count = count + 1;\nEND;"
+      }
+    },
+    {
+      "id": 46,
+      "references": [
+        25,
+        44
+      ],
+      "type": "trigger",
+      "data": {
+        "on": 25,
+        "references_in_body": [
+          25,
+          44
+        ],
+        "name": "timeline_added_delete",
+        "sql": "CREATE TRIGGER timeline_added_delete AFTER DELETE ON local_asset WHEN old.state = 'present' AND old.trashed = 0 BEGIN\n  UPDATE timeline_added SET count = count - 1 WHERE slot = COALESCE(old.added, 0) / 900000 AND folder = old.folder\n    AND veiled = (old.hidden + old.archived > 0);\nEND;"
+      }
+    },
+    {
+      "id": 47,
+      "references": [
+        25,
+        44,
+        31
+      ],
+      "type": "trigger",
+      "data": {
+        "on": 25,
+        "references_in_body": [
+          25,
+          44,
+          31
+        ],
+        "name": "timeline_added_update",
+        "sql": "CREATE TRIGGER timeline_added_update AFTER UPDATE OF state, trashed, added, folder, hidden, archived ON local_asset\nBEGIN\n  UPDATE timeline_added SET count = count - 1 WHERE old.state = 'present' AND old.trashed = 0\n    AND slot = COALESCE(old.added, 0) / 900000 AND folder = old.folder AND veiled = (old.hidden + old.archived > 0);\n  INSERT INTO timeline_added SELECT added / 900000, folder, hidden + archived > 0, 1 FROM timeline_item\n    WHERE id = new.id ON CONFLICT DO UPDATE SET count = count + 1;\nEND;"
+      }
+    },
+    {
+      "id": 48,
+      "references": [
+        44
+      ],
+      "type": "trigger",
+      "data": {
+        "on": 44,
+        "references_in_body": [
+          44
+        ],
+        "name": "timeline_added_empty",
+        "sql": "CREATE TRIGGER timeline_added_empty AFTER UPDATE OF count ON timeline_added WHEN new.count = 0 BEGIN\n  DELETE FROM timeline_added WHERE slot = new.slot AND folder = new.folder AND veiled = new.veiled;\nEND;"
+      }
+    },
+    {
+      "id": 49,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "kept_state",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "fingerprint",
+            "getter_name": "fingerprint",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "favorite",
+            "getter_name": "favorite",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "hidden",
+            "getter_name": "hidden",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "archived",
+            "getter_name": "archived",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "strict": true
+      }
+    },
+    {
+      "id": 50,
+      "references": [
+        25,
+        49
+      ],
+      "type": "trigger",
+      "data": {
+        "on": 25,
+        "references_in_body": [
+          25,
+          49
+        ],
+        "name": "local_asset_kept",
+        "sql": "CREATE TRIGGER local_asset_kept AFTER UPDATE OF favorite, hidden, archived ON local_asset\n  WHEN new.fingerprint IS NOT NULL AND (old.favorite <> new.favorite OR old.hidden <> new.hidden\n    OR old.archived <> new.archived) BEGIN\n  INSERT INTO kept_state VALUES (new.fingerprint, new.favorite, new.hidden, new.archived) ON CONFLICT (fingerprint)\n    DO UPDATE SET favorite = excluded.favorite, hidden = excluded.hidden, archived = excluded.archived;\n  DELETE FROM kept_state WHERE fingerprint = new.fingerprint AND favorite = 0 AND hidden = 0 AND archived = 0;\nEND;"
+      }
+    },
+    {
+      "id": 51,
+      "references": [
+        25,
+        49
+      ],
+      "type": "trigger",
+      "data": {
+        "on": 25,
+        "references_in_body": [
+          25,
+          49
+        ],
+        "name": "local_asset_fingerprint",
+        "sql": "CREATE TRIGGER local_asset_fingerprint AFTER UPDATE OF fingerprint ON local_asset\n  WHEN new.fingerprint IS NOT NULL BEGIN\n  INSERT INTO kept_state VALUES (new.fingerprint, new.favorite, new.hidden, new.archived) ON CONFLICT (fingerprint)\n    DO UPDATE SET favorite = favorite | excluded.favorite, hidden = hidden | excluded.hidden,\n      archived = archived | excluded.archived;\n  UPDATE local_asset SET favorite = (SELECT favorite FROM kept_state WHERE fingerprint = new.fingerprint),\n    hidden = (SELECT hidden FROM kept_state WHERE fingerprint = new.fingerprint),\n    archived = (SELECT archived FROM kept_state WHERE fingerprint = new.fingerprint) WHERE id = new.id;\n  DELETE FROM kept_state WHERE fingerprint = new.fingerprint AND favorite = 0 AND hidden = 0 AND archived = 0;\nEND;"
+      }
+    },
+    {
+      "id": 52,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "media_source",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "root",
+            "getter_name": "root",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "state",
+            "getter_name": "state",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 'online'",
+            "default_dart": "const CustomExpression('\\'online\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "checkpoint",
+            "getter_name": "checkpoint",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "strict": true
+      }
+    },
+    {
+      "id": 53,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "volume_cursor",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "source",
+            "getter_name": "source",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "volume",
+            "getter_name": "volume",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "install_id",
+            "getter_name": "installId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "version",
+            "getter_name": "version",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "generation",
+            "getter_name": "generation",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "root",
+            "getter_name": "root",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [
+          "PRIMARY KEY(source, volume)"
+        ],
+        "strict": true,
+        "explicit_pk": [
+          "source",
+          "volume"
+        ]
+      }
+    },
+    {
+      "id": 54,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "backup_state",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "local_asset_id",
+            "getter_name": "localAssetId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "state",
+            "getter_name": "state",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "reason",
+            "getter_name": "reason",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "retry_at",
+            "getter_name": "retryAt",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "updated_at",
+            "getter_name": "updatedAt",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "upload",
+            "getter_name": "upload",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "attempts",
+            "getter_name": "attempts",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "strict": true
+      }
+    },
+    {
+      "id": 55,
+      "references": [
+        54
+      ],
+      "type": "index",
+      "data": {
+        "on": 54,
+        "name": "backup_state_state",
+        "sql": "CREATE INDEX backup_state_state ON backup_state (state);",
+        "unique": false,
+        "columns": []
+      }
+    },
+    {
+      "id": 56,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "backup_run",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "started",
+            "getter_name": "started",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "ended",
+            "getter_name": "ended",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "uploaded",
+            "getter_name": "uploaded",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "linked",
+            "getter_name": "linked",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "failed",
+            "getter_name": "failed",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "pending",
+            "getter_name": "pending",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "stopped",
+            "getter_name": "stopped",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "strict": true
+      }
+    },
+    {
+      "id": 57,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "outbox",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "seq",
+            "getter_name": "seq",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "mutation_id",
+            "getter_name": "mutationId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL UNIQUE",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "unique"
+            ]
+          },
+          {
+            "name": "entity",
+            "getter_name": "entity",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "entity_id",
+            "getter_name": "entityId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "mutation",
+            "getter_name": "mutation",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "attempts",
+            "getter_name": "attempts",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL DEFAULT 0",
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "retry_at",
+            "getter_name": "retryAt",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "error",
+            "getter_name": "error",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "created_at",
+            "getter_name": "createdAt",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "strict": true
+      }
+    },
+    {
+      "id": 58,
+      "references": [
+        57
+      ],
+      "type": "index",
+      "data": {
+        "on": 57,
+        "name": "outbox_entity",
+        "sql": "CREATE INDEX outbox_entity ON outbox (entity, entity_id);",
+        "unique": false,
+        "columns": []
+      }
+    },
+    {
+      "id": 59,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "clock",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "device_id",
+            "getter_name": "deviceId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "ms",
+            "getter_name": "ms",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "counter",
+            "getter_name": "counter",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "strict": true
+      }
+    },
+    {
+      "id": 60,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "sync_cursor",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "stream",
+            "getter_name": "stream",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "cursor",
+            "getter_name": "cursor",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "updated_at",
+            "getter_name": "updatedAt",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "epoch",
+            "getter_name": "epoch",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "strict": true
+      }
+    },
+    {
+      "id": 61,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "ext_journal_cursor",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "journal",
+            "getter_name": "journal",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL PRIMARY KEY",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              "primary-key"
+            ]
+          },
+          {
+            "name": "merged",
+            "getter_name": "merged",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "strict": true
+      }
+    },
+    {
+      "id": 62,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "local_ml",
+        "was_declared_in_moor": true,
+        "columns": [
+          {
+            "name": "local_asset_id",
+            "getter_name": "localAssetId",
+            "moor_type": "blob",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "model",
+            "getter_name": "model",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "size",
+            "getter_name": "size",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "mtime",
+            "getter_name": "mtime",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "vec",
+            "getter_name": "vec",
+            "moor_type": "blob",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "failure",
+            "getter_name": "failure",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": "",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "rt_flags",
+            "getter_name": "rtFlags",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": "NOT NULL",
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [
+          "PRIMARY KEY(local_asset_id, model)"
+        ],
+        "strict": true,
+        "explicit_pk": [
+          "local_asset_id",
+          "model"
+        ]
+      }
+    }
+  ],
+  "fixed_sql": [
+    {
+      "name": "library",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"library\" (\"id\" BLOB NOT NULL PRIMARY KEY, \"owner_id\" BLOB NOT NULL, \"kind\" TEXT NOT NULL, \"privacy\" TEXT NOT NULL, \"access\" TEXT NOT NULL, \"root_uri\" TEXT, \"is_upload_target\" INTEGER NOT NULL DEFAULT 0, \"state\" TEXT NOT NULL, \"txid\" INTEGER) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "asset",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"asset\" (\"id\" BLOB NOT NULL PRIMARY KEY, \"library_id\" BLOB NOT NULL, \"owner_id\" BLOB NOT NULL, \"original_filename\" TEXT NOT NULL, \"source\" TEXT NOT NULL, \"source_ref\" TEXT, \"content_hash\" BLOB, \"media_kind\" TEXT NOT NULL, \"facets\" TEXT NOT NULL DEFAULT '', \"taken_local\" TEXT, \"tz_offset_min\" INTEGER, \"tz_name\" TEXT, \"taken_utc\" INTEGER, \"time_source\" TEXT NOT NULL DEFAULT 'unknown', \"time_confidence\" INTEGER NOT NULL DEFAULT 0, \"time_precision\" TEXT, \"tz_assumed\" INTEGER NOT NULL DEFAULT 0, \"lat\" REAL, \"lon\" REAL, \"alt\" REAL, \"accuracy_m\" REAL, \"location_source\" TEXT, \"place_id\" BLOB, \"width\" INTEGER, \"height\" INTEGER, \"orientation\" INTEGER, \"duration_ms\" INTEGER, \"file_size_total\" INTEGER, \"make\" TEXT, \"model\" TEXT, \"lens\" TEXT, \"title\" TEXT, \"description\" TEXT, \"rating\" INTEGER NOT NULL DEFAULT 0, \"color_label\" TEXT, \"archived\" INTEGER NOT NULL DEFAULT 0, \"locked\" INTEGER NOT NULL DEFAULT 0, \"trashed_at\" INTEGER, \"stack_id\" BLOB, \"stack_order\" INTEGER, \"current_version_id\" BLOB, \"created_at\" INTEGER NOT NULL, \"txid\" INTEGER, \"fps\" REAL, \"thumbhash\" BLOB) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "asset_taken",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX asset_taken ON asset (taken_utc DESC, id)"
+        }
+      ]
+    },
+    {
+      "name": "asset_library",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX asset_library ON asset (library_id)"
+        }
+      ]
+    },
+    {
+      "name": "asset_user_state",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"asset_user_state\" (\"asset_id\" BLOB NOT NULL PRIMARY KEY, \"favorite\" INTEGER NOT NULL DEFAULT 0, \"hidden_from_memories\" INTEGER NOT NULL DEFAULT 0, \"last_viewed_at\" INTEGER, \"playback_position_ms\" INTEGER, \"txid\" INTEGER) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "asset_file",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"asset_file\" (\"id\" BLOB NOT NULL PRIMARY KEY, \"asset_id\" BLOB NOT NULL, \"role\" TEXT NOT NULL, \"mime\" TEXT NOT NULL, \"size\" INTEGER NOT NULL, \"content_hash\" BLOB, \"state\" TEXT NOT NULL, \"txid\" INTEGER) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "asset_file_asset",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX asset_file_asset ON asset_file (asset_id)"
+        }
+      ]
+    },
+    {
+      "name": "asset_version",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"asset_version\" (\"id\" BLOB NOT NULL PRIMARY KEY, \"asset_id\" BLOB NOT NULL, \"parent_id\" BLOB, \"kind\" TEXT NOT NULL, \"label\" TEXT, \"recipe\" BLOB, \"render_file_id\" BLOB, \"created_at\" INTEGER NOT NULL, \"txid\" INTEGER) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "asset_version_asset",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX asset_version_asset ON asset_version (asset_id)"
+        }
+      ]
+    },
+    {
+      "name": "stack",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"stack\" (\"id\" BLOB NOT NULL PRIMARY KEY, \"owner_id\" BLOB NOT NULL, \"kind\" TEXT NOT NULL, \"cover_asset_id\" BLOB, \"review_state\" TEXT NOT NULL DEFAULT 'unreviewed', \"txid\" INTEGER) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "album_folder",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"album_folder\" (\"id\" BLOB NOT NULL PRIMARY KEY, \"owner_id\" BLOB NOT NULL, \"parent_id\" BLOB, \"name\" TEXT NOT NULL, \"sort_key\" TEXT NOT NULL, \"txid\" INTEGER) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "album",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"album\" (\"id\" BLOB NOT NULL PRIMARY KEY, \"owner_id\" BLOB NOT NULL, \"folder_id\" BLOB, \"title\" TEXT NOT NULL, \"description\" TEXT, \"cover_asset_id\" BLOB, \"sort_mode\" TEXT NOT NULL DEFAULT 'custom', \"layout\" TEXT NOT NULL DEFAULT 'grid', \"privacy\" TEXT NOT NULL DEFAULT 'standard', \"created_at\" INTEGER NOT NULL, \"txid\" INTEGER) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "album_item",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"album_item\" (\"id\" BLOB NOT NULL PRIMARY KEY, \"album_id\" BLOB NOT NULL, \"kind\" TEXT NOT NULL, \"asset_id\" BLOB, \"anchor_asset_id\" BLOB, \"payload\" TEXT, \"sort_key\" TEXT NOT NULL, \"txid\" INTEGER) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "album_item_order",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX album_item_order ON album_item (album_id, sort_key)"
+        }
+      ]
+    },
+    {
+      "name": "album_member",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"album_member\" (\"album_id\" BLOB NOT NULL, \"user_id\" BLOB NOT NULL, \"role\" TEXT NOT NULL, \"txid\" INTEGER, PRIMARY KEY(album_id, user_id)) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "tag",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"tag\" (\"id\" BLOB NOT NULL PRIMARY KEY, \"owner_id\" BLOB NOT NULL, \"parent_id\" BLOB, \"name\" TEXT NOT NULL, \"path\" TEXT NOT NULL, \"color\" TEXT, \"is_album\" INTEGER NOT NULL DEFAULT 0, \"origin\" TEXT NOT NULL DEFAULT 'user', \"txid\" INTEGER) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "asset_tag",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"asset_tag\" (\"asset_id\" BLOB NOT NULL, \"tag_id\" BLOB NOT NULL, \"origin\" TEXT NOT NULL DEFAULT 'user', \"confidence\" REAL, \"created_at\" INTEGER NOT NULL, \"txid\" INTEGER, PRIMARY KEY(asset_id, tag_id)) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "asset_tag_tag",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX asset_tag_tag ON asset_tag (tag_id)"
+        }
+      ]
+    },
+    {
+      "name": "person",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"person\" (\"id\" BLOB NOT NULL PRIMARY KEY, \"owner_id\" BLOB NOT NULL, \"kind\" TEXT NOT NULL DEFAULT 'human', \"name\" TEXT, \"birth_date\" TEXT, \"cover_face_id\" BLOB, \"hidden\" INTEGER NOT NULL DEFAULT 0, \"merged_into\" BLOB, \"txid\" INTEGER) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "face",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"face\" (\"id\" BLOB NOT NULL PRIMARY KEY, \"asset_id\" BLOB NOT NULL, \"bbox\" TEXT NOT NULL, \"quality\" REAL, \"person_id\" BLOB, \"assignment\" TEXT NOT NULL DEFAULT 'auto', \"txid\" INTEGER) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "face_person",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX face_person ON face (person_id)"
+        }
+      ]
+    },
+    {
+      "name": "face_asset",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX face_asset ON face (asset_id)"
+        }
+      ]
+    },
+    {
+      "name": "asset_deleted",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TRIGGER asset_deleted AFTER DELETE ON asset BEGIN DELETE FROM asset_file WHERE asset_id = old.id;DELETE FROM asset_version WHERE asset_id = old.id;DELETE FROM face WHERE asset_id = old.id;END"
+        }
+      ]
+    },
+    {
+      "name": "partner_share",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"partner_share\" (\"owner_id\" BLOB NOT NULL, \"partner_id\" BLOB NOT NULL, \"taken_since\" TEXT, \"txid\" INTEGER, PRIMARY KEY(owner_id, partner_id)) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "partner_library",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"partner_library\" (\"owner_id\" BLOB NOT NULL, \"library_id\" BLOB NOT NULL, \"whole\" INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(owner_id, library_id)) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "local_asset",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"local_asset\" (\"id\" BLOB NOT NULL PRIMARY KEY, \"source\" TEXT NOT NULL, \"volume\" TEXT NOT NULL DEFAULT '', \"source_id\" TEXT NOT NULL, \"generation\" TEXT, \"size\" INTEGER NOT NULL, \"mtime\" INTEGER NOT NULL, \"content_hash\" BLOB, \"asset_id\" BLOB, \"path\" TEXT, \"file_id\" TEXT, \"state\" TEXT NOT NULL DEFAULT 'present', \"name\" TEXT, \"bucket_id\" TEXT, \"bucket_name\" TEXT, \"mime\" TEXT, \"taken\" INTEGER, \"width\" INTEGER, \"height\" INTEGER, \"orientation\" INTEGER, \"duration_ms\" INTEGER, \"favorite\" INTEGER NOT NULL DEFAULT 0, \"trashed\" INTEGER NOT NULL DEFAULT 0, \"expires\" INTEGER, \"extracted\" INTEGER, \"taken_local\" TEXT, \"tz_offset_min\" INTEGER, \"taken_utc\" INTEGER, \"time_source\" TEXT, \"time_confidence\" INTEGER, \"time_precision\" TEXT, \"lat\" REAL, \"lon\" REAL, \"make\" TEXT, \"model\" TEXT, \"facets\" TEXT, \"cloud_id\" TEXT, \"burst_id\" TEXT, \"edited\" INTEGER NOT NULL DEFAULT 0, \"added\" INTEGER, \"thumbhash\" BLOB, \"motion_offset\" INTEGER, \"motion_length\" INTEGER, \"frame_rate\" REAL, \"projection\" TEXT, \"crop\" TEXT, \"stereo\" TEXT, \"folder\" INTEGER NOT NULL DEFAULT 0, \"heading\" REAL, \"hidden\" INTEGER NOT NULL DEFAULT 0, \"archived\" INTEGER NOT NULL DEFAULT 0, \"bin\" TEXT, \"fingerprint\" BLOB, UNIQUE(source, volume, source_id)) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "local_asset_path",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX local_asset_path ON local_asset (volume, path)"
+        }
+      ]
+    },
+    {
+      "name": "local_asset_hash",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX local_asset_hash ON local_asset (content_hash) WHERE content_hash IS NOT NULL"
+        }
+      ]
+    },
+    {
+      "name": "local_asset_file",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX local_asset_file ON local_asset (volume, file_id)"
+        }
+      ]
+    },
+    {
+      "name": "local_asset_pending",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX local_asset_pending ON local_asset (COALESCE(taken, mtime) DESC, id DESC) WHERE extracted IS NULL"
+        }
+      ]
+    },
+    {
+      "name": "local_asset_root",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX local_asset_root ON local_asset (volume, state) WHERE source = 'folder'"
+        }
+      ]
+    },
+    {
+      "name": "timeline_item",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE VIEW timeline_item AS SELECT id, source, volume, source_id, path, size, mtime, mime, thumbhash, projection, favorite, hidden, archived, COALESCE(added, 0) AS added, CAST(COALESCE(strftime('%Y%m%d', taken_local), strftime('%Y%m%d', COALESCE(taken, mtime) / 1000, 'unixepoch')) AS INTEGER) AS day, COALESCE(taken_utc, taken, mtime) AS sort_key, folder, facets FROM local_asset WHERE state = 'present' AND trashed = 0"
+        }
+      ]
+    },
+    {
+      "name": "local_asset_timeline",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX local_asset_timeline ON local_asset (CAST(COALESCE(strftime('%Y%m%d', taken_local), strftime('%Y%m%d', COALESCE(taken, mtime) / 1000, 'unixepoch')) AS INTEGER) DESC, COALESCE(taken_utc, taken, mtime) DESC, id DESC, folder) WHERE state = 'present' AND trashed = 0"
+        }
+      ]
+    },
+    {
+      "name": "local_asset_added",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX local_asset_added ON local_asset (COALESCE(added, 0) DESC, id DESC, folder) WHERE state = 'present' AND trashed = 0"
+        }
+      ]
+    },
+    {
+      "name": "device_folder",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"device_folder\" (\"id\" INTEGER NOT NULL PRIMARY KEY, \"volume\" TEXT NOT NULL, \"path\" TEXT NOT NULL, \"name\" TEXT NOT NULL DEFAULT '', \"visibility\" TEXT NOT NULL DEFAULT 'inherit', \"fresh\" INTEGER NOT NULL DEFAULT 0, UNIQUE(volume, path)) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "device_folder_own",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX device_folder_own ON device_folder (volume, path) WHERE visibility <> 'inherit'"
+        }
+      ]
+    },
+    {
+      "name": "device_folder_mode",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"device_folder_mode\" (\"id\" INTEGER NOT NULL PRIMARY KEY CHECK (id = 0), \"only_chosen\" INTEGER NOT NULL DEFAULT 0, \"reveal_until\" INTEGER) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "excluded_folder",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE VIEW excluded_folder AS SELECT id FROM device_folder AS f WHERE IFNULL((SELECT g.visibility FROM device_folder AS g WHERE g.volume = f.volume AND g.visibility <> 'inherit' AND g.path <= f.path AND substr(f.path, 1, length(g.path)) = g.path ORDER BY g.path DESC LIMIT 1), (SELECT IIF(only_chosen, 'hidden', 'shown') FROM device_folder_mode)) = 'hidden'"
+        }
+      ]
+    },
+    {
+      "name": "hidden_folder",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE VIEW hidden_folder AS SELECT id FROM excluded_folder WHERE NOT EXISTS (SELECT 1 FROM device_folder_mode WHERE reveal_until > unixepoch() * 1000)"
+        }
+      ]
+    },
+    {
+      "name": "timeline_day",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"timeline_day\" (\"day\" INTEGER NOT NULL, \"folder\" INTEGER NOT NULL, \"veiled\" INTEGER NOT NULL, \"count\" INTEGER NOT NULL, PRIMARY KEY(day, folder, veiled)) WITHOUT ROWID, STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "timeline_day_insert",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TRIGGER timeline_day_insert AFTER INSERT ON local_asset BEGIN INSERT INTO timeline_day SELECT day, folder, hidden + archived > 0, 1 FROM timeline_item WHERE id = new.id ON CONFLICT DO UPDATE SET count = count + 1;END"
+        }
+      ]
+    },
+    {
+      "name": "timeline_day_delete",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TRIGGER timeline_day_delete AFTER DELETE ON local_asset WHEN old.state = 'present' AND old.trashed = 0 BEGIN UPDATE timeline_day SET count = count - 1 WHERE folder = old.folder AND veiled =(old.hidden + old.archived > 0)AND day = CAST(COALESCE(strftime('%Y%m%d', old.taken_local), strftime('%Y%m%d', COALESCE(old.taken, old.mtime) / 1000, 'unixepoch')) AS INTEGER);END"
+        }
+      ]
+    },
+    {
+      "name": "timeline_day_update",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TRIGGER timeline_day_update AFTER UPDATE OF state, trashed, taken_local, taken, mtime, folder, hidden, archived ON local_asset BEGIN UPDATE timeline_day SET count = count - 1 WHERE old.state = 'present' AND old.trashed = 0 AND folder = old.folder AND veiled =(old.hidden + old.archived > 0)AND day = CAST(COALESCE(strftime('%Y%m%d', old.taken_local), strftime('%Y%m%d', COALESCE(old.taken, old.mtime) / 1000, 'unixepoch')) AS INTEGER);INSERT INTO timeline_day SELECT day, folder, hidden + archived > 0, 1 FROM timeline_item WHERE id = new.id ON CONFLICT DO UPDATE SET count = count + 1;END"
+        }
+      ]
+    },
+    {
+      "name": "timeline_day_empty",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TRIGGER timeline_day_empty AFTER UPDATE OF count ON timeline_day WHEN new.count = 0 BEGIN DELETE FROM timeline_day WHERE day = new.day AND folder = new.folder AND veiled = new.veiled;END"
+        }
+      ]
+    },
+    {
+      "name": "timeline_added",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"timeline_added\" (\"slot\" INTEGER NOT NULL, \"folder\" INTEGER NOT NULL, \"veiled\" INTEGER NOT NULL, \"count\" INTEGER NOT NULL, PRIMARY KEY(slot, folder, veiled)) WITHOUT ROWID, STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "timeline_added_insert",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TRIGGER timeline_added_insert AFTER INSERT ON local_asset BEGIN INSERT INTO timeline_added SELECT added / 900000, folder, hidden + archived > 0, 1 FROM timeline_item WHERE id = new.id ON CONFLICT DO UPDATE SET count = count + 1;END"
+        }
+      ]
+    },
+    {
+      "name": "timeline_added_delete",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TRIGGER timeline_added_delete AFTER DELETE ON local_asset WHEN old.state = 'present' AND old.trashed = 0 BEGIN UPDATE timeline_added SET count = count - 1 WHERE slot = COALESCE(old.added, 0) / 900000 AND folder = old.folder AND veiled =(old.hidden + old.archived > 0);END"
+        }
+      ]
+    },
+    {
+      "name": "timeline_added_update",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TRIGGER timeline_added_update AFTER UPDATE OF state, trashed, added, folder, hidden, archived ON local_asset BEGIN UPDATE timeline_added SET count = count - 1 WHERE old.state = 'present' AND old.trashed = 0 AND slot = COALESCE(old.added, 0) / 900000 AND folder = old.folder AND veiled =(old.hidden + old.archived > 0);INSERT INTO timeline_added SELECT added / 900000, folder, hidden + archived > 0, 1 FROM timeline_item WHERE id = new.id ON CONFLICT DO UPDATE SET count = count + 1;END"
+        }
+      ]
+    },
+    {
+      "name": "timeline_added_empty",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TRIGGER timeline_added_empty AFTER UPDATE OF count ON timeline_added WHEN new.count = 0 BEGIN DELETE FROM timeline_added WHERE slot = new.slot AND folder = new.folder AND veiled = new.veiled;END"
+        }
+      ]
+    },
+    {
+      "name": "kept_state",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"kept_state\" (\"fingerprint\" BLOB NOT NULL PRIMARY KEY, \"favorite\" INTEGER NOT NULL DEFAULT 0, \"hidden\" INTEGER NOT NULL DEFAULT 0, \"archived\" INTEGER NOT NULL DEFAULT 0) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "local_asset_kept",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TRIGGER local_asset_kept AFTER UPDATE OF favorite, hidden, archived ON local_asset WHEN new.fingerprint IS NOT NULL AND(old.favorite <> new.favorite OR old.hidden <> new.hidden OR old.archived <> new.archived)BEGIN INSERT INTO kept_state VALUES (new.fingerprint, new.favorite, new.hidden, new.archived) ON CONFLICT (fingerprint) DO UPDATE SET favorite = excluded.favorite, hidden = excluded.hidden, archived = excluded.archived;DELETE FROM kept_state WHERE fingerprint = new.fingerprint AND favorite = 0 AND hidden = 0 AND archived = 0;END"
+        }
+      ]
+    },
+    {
+      "name": "local_asset_fingerprint",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TRIGGER local_asset_fingerprint AFTER UPDATE OF fingerprint ON local_asset WHEN new.fingerprint IS NOT NULL BEGIN INSERT INTO kept_state VALUES (new.fingerprint, new.favorite, new.hidden, new.archived) ON CONFLICT (fingerprint) DO UPDATE SET favorite = favorite | excluded.favorite, hidden = hidden | excluded.hidden, archived = archived | excluded.archived;UPDATE local_asset SET favorite = (SELECT favorite FROM kept_state WHERE fingerprint = new.fingerprint), hidden = (SELECT hidden FROM kept_state WHERE fingerprint = new.fingerprint), archived = (SELECT archived FROM kept_state WHERE fingerprint = new.fingerprint) WHERE id = new.id;DELETE FROM kept_state WHERE fingerprint = new.fingerprint AND favorite = 0 AND hidden = 0 AND archived = 0;END"
+        }
+      ]
+    },
+    {
+      "name": "media_source",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"media_source\" (\"root\" TEXT NOT NULL PRIMARY KEY, \"state\" TEXT NOT NULL DEFAULT 'online', \"checkpoint\" TEXT) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "volume_cursor",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"volume_cursor\" (\"source\" TEXT NOT NULL, \"volume\" TEXT NOT NULL, \"install_id\" TEXT NOT NULL, \"version\" TEXT NOT NULL, \"generation\" INTEGER NOT NULL, \"root\" TEXT, PRIMARY KEY(source, volume)) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "backup_state",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"backup_state\" (\"local_asset_id\" BLOB NOT NULL PRIMARY KEY, \"state\" TEXT NOT NULL, \"reason\" TEXT, \"retry_at\" INTEGER, \"updated_at\" INTEGER NOT NULL, \"upload\" TEXT, \"attempts\" INTEGER NOT NULL DEFAULT 0) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "backup_state_state",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX backup_state_state ON backup_state (state)"
+        }
+      ]
+    },
+    {
+      "name": "backup_run",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"backup_run\" (\"id\" INTEGER NOT NULL PRIMARY KEY, \"started\" INTEGER NOT NULL, \"ended\" INTEGER, \"uploaded\" INTEGER NOT NULL DEFAULT 0, \"linked\" INTEGER NOT NULL DEFAULT 0, \"failed\" INTEGER NOT NULL DEFAULT 0, \"pending\" INTEGER NOT NULL DEFAULT 0, \"stopped\" TEXT) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "outbox",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"outbox\" (\"seq\" INTEGER NOT NULL PRIMARY KEY, \"mutation_id\" BLOB NOT NULL UNIQUE, \"entity\" TEXT NOT NULL, \"entity_id\" BLOB NOT NULL, \"mutation\" BLOB NOT NULL, \"attempts\" INTEGER NOT NULL DEFAULT 0, \"retry_at\" INTEGER, \"error\" TEXT, \"created_at\" INTEGER NOT NULL) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "outbox_entity",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE INDEX outbox_entity ON outbox (entity, entity_id)"
+        }
+      ]
+    },
+    {
+      "name": "clock",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"clock\" (\"device_id\" BLOB NOT NULL PRIMARY KEY, \"ms\" INTEGER NOT NULL, \"counter\" INTEGER NOT NULL) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "sync_cursor",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"sync_cursor\" (\"stream\" TEXT NOT NULL PRIMARY KEY, \"cursor\" BLOB NOT NULL, \"updated_at\" INTEGER NOT NULL, \"epoch\" TEXT) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "ext_journal_cursor",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"ext_journal_cursor\" (\"journal\" TEXT NOT NULL PRIMARY KEY, \"merged\" INTEGER NOT NULL) STRICT;"
+        }
+      ]
+    },
+    {
+      "name": "local_ml",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"local_ml\" (\"local_asset_id\" BLOB NOT NULL, \"model\" TEXT NOT NULL, \"size\" INTEGER NOT NULL, \"mtime\" INTEGER NOT NULL, \"vec\" BLOB, \"failure\" TEXT, \"rt_flags\" TEXT NOT NULL, PRIMARY KEY(local_asset_id, model)) STRICT;"
+        }
+      ]
+    }
+  ]
+}

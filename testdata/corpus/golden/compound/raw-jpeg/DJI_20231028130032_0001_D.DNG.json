@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "path": "compound/raw-jpeg/DJI_20231028130032_0001_D.DNG",
+  "size": 23705,
+  "sha256": "ff007bb6616e1fce02ff4b8def974aaf2effeb127a78cc874e4bbb868a3c29d2",
+  "origin": "synthetic",
+  "notes": "Placeholder sensor data, not a camera mosaic; the embedded JPEG preview decodes.",
+  "format": "dng",
+  "vendor": "dji",
+  "quirks": [
+    "raw_jpeg_pair"
+  ],
+  "media": {
+    "container": "tiff",
+    "mime": "image/x-adobe-dng",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120,
+    "make": "DJI",
+    "model": "FC3582"
+  },
+  "group": {
+    "kind": "raw_jpeg",
+    "key": "DJI_20231028130032_0001_D",
+    "role": "raw_alt"
+  },
+  "filename": {
+    "matches": [
+      "F38",
+      "F52",
+      "F53"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2023-10-28T13:00:32",
+        "precision": "s",
+        "event": "capture"
+      },
+      {
+        "source": "filename:F38",
+        "kind": "local",
+        "value": "2023-10-28T13:00:32",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2023-10-28T13:00:32",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

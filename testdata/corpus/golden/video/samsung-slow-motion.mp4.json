@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "path": "video/samsung-slow-motion.mp4",
+  "size": 831,
+  "sha256": "fdcd1f1edc96934a790b39a4b1eb8f021e8ebff4d1d90140cf879b3aecc57ba9",
+  "origin": "synthetic",
+  "notes": "Placeholder hevc payload: the structure and metadata are real, the video does not decode.",
+  "format": "mp4",
+  "vendor": "samsung",
+  "quirks": [
+    "slow_motion_sef",
+    "trailing_data"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "hevc",
+    "make": "samsung",
+    "model": "SM-G991B"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "qt_mvhd_phone",
+        "kind": "utc",
+        "value": "2022-07-02T10:00:00Z",
+        "precision": "s",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": null,
+      "utc": "2022-07-02T10:00:00Z",
+      "offset": null,
+      "tz_source": "device_default",
+      "precision": "s",
+      "bound": "exact",
+      "source": "qt_mvhd_phone",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

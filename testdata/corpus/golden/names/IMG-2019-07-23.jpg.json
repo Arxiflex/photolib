@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "path": "names/IMG-2019-07-23.jpg",
+  "size": 3003,
+  "sha256": "a2957cb428e308d62da40c2c047fde15d6fa6a4a53ef44095f21f1fb4e623118",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F54"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F54",
+        "kind": "local",
+        "value": "2019-07-23",
+        "precision": "day",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-07-23",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "day",
+      "bound": "exact",
+      "source": "filename:F54",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

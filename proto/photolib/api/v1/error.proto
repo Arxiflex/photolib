@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package photolib.api.v1;
+
+// Why a call failed, as data that the client renders in its user's language: the server never sends prose (F-13).
+// It travels as a detail of the Connect error, whose code says what kind of failure it is.
+message ErrorDetail {
+  // Stable reason, e.g. "asset.not_found"; clients key their translations on it, and fall back to the Connect code for
+  // a reason they do not know.
+  string code = 1;
+  // Values that the translated message interpolates, e.g. {"asset_id": "0190a3c2-…"}.
+  map<string, string> params = 2;
+}

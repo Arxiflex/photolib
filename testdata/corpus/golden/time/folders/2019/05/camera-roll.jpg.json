@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "path": "time/folders/2019/05/camera-roll.jpg",
+  "size": 3174,
+  "sha256": "7849ed363053c22805de8b27ea61c1c7fed182f7bbbd489f4f06aeaba078a85b",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "canon",
+  "quirks": [
+    "path_date",
+    "time_conflict"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "make": "Canon",
+    "model": "Canon EOS 5D Mark IV"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2018-08-20T09:30:15",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+02:00"
+      },
+      {
+        "source": "path:ym",
+        "kind": "local",
+        "value": "2019-05",
+        "precision": "month",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2018-08-20T09:30:15",
+      "utc": "2018-08-20T07:30:15Z",
+      "offset": "+02:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

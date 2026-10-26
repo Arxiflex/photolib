@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "path": "raw/nikon.nef",
+  "size": 22017,
+  "sha256": "96ca1a489c89fcff7cb1905ee9ecf2110b57293e3bab5711bbd90db31f0a334d",
+  "origin": "synthetic",
+  "notes": "Placeholder sensor data, not a camera mosaic; the embedded JPEG preview decodes.",
+  "format": "nef",
+  "vendor": "nikon",
+  "quirks": [],
+  "media": {
+    "container": "tiff",
+    "mime": "image/x-nikon-nef",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120,
+    "make": "NIKON CORPORATION",
+    "model": "NIKON D850",
+    "orientation": 6
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2019-10-03T06:30:00",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-10-03T06:30:00",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

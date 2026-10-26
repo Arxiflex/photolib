@@ -1,0 +1,12 @@
+# A Cloudflare Tunnel to photolibd: cloudflared connects out to Cloudflare, which terminates TLS and sends the
+# requests for photos.example.com back through the tunnel. Set trusted_proxies to cloudflared's address.
+tunnel: photolib
+credentials-file: /etc/cloudflared/photolib.json
+ingress:
+  # Prometheus and photolibd doctor reach photolibd directly, never through here (ADR-0046).
+  - hostname: photos.example.com
+    path: /(metrics|diagnostics)$
+    service: http_status:403
+  - hostname: photos.example.com
+    service: http://photolibd:8080
+  - service: http_status:404

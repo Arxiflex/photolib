@@ -1,0 +1,31 @@
+# Brings the schema to the new release before its pods start (photolibd migrate); a first install's pod migrates itself.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}-migrate
+  labels:
+    {{- include "photolib.labels" . | nindent 4 }}
+  annotations:
+    helm.sh/hook: pre-upgrade
+    helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        {{- include "photolib.labels" . | nindent 8 }}
+    spec:
+      restartPolicy: Never
+      {{- include "photolib.pod" . | nindent 6 }}
+      # On the node of the running pods, which hold the ReadWriteOnce volumes.
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                topologyKey: kubernetes.io/hostname
+                labelSelector:
+                  matchLabels:
+                    {{- include "photolib.labels" . | nindent 20 }}
+      containers:
+        - {{ include "photolib.container" (dict "root" . "roles" "all" "args" (list "migrate")) | nindent 10 | trim }}

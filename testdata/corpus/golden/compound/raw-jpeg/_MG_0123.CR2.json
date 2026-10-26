@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "path": "compound/raw-jpeg/_MG_0123.CR2",
+  "size": 25627,
+  "sha256": "45c88bbeb1e7010e2bcba14e25c3e053e369d44ca52f5bbefcfd6f25e8635142",
+  "origin": "synthetic",
+  "notes": "Placeholder sensor data, not a camera mosaic; the embedded JPEG preview decodes.",
+  "format": "cr2",
+  "vendor": "canon",
+  "quirks": [
+    "raw_jpeg_pair",
+    "sidecar_xmp"
+  ],
+  "media": {
+    "container": "tiff",
+    "mime": "image/x-canon-cr2",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120,
+    "make": "Canon",
+    "model": "Canon EOS 5D Mark IV"
+  },
+  "group": {
+    "kind": "raw_jpeg",
+    "key": "_MG_0123",
+    "role": "raw_alt"
+  },
+  "sidecars": [
+    {
+      "path": "compound/raw-jpeg/_MG_0123.xmp",
+      "kind": "xmp",
+      "sha256": "4ff7c79a76c63a456173b8e1ffa928aef86d99eef929adf6c66e3afba73505a3"
+    }
+  ],
+  "filename": {
+    "matches": [
+      "F43"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2018-06-02T10:20:30",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2018-06-02T10:20:30",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

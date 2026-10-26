@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "path": "takeout/Google Photos/Trip to Rome/holiday-photo",
+  "size": 2993,
+  "sha256": "5b06277fbfc3a1a2a6303c6b386884281465f95d337deb1f9ac5cc955994c23d",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "no_extension",
+    "takeout_extension_dropped",
+    "takeout_geo_zero",
+    "takeout_legacy_sidecar"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "sidecars": [
+    {
+      "path": "takeout/Google Photos/Trip to Rome/holiday-photo.json",
+      "kind": "takeout_json",
+      "sha256": "a2d87ee0e8e38ea99c0f7be4f97fc198fc2fbccebdd13cf0581c7e038819c735"
+    }
+  ],
+  "filename": {
+    "matches": [
+      "F50"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "takeout_photoTakenTime",
+        "kind": "utc",
+        "value": "2019-05-14T10:00:00Z",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": null,
+      "utc": "2019-05-14T10:00:00Z",
+      "offset": null,
+      "tz_source": "device_default",
+      "precision": "s",
+      "bound": "exact",
+      "source": "takeout_photoTakenTime",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package photolib.api.v1;
+
+// Search over what the server knows of the assets the caller may view.
+service SearchService {
+  // Returns the assets whose picture holds the text, newest first. The text is what OCR read (M5-08): data from a
+  // picture anyone could have made, so clients show it as text and never as markup.
+  rpc SearchText(SearchTextRequest) returns (SearchTextResponse);
+  // Returns the text OCR read from one picture, for the viewer to show and copy.
+  rpc GetText(GetTextRequest) returns (GetTextResponse);
+}
+
+// What to find.
+message SearchTextRequest {
+  // The text to find in pictures, in any case; `%`, `_` and `\` are characters. A blank query finds nothing.
+  string query = 1;
+  // At most this many hits: 1 to 200; 0 means 50.
+  uint32 page_size = 2;
+}
+
+// An asset whose picture holds the text.
+message SearchHit {
+  string asset_id = 1;
+  string library_id = 2;
+  // All the text OCR read from the picture, lines separated by line breaks.
+  string text = 3;
+}
+
+// The assets that hold the text.
+message SearchTextResponse {
+  repeated SearchHit hits = 1;
+}
+
+// Which picture.
+message GetTextRequest {
+  string asset_id = 1;
+}
+
+// What OCR read from a picture.
+message GetTextResponse {
+  // Lines separated by line breaks; empty when the picture has no text or has not been read yet.
+  string text = 1;
+  // Whether OCR has read the picture.
+  bool read = 2;
+  // Where each line is in the version of the picture that is current (the edited one after an edit), in reading
+  // order; empty when the picture has no text, has not been read, or was read before regions were kept.
+  repeated TextRegion regions = 3;
+}
+
+// A line of text and its box, as fractions of the width and height of the current version of the picture.
+message TextRegion {
+  // The line, as data (never markup).
+  string text = 1;
+  // The box's left and top edges, 0 to 1.
+  float x = 2;
+  float y = 3;
+  // Its width and height, 0 to 1.
+  float width = 4;
+  float height = 5;
+}

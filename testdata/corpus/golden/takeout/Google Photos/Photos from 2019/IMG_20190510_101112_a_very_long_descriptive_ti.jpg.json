@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "path": "takeout/Google Photos/Photos from 2019/IMG_20190510_101112_a_very_long_descriptive_ti.jpg",
+  "size": 3863,
+  "sha256": "52eb449f6f958c9f2010055e7f9edeeb52fe9f9dd4f7d4bbe0fba688636c2b04",
+  "origin": "synthetic",
+  "original_name": "IMG_20190510_101112_a_very_long_descriptive_title_that_gets_cut.jpg",
+  "format": "jpeg",
+  "quirks": [
+    "takeout_geo_zero",
+    "takeout_legacy_sidecar",
+    "takeout_truncated_name",
+    "takeout_year_folder"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "sidecars": [
+    {
+      "path": "takeout/Google Photos/Photos from 2019/IMG_20190510_101112_a_very_long_descriptive_ti.json",
+      "kind": "takeout_json",
+      "sha256": "6934d5443e0f99b98706bc7db020a53f19a775f820a30cef9a882a8a97661e68"
+    }
+  ],
+  "filename": {
+    "matches": [
+      "F01",
+      "F02",
+      "F50",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "takeout_photoTakenTime",
+        "kind": "utc",
+        "value": "2019-05-10T08:11:12Z",
+        "precision": "s",
+        "event": "capture"
+      },
+      {
+        "source": "filename:F01",
+        "kind": "local",
+        "value": "2019-05-10T10:11:12",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-05-10T10:11:12",
+      "utc": "2019-05-10T08:11:12Z",
+      "offset": "+02:00",
+      "tz_source": "paired_utc_delta",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F01",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

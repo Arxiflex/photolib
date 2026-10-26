@@ -1,0 +1,32 @@
+[package]
+name = "photolib-db"
+version = "0.0.0"
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+license.workspace = true
+
+[lints]
+workspace = true
+
+[features]
+# A throwaway PostgreSQL cluster for the tests of this and other crates.
+testing = ["dep:photolib-spawn", "dep:tempfile", "tokio/time"]
+
+[dependencies]
+async-trait = "0.1.92"
+nix = { version = "0.31.3", features = ["signal"] }
+percent-encoding = "2.3.2"
+photolib-spawn = { path = "../photolib-spawn", optional = true }
+sha2 = "0.10.9"
+sqlx = { version = "0.8.6", default-features = false, features = ["runtime-tokio", "postgres"] }
+tempfile = { version = "3.27.0", optional = true }
+tokio = { version = "1.53.3", features = ["rt"] }
+tracing = "0.1.44"
+url = "2.5.8"
+
+[dev-dependencies]
+photolib-db = { path = ".", features = ["testing"] }
+photolib-synthlib = { path = "../../../tools/synthlib" }
+tempfile = "3.27.0"
+tokio = { version = "1.53.3", features = ["macros", "rt-multi-thread", "sync", "time"] }

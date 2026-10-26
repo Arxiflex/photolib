@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "path": "names/wx_camera_1703999999999.mp4",
+  "size": 747,
+  "sha256": "17c019f32b92b805f4ab65578976664bf5bbcf8eba2fae5f799ae027a986fc75",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mp4",
+  "quirks": [
+    "epoch_name",
+    "mvhd_zero"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "h264"
+  },
+  "filename": {
+    "matches": [
+      "F32",
+      "F55"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F32",
+        "kind": "utc",
+        "value": "2023-12-31T05:19:59.999Z",
+        "precision": "ms",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": null,
+      "utc": "2023-12-31T05:19:59.999Z",
+      "offset": null,
+      "tz_source": "device_default",
+      "precision": "ms",
+      "bound": "exact",
+      "source": "filename:F32",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "cases": [
+    {
+      "method": 38,
+      "name": "a wide image shrunk whole to the square",
+      "request": "CAkQBRq0AQAlSm+Uud4ILVJ3nMHmEDVaf6TJ7hg9Yoes0fYgRWqPtNkDKE1yl7zhCzBVep/E6RM4XYKnzPEbQGWKr9T5I0htkrfcBitQdZq/5A4zWH2ix+wWO2CFqs/0HkNojbLXASZLcJW63wkuU3idwucRNluApcrvGT5jiK3S9yFGa5C12gQpTnOYveIMMVZ7oMXqFDleg6jN8hxBZouw1fokSW6TuN0HLFF2m8DlDzRZfqPI7Rc8YSADKgwAAAA/zczMPpqZmT4yDAAAAD8AAIA+zcxMPg==",
+      "response": "Cm4KbGQbCb7A1t48CFTmvUAiFLzgvuQ9aE4HvlAu5T0QIac9AKbuuwB/oz1y6gg/PM7yPkS41D5ceY8+NlQbP25JAD+cjYk+OA5FPgBHeT8lcYQ/pX8WP9fXhz/fQZM/SWgvP9AZTD/C2Z8/BlFDPw=="
+    },
+    {
+      "method": 38,
+      "name": "a tall image shrunk whole to the square",
+      "request": "CAQQBxpwACVKb5S53ggtUnecweYQNVp/pMnuGD1ih6zR9iBFao+02QMoTXKXvOELMFV6n8TpEzhdgqfM8RtAZYqv1PkjSG2St9wGK1B1mr/kDjNYfaLH7BY7YIWqz/QeQ2iNstcBJktwlbrfCS5TeJ3C5xE2WyADKgwAAAA/zczMPpqZmT4yDAAAAD8AAIA+zcxMPg==",
+      "response": "Cm4KbJxvMb6Ymho+uDzsvTQTcr4gWBS98MqpPdBElb2QO6k98N1zPpCuAj4Arok8BED+PsRP4D6wQ1o+Mn5MP8qpVT+Ympo+YJkKvUuTJT9DjZ8/x6YdP0+GQj9z974/EjBOPzqshz7vXTk/4XKXPw=="
+    },
+    {
+      "method": 38,
+      "name": "a wide image shrunk and centre-cropped",
+      "request": "CAkQBRq0AQAlSm+Uud4ILVJ3nMHmEDVaf6TJ7hg9Yoes0fYgRWqPtNkDKE1yl7zhCzBVep/E6RM4XYKnzPEbQGWKr9T5I0htkrfcBitQdZq/5A4zWH2ix+wWO2CFqs/0HkNojbLXASZLcJW63wkuU3idwucRNluApcrvGT5jiK3S9yFGa5C12gQpTnOYveIMMVZ7oMXqFDleg6jN8hxBZouw1fokSW6TuN0HLFF2m8DlDzRZfqPI7Rc8YSADKgwAAAA/zczMPpqZmT4yDAAAAD8AAIA+zcxMPjgB",
+      "response": "Cm4KbDxjLL7A1t48QBlQPmAnUr0wz24+aA24vaCenj0AIac9QJXePHSU3T5y6gg/BgsLP362RD9gTBg97PHxPixMlT6cjYk+xM3NPtI6Nj+rcKI/04tZP2mjUT/Yz6I/kHRtP16Fnj8d2cc/McCkPg=="
+    },
+    {
+      "method": 38,
+      "name": "a tall image shrunk and centre-cropped",
+      "request": "CAQQBxpwACVKb5S53ggtUnecweYQNVp/pMnuGD1ih6zR9iBFao+02QMoTXKXvOELMFV6n8TpEzhdgqfM8RtAZYqv1PkjSG2St9wGK1B1mr/kDjNYfaLH7BY7YIWqz/QeQ2iNstcBJktwlbrfCS5TeJ3C5xE2WyADKgwAAAA/zczMPpqZmT4yDAAAAD8AAIA+zcxMPjgB",
+      "response": "Cm4KbKCB/D00ZJc+0EOqvao1vr64wMC9mKo7PsA9173IuLi90DOavY4nQT+cMcu+IOLXPUAVcz5EmO0+VzWTP44rRT+Am008ZPS2PkAD0D2+ujo/hbqtP7Sycj90HOc/5ZC7PghpTz/h3p4/OQnWPw=="
+    },
+    {
+      "method": 38,
+      "name": "a small image enlarged",
+      "request": "CAIQAxoYACVKb5S53ggtUnecweYQNVp/pMnuGD1iIAUqDAAAAD/NzMw+mpmZPjIMAAAAPwAAgD7NzEw+",
+      "response": "Cq8CCqwCAACAv69IYr/W1ta+gB03PaikJD7c21u/iiQ+v46Ojr7wVz4+nJqaPqalJb9U7ge/iIiIvWSYyz6EgwM/3N7evjpwo76YlBQ+aAIcP7q5OT+Wlpa+6E82vpSSkj6MJkA/3t1dP4KCgr9jlkm/kJAQPlXviD+npqY/vbw8vxpOAb/c2Ng+eROtP8vKyj+goKC+cA2nvdrYWD+vSeM/gIAAQPDg4D2ghtg9cB23PTC0lT3gWY09yMjIPlAfbD7U1NS+VO6Hv52cnL/IyEi9+PZ2PnRzsz8CBCRAlpY2QJubmz73ZMs+QkVFPwNskj9dXp4/VFVVP6ChIT+0tDS+/Pt7v9jXl79vbq4/kpSUP7S0tD7n6Oi+Jigov5yb2z/CwcE/tLQ0P8zQ0L2dm5u+"
+    },
+    {
+      "method": 38,
+      "name": "a small image enlarged and centre-cropped",
+      "request": "CAIQAxoYACVKb5S53ggtUnecweYQNVp/pMnuGD1iIAUqDAAAAD/NzMw+mpmZPjIMAAAAPwAAgD7NzEw+OAE=",
+      "response": "Cq8CCqwC7u1tv5w2UL+ysrK+UB/sPfDsbD7KyUm/eBIsv9TUVL4cUIM+wL6+PqalJb9U7ge/iIiIvWSYyz6EgwM/goEBv2CUx76gmJg9VvAJP6inJz+8urq+MJh+vuDcXD56FC4/zMtLP+HgYL8/ciW/kJCQPmcBmz+5uLg/mJgYv+xTur6SkBA/iSW/P93c3D+goKC+cA2nvdrYWD+vSeM/gIAAQICAAL0gVTE9fBWvPiYAJD+GHTc/fICAPkgxLD5wDSe+GCb9vvjGE7+CggI+PHCjPgoLiz8HOu0/4uICQPX19T68WfM+5+joPgh43j7U29s+VFVVP6ChIT+0tDS+/Pt7v9jXl7/Y15c/+vt7P7S0ND6ioSG/VlVVvwUFxT8pK6s/h4cHP5KOjr769fW+"
+    },
+    {
+      "method": 38,
+      "name": "an image shorter than its size",
+      "request": "CAIQARoHAAAAAAAAACABKgwAAAA/zczMPpqZmT4yDAAAAD8AAIA+zcxMPg==",
+      "response": "EhEIAhINCgVmaWVsZBIEcmdiYQ=="
+    },
+    {
+      "method": 38,
+      "name": "no size",
+      "request": "CAIQAhoQACVKb5S53ggtUnecweYQNSoMAAAAP83MzD6amZk+MgwAAAA/AACAPs3MTD4=",
+      "response": "EhEIAhINCgVmaWVsZBIEc2l6ZQ=="
+    }
+  ],
+  "description": "The input of image models (design doc 09 §2.2, ADR-0254); its tensors pin every binding to the same values."
+}

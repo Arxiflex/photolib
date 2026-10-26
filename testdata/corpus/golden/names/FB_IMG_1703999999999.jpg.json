@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "path": "names/FB_IMG_1703999999999.jpg",
+  "size": 3375,
+  "sha256": "e324e4dea443ed8a43b4c7cef8d8e3709524f65b53b54d3fb556e915fa7ddf9f",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "epoch_name",
+    "messenger_copy",
+    "upper_bound_name"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F35",
+      "F55"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F35",
+        "kind": "utc",
+        "value": "2023-12-31T05:19:59.999Z",
+        "precision": "ms",
+        "event": "save"
+      }
+    ],
+    "resolved": {
+      "local": null,
+      "utc": "2023-12-31T05:19:59.999Z",
+      "offset": null,
+      "tz_source": "device_default",
+      "precision": "ms",
+      "bound": "upper",
+      "source": "filename:F35",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

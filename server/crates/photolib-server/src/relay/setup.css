@@ -1,0 +1,7 @@
+:root { color-scheme: light dark; font: 1rem/1.5 system-ui, sans-serif; }
+body { max-width: 30rem; margin: 0 auto; padding: 2rem 1.5rem; }
+h1 { font-size: 1.5rem; font-weight: 600; }
+#open:not([hidden]) {
+  display: block; padding: 0.75rem 1.5rem; border-radius: 1.5rem; background: #2e6f95; color: #fff;
+  text-align: center; text-decoration: none; font-weight: 600;
+}

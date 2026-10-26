@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "path": "names/Snapchat-1234567890.jpg",
+  "size": 3386,
+  "sha256": "b732120366685075acf2cc5fcd8e477f812ff563e9d7af1c3a41e7e9d964d758",
+  "origin": "synthetic",
+  "notes": "F55 also matches the ten digits; Snapchat's number is an id, so rule F37 vetoes it",
+  "format": "jpeg",
+  "quirks": [
+    "counter_not_time"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F37",
+      "F55"
+    ]
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

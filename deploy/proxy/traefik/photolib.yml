@@ -1,0 +1,32 @@
+# The route to photolibd; PHOTOLIB_DOMAIN, PHOTOLIB_BASE_PATH (empty, or photolibd's base_path such as /photos) and
+# PHOTOLIB_UPSTREAM (host:port) come from Traefik's environment.
+http:
+  routers:
+    photolib:
+      rule: Host(`{{ env "PHOTOLIB_DOMAIN" }}`) && PathPrefix(`{{ env "PHOTOLIB_BASE_PATH" }}/`)
+      entryPoints:
+        - websecure
+      service: photolib
+      tls:
+        certResolver: letsencrypt
+    # Prometheus and photolibd doctor reach photolibd directly, never through here (ADR-0046).
+    photolib-private:
+      rule: Host(`{{ env "PHOTOLIB_DOMAIN" }}`) && (Path(`{{ env "PHOTOLIB_BASE_PATH" }}/metrics`) || Path(`{{ env "PHOTOLIB_BASE_PATH" }}/diagnostics`))
+      entryPoints:
+        - websecure
+      middlewares:
+        - refuse
+      service: noop@internal
+      tls:
+        certResolver: letsencrypt
+  middlewares:
+    # 403 to every client: none has this address.
+    refuse:
+      ipAllowList:
+        sourceRange:
+          - 0.0.0.0/32
+  services:
+    photolib:
+      loadBalancer:
+        servers:
+          - url: http://{{ env "PHOTOLIB_UPSTREAM" }}

@@ -1,0 +1,37 @@
+name: Install Android SDK packages
+description: >-
+  Installs the NDK and SDK platform the pinned Flutter builds with, and an emulator system image when one is given,
+  with tools/android_sdk.sh, which fetches a broken download once more; the NDK and the image are cached by version.
+inputs:
+  system-image:
+    description: An emulator system image to install as well, such as system-images;android-34;default;x86_64
+    default: ''
+runs:
+  using: composite
+  steps:
+    # Gradle would download a missing package once, and fail the build when that download is broken.
+    - id: sdk
+      shell: bash
+      env:
+        IMAGE: ${{ inputs.system-image }}
+      run: |
+        kotlin=$FLUTTER_ROOT/packages/flutter_tools/gradle/src/main/kotlin/FlutterExtension.kt
+        ndk=$(sed -n 's/.*val ndkVersion: String = "\(.*\)"/\1/p' "$kotlin")
+        platform=$(sed -n 's/.*val compileSdkVersion: Int = \([0-9]*\)$/\1/p' "$kotlin")
+        echo "ndk=${ndk:?no ndkVersion in $kotlin}" >> "$GITHUB_OUTPUT"
+        echo "packages=ndk;$ndk platforms;android-${platform:?no compileSdkVersion in $kotlin} $IMAGE" >> "$GITHUB_OUTPUT"
+        echo "home=$ANDROID_HOME" >> "$GITHUB_OUTPUT"
+        echo "image=${IMAGE//;//}" >> "$GITHUB_OUTPUT"
+    - uses: actions/cache@v4
+      with:
+        path: ${{ steps.sdk.outputs.home }}/ndk/${{ steps.sdk.outputs.ndk }}
+        key: android-ndk-${{ runner.os }}-${{ steps.sdk.outputs.ndk }}
+    - uses: actions/cache@v4
+      if: ${{ inputs.system-image != '' }}
+      with:
+        path: ${{ steps.sdk.outputs.home }}/${{ steps.sdk.outputs.image }}
+        key: android-${{ runner.os }}-${{ steps.sdk.outputs.image }}
+    - shell: bash
+      env:
+        PACKAGES: ${{ steps.sdk.outputs.packages }}
+      run: bash tools/android_sdk.sh $PACKAGES

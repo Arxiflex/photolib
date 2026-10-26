@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "path": "names/Screencast From 2023-12-31 12-35-00.webm",
+  "size": 214,
+  "sha256": "7b8e6ca7ad5611080b147c716a13d24dfc8dae0bf998e82c3fc4affe323c233d",
+  "origin": "synthetic",
+  "notes": "Placeholder vp9 payload: the structure and metadata are real, the video does not decode.",
+  "format": "webm",
+  "quirks": [
+    "screen_recording"
+  ],
+  "media": {
+    "container": "ebml",
+    "mime": "video/webm",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1280,
+    "height": 720,
+    "duration_ms": 5000,
+    "codec": "vp9"
+  },
+  "filename": {
+    "matches": [
+      "F22",
+      "F52",
+      "F54"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F22",
+        "kind": "local",
+        "value": "2023-12-31T12:35:00",
+        "precision": "s",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12-31T12:35:00",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F22",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

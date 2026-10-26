@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "path": "compound/insta360/LRV_20201031_094049_01_188.lrv",
+  "size": 751,
+  "sha256": "9be5e213795dc3ee97f05a5bfc7ce8b79728c65c62133a984e0552192fa74d8c",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "lrv",
+  "vendor": "insta360",
+  "quirks": [
+    "camera_proxy"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "mp42",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 960,
+    "height": 480,
+    "duration_ms": 3000,
+    "codec": "h264",
+    "make": "Insta360",
+    "model": "Insta360 ONE X2"
+  },
+  "group": {
+    "kind": "camera_aux",
+    "key": "20201031_094049_188",
+    "role": "camera_aux"
+  },
+  "filename": {
+    "matches": [
+      "F42",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "qt_mvhd_camera",
+        "kind": "local",
+        "value": "2020-10-31T09:40:49",
+        "precision": "s",
+        "event": "record_start"
+      },
+      {
+        "source": "filename:F42",
+        "kind": "local",
+        "value": "2020-10-31T09:40:49",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2020-10-31T09:40:49",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "qt_mvhd_camera",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

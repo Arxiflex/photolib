@@ -1,0 +1,42 @@
+name: photolib_editor
+description: >-
+  The photo editor: its GPU renderer (Flutter fragment shaders, ADR-0054), the alpha's edits and their copies (ADR-0331),
+  and the rendering spike's probe.
+publish_to: none
+
+environment:
+  sdk: ^3.13.5
+
+dependencies:
+  fixnum: ^1.1.1
+  flutter:
+    sdk: flutter
+  image: ^4.12.0
+  photolib_api:
+    path: ../photolib_api
+  photolib_workers:
+    path: ../photolib_workers
+  protobuf: ^6.1.0
+
+dev_dependencies:
+  dart_code_linter: ^4.4.2
+  flutter_test:
+    sdk: flutter
+  photolib_harness:
+    path: ../photolib_harness
+  photolib_kernel:
+    path: ../photolib_kernel
+  stream_channel: ^2.1.4
+  very_good_analysis: ^11.0.0
+
+# The tests load the kernel that they build from source, so the hook bundles none here.
+hooks:
+  user_defines:
+    photolib_kernel:
+      bundle: false
+
+flutter:
+  shaders:
+    - shaders/blur.frag
+    - shaders/develop.frag
+    - shaders/guide.frag

@@ -1,0 +1,49 @@
+name: block-rust
+
+# Rust on five machines: lint and everything but the tests, the server's tests in two halves (nextest --partition),
+# the kernel's tests, the minimum Rust version. Called by ci.yml; it has no trigger of its own.
+on: workflow_call
+
+permissions:
+  contents: read
+
+jobs:
+  lane:
+    name: ${{ matrix.name }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: rust-lint
+            parts: rust
+            except: '^\[server\] .*nextest|^\[server\] .*(nextest|--doc)|^\[(kernel|tools/synthlib)\] .*(nextest|--doc)'
+          - name: rust-server-1
+            parts: rust
+            partition: '1/2'
+            steps: '^\[server\] .*nextest'
+          - name: rust-server-2
+            parts: rust
+            partition: '2/2'
+            steps: '^\[server\] .*(nextest|--doc)'
+          - name: rust-kernel
+            parts: rust
+            steps: '^\[(kernel|tools/synthlib)\] .*(nextest|--doc)'
+          - name: msrv
+            parts: msrv
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # The history the commits part, the lint ratchet and the proto breaking check compare with
+          fetch-depth: 0
+      - uses: ./.github/actions/lane
+        with:
+          name: ${{ matrix.name }}
+          guard: '**/Cargo.toml'
+          # apt on every one: tools/check.sh asks for the libvips the server links whichever steps a machine runs
+          tools: rust apt
+          parts: ${{ matrix.parts }}
+          steps: ${{ matrix.steps }}
+          except: ${{ matrix.except }}
+          partition: ${{ matrix.partition }}

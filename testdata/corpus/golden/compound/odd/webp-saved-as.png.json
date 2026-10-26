@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "path": "compound/odd/webp-saved-as.png",
+  "size": 1960,
+  "sha256": "86d2755a635309c995b2fdfb61e112a68916ddc71c2432755fce6dc51995a825",
+  "origin": "synthetic",
+  "format": "webp",
+  "quirks": [
+    "extension_mismatch"
+  ],
+  "media": {
+    "container": "webp",
+    "mime": "image/webp",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "path": "instagram/media/posts/202312/17912345678901234.jpg",
+  "size": 3320,
+  "sha256": "ca42a7fdc405cf8b35b78b05d9d48d6446fb5fc0268e1246650a8e4cafa582ce",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "upper_bound_name"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F36"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F36",
+        "kind": "local",
+        "value": "2023-12",
+        "precision": "month",
+        "event": "transfer"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "month",
+      "bound": "upper",
+      "source": "filename:F36",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

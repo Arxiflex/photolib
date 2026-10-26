@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "path": "names/VID_20231231_123500_123.mp4",
+  "size": 747,
+  "sha256": "59fdf819701bd9c0e3c542668df5bc7bd2e6979e36cdab5afcce1c487e78773f",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mp4",
+  "quirks": [
+    "messenger_copy",
+    "mvhd_zero",
+    "upper_bound_name"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "h264"
+  },
+  "filename": {
+    "matches": [
+      "F01",
+      "F27",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F27",
+        "kind": "local",
+        "value": "2023-12-31T12:35:00.123",
+        "precision": "ms",
+        "event": "save"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12-31T12:35:00.123",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "ms",
+      "bound": "upper",
+      "source": "filename:F27",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

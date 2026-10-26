@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "path": "raw/proraw.dng",
+  "size": 22265,
+  "sha256": "b7de92e17c2599a454e2518a095357b0dfd5ade0d77fb59cd138682f2f00c529",
+  "origin": "synthetic",
+  "notes": "Placeholder sensor data, not a camera mosaic; the embedded JPEG preview decodes.",
+  "format": "dng",
+  "vendor": "apple",
+  "quirks": [
+    "proraw"
+  ],
+  "media": {
+    "container": "tiff",
+    "mime": "image/x-adobe-dng",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120,
+    "make": "Apple",
+    "model": "iPhone 15 Pro",
+    "orientation": 6
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2024-01-10T09:00:00",
+        "precision": "s",
+        "event": "capture",
+        "offset": "-05:00"
+      }
+    ],
+    "resolved": {
+      "local": "2024-01-10T09:00:00",
+      "utc": "2024-01-10T14:00:00Z",
+      "offset": "-05:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

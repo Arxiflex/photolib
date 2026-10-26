@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "path": "names/VID20231231123457.mp4",
+  "size": 747,
+  "sha256": "88c41e9100c9307b4f6f89d9d280583a834b11feb9edebf3bad1023423eb3727",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mp4",
+  "vendor": "oneplus",
+  "quirks": [
+    "mvhd_zero"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "h264"
+  },
+  "filename": {
+    "matches": [
+      "F07",
+      "F52",
+      "F53"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F07",
+        "kind": "local",
+        "value": "2023-12-31T12:34:57",
+        "precision": "s",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12-31T12:34:57",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F07",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

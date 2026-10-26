@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "path": "names/DJI_20240225080944_0032_D.JPG",
+  "size": 3520,
+  "sha256": "283f8dd5116e9eb625e51841b477ac3ac49a63a9c38f400cd7863df318573574",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "dji",
+  "quirks": [],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F38",
+      "F52",
+      "F53"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F38",
+        "kind": "local",
+        "value": "2024-02-25T08:09:44",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2024-02-25T08:09:44",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F38",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

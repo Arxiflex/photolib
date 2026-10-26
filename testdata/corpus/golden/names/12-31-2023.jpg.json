@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "path": "names/12-31-2023.jpg",
+  "size": 2925,
+  "sha256": "5798b6806d14312ed68e4d1d80e6fa4844c80037f3aa1191b2d3feaa03193b26",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F56"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F56",
+        "kind": "local",
+        "value": "2023-12-31",
+        "precision": "day",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12-31",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "day",
+      "bound": "exact",
+      "source": "filename:F56",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

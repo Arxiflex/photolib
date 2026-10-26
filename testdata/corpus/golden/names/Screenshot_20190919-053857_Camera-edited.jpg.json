@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "path": "names/Screenshot_20190919-053857_Camera-edited.jpg",
+  "size": 3808,
+  "sha256": "42a2c257a168a33f3841950b3320581bccf34a3e8eccd1921cf71d356fd6f554",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "samsung",
+  "quirks": [
+    "screenshot"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F13",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F13",
+        "kind": "local",
+        "value": "2019-09-19T05:38:57",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-09-19T05:38:57",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F13",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

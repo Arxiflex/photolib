@@ -1,0 +1,20 @@
+name: photolib_workers
+description: The worker pool for background work, on isolates natively and Web Workers on the web.
+publish_to: none
+
+environment:
+  sdk: ^3.9.0
+
+dependencies:
+  photolib_log:
+    path: ../photolib_log
+  web: ^1.1.1
+
+dev_dependencies:
+  crypto: ^3.0.7
+  dart_code_linter: ^4.4.2
+  photolib_harness:
+    path: ../photolib_harness
+  stream_channel: ^2.1.4
+  test: ^1.25.0
+  very_good_analysis: ^11.0.0

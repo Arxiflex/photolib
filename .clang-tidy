@@ -1,0 +1,3 @@
+# C++ is linted with LLVM's bug-prone and CERT checks, compiled with -Wall -Wextra (docs/dev/lint.md).
+Checks: '-*,clang-diagnostic-*,bugprone-*,cert-*'
+HeaderFilterRegex: 'app/.*'

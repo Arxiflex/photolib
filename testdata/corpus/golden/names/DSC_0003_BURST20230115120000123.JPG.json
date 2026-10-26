@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "path": "names/DSC_0003_BURST20230115120000123.JPG",
+  "size": 3678,
+  "sha256": "54745b6d7824a64206878e7d436a7a10af1f667dd933cd2098bacb4cd28ca9b7",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "sony",
+  "quirks": [
+    "burst"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "group": {
+    "kind": "burst",
+    "key": "20230115120000123",
+    "role": "burst_member"
+  },
+  "filename": {
+    "matches": [
+      "F09",
+      "F53"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F09",
+        "kind": "local",
+        "value": "2023-01-15T12:00:00.123",
+        "precision": "ms",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2023-01-15T12:00:00.123",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "ms",
+      "bound": "exact",
+      "source": "filename:F09",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

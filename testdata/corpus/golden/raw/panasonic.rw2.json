@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "path": "raw/panasonic.rw2",
+  "size": 26377,
+  "sha256": "d7d8c6ea136bbad20cb0cfc1946898cc6b8c7aa7d50d0bf1b9e4c98204fed789",
+  "origin": "synthetic",
+  "notes": "Placeholder sensor data, not a camera mosaic; the embedded JPEG preview decodes.",
+  "format": "rw2",
+  "vendor": "panasonic",
+  "quirks": [],
+  "media": {
+    "container": "tiff",
+    "mime": "image/x-panasonic-rw2",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120,
+    "make": "Panasonic",
+    "model": "DC-GH5",
+    "orientation": 3
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2017-01-21T11:22:33",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2017-01-21T11:22:33",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

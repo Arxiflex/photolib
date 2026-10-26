@@ -1,0 +1,2 @@
+# Lines up to 120 columns, as everywhere in the project (docs/dev/lint.md).
+max_width = 120

@@ -1,0 +1,240 @@
+{
+  "source": "docs/19-quality-and-testing.md section 3, performance budgets (CI enforced), in the design repository",
+  "regression": 0.1,
+  "fixtures": {
+    "1m": ["--assets", "1m"],
+    "near-duplicates-100k": ["--assets", "100k", "--shape", "near-duplicates"],
+    "one-timestamp-100k": ["--assets", "100k", "--shape", "one-timestamp"],
+    "timeline-300k": ["--assets", "300k"],
+    "one-day-50k": ["--assets", "50k", "--shape", "one-day"],
+    "folders-5k": ["--assets", "100k", "--shape", "folders"],
+    "albums-10k": ["--assets", "100k", "--shape", "albums"]
+  },
+  "budgets": {
+    "timeline-scroll": {
+      "requirement": "NFR-PERF-1",
+      "how": "app/benchmark/perf_test.dart scrolls each fixture's view 20,000 px in 5 s, the timeline on the replica or, for folders and albums, a stand-in grid until their views exist (M1-15): fps is 1000 / the mean frame time, a frame taking the slower of build and raster (build alone on headless, whose raster thread is a software GPU), janky the share of frames over the display's frame budget less the share of 60 Hz frames an idle isolate of the app missed meanwhile, never below 0: a sample over its budget is scrolled again after 5 s of rest, up to five times in all, the least janky counting (ADR-0140)",
+      "fixtures": ["1m", "near-duplicates-100k", "one-timestamp-100k", "timeline-300k", "one-day-50k", "folders-5k", "albums-10k"],
+      "metrics": {
+        "fps": {"unit": "fps", "min": 60, "measured": ["desktop", "headless"]},
+        "janky": {"unit": "%", "max": 1, "measured": ["desktop", "headless"], "requires": ["attempts"]}
+      },
+      "pending": "the reference Android device and iPhone (device lab, M10-02); the web is timeline-scroll-web"
+    },
+    "cold-start": {
+      "requirement": "NFR-PERF-2",
+      "how": "tools/perf/run.sh: flutter run --profile --trace-startup, engine start to the first rasterized frame; on the web, tools/web_e2e/cold_start.mjs: Chrome opens photolibd's address with nothing cached, until the engine's flutter-first-frame event, the fastest of three",
+      "metrics": {
+        "first_frame": {"unit": "ms", "max": {"android": 1000, "desktop": 600, "headless": 600, "web": 2500},
+                        "measured": ["desktop", "headless", "web"]}
+      },
+      "pending": "the mid-range Android device (device lab, M10-02)"
+    },
+    "scrub-to-month": {
+      "requirement": "NFR-PERF-3",
+      "how": "app/benchmark/perf_test.dart jumps the timeline from the far end, with no page or thumbnail loaded, to months spread over each timeline fixture and times its first frame (placeholders) and until every visible cell shows its thumbnail, decoded from a 256 px JPEG original (thumbnails_local, not on headless, whose GPU is emulated), the fastest of up to three per month, the next only while over a budget (ADR-0212)",
+      "fixtures": ["1m", "near-duplicates-100k", "one-timestamp-100k", "timeline-300k", "one-day-50k"],
+      "metrics": {
+        "placeholders": {"unit": "ms", "max": 100, "measured": ["desktop", "headless"]},
+        "thumbnails_local": {"unit": "ms", "max": 300, "measured": ["desktop"]},
+        "thumbnails_lan": {"unit": "ms", "max": 600}
+      },
+      "pending": "thumbnails over the LAN, with the server's renditions (M2-09); phones (device lab, M10-02)"
+    },
+    "timeline-scroll-web": {
+      "requirement": "NFR-PERF-1",
+      "how": "tools/timeline_bench.py chrome --wasm --check, in the web part: the timeline prototype over the 1M library in headless Chrome (dart2wasm, software GL) drags 8,000 px and flings three times, as the codec pipeline the web build uses: janky is the share of frames whose build and raster together miss 60 Hz's 16.7 ms, the worse of the two runs",
+      "fixtures": ["1m"],
+      "metrics": {
+        "janky": {"unit": "%", "max": {"web": 1}, "measured": ["web"], "requires": ["attempts"]}
+      }
+    },
+    "drag-select-5k": {
+      "requirement": "M1-10, docs/10 §3.7",
+      "how": "app/benchmark/perf_test.dart long-presses a cell of each timeline fixture at its densest level and holds the drag at the bottom edge, which scrolls, until 5,000 items are selected: janky is the share of frames over the display's frame budget, counted and drawn again as timeline-scroll's",
+      "fixtures": ["1m", "near-duplicates-100k", "one-timestamp-100k", "timeline-300k", "one-day-50k"],
+      "metrics": {
+        "janky": {"unit": "%", "max": 1, "measured": ["desktop", "headless"], "requires": ["attempts"]}
+      },
+      "pending": "the reference Android device (device lab, M10-02)"
+    },
+    "device-folders-scroll": {
+      "requirement": "M1-37, M1-51, docs/10 \u00a73.7",
+      "how": "app/benchmark/perf_test.dart scrolls Settings' source tree of 5,000 device folders, every one open by a search, 20,000 px in 5 s: janky is the share of frames over the display's frame budget, counted as timeline-scroll's",
+      "metrics": {
+        "janky": {
+          "unit": "%",
+          "max": 1,
+          "measured": [
+            "desktop",
+            "headless"
+          ],
+          "requires": [
+            "attempts"
+          ]
+        }
+      },
+      "pending": "the reference Android device (device lab, M10-02)"
+    },
+    "viewer": {
+      "requirement": "M1-11, M1-28, M1-52, docs/10 §4.1",
+      "how": "app/benchmark/perf_test.dart taps a cell of each timeline fixture, its thumbnail decoded, and times from the tap to the end of the first frame that shows the viewer, the fastest of up to three, the next only while over its budget (ADR-0212): open with the grid's thumbnails in memory, open_cold with that memory just cleared; chrome and chrome_cold to the end of the first frame with the viewer's bar, which must be the same frame",
+      "fixtures": ["1m", "near-duplicates-100k", "one-timestamp-100k", "timeline-300k", "one-day-50k"],
+      "metrics": {
+        "open": {"unit": "ms", "max": 150, "measured": ["desktop", "headless"]},
+        "open_cold": {"unit": "ms", "max": 150, "measured": ["desktop", "headless"]},
+        "chrome": {"unit": "ms", "max": 150, "measured": ["desktop", "headless"]},
+        "chrome_cold": {"unit": "ms", "max": 150, "measured": ["desktop", "headless"]},
+        "sharp_local": {"unit": "ms", "max": 250},
+        "sharp_lan": {"unit": "ms", "max": 600},
+        "tiles": {"unit": "ms", "max": 300}
+      },
+      "pending": "the reference phones (device lab, M10-02), with real-size originals for the screen-size image and the tiles after a gesture; over the LAN, the server's previews (M2-09)"
+    },
+    "viewer-folder": {
+      "requirement": "NFR-PERF-1, M1-28, M1-52, M1-60",
+      "how": "app/benchmark/perf_test.dart opens the viewer from a cell of the folder of 10,000 12 MP JPEGs, turns its first page with a swipe and dismisses it with a swipe down a quarter of its height: warm after folder-scroll's cold scrolls, before its warm-up, over cells shown and in the disk cache; cold at the folder's far end, which no cell has shown, while its cells decode. The slowest frame, counted as timeline-scroll counts them, of the open and the swipe (warm, cold), of the open's first second alone (warm_open, cold_open) and of the dismiss until the viewer is gone (warm_dismiss, cold_dismiss; headless at two frames until the train measures it)",
+      "metrics": {
+        "warm": {"unit": "ms", "max": 16, "measured": ["desktop", "headless"]},
+        "cold": {"unit": "ms", "max": 16, "measured": ["desktop", "headless"]},
+        "warm_open": {"unit": "ms", "max": 16, "measured": ["desktop", "headless"]},
+        "cold_open": {"unit": "ms", "max": 16, "measured": ["desktop", "headless"]},
+        "warm_dismiss": {"unit": "ms", "max": {"desktop": 16, "headless": 33}, "measured": ["desktop", "headless"]},
+        "cold_dismiss": {"unit": "ms", "max": {"desktop": 16, "headless": 33}, "measured": ["desktop", "headless"]}
+      }
+    },
+    "folder-scroll": {
+      "requirement": "NFR-PERF-1, M1-26, M1-27",
+      "how": "app/benchmark/perf_test.dart scrolls the timeline of a folder of 10,000 12 MP JPEGs with EXIF thumbnails (links to eight originals) 20,000 px in 5 s through the desktop thumbnail pipeline, first with an empty disk cache (cold, emptied again for each attempt), then again after the warm-up (warm): janky is the share of frames over the display's frame budget, counted and drawn again as timeline-scroll's; after the warm-up it scrolls at 1 and 3 screens a second (blank_1x, blank_3x), each over a part not in memory: the most frames any visible cell went without an image",
+      "metrics": {
+        "cold_janky": {"unit": "%", "max": 1, "measured": ["desktop", "headless"], "requires": ["attempts"]},
+        "warm_janky": {"unit": "%", "max": 1, "measured": ["desktop", "headless"], "requires": ["attempts"]},
+        "blank_1x": {"unit": "frames", "max": 1, "measured": ["desktop", "headless"]},
+        "blank_3x": {"unit": "frames", "max": 1, "measured": ["desktop", "headless"]}
+      }
+    },
+    "folder-open": {
+      "requirement": "NFR-PERF-3, docs/10 §3.4 (T0), M1-27",
+      "how": "app/benchmark/perf_test.dart opens the folder of folder-scroll anew after its warm-up, with nothing in memory: hashes_missing counts the first screen's cells without a ThumbHash in its first frame, tiles_p95 is the p95 of the time each of them waits for an image from the open (printed on headless, whose GPU is emulated)",
+      "metrics": {
+        "hashes_missing": {"unit": "cells", "max": 0, "measured": ["desktop", "headless"]},
+        "tiles_p95": {"unit": "ms", "max": 300, "measured": ["desktop"]}
+      }
+    },
+    "tile-latency": {
+      "requirement": "NFR-PERF-3, docs/10 §3.4 (T2, T2.5, T4), M1-27",
+      "how": "app/benchmark/perf_test.dart scrolls the folder of folder-scroll at 1 and 3 screens a second (1x, 3x) and in a fling, each over a part not yet in memory, and prints each tile's stages (queue, cache read, embedded preview, decode, upload) at p50 and p95: cold, the p95 of the embedded preview and of the exact tier (decode and upload of a 12 MP JPEG); after the warm-up, of a read from the disk cache to an image. headless prints them only: it emulates the GPU and shares its cores",
+      "metrics": {
+        "embedded_1x": {"unit": "ms", "max": 30, "measured": ["desktop"]},
+        "embedded_3x": {"unit": "ms", "max": 30, "measured": ["desktop"]},
+        "embedded_fling": {"unit": "ms", "max": 30, "measured": ["desktop"]},
+        "exact_1x": {"unit": "ms", "max": 80, "measured": ["desktop"]},
+        "exact_3x": {"unit": "ms", "max": 80, "measured": ["desktop"]},
+        "exact_fling": {"unit": "ms", "max": 80, "measured": ["desktop"]},
+        "read_1x": {"unit": "ms", "max": 10, "measured": ["desktop"]},
+        "read_3x": {"unit": "ms", "max": 10, "measured": ["desktop"]},
+        "read_fling": {"unit": "ms", "max": 10, "measured": ["desktop"]}
+      },
+      "pending": "macOS and Windows reference machines (M10-02)"
+    },
+    "thumbnail-tile": {
+      "requirement": "NFR-PERF-3, docs/10 §3.4 (T4, T2), M1-26",
+      "how": "app/benchmark/perf_test.dart times a 256 px tile of a 12 MP JPEG through the desktop pipeline, the fastest of ten: cold, the first decoder that takes it from the original (ImageIO, WIC or libvips); warm, from the disk cache to an image. headless prints them only: it emulates the GPU that shows the image",
+      "metrics": {
+        "cold": {"unit": "ms", "max": 80, "measured": ["desktop"]},
+        "warm": {"unit": "ms", "max": 10, "measured": ["desktop"]}
+      },
+      "pending": "macOS and Windows reference machines (M10-02)"
+    },
+    "server-tiles": {
+      "requirement": "NFR-PERF-3, docs/10 §3.4 (T5), M2-42",
+      "how": "app/benchmark/server_tiles.dart opens the timeline of 96 photos of an external library of a local photolibd (a debug build, on loopback, roles api, scheduler and the cpu and io workers) through the desktop pipeline with the signed-in session's media, the best of three each: cold_p95, with an empty disk cache, the p95 of the time each cell of the first screen waits for its thumb_s or thumb_m from the open; warm_blank, opened again with nothing in memory and the tiles on disk, the most frames a visible cell goes without its tile. headless holds what this GPU-less machine reached loaded, cold 255 to 318 ms and warm 4 to 5 frames at load averages of 28 to 50, as a regression guard",
+      "metrics": {
+        "cold_p95": {"unit": "ms", "max": 600, "measured": ["desktop", "headless"]},
+        "warm_blank": {"unit": "frames", "max": {"desktop": 1, "headless": 10}, "measured": ["desktop", "headless"]}
+      },
+      "pending": "over a real LAN, on the reference phones and in the web app (M10-02, M2-25); warm within one frame on headless"
+    },
+    "video-swipe": {
+      "requirement": "M1-12, docs/10 §4.2",
+      "how": "app/benchmark/perf_test.dart opens the first of eight 1080p H.264 videos from the timeline and swipes to the next once each has played 1 s, cold (a set the app shows the first time) and warm (the first set again): janky is the share of frames from the viewer's first frame or a swipe's start until the viewer has opened and its pages rest, a frame taking the slower of its raster and the time from its vsync to the end of its build (its build alone on headless, whose raster thread is a software GPU), less the share of 60 Hz frames an idle isolate of the app missed during the pass, never below 0: a pass over its budget is swiped again after 5 s of rest, cold over the next set, up to five times in all, the least janky counting (ADR-0140); first_frame is the median time from a swipe's start to the end of the first frame with the next video's player in it, the fastest of the passes",
+      "metrics": {
+        "cold_janky": {"unit": "%", "max": 1, "measured": ["desktop", "headless"], "requires": ["attempts"]},
+        "warm_janky": {"unit": "%", "max": 1, "measured": ["desktop", "headless"], "requires": ["attempts"]},
+        "cold_first_frame": {"unit": "ms", "max": 500, "measured": ["desktop", "headless"]},
+        "warm_first_frame": {"unit": "ms", "max": 500, "measured": ["desktop", "headless"]}
+      },
+      "pending": "macOS, Windows and the reference phones (M10-02)"
+    },
+    "heic-web-fill": {
+      "requirement": "M1-43, NFR-PERF-1",
+      "how": "app/test/features/library/timeline/web_test.dart, in Chrome in the web part (not run.sh): 500 HEIC files, the AVC twins of the corpus' grid file (tools/corpus/avc_twins.py), fill a pipeline four at a time through the thumbnail worker (WebCodecs, grid compositing and resize there) while withinFrameBudget counts the 60 Hz frames the page misses beyond what its idle isolate and the machine's load miss anyway (ADR-0098), up to three attempts: the work may add at most 1 % of missed frames",
+      "metrics": {
+        "janky": {"unit": "%", "max": {"web": 1}, "measured": ["web"], "requires": ["attempts"]}
+      }
+    },
+    "idle-cpu": {
+      "requirement": "M1-20, docs/10 §8.2",
+      "how": "app/benchmark/idle_cpu.dart runs the whole app with `flutter run --profile`, under the binding it ships with (a test binding draws frames all the time), over each fixture as its device index and a watched folder of 100k files, scanned before the fixture loads and the app starts, as the budget is the CPU at rest: from 5 s after every visible cell shows its thumbnail, the CPU time its process uses in 20 s, plus the CPU time of a reconcile scan of the folder over the hour between two, as a share of one core. headless holds 2.6 %, the 2.29 to 2.34 % the idle train box measured on the 1m fixture since the unified timeline (M2-24) plus a margin, until M2-51 fixes the timeline's idle wakeups and brings it back to 1 %",
+      "fixtures": ["1m", "near-duplicates-100k"],
+      "metrics": {
+        "cpu": {"unit": "%", "max": {"desktop": 1, "headless": 2.6}, "measured": ["desktop", "headless"], "requires": ["watches"]}
+      },
+      "pending": "macOS and Windows reference machines (M10-02)"
+    },
+    "sphere-video": {
+      "requirement": "M1-13, M1-41, docs/10 §4.4",
+      "how": "app/benchmark/perf_test.dart plays a twin of the corpus' 4K 360° sample (3,840 × 1,920 H.264 at 30 fps) whose frame number modulo 8 is burnt in as the grey of a block where the view looks, under Xvfb with software GL: projected full window by libmpv's v360 (fps), then flat (flat). x11grab reads the block at 60 Hz for up to five windows of 4 s, the next only while under budget (ADR-0212), and fps is the rate its number changes on screen, first to last, rounded, in the fastest window. Meanwhile the test binding draws only the frames the engine asks for, as the app does, not one after each. Cross-checked once against M1-13's count of grabs that differ: 14.7 against 14.6 fps before M1-41's timing fix, within 0.3 fps in each window after",
+      "metrics": {
+        "fps": {"unit": "fps", "min": {"headless": 30}, "measured": ["headless"]},
+        "flat": {"unit": "fps", "min": {"headless": 30}, "measured": ["headless"]}
+      },
+      "pending": "the player's frame rate on the reference devices of docs/10 §3 (M10-02)"
+    },
+    "thumbnail-endpoint": {
+      "requirement": "NFR-PERF-4",
+      "how": "k6 on 4 x86 cores, cached thumbnails",
+      "metrics": {
+        "throughput": {"unit": "req/s", "min": {"server": 2000}},
+        "p95": {"unit": "ms", "max": {"server": 20}}
+      },
+      "pending": "a load generator on 4 quiet reference cores (M10-02); the endpoint is /media (M2-09)"
+    },
+    "initial-sync-100k": {
+      "requirement": "NFR-PERF-5",
+      "how": "server/crates/photolib-server/tests/sync.rs in a release build: a 100k-asset library with a file each from scratch through the Connect stack in binary and zstd, then one change (M2-14), the fastest of three each, beside the app's idle CPU (tools/perf/run.sh)",
+      "metrics": {
+        "standard": {"unit": "s", "max": 15, "measured": ["server"]},
+        "private": {"unit": "s", "max": 60},
+        "incremental": {"unit": "ms", "max": 200, "measured": ["server"]}
+      },
+      "pending": "the device applying the batches (sync engine, M2-15); private libraries (M6)"
+    },
+    "semantic-search-100k": {
+      "requirement": "NFR-PERF-6",
+      "how": "bench harness over 100k assets",
+      "metrics": {
+        "query": {"unit": "ms", "max": {"server": 200, "desktop": 200, "android": 500, "ios": 500}}
+      },
+      "pending": "vector search (M5-05)"
+    },
+    "server-idle-rss": {
+      "requirement": "NFR-PERF-4",
+      "how": "server/crates/photolib-server/tests/photolibd.rs: photolibd with every role but ml, its resident set (ps) after 2 s idle",
+      "metrics": {
+        "rss": {"unit": "MB", "max": {"server": 150}, "measured": ["server"]}
+      }
+    },
+    "ingest-throughput": {
+      "requirement": "design 08, media pipeline budgets",
+      "how": "server/crates/photolib-server/tests/renditions.rs: the kernel's metadata, thumb_s, thumb_m and ThumbHash of six 3.3 MB 12 MP JPEGs, in CPU time on the fastest cores, the fastest of three to ten rounds per photo, calibrated",
+      "calibration": {
+        "how": "ADR-0121: before each sample the same cores hash a seventh such JPEG and decode it at 1/4; the rate is multiplied by the fastest of these over quiet, never less than 1: quiet is their CPU time in seconds on the reference machine (an Intel Core Ultra 7 356H) at its quietest",
+        "quiet": 0.0292
+      },
+      "metrics": {
+        "photos": {"unit": "photos/s/core", "min": {"server": 19}, "measured": ["server"]}
+      }
+    }
+  }
+}

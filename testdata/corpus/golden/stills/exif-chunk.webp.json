@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "path": "stills/exif-chunk.webp",
+  "size": 2022,
+  "sha256": "5fdfddc24c645cd5ce8b0acfcb3b20d07511c9bd24b1d9921b8489a3f86a82ae",
+  "origin": "synthetic",
+  "format": "webp",
+  "vendor": "apple",
+  "quirks": [],
+  "media": {
+    "container": "webp",
+    "mime": "image/webp",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120,
+    "make": "Apple",
+    "model": "iPhone 13 Pro"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2021-07-14T12:15:42",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+02:00"
+      }
+    ],
+    "resolved": {
+      "local": "2021-07-14T12:15:42",
+      "utc": "2021-07-14T10:15:42Z",
+      "offset": "+02:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

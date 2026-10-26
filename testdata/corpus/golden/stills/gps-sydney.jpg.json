@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "path": "stills/gps-sydney.jpg",
+  "size": 3329,
+  "sha256": "0be9c875228a71946ef4b9295c0477525a5a58944cfaed2d3a76e7306008ecc3",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "samsung",
+  "quirks": [],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "make": "samsung",
+    "model": "SM-S911B",
+    "gps": {
+      "lat": -33.8688,
+      "lon": 151.2093
+    }
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2019-05-09T15:47:33",
+        "precision": "s",
+        "event": "capture"
+      },
+      {
+        "source": "gps_datetime",
+        "kind": "utc",
+        "value": "2019-05-09T05:47:33Z",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-05-09T15:47:33",
+      "utc": "2019-05-09T05:47:33Z",
+      "offset": "+10:00",
+      "tz_source": "gps_delta",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

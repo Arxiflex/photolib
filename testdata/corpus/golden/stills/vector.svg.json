@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "path": "stills/vector.svg",
+  "size": 750,
+  "sha256": "919256ed702b4d5b99c877397694d828a11e0d716b6949862e50d22b584a8072",
+  "origin": "synthetic",
+  "format": "svg",
+  "quirks": [],
+  "media": {
+    "container": "svg",
+    "mime": "image/svg+xml",
+    "kind": "image",
+    "support": "unsupported"
+  },
+  "metadata": {
+    "width": 100,
+    "height": 80
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

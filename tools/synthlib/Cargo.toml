@@ -1,0 +1,56 @@
+[package]
+name = "photolib-synthlib"
+version = "0.2.0"
+description = "Synthetic photo library generator: database fixtures and placeholder media for tests and benchmarks"
+edition = "2024"
+rust-version = "1.89"
+license = "AGPL-3.0-only"
+publish = false
+
+[[bin]]
+name = "synthlib"
+path = "src/main.rs"
+
+[lints.rust]
+unsafe_code = "forbid"
+# The project's rules (docs/dev/lint.md): warnings, which tools/lint/ratchet.sh fails on unless its baseline holds them.
+missing_docs = "warn"
+unreachable_pub = "warn"
+unused_qualifications = "warn"
+
+[lints.clippy]
+pedantic = { level = "warn", priority = -1 }
+nursery = { level = "warn", priority = -1 }
+# Crash classes; tools/lint/ratchet.py counts them in the code that ships, not in tests.
+unwrap_used = "warn"
+expect_used = "warn"
+panic = "warn"
+unimplemented = "warn"
+todo = "warn"
+unreachable = "warn"
+indexing_slicing = "warn"
+arithmetic_side_effects = "warn"
+let_underscore_must_use = "warn"
+# The lints the project rejects, each for a reason:
+# what fails is the error type's to say, and panics are denied above, so no `# Errors` or `# Panics` sections;
+missing_errors_doc = "allow"
+missing_panics_doc = "allow"
+# #[must_use] and const fn are promises a function makes where its callers need them, not wherever it could;
+must_use_candidate = "allow"
+missing_const_for_fn = "allow"
+# docs name products and formats (PhotoKit, MediaStore) in prose, and open with a paragraph of any length;
+doc_markdown = "allow"
+too_long_first_doc_paragraph = "allow"
+# contradicts rustc's unreachable_pub, which the project keeps;
+redundant_pub_crate = "allow"
+# known false positives (rust-clippy#9399, #8547), and matches that read better than map_or_else chains.
+significant_drop_tightening = "allow"
+similar_names = "allow"
+option_if_let_else = "allow"
+
+# An integer that overflows panics in tests and releases too, never wraps silently (docs/dev/lint.md).
+[profile.release]
+overflow-checks = true
+
+[profile.test]
+overflow-checks = true

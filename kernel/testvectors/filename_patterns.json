@@ -1,0 +1,437 @@
+{
+  "cases": [
+    {
+      "method": 2,
+      "name": "F01: IMG_20190509_154733.jpg",
+      "request": "EhdJTUdfMjAxOTA1MDlfMTU0NzMzLmpwZw==",
+      "response": "CloKJwoTMjAxOS0wNS0wOVQxNTo0NzozMyAFKgxmaWxlbmFtZTpGMDEwUDItCicKEzIwMTktMDUtMDlUMTU6NDc6MzMgBSoMZmlsZW5hbWU6RjAxMFoQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F01: VID_20231231_235959~2.mp4",
+      "request": "EhlWSURfMjAyMzEyMzFfMjM1OTU5fjIubXA0",
+      "response": "CloKJwoTMjAyMy0xMi0zMVQyMzo1OTo1OSAFKgxmaWxlbmFtZTpGMDEwUDItCicKEzIwMjMtMTItMzFUMjM6NTk6NTkgBSoMZmlsZW5hbWU6RjAxMFoQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F01: IMG_20190509_154737(1).jpg",
+      "request": "EhpJTUdfMjAxOTA1MDlfMTU0NzM3KDEpLmpwZw==",
+      "response": "CloKJwoTMjAxOS0wNS0wOVQxNTo0NzozNyAFKgxmaWxlbmFtZTpGMDEwUDItCicKEzIwMTktMDUtMDlUMTU6NDc6MzcgBSoMZmlsZW5hbWU6RjAxMFoQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F02: MVIMG_20190215_193501.jpg",
+      "request": "EhlNVklNR18yMDE5MDIxNV8xOTM1MDEuanBn",
+      "response": "CloKJwoTMjAxOS0wMi0xNVQxOTozNTowMSAFKgxmaWxlbmFtZTpGMDIwUDItCicKEzIwMTktMDItMTVUMTk6MzU6MDEgBSoMZmlsZW5hbWU6RjAyMFoQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F02: IMG_20190221_112113042_BURST001.jpg",
+      "request": "EiNJTUdfMjAxOTAyMjFfMTEyMTEzMDQyX0JVUlNUMDAxLmpwZw==",
+      "response": "CmIKKwoXMjAxOS0wMi0yMVQxMToyMToxMy4wNDIgBioMZmlsZW5hbWU6RjAyMFAyMQorChcyMDE5LTAyLTIxVDExOjIxOjEzLjA0MiAGKgxmaWxlbmFtZTpGMDIwWhABGAE4Ag=="
+    },
+    {
+      "method": 2,
+      "name": "F03: PXL_20231026_210642603.jpg",
+      "request": "EhpQWExfMjAyMzEwMjZfMjEwNjQyNjAzLmpwZw==",
+      "response": "ClkKEiAGKgxmaWxlbmFtZTpGMDMwUBIMCOKp66kGEMCZxJ8CMjMKLQoXMjAyMy0xMC0yNlQyMTowNjo0Mi42MDMQACAGKgxmaWxlbmFtZTpGMDMwXxABGAE4Ag=="
+    },
+    {
+      "method": 2,
+      "name": "F04: 00001IMG_00001_BURST1723801037429_COVER.jpg",
+      "request": "EiswMDAwMUlNR18wMDAwMV9CVVJTVDE3MjM4MDEwMzc0MjlfQ09WRVIuanBn",
+      "response": "ClkKEiAGKgxmaWxlbmFtZTpGMDQwKxIMCM27/LUGEMCKyMwBMjMKLQoXMjAyNC0wOC0xNlQwOTozNzoxNy40MjkQACAGKgxmaWxlbmFtZTpGMDQwKxABGAE4Ag=="
+    },
+    {
+      "method": 2,
+      "name": "F04: 00000PORTRAIT_00000_BURST20190828181853475.jpg",
+      "request": "Ei4wMDAwMFBPUlRSQUlUXzAwMDAwX0JVUlNUMjAxOTA4MjgxODE4NTM0NzUuanBn",
+      "response": "CmIKKwoXMjAxOS0wOC0yOFQxODoxODo1My40NzUgBioMZmlsZW5hbWU6RjA0MFAyMQorChcyMDE5LTA4LTI4VDE4OjE4OjUzLjQ3NSAGKgxmaWxlbmFtZTpGMDQwVRABGAE4Ag=="
+    },
+    {
+      "method": 2,
+      "name": "F05: 20231207_101606_001.jpg",
+      "request": "EhcyMDIzMTIwN18xMDE2MDZfMDAxLmpwZw==",
+      "response": "CloKJwoTMjAyMy0xMi0wN1QxMDoxNjowNiAFKgxmaWxlbmFtZTpGMDUwUDItCicKEzIwMjMtMTItMDdUMTA6MTY6MDYgBSoMZmlsZW5hbWU6RjA1MFoQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F06: IMG_20231014_183246_BURST001_COVER.jpg",
+      "request": "EiZJTUdfMjAyMzEwMTRfMTgzMjQ2X0JVUlNUMDAxX0NPVkVSLmpwZw==",
+      "response": "CloKJwoTMjAyMy0xMC0xNFQxODozMjo0NiAFKgxmaWxlbmFtZTpGMDYwUDItCicKEzIwMjMtMTAtMTRUMTg6MzI6NDYgBSoMZmlsZW5hbWU6RjA2MFoQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F07: IMG20231231123456.jpg",
+      "request": "EhVJTUcyMDIzMTIzMTEyMzQ1Ni5qcGc=",
+      "response": "CloKJwoTMjAyMy0xMi0zMVQxMjozNDo1NiAFKgxmaWxlbmFtZTpGMDcwUDItCicKEzIwMjMtMTItMzFUMTI6MzQ6NTYgBSoMZmlsZW5hbWU6RjA3MFUQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F08: IMG_20231231_123456789.jpg",
+      "request": "EhpJTUdfMjAyMzEyMzFfMTIzNDU2Nzg5LmpwZw==",
+      "response": "CmIKKwoXMjAyMy0xMi0zMVQxMjozNDo1Ni43ODkgBioMZmlsZW5hbWU6RjA4MFAyMQorChcyMDIzLTEyLTMxVDEyOjM0OjU2Ljc4OSAGKgxmaWxlbmFtZTpGMDgwVRABGAE4Ag=="
+    },
+    {
+      "method": 2,
+      "name": "F09: DSC_0002_BURST20230115120000123_COVER.JPG",
+      "request": "EilEU0NfMDAwMl9CVVJTVDIwMjMwMTE1MTIwMDAwMTIzX0NPVkVSLkpQRw==",
+      "response": "CmIKKwoXMjAyMy0wMS0xNVQxMjowMDowMC4xMjMgBioMZmlsZW5hbWU6RjA5MFAyMQorChcyMDIzLTAxLTE1VDEyOjAwOjAwLjEyMyAGKgxmaWxlbmFtZTpGMDkwVRABGAE4Ag=="
+    },
+    {
+      "method": 2,
+      "name": "F10: IMG_E1234.JPG has no date",
+      "request": "Eg1JTUdfRTEyMzQuSlBH",
+      "response": "Cg0KCSoHdW5rbm93bjgB"
+    },
+    {
+      "method": 2,
+      "name": "F11: WIN_20231231_12_34_56_Pro.jpg",
+      "request": "Eh1XSU5fMjAyMzEyMzFfMTJfMzRfNTZfUHJvLmpwZw==",
+      "response": "CloKJwoTMjAyMy0xMi0zMVQxMjozNDo1NiAFKgxmaWxlbmFtZTpGMTEwUDItCicKEzIwMjMtMTItMzFUMTI6MzQ6NTYgBSoMZmlsZW5hbWU6RjExMFUQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F12: Screenshot_20201215-090626.png",
+      "request": "Eh5TY3JlZW5zaG90XzIwMjAxMjE1LTA5MDYyNi5wbmc=",
+      "response": "CloKJwoTMjAyMC0xMi0xNVQwOTowNjoyNiAFKgxmaWxlbmFtZTpGMTIwUDItCicKEzIwMjAtMTItMTVUMDk6MDY6MjYgBSoMZmlsZW5hbWU6RjEyMGEQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F13: Screenshot_20231027_123303_Facebook.jpg",
+      "request": "EidTY3JlZW5zaG90XzIwMjMxMDI3XzEyMzMwM19GYWNlYm9vay5qcGc=",
+      "response": "CloKJwoTMjAyMy0xMC0yN1QxMjozMzowMyAFKgxmaWxlbmFtZTpGMTMwUDItCicKEzIwMjMtMTAtMjdUMTI6MzM6MDMgBSoMZmlsZW5hbWU6RjEzMGEQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F14: Screenshot_2019-04-16-11-19-37-232_com.google.android.youtube.jpg",
+      "request": "EkFTY3JlZW5zaG90XzIwMTktMDQtMTYtMTEtMTktMzctMjMyX2NvbS5nb29nbGUuYW5kcm9pZC55b3V0dWJlLmpwZw==",
+      "response": "CmIKKwoXMjAxOS0wNC0xNlQxMToxOTozNy4yMzIgBioMZmlsZW5hbWU6RjE0MFAyMQorChcyMDE5LTA0LTE2VDExOjE5OjM3LjIzMiAGKgxmaWxlbmFtZTpGMTQwYRABGAE4Ag=="
+    },
+    {
+      "method": 2,
+      "name": "F15: screen-20240131-142530.mp4",
+      "request": "EhpzY3JlZW4tMjAyNDAxMzEtMTQyNTMwLm1wNA==",
+      "response": "CloKJwoTMjAyNC0wMS0zMVQxNDoyNTozMCAFKgxmaWxlbmFtZTpGMTUwUDItCicKEzIwMjQtMDEtMzFUMTQ6MjU6MzAgBSoMZmlsZW5hbWU6RjE1MF8QARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F16: Screen_Recording_20231231-123456_Chrome.mp4",
+      "request": "EitTY3JlZW5fUmVjb3JkaW5nXzIwMjMxMjMxLTEyMzQ1Nl9DaHJvbWUubXA0",
+      "response": "CloKJwoTMjAyMy0xMi0zMVQxMjozNDo1NiAFKgxmaWxlbmFtZTpGMTYwUDItCicKEzIwMjMtMTItMzFUMTI6MzQ6NTYgBSoMZmlsZW5hbWU6RjE2MF8QARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F17: Screenrecorder-2023-12-31-12-34-56-789.mp4",
+      "request": "EipTY3JlZW5yZWNvcmRlci0yMDIzLTEyLTMxLTEyLTM0LTU2LTc4OS5tcDQ=",
+      "response": "CmIKKwoXMjAyMy0xMi0zMVQxMjozNDo1Ni43ODkgBioMZmlsZW5hbWU6RjE3MFAyMQorChcyMDIzLTEyLTMxVDEyOjM0OjU2Ljc4OSAGKgxmaWxlbmFtZTpGMTcwXxABGAE4Ag=="
+    },
+    {
+      "method": 2,
+      "name": "F18: RPReplay_Final1612345678.MP4",
+      "request": "EhxSUFJlcGxheV9GaW5hbDE2MTIzNDU2NzguTVA0",
+      "response": "Ck8KEiAFKgxmaWxlbmFtZTpGMTgwKBIGCM7i6YAGMi8KKQoTMjAyMS0wMi0wM1QwOTo0Nzo1OBAAIAUqDGZpbGVuYW1lOkYxODAoEAEYATgC"
+    },
+    {
+      "method": 2,
+      "name": "F19: Screen Shot 2017-05-21 at 4.45.52 PM.png",
+      "request": "EihTY3JlZW4gU2hvdCAyMDE3LTA1LTIxIGF0IDQuNDUuNTIgUE0ucG5n",
+      "response": "CloKJwoTMjAxNy0wNS0yMVQxNjo0NTo1MiAFKgxmaWxlbmFtZTpGMTkwUDItCicKEzIwMTctMDUtMjFUMTY6NDU6NTIgBSoMZmlsZW5hbWU6RjE5MGEQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F19: Screenshot 2019-05-21 at 10.45.52.png",
+      "request": "EiVTY3JlZW5zaG90IDIwMTktMDUtMjEgYXQgMTAuNDUuNTIucG5n",
+      "response": "CloKJwoTMjAxOS0wNS0yMVQxMDo0NTo1MiAFKgxmaWxlbmFtZTpGMTkwUDItCicKEzIwMTktMDUtMjFUMTA6NDU6NTIgBSoMZmlsZW5hbWU6RjE5MGEQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F20: Screen Recording 2023-12-31 at 12.34.56.mov",
+      "request": "EitTY3JlZW4gUmVjb3JkaW5nIDIwMjMtMTItMzEgYXQgMTIuMzQuNTYubW92",
+      "response": "CloKJwoTMjAyMy0xMi0zMVQxMjozNDo1NiAFKgxmaWxlbmFtZTpGMjAwUDItCicKEzIwMjMtMTItMzFUMTI6MzQ6NTYgBSoMZmlsZW5hbWU6RjIwMF8QARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F21: Screenshot 2023-12-31 123456.png",
+      "request": "EiBTY3JlZW5zaG90IDIwMjMtMTItMzEgMTIzNDU2LnBuZw==",
+      "response": "CloKJwoTMjAyMy0xMi0zMVQxMjozNDo1NiAFKgxmaWxlbmFtZTpGMjEwUDItCicKEzIwMjMtMTItMzFUMTI6MzQ6NTYgBSoMZmlsZW5hbWU6RjIxMFoQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F22: Screenshot from 2023-12-31 12-34-57-1.png",
+      "request": "EilTY3JlZW5zaG90IGZyb20gMjAyMy0xMi0zMSAxMi0zNC01Ny0xLnBuZw==",
+      "response": "CloKJwoTMjAyMy0xMi0zMVQxMjozNDo1NyAFKgxmaWxlbmFtZTpGMjIwUDItCicKEzIwMjMtMTItMzFUMTI6MzQ6NTcgBSoMZmlsZW5hbWU6RjIyMGEQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F23: Screenshot_20231231_123456.png",
+      "request": "Eh5TY3JlZW5zaG90XzIwMjMxMjMxXzEyMzQ1Ni5wbmc=",
+      "response": "CloKJwoTMjAyMy0xMi0zMVQxMjozNDo1NiAFKgxmaWxlbmFtZTpGMjMwUDItCicKEzIwMjMtMTItMzFUMTI6MzQ6NTYgBSoMZmlsZW5hbWU6RjIzMF8QARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F24: 2023-12-31_12-34.png",
+      "request": "EhQyMDIzLTEyLTMxXzEyLTM0LnBuZw==",
+      "response": "ClQKJAoQMjAyMy0xMi0zMVQxMjozNCAEKgxmaWxlbmFtZTpGMjQwUDIqCiQKEDIwMjMtMTItMzFUMTI6MzQgBCoMZmlsZW5hbWU6RjI0MFoQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F25: IMG-20191120-WA0001.jpg",
+      "request": "EhdJTUctMjAxOTExMjAtV0EwMDAxLmpwZw==",
+      "response": "CkoKHgoKMjAxOS0xMS0yMCADKgxmaWxlbmFtZTpGMjUwHiABMiQKHgoKMjAxOS0xMS0yMCADKgxmaWxlbmFtZTpGMjUwHhACGAE4Ag=="
+    },
+    {
+      "method": 2,
+      "name": "F26: WhatsApp Video 2023-05-14 at 4.22.31 PM (1).mp4",
+      "request": "Ei9XaGF0c0FwcCBWaWRlbyAyMDIzLTA1LTE0IGF0IDQuMjIuMzEgUE0gKDEpLm1wNA==",
+      "response": "ClwKJwoTMjAyMy0wNS0xNFQxNjoyMjozMSAFKgxmaWxlbmFtZTpGMjYwHiABMi0KJwoTMjAyMy0wNS0xNFQxNjoyMjozMSAFKgxmaWxlbmFtZTpGMjYwHhACGAE4Ag=="
+    },
+    {
+      "method": 2,
+      "name": "F27: IMG_20231231_123456_789.jpg",
+      "request": "EhtJTUdfMjAyMzEyMzFfMTIzNDU2Xzc4OS5qcGc=",
+      "response": "CmQKKwoXMjAyMy0xMi0zMVQxMjozNDo1Ni43ODkgBioMZmlsZW5hbWU6RjI3MCQgATIxCisKFzIwMjMtMTItMzFUMTI6MzQ6NTYuNzg5IAYqDGZpbGVuYW1lOkYyNzAkEAMYATgC"
+    },
+    {
+      "method": 2,
+      "name": "F28: photo_2023-12-31_12-34-56.jpg",
+      "request": "Eh1waG90b18yMDIzLTEyLTMxXzEyLTM0LTU2LmpwZw==",
+      "response": "ClwKJwoTMjAyMy0xMi0zMVQxMjozNDo1NiAFKgxmaWxlbmFtZTpGMjgwHiABMi0KJwoTMjAyMy0xMi0zMVQxMjozNDo1NiAFKgxmaWxlbmFtZTpGMjgwHhADGAE4Ag=="
+    },
+    {
+      "method": 2,
+      "name": "F29: photo_1@31-12-2023_12-34-56.jpg",
+      "request": "Eh9waG90b18xQDMxLTEyLTIwMjNfMTItMzQtNTYuanBn",
+      "response": "ClwKJwoTMjAyMy0xMi0zMVQxMjozNDo1NiAFKgxmaWxlbmFtZTpGMjkwHiABMi0KJwoTMjAyMy0xMi0zMVQxMjozNDo1NiAFKgxmaWxlbmFtZTpGMjkwHhACGAE4Ag=="
+    },
+    {
+      "method": 2,
+      "name": "F30: signal-2024-01-30-09-57-18-123.jpg",
+      "request": "EiJzaWduYWwtMjAyNC0wMS0zMC0wOS01Ny0xOC0xMjMuanBn",
+      "response": "CmQKKwoXMjAyNC0wMS0zMFQwOTo1NzoxOC4xMjMgBioMZmlsZW5hbWU6RjMwMB4gATIxCisKFzIwMjQtMDEtMzBUMDk6NTc6MTguMTIzIAYqDGZpbGVuYW1lOkYzMDAeEAIYATgC"
+    },
+    {
+      "method": 2,
+      "name": "F31: IMG-0a1b2c3d4e5f60718293a4b5c6d7e8f9-V.jpg has no date",
+      "request": "EipJTUctMGExYjJjM2Q0ZTVmNjA3MTgyOTNhNGI1YzZkN2U4ZjktVi5qcGc=",
+      "response": "Cg0KCSoHdW5rbm93bjgB"
+    },
+    {
+      "method": 2,
+      "name": "F32: mmexport1703999999999.jpg",
+      "request": "EhltbWV4cG9ydDE3MDM5OTk5OTk5OTkuanBn",
+      "response": "ClsKEiAGKgxmaWxlbmFtZTpGMzIwDBIMCP/zw6wGEMCPrtwDIAEyMwotChcyMDIzLTEyLTMxVDA1OjE5OjU5Ljk5ORAAIAYqDGZpbGVuYW1lOkYzMjAMEAMYATgC"
+    },
+    {
+      "method": 2,
+      "name": "F32: wx_camera_1703999999999.mp4",
+      "request": "Eht3eF9jYW1lcmFfMTcwMzk5OTk5OTk5OS5tcDQ=",
+      "response": "ClkKEiAGKgxmaWxlbmFtZTpGMzIwKBIMCP/zw6wGEMCPrtwDMjMKLQoXMjAyMy0xMi0zMVQwNToxOTo1OS45OTkQACAGKgxmaWxlbmFtZTpGMzIwKBABGAE4Ag=="
+    },
+    {
+      "method": 2,
+      "name": "F33: KakaoTalk_20231231_123456789.jpg",
+      "request": "EiBLYWthb1RhbGtfMjAyMzEyMzFfMTIzNDU2Nzg5LmpwZw==",
+      "response": "CmQKKwoXMjAyMy0xMi0zMVQxMjozNDo1Ni43ODkgBioMZmlsZW5hbWU6RjMzMBggATIxCisKFzIwMjMtMTItMzFUMTI6MzQ6NTYuNzg5IAYqDGZpbGVuYW1lOkYzMzAYEAMYATgC"
+    },
+    {
+      "method": 2,
+      "name": "F34: LINE names have no rule yet",
+      "request": "EhxMSU5FX0FMQlVNX3RyaXBfMjMxMjMxXzEuanBn",
+      "response": "Cg0KCSoHdW5rbm93bjgB"
+    },
+    {
+      "method": 2,
+      "name": "F35: FB_IMG_1703999999999.jpg",
+      "request": "EhhGQl9JTUdfMTcwMzk5OTk5OTk5OS5qcGc=",
+      "response": "ClsKEiAGKgxmaWxlbmFtZTpGMzUwCRIMCP/zw6wGEMCPrtwDIAEyMwotChcyMDIzLTEyLTMxVDA1OjE5OjU5Ljk5ORAAIAYqDGZpbGVuYW1lOkYzNTAJEAMYATgC"
+    },
+    {
+      "method": 2,
+      "name": "F36: an Instagram export's month folder",
+      "request": "EhUxNzkxMjM0NTY3ODkwMTIzNC5qcGcaHGluc3RhZ3JhbS9tZWRpYS9wb3N0cy8yMDIzMTI=",
+      "response": "CkQKGwoHMjAyMy0xMiACKgxmaWxlbmFtZTpGMzYwEiABMiEKGwoHMjAyMy0xMiACKgxmaWxlbmFtZTpGMzYwEhAEGAE4Ag=="
+    },
+    {
+      "method": 2,
+      "name": "F37: Snapchat-1234567890.jpg has no date",
+      "request": "EhdTbmFwY2hhdC0xMjM0NTY3ODkwLmpwZw==",
+      "response": "Cg0KCSoHdW5rbm93bjgB"
+    },
+    {
+      "method": 2,
+      "name": "F38: DJI_20240225080944_0032_D.JPG",
+      "request": "Eh1ESklfMjAyNDAyMjUwODA5NDRfMDAzMl9ELkpQRw==",
+      "response": "CloKJwoTMjAyNC0wMi0yNVQwODowOTo0NCAFKgxmaWxlbmFtZTpGMzgwUDItCicKEzIwMjQtMDItMjVUMDg6MDk6NDQgBSoMZmlsZW5hbWU6RjM4MFUQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F39: DJI_0005.JPG has no date",
+      "request": "EgxESklfMDAwNS5KUEc=",
+      "response": "Cg0KCSoHdW5rbm93bjgB"
+    },
+    {
+      "method": 2,
+      "name": "F40: dji_fly_20240225_080944_0032_1708850908777_photo.jpg",
+      "request": "EjRkamlfZmx5XzIwMjQwMjI1XzA4MDk0NF8wMDMyXzE3MDg4NTA5MDg3NzdfcGhvdG8uanBn",
+      "response": "Co8BCicKEzIwMjQtMDItMjVUMDg6MDk6NDQgBSoMZmlsZW5hbWU6RjQwMFAyLQonChMyMDI0LTAyLTI1VDA4OjA5OjQ0IAUqDGZpbGVuYW1lOkY0MDBVEAEYATIzCi0KFzIwMjQtMDItMjVUMDg6NDg6MjguNzc3EAAgBioMZmlsZW5hbWU6RjQwMBoQBBgFOAI="
+    },
+    {
+      "method": 2,
+      "name": "F41: GX010002.MP4 has no date",
+      "request": "EgxHWDAxMDAwMi5NUDQ=",
+      "response": "Cg0KCSoHdW5rbm93bjgB"
+    },
+    {
+      "method": 2,
+      "name": "F42: VID_20201031_094049_00_188.insv",
+      "request": "Eh9WSURfMjAyMDEwMzFfMDk0MDQ5XzAwXzE4OC5pbnN2",
+      "response": "CloKJwoTMjAyMC0xMC0zMVQwOTo0MDo0OSAFKgxmaWxlbmFtZTpGNDIwUDItCicKEzIwMjAtMTAtMzFUMDk6NDA6NDkgBSoMZmlsZW5hbWU6RjQyMFUQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F43: _DSC0001.NEF has no date",
+      "request": "EgxfRFNDMDAwMS5ORUY=",
+      "response": "Cg0KCSoHdW5rbm93bjgB"
+    },
+    {
+      "method": 2,
+      "name": "F44: an Olympus name has a month and day but no year",
+      "request": "EgxQQzMxMDAwMS5KUEc=",
+      "response": "CiMKCSoHdW5rbm93bjIUCg4qDGZpbGVuYW1lOkY0NBABGAw4AQ=="
+    },
+    {
+      "method": 2,
+      "name": "F45: an Epson scan's CreateDate is the scan time",
+      "request": "CmD/2P/hAFpFeGlmAABJSSoACAAAAAIADwECAAYAAAAmAAAAaYcEAAEAAAAsAAAAAAAAAEVQU09OAAEABJACABQAAAA+AAAAAAAAADIwMjM6MDY6MTggMTQ6MjA6MDUA/9kSEHBob3RvLW5hbWVfYS5qcGc=",
+      "response": "Cj0KCSoHdW5rbm93bjIuCigKEzIwMjMtMDYtMThUMTQ6MjA6MDUgBSoPZXhpZjpDcmVhdGVEYXRlEAUYBzgB"
+    },
+    {
+      "method": 2,
+      "name": "F46: a scanner app's name is the scan time",
+      "request": "Eh9DYW1TY2FubmVyIDEyLTMxLTIwMjMgMTIuMzQuanBn",
+      "response": "CjcKCSoHdW5rbm93bjIoCiIKEDIwMjMtMTItMzFUMTI6MzQgBCoMZmlsZW5hbWU6RjQ2EAUYBzgB"
+    },
+    {
+      "method": 2,
+      "name": "F47: 2023-12-31 12.34.56.jpg",
+      "request": "EhcyMDIzLTEyLTMxIDEyLjM0LjU2LmpwZw==",
+      "response": "CloKJwoTMjAyMy0xMi0zMVQxMjozNDo1NiAFKgxmaWxlbmFtZTpGNDcwUDItCicKEzIwMjMtMTItMzFUMTI6MzQ6NTYgBSoMZmlsZW5hbWU6RjQ3MFUQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F48: 20231231_123456000_iOS.jpg",
+      "request": "EhoyMDIzMTIzMV8xMjM0NTYwMDBfaU9TLmpwZw==",
+      "response": "ClMKEiAGKgxmaWxlbmFtZTpGNDgwRhIGCPC/xawGMjMKLQoXMjAyMy0xMi0zMVQxMjozNDo1Ni4wMDAQACAGKgxmaWxlbmFtZTpGNDgwRhABGAE4Ag=="
+    },
+    {
+      "method": 2,
+      "name": "F49: Photo 22-04-06 15-21-03 2160.jpg",
+      "request": "EiBQaG90byAyMi0wNC0wNiAxNS0yMS0wMyAyMTYwLmpwZw==",
+      "response": "CloKJwoTMjAyMi0wNC0wNlQxNToyMTowMyAFKgxmaWxlbmFtZTpGNDkwUDItCicKEzIwMjItMDQtMDZUMTU6MjE6MDMgBSoMZmlsZW5hbWU6RjQ5MFUQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F50: a Takeout name the host restored from its JSON title",
+      "request": "EkNJTUdfMjAxOTA1MTBfMTAxMTEyX2FfdmVyeV9sb25nX2Rlc2NyaXB0aXZlX3RpdGxlX3RoYXRfZ2V0c19jdXQuanBn",
+      "response": "CloKJwoTMjAxOS0wNS0xMFQxMDoxMToxMiAFKgxmaWxlbmFtZTpGMDEwUDItCicKEzIwMTktMDUtMTBUMTA6MTE6MTIgBSoMZmlsZW5hbWU6RjAxMFoQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F51: Photo on 12-31-23 at 12.34 PM.jpg",
+      "request": "EiFQaG90byBvbiAxMi0zMS0yMyBhdCAxMi4zNCBQTS5qcGc=",
+      "response": "ClQKJAoQMjAyMy0xMi0zMVQxMjozNCAEKgxmaWxlbmFtZTpGNTEwRjIqCiQKEDIwMjMtMTItMzFUMTI6MzQgBCoMZmlsZW5hbWU6RjUxMEYQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F51: Photo Booth's day and month either way round",
+      "request": "Eh1QaG90byBvbiA0LTUtMjAxOSBhdCA5LjE1LmpwZw==",
+      "response": "CiMKCSoHdW5rbm93bjIUCg4qDGZpbGVuYW1lOkY1MRABGAs4AQ=="
+    },
+    {
+      "method": 2,
+      "name": "F52: 2023-12-31_12-34-56.jpg",
+      "request": "EhcyMDIzLTEyLTMxXzEyLTM0LTU2LmpwZw==",
+      "response": "CloKJwoTMjAyMy0xMi0zMVQxMjozNDo1NiAFKgxmaWxlbmFtZTpGNTIwPDItCicKEzIwMjMtMTItMzFUMTI6MzQ6NTYgBSoMZmlsZW5hbWU6RjUyMDwQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F53: 201801261147521000.jpg",
+      "request": "EhYyMDE4MDEyNjExNDc1MjEwMDAuanBn",
+      "response": "CloKJwoTMjAxOC0wMS0yNlQxMTo0Nzo1MiAFKgxmaWxlbmFtZTpGNTMwLTItCicKEzIwMTgtMDEtMjZUMTE6NDc6NTIgBSoMZmlsZW5hbWU6RjUzMC0QARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F54: 2019-07-23.jpg",
+      "request": "Eg4yMDE5LTA3LTIzLmpwZw==",
+      "response": "CkgKHgoKMjAxOS0wNy0yMyADKgxmaWxlbmFtZTpGNTQwKDIkCh4KCjIwMTktMDctMjMgAyoMZmlsZW5hbWU6RjU0MCgQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F55: image_1703999999999.png",
+      "request": "EhdpbWFnZV8xNzAzOTk5OTk5OTk5LnBuZw==",
+      "response": "ClkKEiAGKgxmaWxlbmFtZTpGNTUwDxIMCP/zw6wGEMCPrtwDMjMKLQoXMjAyMy0xMi0zMVQwNToxOTo1OS45OTkQACAGKgxmaWxlbmFtZTpGNTUwDxABGAE4Ag=="
+    },
+    {
+      "method": 2,
+      "name": "F56: 31.12.2023.jpg",
+      "request": "Eg4zMS4xMi4yMDIzLmpwZw==",
+      "response": "CkgKHgoKMjAyMy0xMi0zMSADKgxmaWxlbmFtZTpGNTYwKDIkCh4KCjIwMjMtMTItMzEgAyoMZmlsZW5hbWU6RjU2MCgQARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "F56: day and month either way round",
+      "request": "Eg4wNC4wNS4yMDE5LmpwZw==",
+      "response": "CiMKCSoHdW5rbm93bjIUCg4qDGZpbGVuYW1lOkY1NhABGAs4AQ=="
+    },
+    {
+      "method": 2,
+      "name": "a date that does not exist",
+      "request": "EhdJTUdfMjAyMzAyMzBfMTAxMDEwLmpwZw==",
+      "response": "CjoKCSoHdW5rbm93bjIrCiUKEzIwMjMtMDItMzBUMTA6MTA6MTAgBSoMZmlsZW5hbWU6RjAxEAEYCDgB"
+    },
+    {
+      "method": 2,
+      "name": "a camera's reset clock",
+      "request": "EhdJTUdfMTk4MDAxMDFfMDAwMDAwLmpwZw==",
+      "response": "CjoKCSoHdW5rbm93bjIrCiUKEzE5ODAtMDEtMDFUMDA6MDA6MDAgBSoMZmlsZW5hbWU6RjAxEAEYCTgB"
+    },
+    {
+      "method": 2,
+      "name": "a WhatsApp name before WhatsApp",
+      "request": "EhdJTUctMjAwNTExMjAtV0EwMDAxLmpwZw==",
+      "response": "CjEKCSoHdW5rbm93bjIiChwKCjIwMDUtMTEtMjAgAyoMZmlsZW5hbWU6RjI1EAIYCjgB"
+    },
+    {
+      "method": 2,
+      "name": "an epoch after the resolver runs",
+      "request": "EhdpbWFnZV8xOTk5OTk5OTk5OTk5LnBuZzoGCIDSxdYG",
+      "response": "CkAKCSoHdW5rbm93bjIxCisKFzIwMzMtMDUtMThUMDM6MzM6MTkuOTk5EAAgBioMZmlsZW5hbWU6RjU1EAEYCjgB"
+    },
+    {
+      "method": 2,
+      "name": "a folder date: 2019/05/09",
+      "request": "EglwaG90by5qcGcaCjIwMTkvMDUvMDk=",
+      "response": "CkAKGgoKMjAxOS0wNS0wOSADKghwYXRoOnltZDAeMiAKGgoKMjAxOS0wNS0wOSADKghwYXRoOnltZDAeEAEYATgC"
+    },
+    {
+      "method": 2,
+      "name": "a folder date: Photos/2019/05",
+      "request": "EglwaG90by5qcGcaDlBob3Rvcy8yMDE5LzA1",
+      "response": "CjgKFgoHMjAxOS0wNSACKgdwYXRoOnltMB4yHAoWCgcyMDE5LTA1IAIqB3BhdGg6eW0wHhABGAE4Ag=="
+    },
+    {
+      "method": 2,
+      "name": "a folder date: 2019",
+      "request": "EglwaG90by5qcGcaBDIwMTk=",
+      "response": "CjAKEgoEMjAxOSABKgZwYXRoOnkwHjIYChIKBDIwMTkgASoGcGF0aDp5MB4QARgBOAI="
+    },
+    {
+      "method": 2,
+      "name": "a folder date: Imports/2015-01-14 Wedding",
+      "request": "EglwaG90by5qcGcaGkltcG9ydHMvMjAxNS0wMS0xNCBXZWRkaW5n",
+      "response": "CkAKGgoKMjAxNS0wMS0xNCADKghwYXRoOnltZDAeMiAKGgoKMjAxNS0wMS0xNCADKghwYXRoOnltZDAeEAEYATgC"
+    }
+  ],
+  "description": "Every rule of the file-name registry, F01 to F56, and folder dates (design doc 13 §5)."
+}

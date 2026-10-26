@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "path": "compound/odd/mystery.dat",
+  "size": 120,
+  "sha256": "eff0d7a621368bc7e7f78ca79fd5ce4fccf3cfb0d4e009eb7cf35048262bea00",
+  "origin": "synthetic",
+  "format": "unknown",
+  "quirks": [
+    "unknown_type"
+  ],
+  "media": {
+    "container": "unknown",
+    "mime": "application/octet-stream",
+    "kind": "unknown",
+    "support": "unsupported"
+  },
+  "metadata": {},
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

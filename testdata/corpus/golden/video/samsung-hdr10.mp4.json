@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "path": "video/samsung-hdr10.mp4",
+  "size": 770,
+  "sha256": "8b6f01512b917eb322b5a9eb90c9de9f35c90bc15a47c3111211507f3d19dfa1",
+  "origin": "synthetic",
+  "notes": "Placeholder hevc payload: the structure and metadata are real, the video does not decode.",
+  "format": "mp4",
+  "vendor": "samsung",
+  "quirks": [
+    "bit_depth_10",
+    "hdr10",
+    "hdr_pq"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "hevc",
+    "make": "samsung",
+    "model": "SM-G991B"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "qt_mvhd_phone",
+        "kind": "utc",
+        "value": "2022-07-01T12:30:00Z",
+        "precision": "s",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": null,
+      "utc": "2022-07-01T12:30:00Z",
+      "offset": null,
+      "tz_source": "device_default",
+      "precision": "s",
+      "bound": "exact",
+      "source": "qt_mvhd_phone",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

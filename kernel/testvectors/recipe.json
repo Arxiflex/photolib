@@ -1,0 +1,65 @@
+{
+  "cases": [
+    {
+      "method": 53,
+      "name": "geometry and adjustments of a recipe resolve to one develop",
+      "request": "Cl0IARIXCgRjcm9wYg8NAACAPh0AAAA/JQAAgD8SCgoEdHVyblICCAESCgoEZmxpcFoCCAESFAoGYWRqdXN0agodAAAAPyUAAIA+EhIKBG1vcmVqCh0AAIA+JQAAgD4QKBge",
+      "response": "CqEBCmEIARIXCgRjcm9wYg8NAACAPh0AAAA/JQAAgD8SCgoEdHVyblICCAESCgoEZmxpcFoCCAESFAoGYWRqdXN0agodAAAAPyUAAIA+EhIKBG1vcmVqCh0AAIA+JQAAgD4aAhgBEiAf9G5HHgCu95GdM00QMQ+nS6r8gaFhadUDT3XLsk9hihgeIBQqFh0AAEA/JQAAAD9AA0oGEAoYHiAUUAE="
+    },
+    {
+      "method": 53,
+      "name": "a recipe with outputs of models derives its provenance",
+      "request": "CqwBCAESFgoFbGlnaHR6DQoEbWFzaxIFHQAAgD8SJAoEZmlsbIIBGwoFcGF0Y2gVAAAAPx0AAIA+JQAAgD4tAAAAPxISCgRjcm9wYgodAABAPyUAAIA/IisKBG1hc2sQARgCIAEqAv8AMhkKCXNhbTItdGlueRIBMRoJCgRzZWVkEgE3IikKBXBhdGNoEAIYASABKgT6KB7IMhQKBGxhbWESATEaCQoEc2VlZBIBNxAIGAQ=",
+      "response": "CpICCuEBCAESFgoFbGlnaHR6DQoEbWFzaxIFHQAAgD8SJAoEZmlsbIIBGwoFcGF0Y2gVAAAAPx0AAIA+JQAAgD4tAAAAPxISCgRjcm9wYgodAABAPyUAAIA/GjMSGQoJc2FtMi10aW55EgExGgkKBHNlZWQSATcSFAoEbGFtYRIBMRoJCgRzZWVkEgE3GAMiKwoEbWFzaxABGAIgASoC/wAyGQoJc2FtMi10aW55EgExGgkKBHNlZWQSATciKQoFcGF0Y2gQAhgBIAEqBPooHsgyFAoEbGFtYRIBMRoJCgRzZWVkEgE3EiBQx+qjVaYZUkiALj64fGU/bhhtjwFK3cungVp0S6G9oBgGIAQqBkoEGAYgBA=="
+    },
+    {
+      "method": 53,
+      "name": "a recipe without a size has no crop in pixels",
+      "request": "Cl0IARIXCgRjcm9wYg8NAACAPh0AAAA/JQAAgD8SCgoEdHVyblICCAESCgoEZmxpcFoCCAESFAoGYWRqdXN0agodAAAAPyUAAIA+EhIKBG1vcmVqCh0AAIA+JQAAgD4=",
+      "response": "CpUBCmEIARIXCgRjcm9wYg8NAACAPh0AAAA/JQAAgD8SCgoEdHVyblICCAESCgoEZmxpcFoCCAESFAoGYWRqdXN0agodAAAAPyUAAIA+EhIKBG1vcmVqCh0AAIA+JQAAgD4aAhgBEiAf9G5HHgCu95GdM00QMQ+nS6r8gaFhadUDT3XLsk9hiioOHQAAQD8lAAAAP0ADUAE="
+    },
+    {
+      "method": 56,
+      "name": "geometry and adjustments render as the develop they resolve to",
+      "request": "Cl0IARIXCgRjcm9wYg8NAACAPh0AAAA/JQAAgD8SCgoEdHVyblICCAESCgoEZmxpcFoCCAESFAoGYWRqdXN0agodAAAAPyUAAIA+EhIKBG1vcmVqCh0AAIA+JQAAgD4ShwYIEBAMGoAGAFoA/yVlAf9KcAT/b3sJ/5SGEP+5kRn/3pwk/wOnMf8oskD/Tb1R/3LIZP+X03n/vN6Q/+Hpqf8G9MT/K//h/1AKAP91FSH/miBE/78raf/kNpD/CUG5/y5M5P9TVxH/eGJA/51tcf/CeKT/54PZ/wyOEP8xmUn/VqSE/3uvwf+gugD/xcVB/+rQhP8P28n/NOYQ/1nxWf9+/KT/owfx/8gSQP/tHZH/Eijk/zczOf9cPpD/gUnp/6ZURP/LX6H/8GoA/xV1Yf86gMT/X4sp/4SWkP+pofn/zqxk//O30f8YwkD/Pc2x/2LYJP+H45n/rO4Q/9H5if/2BAT/Gw+B/0AaAP9lJYH/ijAE/687if/URhD/+VGZ/x5cJP9DZ7H/aHJA/4190f+yiGT/15P5//yekP8hqSn/RrTE/2u/Yf+QygD/tdWh/9rgRP//6+n/JPaQ/0kBOf9uDOT/kxeR/7giQP/dLfH/Ajik/ydDWf9MThD/cVnJ/5ZkhP+7b0H/4HoA/wWFwf8qkIT/T5tJ/3SmEP+Zsdn/vryk/+PHcf8I0kD/Ld0R/1Lo5P9387n/nP6Q/8EJaf/mFET/Cx8h/zAqAP9VNeH/ekDE/59Lqf/EVpD/6WF5/w5sZP8zd1H/WIJA/32NMf+imCT/x6MZ/+yuEP8RuQn/NsQE/1vPAf+A2gD/peUB/8rwBP/v+wn/FAYQ/zkRGf9eHCT/gycx/6gyQP/NPVH/8khk/xdTef88XpD/YWmp/4Z0xP+rf+H/0IoA//WVIf8aoET/P6tp/2S2kP+Jwbn/rszk/9PXEf/44kD/He1x/0L4pP9nA9n/jA4Q/7EZSf/WJIT/+y/B/yA6AP9FRUH/alCE/49byf+0ZhD/2XFZ//58pP8jh/H/SJJA/22dkf+SqOT/t7M5/9y+kP8Byen/JtRE/0vfof9w6gD/lfVh/7oAxP/fCyn/BBaQ/ykh+f9OLGT/czfR/5hCQP+9TbH/4lgk/wdjmf8sbhD/UXmJ/3aEBP+bj4H/",
+      "response": "CooDCocDCAwQCBqAAwd+zf/w7D//hAP//xVloP/92hj/nf/x/yhNb///xf//tf/N/zw3P///r///y/+g//9tJP/E4P//TP/b//9VgP/ZzCT/ZP///wI+2//rtoD/fP8k/xEp///5ntv/lf2A//Vc6v+O08P/HP+U//9FYv+mvTT/L/8Q//8v//+9pv//Rf/q//8cw//TjpT/XPVi/8xMSf9VxEn///9J/+A2Sf9trUn/CP9J//AiSf+GlUn/F/lJ//0RSf+efEn/KetJ/5c8//8jtf////8Q/68oNP83nWL///2U/8UVw/9NhOr///D//9oH//9laxD/A980/14ugP//pNv/5////3YbJP8NjID/9vTb/48L//8dcyT//+SA/6f/2/8wW////9Ek/yog////lG//uPjx/z8QGP//e6D/zer//1YBP///Ys3/4dj//2//b/8IS/H/8cMY/wQUwf/tgw//gO/B/xIGD//7asH/mN4P/yT/wf//Ug//sMrB/zj/D///O8H/x7MP/w=="
+    },
+    {
+      "method": 56,
+      "name": "a mask and a patch change the original before the crop",
+      "request": "CqwBCAESFgoFbGlnaHR6DQoEbWFzaxIFHQAAgD8SJAoEZmlsbIIBGwoFcGF0Y2gVAAAAPx0AAIA+JQAAgD4tAAAAPxISCgRjcm9wYgodAABAPyUAAIA/IisKBG1hc2sQARgCIAEqAv8AMhkKCXNhbTItdGlueRIBMRoJCgRzZWVkEgE3IikKBXBhdGNoEAIYASABKgT6KB7IMhQKBGxhbWESATEaCQoEc2VlZBIBNxKHAQgIEAQagAEAWgD/JWUB/0pwBP9vewn/lIYQ/7mRGf/enCT/A6cx/yiyQP9NvVH/cshk/5fTef+83pD/4emp/wb0xP8r/+H/UAoA/3UVIf+aIET/vytp/+Q2kP8JQbn/Lkzk/1NXEf94YkD/nW1x/8J4pP/ng9n/DI4Q/zGZSf9WpIT/e6/B/w==",
+      "response": "CmgKZggGEAQaYAB9AP82jAL/Y5UI/4mYDv+omRT/wZgb/zryWv9r/3H/mPiF/7nvlf/yUjv/9VI+/28SAP+hITH/yy1c/+c3gv/3LTv/xi5B/6WIWv/Wlpz/95/Z//ai8f8PohT/NKBN/w=="
+    },
+    {
+      "method": 55,
+      "name": "regions move with the crop and the turn",
+      "request": "El0IARIXCgRjcm9wYg8NAACAPh0AAAA/JQAAgD8SCgoEdHVyblICCAESCgoEZmxpcFoCCAESFAoGYWRqdXN0agodAAAAPyUAAIA+EhIKBG1vcmVqCh0AAIA+JQAAgD4aFA2amZk+Fc3MzD0dzcxMPiWamZk+GgodzcxMPiXNzEw+",
+      "response": "CiEKGwoUDZmZGT8V////Ph2amZk+Jc3MzD4VAACAPwoCCgA="
+    },
+    {
+      "method": 54,
+      "name": "two versions compare step by step",
+      "request": "Cl0IARIXCgRjcm9wYg8NAACAPh0AAAA/JQAAgD8SCgoEdHVyblICCAESCgoEZmxpcFoCCAESFAoGYWRqdXN0agodAAAAPyUAAIA+EhIKBG1vcmVqCh0AAIA+JQAAgD4SrAEIARIWCgVsaWdodHoNCgRtYXNrEgUdAACAPxIkCgRmaWxsggEbCgVwYXRjaBUAAAA/HQAAgD4lAACAPi0AAAA/EhIKBGNyb3BiCh0AAEA/JQAAgD8iKwoEbWFzaxABGAIgASoC/wAyGQoJc2FtMi10aW55EgExGgkKBHNlZWQSATciKQoFcGF0Y2gQAhgBIAEqBPooHsgyFAoEbGFtYRIBMRoJCgRzZWVkEgE3",
+      "response": "CuoBChgKBGNyb3AQAxoEY3JvcCIBeCIFd2lkdGgKDgoEdHVybhACGgR0dXJuCg4KBGZsaXAQAhoEZmxpcAoSCgZhZGp1c3QQAhoGYWRqdXN0ChAKBG1vcmUQAhoGYWRqdXN0ChcKBWxpZ2h0EAEaDGxvY2FsX2FkanVzdAoRCgRmaWxsEAEaB2lucGFpbnQKEAoEbWFzaxABGgZvdXRwdXQKEQoFcGF0Y2gQARoGb3V0cHV0CjcKCnByb3ZlbmFuY2UQAxoKcHJvdmVuYW5jZSIGbW9kZWxzIhNkaWdpdGFsX3NvdXJjZV90eXBl"
+    },
+    {
+      "method": 57,
+      "name": "the develop of an alpha copy becomes a recipe",
+      "request": "ChMdAAAAP0ABSggIBBAKGBggFFABECgYHiIOcGhvdG9saWItYWxwaGE=",
+      "response": "Cl0KWwgBEgoKBHR1cm5SAggBEggKBGZsaXBaABIcCgRjcm9wYhQNiYgIPhUAAIA+Hc3MTD8lAAAAPxIPCgZhZGp1c3RqBR0AAAA/GhIKDnBob3RvbGliLWFscGhhGAE="
+    },
+    {
+      "method": 53,
+      "name": "a turn of no quarter turns is refused",
+      "request": "CgwIARIICgR0dXJuUgA=",
+      "response": "EigIAhIkCgVmaWVsZBIbb3BlcmF0aW9uc1swXS5xdWFydGVyX3R1cm5z"
+    },
+    {
+      "method": 53,
+      "name": "no recipe is refused",
+      "request": "",
+      "response": "EhMIAhIPCgVmaWVsZBIGcmVjaXBl"
+    }
+  ],
+  "description": "Edit recipes (ADR-0391): resolving, comparing, mapping regions through and rendering, and the alpha's Develop."
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "path": "names/GOPR0001.JPG",
+  "size": 2960,
+  "sha256": "c6591e914758c1290802904dfff830681b76174d171cccc3299633ba38b51f3e",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "gopro",
+  "quirks": [
+    "counter_not_time"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F41"
+    ]
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

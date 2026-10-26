@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "path": "names/20231207_101606_002.jpg",
+  "size": 3378,
+  "sha256": "d7598169a4c65c1e0e79d1d6c84e7730143d229c3202c85bfe05019f75fdfaea",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "samsung",
+  "quirks": [
+    "burst"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "group": {
+    "kind": "burst",
+    "key": "20231207_101606",
+    "role": "burst_member"
+  },
+  "filename": {
+    "matches": [
+      "F05",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F05",
+        "kind": "local",
+        "value": "2023-12-07T10:16:06",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12-07T10:16:06",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F05",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

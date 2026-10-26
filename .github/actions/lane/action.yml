@@ -1,0 +1,204 @@
+name: Run a lane of the gate
+description: Sets up what one machine of the pipeline needs and runs `bash tools/check.sh <parts>` on it.
+inputs:
+  name:
+    description: The job's name, which its report (report-<name>, the gate job's summary) goes by
+    required: true
+  guard:
+    description: A file glob that exists only once the lane's source is in the repository; without a match nothing runs.
+    default: tools/check.sh
+  tools:
+    description: 'Space separated: rust, flutter, node, apt'
+    default: ''
+  parts:
+    description: The gate's parts to run
+    required: true
+  steps:
+    description: CHECK_STEPS, only the steps matching this regex
+    default: ''
+  except:
+    description: CHECK_STEPS_EXCEPT, none of the steps matching this regex
+    default: ''
+  partition:
+    description: CHECK_PARTITION, the share n/m of the Rust tests nextest runs
+    default: ''
+runs:
+  using: composite
+  steps:
+    # The pipeline is sized for four cores: a lane on fewer would silently run twice as long
+    - name: Check the machine
+      shell: bash
+      run: |
+        cores=$(nproc)
+        echo "cores: $cores, memory: $(free -g | awk '/Mem:/ {print $2}') GB, disk free: $(df -h --output=avail / | tail -1 | tr -d ' ')"
+        [ "$cores" -ge 4 ] || { echo "::error::this machine has $cores cores, the pipeline needs 4"; exit 1; }
+    # The runner's disk is 14 GB with the SDKs it ships: the heavy lanes' builds fill it
+    - name: Free the disk the runner's preinstalled SDKs take
+      if: inputs.tools != '' && hashFiles(inputs.guard) != ''
+      shell: bash
+      run: sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc /usr/local/share/boost /opt/hostedtoolcache/CodeQL
+    # Tests that listen on 127.0.0.1 connect to ::1 first on a runner
+    - name: Resolve localhost to IPv4 only
+      if: inputs.tools != '' && hashFiles(inputs.guard) != ''
+      shell: bash
+      run: sudo sed -i 's/^::1[[:space:]]\+localhost.*/::1 ip6-localhost ip6-loopback/' /etc/hosts
+    # The Rust and Flutter setups wait for their source (a Cargo.toml, app/pubspec.yaml): without it there is nothing to
+    # build, and app/.fvmrc, which pins Flutter, is not there either
+    # Cargo builds outside the checkout: the lint ratchet counts findings in the code that build scripts generate
+    - name: Build outside the repository
+      if: contains(inputs.tools, 'rust') && hashFiles(inputs.guard) != '' && hashFiles('**/Cargo.toml') != ''
+      shell: bash
+      run: echo "CARGO_TARGET_DIR=$RUNNER_TEMP/target" >> "$GITHUB_ENV"
+    - uses: Swatinem/rust-cache@v2
+      if: contains(inputs.tools, 'rust') && hashFiles(inputs.guard) != '' && hashFiles('**/Cargo.toml') != ''
+      with:
+        workspaces: |
+          kernel
+          server
+          tools/synthlib
+    - uses: taiki-e/install-action@v2
+      if: contains(inputs.tools, 'rust') && hashFiles(inputs.guard) != '' && hashFiles('**/Cargo.toml') != ''
+      with:
+        tool: cargo-deny,cargo-machete,cargo-nextest
+    - uses: ./.github/actions/flutter
+      if: contains(inputs.tools, 'flutter') && hashFiles(inputs.guard) != '' && hashFiles('app/pubspec.yaml') != ''
+    - run: flutter pub get
+      if: contains(inputs.tools, 'flutter') && hashFiles(inputs.guard) != '' && hashFiles('app/pubspec.yaml') != ''
+      shell: bash
+      working-directory: app
+    - uses: actions/setup-node@v6
+      if: contains(inputs.tools, 'node') && hashFiles('viewer/package-lock.json') != ''
+      with:
+        node-version-file: viewer/.nvmrc
+        cache: npm
+        cache-dependency-path: viewer/package-lock.json
+    # setup-python saves the pip cache at the end and fails a job that never ran pip
+    - run: mkdir -p ~/.cache/pip
+      shell: bash
+    - uses: actions/setup-python@v6
+      with:
+        python-version: '3.x'
+        cache: pip
+        cache-dependency-path: |
+          tools/docs-requirements.txt
+          tools/corpus/decode-requirements.txt
+    - name: Keep the downloaded tools in one cached directory
+      shell: bash
+      run: echo "PHOTOLIB_TOOLS_CACHE=$RUNNER_TEMP/photolib-tools" >> "$GITHUB_ENV"
+    - uses: actions/cache@v4
+      if: inputs.tools != '' && hashFiles(inputs.guard) != ''
+      with:
+        path: ${{ runner.temp }}/photolib-tools
+        key: >-
+          photolib-tools-${{ runner.os }}-${{ hashFiles('app/packages/photolib_data/pubspec.lock',
+          'kernel/Cargo.lock', 'tools/buf.sh', 'tools/codegen.sh', 'tools/connect_conformance.sh',
+          'tools/data/web.sh', 'tools/garage.sh', 'tools/helm.sh', 'tools/hls/web.sh', 'tools/kernel/wasm.sh', 'tools/lint/tool.sh',
+          'tools/npm_tool.sh', 'tools/offline.sh', 'tools/package.sh', 'tools/playwright.sh', 'tools/postgres.sh',
+          'tools/promtool.sh', 'tools/proxies.sh', 'tools/squawk.sh', 'tools/video/ffmpeg.sh') }}
+    # The .deb files, kept between runs: with them here the mirror is asked for little, and its stalls cost nothing.
+    # A cache key is never overwritten, so each run saves under its own and restores by prefix: it starts from the
+    # newest save, also one a failed job made
+    - uses: actions/cache/restore@v4
+      if: contains(inputs.tools, 'apt') && hashFiles(inputs.guard) != ''
+      with:
+        path: ~/apt-debs
+        key: apt-debs-v2-${{ runner.os }}-${{ github.run_id }}-${{ inputs.name }}
+        restore-keys: apt-debs-v2-${{ runner.os }}-
+    # The Linux build tools, a display server, valgrind, libvips and the proxies the gate's suites use. The mirror
+    # stalls now and then. The runner takes its mirror from apt-mirrors.txt, which is switched to archive.ubuntu.com
+    # before the first attempt. An attempt only downloads, 3 minutes at most, and what it got stays for the next and
+    # for the cache; the install then runs from disk. When all fail, the error names the mirror and the log's tail.
+    - name: Install the Linux build tools, a display server, valgrind, libvips and the proxies
+      id: apt
+      if: contains(inputs.tools, 'apt') && hashFiles(inputs.guard) != ''
+      shell: bash
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        mkdir -p "$HOME/apt-debs"
+        log="$RUNNER_TEMP/apt.log"
+        : > "$log"
+        keep() {
+          sudo cp -n /var/cache/apt/archives/*.deb "$HOME/apt-debs/" 2>/dev/null || true
+          sudo chown -R "$(id -u):$(id -g)" "$HOME/apt-debs" 2>/dev/null || true
+          echo "debs=$(find "$HOME/apt-debs" -name '*.deb' | wc -l)" >> "$GITHUB_OUTPUT"
+        }
+        trap keep EXIT
+        sudo systemctl stop unattended-upgrades 2>/dev/null || true
+        sudo cp -n "$HOME"/apt-debs/*.deb /var/cache/apt/archives/ 2>/dev/null || true
+        printf 'http://archive.ubuntu.com/ubuntu/\tpriority:1\nhttp://azure.archive.ubuntu.com/ubuntu/\tpriority:2\n' |
+          sudo tee /etc/apt/apt-mirrors.txt > /dev/null
+        sudo sed -i 's|azure.archive.ubuntu.com|archive.ubuntu.com|g' /etc/apt/sources.list /etc/apt/sources.list.d/* 2>/dev/null || true
+        opts=(-y -o Acquire::Retries=5 -o Acquire::http::Timeout=20 -o DPkg::Lock::Timeout=120)
+        pkgs=(clang cmake ninja-build pkg-config libgtk-3-dev libmpv-dev xvfb
+          valgrind libvips-dev libheif-plugin-libde265 libheif-plugin-dav1d nginx apache2-bin appstream dbus
+          gnome-keyring libsecret-1-dev libjsoncpp-dev)
+        sudo timeout 3m apt-get update "${opts[@]}" 2>&1 | tee -a "$log" || true
+        for attempt in 1 2 3; do
+          if sudo timeout 3m apt-get install --download-only "${opts[@]}" "${pkgs[@]}" 2>&1 | tee -a "$log"; then
+            sudo dpkg --configure -a || true
+            if sudo timeout 10m apt-get install "${opts[@]}" "${pkgs[@]}" 2>&1 | tee -a "$log"; then exit 0; fi
+          fi
+          keep
+          echo "apt attempt $attempt failed or stalled"
+          sudo dpkg --configure -a || true
+        done
+        hosts=$(grep -aoE '(Err|Ign):[0-9]+ https?://[^/ ]+' "$log" | awk -F// '{print $2}' | sort -u | paste -sd, - || true)
+        why=$(grep -aE '^(E:|Err:)' "$log" | tail -n 5 | paste -sd'|' - || true)
+        tail=$(tail -n 8 "$log" | paste -sd'|' -)
+        echo "::error title=apt install failed::packages: ${pkgs[*]}; mirror: ${hosts:-$(head -n 1 /etc/apt/apt-mirrors.txt)}; errors: ${why:-none}; log tail: $tail"
+        exit 1
+    - uses: actions/cache/save@v4
+      if: always() && contains(inputs.tools, 'apt') && hashFiles(inputs.guard) != '' && steps.apt.outputs.debs != '' && steps.apt.outputs.debs != '0'
+      with:
+        path: ~/apt-debs
+        key: apt-debs-v2-${{ runner.os }}-${{ github.run_id }}-${{ inputs.name }}
+    - name: Run the gate
+      if: hashFiles(inputs.guard) != ''
+      shell: bash
+      # Its whole output is kept beside the step report too: the test report names the tests that failed or passed only
+      # on a retry, and the log is in the job's artifact (pipefail: the gate's status, not tee's)
+      run: |
+        mkdir -p "$RUNNER_TEMP/report"
+        bash tools/check.sh ${{ inputs.parts }} 2>&1 | tee "$RUNNER_TEMP/report/${{ inputs.name }}.log"
+      env:
+        CHECK_JOBS: 4
+        # perf's instruction counts build twice under valgrind: on 4 vCPUs, long silences; a hung step must not
+        # outlast the job's hour
+        CHECK_SILENCE: 1800
+        CHECK_STEPS: ${{ inputs.steps }}
+        CHECK_STEPS_EXCEPT: ${{ inputs.except }}
+        CHECK_PARTITION: ${{ inputs.partition }}
+        # A failed shell test runs again up to three times, as Dart's (retry: 3) and Rust's (nextest --retries 3) do
+        CHECK_RETRIES: 3
+        # What measures time is advisory here, so measured once: two more attempts of a budget a hosted runner misses
+        # took perf-budgets-rest 15 of its 32 minutes
+        CHECK_BUDGET_ATTEMPTS: 1
+        # Hosted runners cannot measure time: what only measures it, and the tests tagged timing (tools/check.sh runs
+        # them in a step of their own), are advisory here. So is the RustSec check (tools/advisories.py): an advisory is
+        # published against a locked crate whatever a branch changed, and an unreachable advisory database must not
+        # fail a build either; the finding stays in the log. The web timeline's frame budget (tools/timeline_bench.py
+        # --check, the web part) is a time measurement too: on a hosted runner without a GPU it read 4 to 47 % janky
+        # frames against its 1 % and failed 4 queue runs.
+        CHECK_ADVISORY: 'perf/run\.sh|--test hls|--tags timing|advisories\.py|timeline_bench\.py'
+        PERF_REPORT: ${{ runner.temp }}/perf.md
+        CHECK_REPORT: ${{ runner.temp }}/report/${{ inputs.name }}.tsv
+    - if: always() && hashFiles(inputs.guard) != ''
+      shell: bash
+      run: '[ ! -s "$RUNNER_TEMP/perf.md" ] || cat "$RUNNER_TEMP/perf.md" >> "$GITHUB_STEP_SUMMARY"'
+    # The job's steps with their results and times in its summary, and for the gate job's report of the whole run
+    - name: Report
+      if: always() && hashFiles(inputs.guard) != ''
+      shell: bash
+      env:
+        REPORT: ${{ runner.temp }}/report/${{ inputs.name }}.tsv
+      run: '[ ! -f "$REPORT" ] || python3 tools/ci_report.py "$REPORT" >> "$GITHUB_STEP_SUMMARY"'
+    - uses: actions/upload-artifact@v4
+      if: always() && hashFiles(inputs.guard) != ''
+      with:
+        name: report-${{ inputs.name }}
+        path: |
+          ${{ runner.temp }}/report/${{ inputs.name }}.tsv
+          ${{ runner.temp }}/report/${{ inputs.name }}.log
+        if-no-files-found: ignore
+        retention-days: 14

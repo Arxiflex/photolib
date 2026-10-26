@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "path": "names/Screen Recording 2023-12-31 at 12.34.56.mov",
+  "size": 747,
+  "sha256": "2e95b6e23b3ed6aaaeb5e9cc28d0b09a16579bd50c070b81f672cd72b359712d",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mov",
+  "quirks": [
+    "mvhd_zero",
+    "screen_recording"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "qt  ",
+    "mime": "video/quicktime",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "h264"
+  },
+  "filename": {
+    "matches": [
+      "F20",
+      "F54"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F20",
+        "kind": "local",
+        "value": "2023-12-31T12:34:56",
+        "precision": "s",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12-31T12:34:56",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F20",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "path": "compound/odd/holiday-snap",
+  "size": 1352,
+  "sha256": "f6470044f3ea5c0e6004dea5e8697fcfde3c3f37e4fbe84c9b694aa778bf83f0",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "no_extension"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 320,
+    "height": 240
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

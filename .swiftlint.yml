@@ -1,0 +1,8 @@
+# Swift is linted with SwiftLint's defaults, the crash classes and the project's limits (docs/dev/lint.md).
+opt_in_rules:
+  - force_unwrapping
+  - implicitly_unwrapped_optional
+line_length: 120
+file_length: 800
+function_body_length: 80
+cyclomatic_complexity: 20

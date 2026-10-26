@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "path": "takeout/Google Photos/Photos from 2022/IMG_6001.MOV",
+  "size": 1010,
+  "sha256": "7b8b064b1291493aad89a33695c55db94c2d95a4eda03611a103cc0b5e026fd2",
+  "origin": "synthetic",
+  "notes": "Placeholder hevc payload: the structure and metadata are real, the video does not decode.",
+  "format": "mov",
+  "vendor": "apple",
+  "quirks": [
+    "live_photo",
+    "takeout_live_video",
+    "takeout_no_sidecar",
+    "takeout_year_folder"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "qt  ",
+    "mime": "video/quicktime",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1440,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "hevc",
+    "make": "Apple",
+    "model": "iPhone 13 Pro"
+  },
+  "group": {
+    "kind": "live_photo",
+    "key": "3E8A5D1C-7B24-49F0-A6C3-5D9E0F1B2A47",
+    "role": "live_motion"
+  },
+  "filename": {
+    "matches": [
+      "F10",
+      "F43",
+      "F50"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "qt_keys_creationdate",
+        "kind": "local",
+        "value": "2022-09-03T10:15:20",
+        "precision": "s",
+        "event": "record_start",
+        "offset": "+02:00"
+      },
+      {
+        "source": "qt_mvhd_phone",
+        "kind": "utc",
+        "value": "2022-09-03T08:15:20Z",
+        "precision": "s",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": "2022-09-03T10:15:20",
+      "utc": "2022-09-03T08:15:20Z",
+      "offset": "+02:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "qt_keys_creationdate",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

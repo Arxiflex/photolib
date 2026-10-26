@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "path": "stills/interlaced.gif",
+  "size": 1376,
+  "sha256": "cd4eeaf5ffdc60b95b3d31456baa246683b1dccf5f1cb0503a70950838cae7f5",
+  "origin": "synthetic",
+  "format": "gif",
+  "quirks": [
+    "interlaced"
+  ],
+  "media": {
+    "container": "gif",
+    "mime": "image/gif",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

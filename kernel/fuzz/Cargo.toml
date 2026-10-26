@@ -1,0 +1,46 @@
+# libFuzzer targets over the kernel's entry points (src/lib.rs), run by tools/kernel/fuzz.sh with a nightly toolchain
+# on the build machine, never in the gate (ADR-0036).
+[package]
+name = "photolib-kernel-fuzz"
+version = "0.0.0"
+edition = "2024"
+license = "AGPL-3.0-only"
+publish = false
+
+[package.metadata]
+cargo-fuzz = true
+
+# Its own workspace: outside the kernel's, so that the kernel never builds libFuzzer.
+[workspace]
+
+[dependencies]
+base64 = "0.23"
+libfuzzer-sys = "0.4"
+photolib-kernel = { path = ".." }
+prost = "0.14"
+serde_json = "1"
+
+[[bin]]
+name = "read_metadata"
+path = "fuzz_targets/read_metadata.rs"
+test = false
+
+[[bin]]
+name = "edit_copy"
+path = "fuzz_targets/edit_copy.rs"
+test = false
+
+[[bin]]
+name = "edit_recipe"
+path = "fuzz_targets/edit_recipe.rs"
+test = false
+
+[[bin]]
+name = "resolve_capture_time"
+path = "fuzz_targets/resolve_capture_time.rs"
+test = false
+
+[[bin]]
+name = "crypto_readers"
+path = "fuzz_targets/crypto_readers.rs"
+test = false

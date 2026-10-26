@@ -1,0 +1,83 @@
+{
+  "cases": [
+    {
+      "method": 0,
+      "name": "method 0 is no function",
+      "request": "",
+      "response": "EgIIAQ=="
+    },
+    {
+      "method": 1,
+      "name": "the research envelope's method is retired",
+      "request": "",
+      "response": "EgIIAQ=="
+    },
+    {
+      "method": 99,
+      "name": "an unknown method",
+      "request": "",
+      "response": "EgIIAQ=="
+    },
+    {
+      "method": 4294967295,
+      "name": "the largest method id",
+      "request": "",
+      "response": "EgIIAQ=="
+    },
+    {
+      "method": 3,
+      "name": "a truncated request",
+      "request": "CgVh",
+      "response": "EgIIAg=="
+    },
+    {
+      "method": 3,
+      "name": "a string that is not UTF-8",
+      "request": "CgH/",
+      "response": "EgIIAg=="
+    },
+    {
+      "method": 3,
+      "name": "a function that does not stream",
+      "request": "",
+      "responses": [
+        "EgIIAQ==",
+        "EgIIAQ=="
+      ],
+      "stream": [
+        "eA=="
+      ]
+    },
+    {
+      "method": 7,
+      "name": "a key handle the keyring does not hold",
+      "request": "CAESC2xvY2FsL2NhY2hl",
+      "response": "EhAIAhIMCgVmaWVsZBIDa2V5"
+    },
+    {
+      "method": 5,
+      "name": "a key of 31 bytes",
+      "request": "Ch8HBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcH",
+      "response": "EhMIAhIPCgVmaWVsZBIGc2VjcmV0"
+    },
+    {
+      "method": 7,
+      "name": "a dropped key is gone",
+      "request": "CAESC2xvY2FsL2NhY2hl",
+      "response": "EhAIAhIMCgVmaWVsZBIDa2V5",
+      "setup": [
+        {
+          "method": 5,
+          "request": "CiAHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBw==",
+          "response": "ChQIARIQUa8+bmsrYKVxmBUXsvsccQ=="
+        },
+        {
+          "method": 6,
+          "request": "CAE=",
+          "response": "CgA="
+        }
+      ]
+    }
+  ],
+  "description": "The call ABI: unknown methods, undecodable requests, keyrings, streams."
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "path": "video/vp8.webm",
+  "size": 214,
+  "sha256": "e1a8d66d41b7a46e5d9d1ccc9f5e2ac2789b1fc98eae99e6529097e711c03efc",
+  "origin": "synthetic",
+  "notes": "Placeholder vp8 payload: the structure and metadata are real, the video does not decode.",
+  "format": "webm",
+  "quirks": [],
+  "media": {
+    "container": "ebml",
+    "mime": "video/webm",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 360,
+    "duration_ms": 5000,
+    "codec": "vp8"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "path": "names/04.05.2019.jpg",
+  "size": 2947,
+  "sha256": "4f4009e41c4a7398a9a2f5f69371cb59492a9b96ad589953ef35e081f37c5eac",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "ambiguous_date_order"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F56"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F56",
+        "kind": "local",
+        "value": null,
+        "precision": null,
+        "event": "capture",
+        "rejected": "ambiguous_order"
+      }
+    ],
+    "resolved": null
+  }
+}

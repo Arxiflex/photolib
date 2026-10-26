@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "path": "names/RPReplay_Final1612345678.MP4",
+  "size": 747,
+  "sha256": "1b2f006f78ac6305a4ee171a809c65cff8b5ae0adbcfac5395980bb06d32059e",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mp4",
+  "vendor": "apple",
+  "quirks": [
+    "epoch_name",
+    "mvhd_zero",
+    "screen_recording"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "h264"
+  },
+  "filename": {
+    "matches": [
+      "F18",
+      "F55"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F18",
+        "kind": "utc",
+        "value": "2021-02-03T09:47:58Z",
+        "precision": "s",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": null,
+      "utc": "2021-02-03T09:47:58Z",
+      "offset": null,
+      "tz_source": "device_default",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F18",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

@@ -1,0 +1,42 @@
+name: block-dart
+
+# The Flutter app on five machines: format, lint and everything but the tests, the app's tests, the local store's
+# tests and its timed ones alone, the other packages' tests. Called by ci.yml; it has no trigger of its own.
+on: workflow_call
+
+permissions:
+  contents: read
+
+jobs:
+  lane:
+    name: ${{ matrix.name }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: dart-lint
+            except: '^\[app\] .*flutter test|^\[app/packages/photolib_data\] .*flutter test --exclude-tags|^\[app/packages/photolib_data\] .*flutter test --tags alone|^\[app/packages/photolib_(api|editor|harness|kernel|log|ml|video|workers)\] .*flutter test'
+          - name: dart-app
+            steps: '^\[app\] .*flutter test'
+          - name: dart-data
+            steps: '^\[app/packages/photolib_data\] .*flutter test --exclude-tags'
+          - name: dart-data-alone
+            steps: '^\[app/packages/photolib_data\] .*flutter test --tags alone'
+          - name: dart-packages
+            steps: '^\[app/packages/photolib_(api|editor|harness|kernel|log|ml|video|workers)\] .*flutter test'
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # The history the commits part, the lint ratchet and the proto breaking check compare with
+          fetch-depth: 0
+      - uses: ./.github/actions/lane
+        with:
+          name: ${{ matrix.name }}
+          guard: app/pubspec.yaml
+          tools: flutter rust apt
+          parts: dart
+          steps: ${{ matrix.steps }}
+          except: ${{ matrix.except }}
+          partition: ${{ matrix.partition }}

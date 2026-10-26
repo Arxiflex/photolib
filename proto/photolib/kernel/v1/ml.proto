@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package photolib.kernel.v1;
+
+// The input of an image model (design 09 §2.2), the same code on the server and every device so that their vectors
+// compare (ADR-0254): the whole image resized with a triangle filter to `size` × `size` (or, with `crop`, until its
+// short side is `size`, then its centred square), each channel scaled to [0, 1], less `mean` and over `std`.
+message PrepareImageRequest {
+  // 8-bit sRGB RGBA, upright, row by row; alpha is ignored.
+  uint32 width = 1;
+  uint32 height = 2;
+  bytes rgba = 3;
+  // At most 1024.
+  uint32 size = 4;
+  // Red, green and blue: three each, every std non-zero.
+  repeated float mean = 5;
+  repeated float std = 6;
+  // Keep the proportions and crop, for a model whose own processor crops.
+  bool crop = 7;
+}
+
+// The tensor of a PrepareImageRequest.
+message PrepareImageResponse {
+  // 3 × size × size float32 values, little-endian: the red plane, then green, then blue, each row by row.
+  bytes tensor = 1;
+}

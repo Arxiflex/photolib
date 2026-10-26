@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "path": "time/zones/nepal.jpg",
+  "size": 3223,
+  "sha256": "90a3ee4575886a0618935b9d80ce8df892b2a987ba2fdded1b5b5ce8d07cad93",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "canon",
+  "quirks": [],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "make": "Canon",
+    "model": "Canon EOS 5D Mark IV"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2023-04-14T20:00:00",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+05:45"
+      }
+    ],
+    "resolved": {
+      "local": "2023-04-14T20:00:00",
+      "utc": "2023-04-14T14:15:00Z",
+      "offset": "+05:45",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

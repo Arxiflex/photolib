@@ -1,0 +1,10 @@
+# photolibd's configuration as the deb installs it (docs/admin/configuration.md); upgrades keep your changes.
+config_version: 1
+# The LAN reaches it; put a reverse proxy in front for the internet (docs/admin/reverse-proxy.md).
+listen: 0.0.0.0:8080
+data_dir: /var/lib/photolib/data
+opaque_key_file: /var/lib/photolib/keys/opaque.key
+database:
+  cluster: /var/lib/photolib/postgres
+ffmpeg_dir: /usr/bin
+exiftool: [/usr/bin/exiftool]

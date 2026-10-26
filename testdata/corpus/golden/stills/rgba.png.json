@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "path": "stills/rgba.png",
+  "size": 1623,
+  "sha256": "71b9357731247920f2c9f8345d2004094c53fed534ce5ccd057ff573414816d5",
+  "origin": "synthetic",
+  "format": "png",
+  "quirks": [
+    "alpha"
+  ],
+  "media": {
+    "container": "png",
+    "mime": "image/png",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

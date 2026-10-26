@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "path": "names/dcf/DSCN0001.JPG",
+  "size": 2954,
+  "sha256": "b2a449645c1b40f1d2785384bf2e2e9d8631759804eab6054369c3a4f83721ce",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "counter_not_time"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F43"
+    ]
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

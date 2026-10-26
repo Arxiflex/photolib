@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "path": "names/LINE_ALBUM_trip_231231_1.jpg",
+  "size": 3451,
+  "sha256": "782f6eba08d50134554f9d44d863c5fc0986ddb8c5434aa5460888c7c7e991b3",
+  "origin": "synthetic",
+  "notes": "LINE has no documented pattern; the registry says to collect real samples before adding a rule",
+  "format": "jpeg",
+  "quirks": [
+    "counter_not_time"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F34"
+    ]
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

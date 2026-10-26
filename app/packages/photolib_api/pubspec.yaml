@@ -1,0 +1,31 @@
+name: photolib_api
+description: The Photolib API client over the generated messages, and the one network stack every request to a server uses.
+publish_to: none
+
+environment:
+  sdk: ^3.13.5
+
+dependencies:
+  crypto: ^3.0.7
+  fixnum: ^1.1.1
+  http: ^1.6.0
+  photolib_log:
+    path: ../photolib_log
+  protobuf: ^6.1.0
+
+dev_dependencies:
+  dart_code_linter: ^4.4.2
+  photolib_harness:
+    path: ../photolib_harness
+  photolib_kernel:
+    path: ../photolib_kernel
+  stream_channel: ^2.1.4
+  test: ^1.25.0
+  very_good_analysis: ^11.0.0
+
+# tool/decrypting_proxy.dart loads the kernel that tools/playback/bench.mjs builds from source, so the hook bundles
+# none here.
+hooks:
+  user_defines:
+    photolib_kernel:
+      bundle: false

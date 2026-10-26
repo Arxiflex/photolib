@@ -1,0 +1,11 @@
+{
+  auto_https disable_redirects
+}
+
+photolib.localhost {
+  tls internal
+  reverse_proxy host.docker.internal:8080
+  handle_errors {
+    respond "photolib dev proxy: nothing answers on host port 8080 yet (start it with: just run-server)" 502
+  }
+}

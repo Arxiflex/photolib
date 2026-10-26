@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "path": "compound/raw-jpeg/_MG_0123.JPG",
+  "size": 151001,
+  "sha256": "ac88023dab6486939c8b06693c84355961af788299a9e410e89a1bfaa08cc6a3",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "canon",
+  "quirks": [
+    "raw_jpeg_pair",
+    "sidecar_xmp"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 6000,
+    "height": 4000,
+    "make": "Canon",
+    "model": "Canon EOS 5D Mark IV"
+  },
+  "group": {
+    "kind": "raw_jpeg",
+    "key": "_MG_0123",
+    "role": "primary"
+  },
+  "filename": {
+    "matches": [
+      "F43"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2018-06-02T10:20:30",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2018-06-02T10:20:30",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

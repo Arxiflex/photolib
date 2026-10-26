@@ -1,0 +1,43 @@
+{
+  "archive": "libmpv-0.41.0-ffmpeg-8.1.3-windows-x64.tar.xz",
+  "sha256": "b3ad106ec9633e0c3f3523eea0081737f012a538bc23369fc6b737491767fee3",
+  "files": {
+    "ANGLE/include/EGL/egl.h": "b9669499729432653659b99ec9e92f3defed9207c480ec7926024f424e693f9a",
+    "ANGLE/include/EGL/eglext.h": "92fe2e491f9374afb88e9c8d96be7288f33f27db97d06610ba5671ea732f8aae",
+    "ANGLE/include/EGL/eglext_angle.h": "85c92699d39526c9157c939e46e1a49c5016495713182d21ebd78fc1ef5292e4",
+    "ANGLE/include/EGL/eglplatform.h": "b748729767798d85ecf8e1923552879328a76d572327b641ce737549b391cc9c",
+    "ANGLE/include/GLES2/gl2.h": "822ced52b4cb67bb36446c82b3ca049dc1df5b3f7a011c7d77085a05efb9194e",
+    "ANGLE/include/GLES2/gl2ext.h": "53c564985d35b7ca4b744a0a8b81f120aa0c114c319b3b98d3223bf599bc815b",
+    "ANGLE/include/GLES2/gl2ext_angle.h": "fc79db5efea28282b30d7686215bc951140d24a89307dc7ead438c9d0d21de98",
+    "ANGLE/include/GLES2/gl2platform.h": "f5da0747540a50be5f44aad264aae45bdf157a192c40f17487dd9a2f99c71b6c",
+    "ANGLE/include/KHR/khrplatform.h": "e206a6931f98ffe1c5c7ece69c4f94bbe1c9279243f40cbe7782848a0d3fa2de",
+    "ANGLE/lib/libEGL.dll.lib": "c314ffa107a67d1167632c6ad9b1f1e3b729dd260183cddaad75a1089338adee",
+    "ANGLE/lib/libGLESv2.dll.lib": "d2aee509c5f0274f1f41304bd40df227a8711b33b9931c36650d26a5d09b35a2",
+    "libmpv/avcodec-62.dll": "da123495950585277156105502e4fd04a1907f2401d968a8c3320780117fe0ea",
+    "libmpv/avfilter-11.dll": "0d13f019b5941977e85207e5e4e7d66d5b09d8c53a0665e5a6921f841bb2edb6",
+    "libmpv/avformat-62.dll": "7f2008f4061aa07ec648c8d1df893061fef769bd5199f48554b0d76d505bcf86",
+    "libmpv/avutil-60.dll": "ee7d9fc3b4f6db240a967fda3e4d020edb11d8b675fe10c9a440c49e26832426",
+    "libmpv/include/client.h": "3c073236a09cb456c6e80587d5523c8771c32fb22ca014e0f99cc3d43905b75c",
+    "libmpv/include/render.h": "192691941602052f00df0587f126246c48785a1cf21de68d22a92ea1908d1c55",
+    "libmpv/include/render_gl.h": "48662c0ed9872a14dd9e1684105c97f69f94a0414709c254c5d372adc41d2e69",
+    "libmpv/include/stream_cb.h": "188e58b6d14383e15a5dffdc4ecebbdfbf2e412b9c099ff21b571f747a8ce32d",
+    "libmpv/libmpv-2.dll": "4a230607c98e0abfba7e9a67995e3a91012b5599fb9a22605324a28dafbef945",
+    "libmpv/libmpv-notices.txt": "0b864454b6b89fa2356498cbdaa3f4c30441bc58f439b08b17d2356f9a5a4edc",
+    "libmpv/libmpv.dll.a": "3fc23eab7b7b1b85438be4af80fdfd6917b182751f6efca4eb60028091384715",
+    "libmpv/swresample-6.dll": "7dd6bfd7e96f9c9d0f8e0b2a94022f8ababa96e669f9b2427d4f0601abef0cd1",
+    "libmpv/swscale-9.dll": "3671a4475a069209baef4b83bb39c085ee0d853ca966e768ceb6f476e1dcf7fd"
+  },
+  "url": "https://github.com/Arxiflex/photolib/releases/download/libmpv-windows-b3ad106ec963/libmpv-0.41.0-ffmpeg-8.1.3-windows-x64.tar.xz",
+  "toolchain": {
+    "llvm-mingw": "llvm-mingw-20261006-ucrt-ubuntu-22.04-x86_64",
+    "clang": "clang version 23.1.3 (https://github.com/llvm/llvm-project.git 0d261d1ca552c95a8f007e061c787ac7132fbcbc)",
+    "nasm": "NASM version 3.02 compiled on Oct  1 2025",
+    "meson": "1.12.1",
+    "ninja": "1.11.1",
+    "pkg-config": "1.8.1",
+    "tar": "tar (GNU tar) 1.35",
+    "xz": "xz (XZ Utils) 5.4.5",
+    "python": "3.12.3",
+    "host": "Linux x86_64"
+  }
+}

@@ -1,0 +1,4 @@
+# Shell is linted with every ShellCheck check (docs/dev/lint.md) but two:
+# SC1091, a note that a `source`d path is computed at run time, which says nothing about the script;
+# SC2015, as `check && ok || fail` is the tests' idiom, and ok never fails.
+disable=SC1091,SC2015

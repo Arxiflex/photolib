@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package photolib.kernel.v1;
+
+// Pairs the stills and videos of Live Photos among files (design doc 08 §3.4): equal content identifiers first; else a
+// still and a clip of at most 4 s in the same folder whose names agree up to the first dot in any case, captured
+// within 2 s of each other, the closest first, unless both have identifiers. Each file is in one pair at most.
+message PairLivePhotosRequest {
+  repeated LivePhotoPart files = 1;
+}
+
+// A still or a video that may be part of a Live Photo.
+message LivePhotoPart {
+  // Its path in the library, folders separated by "/", e.g. "DCIM/IMG_2001.HEIC".
+  string path = 1;
+  // A video rather than a still.
+  bool video = 2;
+  // ReadMetadataResponse.content_identifier.
+  string content_identifier = 3;
+  // The capture instant in milliseconds since the Unix epoch; absent when unknown.
+  optional int64 captured_ms = 4;
+  // A video's ReadMetadataResponse.duration_ms.
+  uint64 duration_ms = 5;
+}
+
+// The pairs found.
+message PairLivePhotosResponse {
+  // In the order of their stills.
+  repeated LivePhotoPair pairs = 1;
+}
+
+// A still and its video, as indexes into the request's files.
+message LivePhotoPair {
+  uint32 still = 1;
+  uint32 video = 2;
+}

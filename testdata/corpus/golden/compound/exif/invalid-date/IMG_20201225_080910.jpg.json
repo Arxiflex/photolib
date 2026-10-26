@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "path": "compound/exif/invalid-date/IMG_20201225_080910.jpg",
+  "size": 3526,
+  "sha256": "86a37350f3b2103a88e2fb8521efb720c3b4c52e2460ec59635b2239b8984f30",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "exif_invalid_date"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "make": "Canon",
+    "model": "Canon EOS 5D Mark IV"
+  },
+  "filename": {
+    "matches": [
+      "F01",
+      "F02",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2019-13-45T25:61:61",
+        "precision": "s",
+        "event": "capture",
+        "rejected": "invalid"
+      },
+      {
+        "source": "filename:F01",
+        "kind": "local",
+        "value": "2020-12-25T08:09:10",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2020-12-25T08:09:10",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F01",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

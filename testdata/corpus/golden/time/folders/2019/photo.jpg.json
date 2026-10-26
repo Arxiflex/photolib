@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "path": "time/folders/2019/photo.jpg",
+  "size": 3057,
+  "sha256": "38c0030c170eb70682582b1166d2e569cfd89a101ae2a2149106776e20364693",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "path_date"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "path:y",
+        "kind": "local",
+        "value": "2019",
+        "precision": "year",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "year",
+      "bound": "exact",
+      "source": "path:y",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

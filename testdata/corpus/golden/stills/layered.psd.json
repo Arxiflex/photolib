@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "path": "stills/layered.psd",
+  "size": 57954,
+  "sha256": "b91b853bc581a657b804a158582cec38506018dde9442265988a4f6198e81703",
+  "origin": "synthetic",
+  "format": "psd",
+  "quirks": [],
+  "media": {
+    "container": "psd",
+    "mime": "image/vnd.adobe.photoshop",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

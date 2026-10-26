@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "path": "stills/large.psb",
+  "size": 57644,
+  "sha256": "6b03d1d6b951d991c74bea49328a593685fdbbfc6596516c88e02bc78e20db43",
+  "origin": "synthetic",
+  "format": "psb",
+  "quirks": [],
+  "media": {
+    "container": "psd",
+    "mime": "image/vnd.adobe.photoshop",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

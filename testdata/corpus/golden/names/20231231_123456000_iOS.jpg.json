@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "path": "names/20231231_123456000_iOS.jpg",
+  "size": 82509,
+  "sha256": "9d3049e8274ac6be18556274e7c74f774f8bba9e7caaaa401d5e1f72fe0f100c",
+  "origin": "synthetic",
+  "notes": "OneDrive names are reportedly UTC: the EXIF zone (+01:00) agrees",
+  "format": "jpeg",
+  "vendor": "apple",
+  "quirks": [],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 4032,
+    "height": 3024,
+    "make": "Apple",
+    "model": "iPhone 13 Pro"
+  },
+  "filename": {
+    "matches": [
+      "F48"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2023-12-31T13:34:56",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+01:00"
+      },
+      {
+        "source": "filename:F48",
+        "kind": "utc",
+        "value": "2023-12-31T12:34:56.000Z",
+        "precision": "ms",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12-31T13:34:56",
+      "utc": "2023-12-31T12:34:56Z",
+      "offset": "+01:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

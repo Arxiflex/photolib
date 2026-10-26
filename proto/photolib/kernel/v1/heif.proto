@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package photolib.kernel.v1;
+
+import "photolib/kernel/v1/metadata.proto";
+
+// Where a HEIF still keeps the coded images a platform decoder shows (ISO/IEC 23008-12), so that a host with a video
+// decoder, such as the browser's WebCodecs, can decode them without a HEIF library. Pure parsing: no pixel is decoded.
+message ReadHeifRequest {
+  // As ReadMetadataRequest.ranges: usually the first 64 KiB, which holds the meta box.
+  repeated FileRange ranges = 1;
+  // The file's length in bytes, 0 when unknown.
+  uint64 size = 2;
+}
+
+// What a HEIF still's meta box says of its coded images.
+message ReadHeifResponse {
+  // Ranges of the file to send and call again with, as ReadMetadataResponse.missing.
+  repeated ByteSpan missing = 1;
+  HeifStatus status = 2;
+  // The primary item's type when the status is HEIF_STATUS_UNSUPPORTED_CODEC, e.g. "jpeg" or "iovl".
+  string item_type = 3;
+  // The primary picture, when the status is HEIF_STATUS_OK.
+  HeifPicture picture = 4;
+  // The picture of the thumbnail item (thmb), when it is coded in a codec of its own kind.
+  optional HeifPicture thumbnail = 5;
+}
+
+// Whether a file's coded images were found, and if not why.
+enum HeifStatus {
+  HEIF_STATUS_UNSPECIFIED = 0;
+  HEIF_STATUS_OK = 1;
+  // The bytes are no HEIF file, or the meta box is not (yet) all there: see missing.
+  HEIF_STATUS_NOT_HEIF = 2;
+  // The primary item is not coded as HEVC, AV1 or AVC (nor a grid or tmap of such).
+  HEIF_STATUS_UNSUPPORTED_CODEC = 3;
+  // An image item has no hvcC, av1C or avcC, so a decoder cannot be configured.
+  HEIF_STATUS_NO_CONFIG = 4;
+}
+
+// The codec of a coded image, by its HEIF item type.
+enum HeifCodec {
+  HEIF_CODEC_UNSPECIFIED = 0;
+  HEIF_CODEC_HEVC = 1;
+  HEIF_CODEC_AV1 = 2;
+  HEIF_CODEC_AVC = 3;
+}
+
+// A picture: one coded image, or a grid of them, and the transforms that make it the one shown, applied in the order
+// clap, irot, imir.
+message HeifPicture {
+  // The size before the transforms: the grid's output, or the image's ispe.
+  uint32 width = 1;
+  uint32 height = 2;
+  // The coded image, unless the picture is a grid.
+  optional HeifImage image = 3;
+  // A grid's tiles, row by row.
+  uint32 rows = 4;
+  uint32 columns = 5;
+  repeated HeifImage tiles = 6;
+  optional HeifClap clap = 7;
+  // irot: quarter turns anticlockwise.
+  uint32 rotation = 8;
+  // imir: 0 mirrors top to bottom, 1 left to right.
+  optional uint32 mirror = 9;
+}
+
+// One coded image, a keyframe.
+message HeifImage {
+  HeifCodec codec = 1;
+  // The WebCodecs codec string, e.g. "hvc1.1.6.L93.B0", "av01.0.04M.08" or "avc1.640028".
+  string codec_string = 2;
+  // The payload of the hvcC, av1C or avcC box: WebCodecs' description.
+  bytes config = 3;
+  // The image's own size (ispe).
+  uint32 width = 4;
+  uint32 height = 5;
+  // Where its bytes are in the file (an item may have several extents; concatenate them).
+  repeated ByteSpan spans = 6;
+}
+
+// Clean aperture (clap): the displayed size and the centre's offset from the image's centre, each a fraction.
+message HeifClap {
+  uint32 width_num = 1;
+  uint32 width_den = 2;
+  uint32 height_num = 3;
+  uint32 height_den = 4;
+  int32 x_num = 5;
+  uint32 x_den = 6;
+  int32 y_num = 7;
+  uint32 y_den = 8;
+}

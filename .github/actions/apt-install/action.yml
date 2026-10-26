@@ -1,0 +1,57 @@
+name: Install apt packages
+description: >-
+  Installs only the packages that are missing, the way the lane action does (a mirror that does not stall, a download
+  that is retried and kept in a cache, then the install from disk), for jobs that need a handful of -dev packages.
+inputs:
+  packages:
+    description: Space separated package names
+    required: true
+runs:
+  using: composite
+  steps:
+    - id: missing
+      shell: bash
+      env:
+        PACKAGES: ${{ inputs.packages }}
+      run: |
+        missing=()
+        for pkg in $PACKAGES; do dpkg -s "$pkg" > /dev/null 2>&1 || missing+=("$pkg"); done
+        echo "list=${missing[*]}" >> "$GITHUB_OUTPUT"
+    # Each run saves under its own key and restores by prefix: it starts from the newest save
+    - uses: actions/cache/restore@v4
+      if: steps.missing.outputs.list != ''
+      with:
+        path: ~/apt-debs
+        key: apt-min-${{ runner.os }}-${{ github.job }}-${{ github.run_id }}
+        restore-keys: apt-min-${{ runner.os }}-${{ github.job }}-
+    - id: install
+      if: steps.missing.outputs.list != ''
+      shell: bash
+      env:
+        DEBIAN_FRONTEND: noninteractive
+        MISSING: ${{ steps.missing.outputs.list }}
+      run: |
+        mkdir -p "$HOME/apt-debs"
+        sudo systemctl stop unattended-upgrades 2>/dev/null || true
+        sudo cp -n "$HOME"/apt-debs/*.deb /var/cache/apt/archives/ 2>/dev/null || true
+        printf 'http://archive.ubuntu.com/ubuntu/\tpriority:1\n' | sudo tee /etc/apt/apt-mirrors.txt > /dev/null
+        sudo sed -i 's|azure.archive.ubuntu.com|archive.ubuntu.com|g' /etc/apt/sources.list /etc/apt/sources.list.d/* 2>/dev/null || true
+        opts=(-y --no-install-recommends -o Acquire::Retries=5 -o Acquire::http::Timeout=20 -o DPkg::Lock::Timeout=120)
+        sudo timeout 3m apt-get update "${opts[@]}" || true
+        for attempt in 1 2 3; do
+          if sudo timeout 3m apt-get install --download-only "${opts[@]}" $MISSING; then
+            sudo cp -n /var/cache/apt/archives/*.deb "$HOME/apt-debs/" 2>/dev/null || true
+            sudo chown -R "$(id -u):$(id -g)" "$HOME/apt-debs" 2>/dev/null || true
+            sudo dpkg --configure -a || true
+            if sudo timeout 10m apt-get install "${opts[@]}" $MISSING; then exit 0; fi
+          fi
+          echo "apt attempt $attempt failed or stalled"
+          sudo dpkg --configure -a || true
+        done
+        echo "::error title=apt install failed::packages: $MISSING"
+        exit 1
+    - uses: actions/cache/save@v4
+      if: steps.missing.outputs.list != '' && steps.install.outcome == 'success'
+      with:
+        path: ~/apt-debs
+        key: apt-min-${{ runner.os }}-${{ github.job }}-${{ github.run_id }}

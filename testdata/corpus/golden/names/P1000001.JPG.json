@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "path": "names/P1000001.JPG",
+  "size": 2953,
+  "sha256": "57c56e046f7fb2d51b0be1d230ddf2a115047b9206d72d2c7374409494ec446c",
+  "origin": "synthetic",
+  "notes": "Panasonic counters look like Olympus month and day names: rule F44 matches with day 00",
+  "format": "jpeg",
+  "vendor": "panasonic",
+  "quirks": [
+    "counter_not_time"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F44"
+    ]
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

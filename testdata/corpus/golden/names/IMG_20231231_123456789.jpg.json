@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "path": "names/IMG_20231231_123456789.jpg",
+  "size": 3330,
+  "sha256": "6801188e34bc1f49e04beda747be80db44d90b8ee1a0e89f59c361a1839795f6",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "motorola",
+  "quirks": [],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F02",
+      "F08"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F08",
+        "kind": "local",
+        "value": "2023-12-31T12:34:56.789",
+        "precision": "ms",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12-31T12:34:56.789",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "ms",
+      "bound": "exact",
+      "source": "filename:F08",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

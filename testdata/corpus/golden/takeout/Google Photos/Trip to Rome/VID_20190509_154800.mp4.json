@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "path": "takeout/Google Photos/Trip to Rome/VID_20190509_154800.mp4",
+  "size": 747,
+  "sha256": "63376e3e221b8f4d7ea68101670443f5fff42ab7f5105e7f076db387bca1d86e",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mp4",
+  "quirks": [
+    "mvhd_zero",
+    "takeout_geo_zero",
+    "takeout_legacy_sidecar"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "h264"
+  },
+  "sidecars": [
+    {
+      "path": "takeout/Google Photos/Trip to Rome/VID_20190509_154800.mp4.json",
+      "kind": "takeout_json",
+      "sha256": "2dfb44cbac604db3b98cd5b36973874e4c47a4032bbe59a53864fc4e2c62758b"
+    }
+  ],
+  "filename": {
+    "matches": [
+      "F01",
+      "F50",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "takeout_photoTakenTime",
+        "kind": "utc",
+        "value": "2019-05-09T13:48:00Z",
+        "precision": "s",
+        "event": "capture"
+      },
+      {
+        "source": "filename:F01",
+        "kind": "local",
+        "value": "2019-05-09T15:48:00",
+        "precision": "s",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": "2019-05-09T15:48:00",
+      "utc": "2019-05-09T13:48:00Z",
+      "offset": "+02:00",
+      "tz_source": "paired_utc_delta",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F01",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

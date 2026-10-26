@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "path": "names/PXL_20230330_184138390.MOTION-01.COVER.jpg",
+  "size": 3697,
+  "sha256": "d27504c41e33e5dde1fea84adb0a66c70e680012a2aa95655b9ba8fce5ef4d8e",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "google",
+  "quirks": [
+    "pixel_utc_name"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F03"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F03",
+        "kind": "utc",
+        "value": "2023-03-30T18:41:38.390Z",
+        "precision": "ms",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": null,
+      "utc": "2023-03-30T18:41:38.390Z",
+      "offset": null,
+      "tz_source": "device_default",
+      "precision": "ms",
+      "bound": "exact",
+      "source": "filename:F03",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

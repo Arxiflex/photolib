@@ -1,0 +1,75 @@
+# Example alerts for photolibd (docs/admin/monitoring.md); alerts.test.yml makes each of them fire.
+groups:
+  - name: photolib
+    rules:
+      - alert: PhotolibDown
+        expr: up{job="photolib"} == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Prometheus cannot scrape photolibd at {{ $labels.instance }}"
+      # Meanwhile up stays 1, the job series vanish and the watermark lag reads NaN.
+      - alert: PhotolibDatabaseUnreachable
+        expr: photolib_database_up == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "photolibd at {{ $labels.instance }} cannot read its database"
+      - alert: PhotolibBackupTooOld
+        expr: time() - max(photolib_backup_last_timestamp_seconds) > 48 * 3600
+        for: 15m
+        labels:
+          severity: warning
+        annotations:
+          summary: "The newest database dump is more than 48 hours old"
+      - alert: PhotolibRestoreDrillFailing
+        expr: time() - max(photolib_restore_drill_last_success_timestamp_seconds) > 48 * 3600
+        for: 15m
+        labels:
+          severity: warning
+        annotations:
+          summary: "No restore drill of a database backup has passed for more than 48 hours"
+      # photolibd reports 0 dead jobs for every type with open jobs, so the first dead job of a type is growth too.
+      - alert: PhotolibJobsDeadLettered
+        expr: max by (type) (delta(photolib_jobs{status="dead"}[1h])) > 0
+        labels:
+          severity: warning
+        annotations:
+          summary: "More {{ $labels.type }} jobs failed five times than an hour ago; retry or cancel them"
+      - alert: PhotolibDiskAlmostFull
+        expr: 1 - photolib_storage_free_bytes / photolib_storage_size_bytes > 0.9
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "The filesystem of {{ $labels.dir }} is more than 90% full"
+      - alert: PhotolibSyncWatermarkLag
+        expr: max(photolib_sync_watermark_lag_seconds) > 300
+        labels:
+          severity: warning
+        annotations:
+          summary: "A transaction has held back sync for more than 5 minutes"
+      # Bytes that no longer match their hash, objects gone, truncated or replaced, and objects no file names (ADR-0234).
+      - alert: PhotolibIntegrityFindings
+        expr: sum(photolib_integrity_findings) > 0
+        labels:
+          severity: critical
+        annotations:
+          summary: "Open integrity findings: {{ $value }}; see Overview in the admin console"
+      # photolibd marks a device silent once it has not reported its backup for the admin console's backup_silent_hours.
+      - alert: PhotolibDeviceBackupSilent
+        expr: photolib_device_backup_silent == 1
+        labels:
+          severity: warning
+        annotations:
+          summary: "{{ $labels.name }} of {{ $labels.user }} has not reported a backup for longer than backup_silent_hours; last seen {{ with printf `photolib_device_last_seen_timestamp_seconds{device='%s'}` $labels.device | query }}{{ . | first | value | humanizeTimestamp }}{{ end }}, {{ with printf `photolib_device_backup_pending{device='%s'}` $labels.device | query }}{{ . | first | value }}{{ end }} items to back up"
+      # An ML node's startup self-test turned an accelerator off for a model: it gave other outputs than the CPU's
+      # golden ones, or failed to start (ADR-0245). The CPU or the next backend runs the model meanwhile.
+      - alert: PhotolibMlBackendDisabled
+        expr: photolib_ml_backend_disabled == 1
+        labels:
+          severity: warning
+        annotations:
+          summary: "{{ $labels.node }} disabled {{ $labels.backend }} for {{ $labels.file }}: see the ml check in the admin console's diagnostics"

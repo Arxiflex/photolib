@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "path": "compound/depth/samsung-live-focus.jpg",
+  "size": 77214,
+  "sha256": "fc9dd54dc1197dbe9590013390ff64ff7902580c6976ea922c1a5978d309e3aa",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "samsung",
+  "quirks": [
+    "depth_samsung",
+    "trailing_data"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 4000,
+    "height": 3000,
+    "make": "samsung",
+    "model": "SM-N975F"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2020-02-02T12:00:00",
+        "precision": "s",
+        "event": "capture",
+        "offset": "+01:00"
+      }
+    ],
+    "resolved": {
+      "local": "2020-02-02T12:00:00",
+      "utc": "2020-02-02T11:00:00Z",
+      "offset": "+01:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

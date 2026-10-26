@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "path": "names/Bildschirmfoto 2019-05-21 um 10.45.52.png",
+  "size": 3396,
+  "sha256": "ffaef1d312b94663dd440f44ef23916bae90ece8ea8fac788aab796a071b4601",
+  "origin": "synthetic",
+  "format": "png",
+  "quirks": [
+    "localized_name",
+    "screenshot"
+  ],
+  "media": {
+    "container": "png",
+    "mime": "image/png",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": [
+      "F54"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F54",
+        "kind": "local",
+        "value": "2019-05-21",
+        "precision": "day",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-05-21",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "day",
+      "bound": "exact",
+      "source": "filename:F54",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

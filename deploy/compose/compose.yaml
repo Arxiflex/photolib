@@ -1,0 +1,59 @@
+# Photolib all-in-one: photolibd, PostgreSQL and Caddy, which gets the TLS certificate (docs/admin/install.md). Every
+# setting is a line of .env, which setup.sh writes from .env.example: an upgrade replaces this file, never edits it.
+name: photolib
+
+x-hardened: &hardened
+  user: ${PUID:?run setup.sh}:${PGID:?run setup.sh}
+  read_only: true
+  security_opt: [no-new-privileges:true]
+  networks: [photolib]
+  restart: unless-stopped
+
+services:
+  photolibd:
+    <<: *hardened
+    image: ghcr.io/arxiflex/photolib:${PHOTOLIB_VERSION:-stable}
+    environment:
+      PHOTOLIB_BASE_PATH: ${PHOTOLIB_BASE_PATH:-/}
+      PHOTOLIB_DATABASE__URL: postgres://photolib:${POSTGRES_PASSWORD:?run setup.sh}@postgres/photolib
+      PHOTOLIB_TRUSTED_PROXIES: ${PHOTOLIB_SUBNET:?run setup.sh}
+      PHOTOLIB_PUBLIC_URL: https://${PHOTOLIB_DOMAIN:?run setup.sh}
+      PHOTOLIB_OPAQUE_KEY_FILE: /keys/opaque.key
+    volumes:
+      - ${PHOTOLIB_DATA:-./data}:/data
+      - ./keys:/keys
+    tmpfs: [/tmp]
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    <<: *hardened
+    image: postgres:18.6@sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336
+    environment:
+      POSTGRES_USER: photolib
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?run setup.sh}
+    volumes:
+      - ./postgres:/var/lib/postgresql
+    tmpfs: [/tmp, /var/run/postgresql]
+    healthcheck:
+      test: [CMD, pg_isready, -U, photolib]
+      interval: 5s
+
+  caddy:
+    <<: *hardened
+    image: caddy:2.11.7@sha256:685ae3d7c34d9b5f8caeddc5d14051db7bbd88ff1f5a2fa0c16bd8ca328fb7af
+    environment:
+      PHOTOLIB_DOMAIN: ${PHOTOLIB_DOMAIN:?run setup.sh}
+      PHOTOLIB_BASE_PATH: ${PHOTOLIB_BASE_PATH:-}
+    ports: ["80:80", "443:443", "443:443/udp"]
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./caddy/data:/data
+      - ./caddy/config:/config
+
+networks:
+  photolib:
+    ipam:
+      config:
+        - subnet: ${PHOTOLIB_SUBNET:?run setup.sh}

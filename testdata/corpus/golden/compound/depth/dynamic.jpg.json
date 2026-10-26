@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "path": "compound/depth/dynamic.jpg",
+  "size": 82156,
+  "sha256": "d4e475053ebb9a07d7ecf8e5c583667e3d75f8399737aef3a6351f533ae9b9e0",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "google",
+  "quirks": [
+    "depth_dynamic",
+    "trailing_data"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 4080,
+    "height": 3072,
+    "make": "Google",
+    "model": "Pixel 6 Pro"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2021-11-20T17:00:00",
+        "precision": "s",
+        "event": "capture",
+        "offset": "-05:00"
+      }
+    ],
+    "resolved": {
+      "local": "2021-11-20T17:00:00",
+      "utc": "2021-11-20T22:00:00Z",
+      "offset": "-05:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "path": "compound/sphere/cubemap.mp4",
+  "size": 839,
+  "sha256": "54b59ba1aac24ffeb6ac64f0ae81680726a51df53099f159eec1f51552b23d51",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mp4",
+  "quirks": [
+    "cubemap"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 3840,
+    "height": 1920,
+    "duration_ms": 3000,
+    "codec": "h264",
+    "make": "RICOH",
+    "model": "THETA V",
+    "pano": {
+      "projection": "cubemap",
+      "cropped": false
+    }
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "qt_mvhd_camera",
+        "kind": "local",
+        "value": "2019-08-10T14:10:00",
+        "precision": "s",
+        "event": "record_start"
+      }
+    ],
+    "resolved": {
+      "local": "2019-08-10T14:10:00",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "qt_mvhd_camera",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

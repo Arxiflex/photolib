@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "path": "names/image_1703999999999.png",
+  "size": 2333,
+  "sha256": "dffb6ea79a56e9b0ef67b4cb36187283fb5f1e8327b248bd37e894c272a9d5de",
+  "origin": "synthetic",
+  "format": "png",
+  "quirks": [
+    "epoch_name"
+  ],
+  "media": {
+    "container": "png",
+    "mime": "image/png",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": [
+      "F55"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F55",
+        "kind": "utc",
+        "value": "2023-12-31T05:19:59.999Z",
+        "precision": "ms",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": null,
+      "utc": "2023-12-31T05:19:59.999Z",
+      "offset": null,
+      "tz_source": "device_default",
+      "precision": "ms",
+      "bound": "exact",
+      "source": "filename:F55",
+      "confidence_band": "low",
+      "flags": []
+    }
+  }
+}

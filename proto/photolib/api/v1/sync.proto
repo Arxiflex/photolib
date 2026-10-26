@@ -1,0 +1,105 @@
+syntax = "proto3";
+
+package photolib.api.v1;
+
+import "photolib/api/v1/admin.proto";
+import "photolib/api/v1/error.proto";
+import "photolib/sync/v1/mutation.proto";
+import "photolib/sync/v1/sync.proto";
+
+// Replicates what an account may see to its devices, and tells a backup what is already there (design 05).
+service SyncService {
+  // Streams the changes of each named stream after its cursor, until every stream has caught up.
+  rpc Sync(SyncRequest) returns (stream SyncResponse);
+  // Counts the assets the timeline shows, per library and capture day, for placeholders before the first sync.
+  rpc GetTimelineSummary(GetTimelineSummaryRequest) returns (GetTimelineSummaryResponse);
+  // Returns the asset of the caller's own libraries, external ones included, that already holds each file, so that a
+  // backup links to it instead of uploading the file again. Another account's files are never found (design 07 §7).
+  rpc CheckHashes(CheckHashesRequest) returns (CheckHashesResponse);
+  // Applies the mutations of a device's outbox in order, each at most once, and answers how the rows they touched
+  // stand now (design 05 §5).
+  rpc PushMutations(PushMutationsRequest) returns (PushMutationsResponse);
+  // Deletes the caller's own trashed assets, files and objects included, through the intent log (design 07 §6). More
+  // than 1,000 of them or 5 % of the caller's assets wait for the token of their own count (ADR-0257).
+  rpc EmptyTrash(EmptyTrashRequest) returns (EmptyTrashResponse);
+}
+
+// Empties the trash.
+message EmptyTrashRequest {
+  // The token of the confirmation a first call answered; empty on the first.
+  string confirm_token = 1;
+}
+
+// Whether the trash is being emptied.
+message EmptyTrashResponse {
+  // The count to show the user and the token that confirms it, when emptying waits for that; nothing was deleted.
+  Confirmation held = 1;
+  // The assets that were in the trash when the job was queued, which deletes them and their files in the background;
+  // the devices learn of each deletion through sync. Zero when held or when the trash was empty.
+  int64 queued = 2;
+}
+
+// The streams to sync, each with its cursor.
+message SyncRequest {
+  repeated photolib.sync.v1.StreamCursor streams = 1;
+}
+
+// One batch of one stream.
+message SyncResponse {
+  photolib.sync.v1.SyncBatch batch = 1;
+}
+
+// Asks for the timeline summary of the caller's standard libraries.
+message GetTimelineSummaryRequest {}
+
+// The timeline's days, by library and newest first; assets without a capture time last.
+message GetTimelineSummaryResponse {
+  repeated TimelineDay days = 1;
+}
+
+// How many assets of a library the timeline shows on one local capture day.
+message TimelineDay {
+  string library_id = 1;
+  // The local capture date, e.g. "2025-07-14"; empty for assets without a capture time.
+  string date = 2;
+  uint32 count = 3;
+}
+
+// The files to look for.
+message CheckHashesRequest {
+  // The BLAKE3 hash of each file, 32 bytes; at most 1000.
+  repeated bytes hashes = 1;
+}
+
+// Where each file already is.
+message CheckHashesResponse {
+  // In the order of the hashes: the asset whose original, RAW or JPEG partner or Live Photo video has the hash, is
+  // present and not in the trash, the earliest when several have it; empty when none has.
+  repeated string asset_ids = 1;
+}
+
+// Mutations from a device's outbox.
+message PushMutationsRequest {
+  // In the order the device recorded them; at most 500.
+  repeated photolib.sync.v1.Mutation mutations = 1;
+}
+
+// What became of the mutations, and of what they touched.
+message PushMutationsResponse {
+  // One per mutation, in their order.
+  repeated MutationResult results = 1;
+  // The rows the mutations touched as they are now, as sync sends them; a row that is gone or that the caller cannot
+  // see is a deletion. The device applies them as it applies a sync batch, then its mutations still unsent.
+  repeated photolib.sync.v1.Rows rows = 2;
+  // The server's clock: the device's catches up with it, so that its next edits are later than those it has seen.
+  photolib.sync.v1.Hlc clock = 3;
+}
+
+// What became of one mutation: applied, which includes losing to a later edit of the same field, or rejected for good.
+message MutationResult {
+  string mutation_id = 1;
+  // Why the server refused the mutation: "mutation.not_found" (what it changes is gone or not the caller's to see),
+  // "mutation.forbidden" (the caller may see but not change it) or "mutation.invalid". The device rolls it back and
+  // tells its user. Absent when it was applied.
+  ErrorDetail rejected = 2;
+}

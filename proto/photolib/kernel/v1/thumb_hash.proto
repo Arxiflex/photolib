@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package photolib.kernel.v1;
+
+// Encodes the ThumbHash of a small image (https://evanw.github.io/thumbhash/): the one encoder of the server and the
+// device indexers, held to testdata/thumbhash.json; clients decode in their own code (ADR-0070).
+message EncodeThumbHashRequest {
+  uint32 width = 1;
+  uint32 height = 2;
+  // Unpremultiplied 8-bit RGBA, width × height pixels, at most 100 a side.
+  bytes rgba = 3;
+}
+
+// The hash, about 25 bytes.
+message EncodeThumbHashResponse {
+  bytes hash = 1;
+}

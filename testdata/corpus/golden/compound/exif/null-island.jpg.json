@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "path": "compound/exif/null-island.jpg",
+  "size": 3268,
+  "sha256": "d57419dd59f9d4ea8a13bec4421fc0b6fed45d3d1e688dcc343b41d9ab160431",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "gps_null_island"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "make": "Canon",
+    "model": "Canon EOS 5D Mark IV"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2020-02-29T18:03:11",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2020-02-29T18:03:11",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

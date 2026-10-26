@@ -1,0 +1,444 @@
+syntax = "proto3";
+
+package photolib.api.v1;
+
+import "google/protobuf/timestamp.proto";
+import "photolib/api/v1/keys.proto";
+
+// Signs devices in with a password the server never learns: OPAQUE (RFC 9807) with the configuration of
+// docs/dev/crypto-v1.md#opaque. A wrong password, an unknown handle or email and an account that cannot sign in look the same,
+// and a handle, a known device or an address with too many attempts is locked for a growing time (`login.throttled`,
+// `retry_after_seconds`).
+// An account with a passkey or TOTP finishes a password sign-in with one of them or a recovery code; a passkey that
+// verifies its user signs in alone. WebAuthn options and credentials travel in WebAuthn's own JSON serialisation
+// (Level 3), which browsers and Android take and give as they are; their ceremonies run on photolibd's `public_url`.
+// While the admin console's `require_two_factor` is on, a session of an account without a second factor is refused
+// everything but this service (`second_factor.required`), where it enrols one.
+// DeletePasskey, DeleteTotp, CreateRecoveryCodes, replacing a TOTP secret, adding a passkey and setting a password with a
+// session need the calling session to have proved its person within the last five minutes (`permission_denied`
+// `step_up.required`): a sign-in with a password, a passkey or a second factor counts, and so does StartStepUp and
+// FinishStepUp. A first TOTP secret, and a passkey or password for an account with nothing to prove itself with yet,
+// need no proof.
+// A session token is sent as `Authorization: Bearer <token>`; the server keeps only its hash.
+service AuthService {
+  // First step of setting the password: evaluates the client's OPAQUE registration request. Needs a session of the
+  // account, or a password setup token.
+  rpc StartPasswordSetup(StartPasswordSetupRequest) returns (StartPasswordSetupResponse);
+  // Second step: stores the client's registration record and Argon2id parameters in place of the old password. Uses
+  // up the password setup token.
+  rpc FinishPasswordSetup(FinishPasswordSetupRequest) returns (FinishPasswordSetupResponse);
+  // First step of signing in: answers the client's KE1 with KE2 and the account's Argon2id parameters.
+  rpc StartLogin(StartLoginRequest) returns (StartLoginResponse);
+  // Second step: checks the client's KE3 and opens a session on the device.
+  rpc FinishLogin(FinishLoginRequest) returns (FinishLoginResponse);
+  // Gives the calling session a new token that lasts another 90 days. The old token keeps working until the new one is
+  // first used, or for 24 hours, so that a lost response signs no device out.
+  rpc RotateSession(RotateSessionRequest) returns (RotateSessionResponse);
+  // The devices signed in to the caller's account, most recently seen first.
+  rpc ListDevices(ListDevicesRequest) returns (ListDevicesResponse);
+  // Signs a device of the caller's account out: its sessions end before the next request. Revoking the calling device
+  // signs it out and keeps it known, so that its device secret still counts its sign-in attempts apart.
+  rpc RevokeDevice(RevokeDeviceRequest) returns (RevokeDeviceResponse);
+  // Records the calling device's backup: how many items it still has to back up. The admin console and `/metrics`
+  // show a device that has not reported for the settings' `backup_silent_hours` as silent (ING-26).
+  rpc ReportBackup(ReportBackupRequest) returns (ReportBackupResponse);
+  // First step of signing in with an OpenID Connect provider (GetServerInfoResponse.oidc_providers): the URL the
+  // client opens in the system browser, an authorization code request with PKCE (RFC 7636) whose verifier only the
+  // client knows. With `link`, the calling session's account gets this identity instead.
+  rpc StartOidc(StartOidcRequest) returns (StartOidcResponse);
+  // Second step: the provider's answer at the redirect URI. Signs the person in on the device, or links the identity.
+  // A failed check fails this sign-in only (`oidc.failed`, `oidc.claim_invalid` with the `claim`, `oidc.not_allowed`
+  // when no account may sign in with it, `oidc.unavailable` when the provider does not answer).
+  rpc CompleteOidc(CompleteOidcRequest) returns (CompleteOidcResponse);
+  // Last step of a password sign-in that FinishLogin answered with a second factor challenge: a TOTP code, a
+  // recovery code or a passkey opens the session. Five wrong answers end the sign-in.
+  rpc FinishSecondFactor(FinishSecondFactorRequest) returns (FinishSecondFactorResponse);
+  // First step of signing in with a passkey alone: request options for any passkey of this server that verifies its
+  // user. `passkey.unavailable` without `public_url`.
+  rpc StartPasskeyLogin(StartPasskeyLoginRequest) returns (StartPasskeyLoginResponse);
+  // Second step: checks the passkey's assertion and opens a session on the device.
+  rpc FinishPasskeyLogin(FinishPasskeyLoginRequest) returns (FinishPasskeyLoginResponse);
+  // First step of adding a passkey to the caller's account: creation options. `passkey.unavailable` without
+  // `public_url`.
+  rpc StartPasskeySetup(StartPasskeySetupRequest) returns (StartPasskeySetupResponse);
+  // Second step: stores the new passkey.
+  rpc FinishPasskeySetup(FinishPasskeySetupRequest) returns (FinishPasskeySetupResponse);
+  // First step of turning TOTP on for the caller's account: a new secret for an authenticator app.
+  rpc StartTotpSetup(StartTotpSetupRequest) returns (StartTotpSetupResponse);
+  // Second step: a code of the new secret puts it in place of any earlier one.
+  rpc FinishTotpSetup(FinishTotpSetupRequest) returns (FinishTotpSetupResponse);
+  // The caller's passkeys, whether TOTP is on and how many recovery codes are left.
+  rpc ListSecondFactors(ListSecondFactorsRequest) returns (ListSecondFactorsResponse);
+  // Removes one of the caller's passkeys.
+  rpc DeletePasskey(DeletePasskeyRequest) returns (DeletePasskeyResponse);
+  // Turns TOTP off for the caller's account.
+  rpc DeleteTotp(DeleteTotpRequest) returns (DeleteTotpResponse);
+  // Replaces the caller's recovery codes with ten new ones.
+  rpc CreateRecoveryCodes(CreateRecoveryCodesRequest) returns (CreateRecoveryCodesResponse);
+  // First step of proving again, on the calling session, that its person is there: answers KE1 like StartLogin to
+  // prove the password, and names the account's second factors with a passkey challenge. Counts towards the lockout of
+  // the account's handle.
+  rpc StartStepUp(StartStepUpRequest) returns (StartStepUpResponse);
+  // Second step: KE3, a TOTP code, a recovery code or a passkey that verifies its user records the proof on the
+  // session, for five minutes. A wrong answer is `login.failed` and ends the step-up.
+  rpc FinishStepUp(FinishStepUpRequest) returns (FinishStepUpResponse);
+}
+
+// A way to prove a sign-in besides the password.
+enum SecondFactor {
+  SECOND_FACTOR_UNSPECIFIED = 0;
+  // A six-digit code from an authenticator app (RFC 6238).
+  SECOND_FACTOR_TOTP = 1;
+  SECOND_FACTOR_PASSKEY = 2;
+  // One of the codes the account was given when it enrolled; each works once.
+  SECOND_FACTOR_RECOVERY_CODE = 3;
+}
+
+// A passkey of an account.
+message Passkey {
+  string passkey_id = 1;
+  // What the person calls it, e.g. "Ann's iPhone": 1 to 100 printable characters.
+  string name = 2;
+  google.protobuf.Timestamp created_at = 3;
+  google.protobuf.Timestamp last_used_at = 4;
+}
+
+// What a password sign-in still needs from an account with a second factor.
+message SecondFactorChallenge {
+  // Names this sign-in in FinishSecondFactor, for five minutes.
+  string login_id = 1;
+  // The factors the account can answer with.
+  repeated SecondFactor factors = 2;
+  // PublicKeyCredentialRequestOptionsJSON for one of the account's passkeys; empty without one.
+  string passkey_options_json = 3;
+}
+
+// A device signed in to an account: an app install, a browser or the CLI.
+message Device {
+  // Made by the server; a client that signs in again sends the id it was given to stay the same device.
+  string device_id = 1;
+  // What the person calls it, e.g. "Ann's Pixel": 1 to 100 printable characters.
+  string name = 2;
+  // e.g. "android", "ios", "web" or "linux": 1 to 32 printable characters.
+  string platform = 3;
+  string app_version = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp last_seen_at = 6;
+  // Whether this is the device that asks.
+  bool current = 7;
+}
+
+// The bearer credential of a device.
+message Session {
+  string token = 1;
+  // Unless rotated before then.
+  google.protobuf.Timestamp expires_at = 2;
+  string device_id = 3;
+  string user_id = 4;
+  // New at each sign-in, never from RotateSession: proves this device at its next StartLogin. Keep it across sign-outs.
+  string device_secret = 5;
+}
+
+// The client's OPAQUE RegistrationRequest.
+message StartPasswordSetupRequest {
+  bytes registration_request = 1;
+  // From CreateFirstAdmin or UserService.CreatePasswordSetup; empty to use the caller's session.
+  string password_setup_token = 2;
+}
+
+// The server's OPAQUE RegistrationResponse.
+message StartPasswordSetupResponse {
+  bytes registration_response = 1;
+  // The credential identifier of this password, new for each; FinishPasswordSetup sends it back.
+  bytes registration_id = 2;
+  // With a setup token, the account has private libraries or private-mode keys, which a new password does not reopen:
+  // the client says what does (design 06 §6) before it finishes.
+  bool private_libraries = 3;
+}
+
+// The client's OPAQUE registration record and Argon2id parameters.
+message FinishPasswordSetupRequest {
+  bytes registration_record = 1;
+  // The 26-byte parameter set of docs/dev/crypto-v1.md#argon2id-parameters, within the account policy.
+  bytes ksf_params = 2;
+  string password_setup_token = 3;
+  // From StartPasswordSetupResponse.
+  bytes registration_id = 4;
+  // With the caller's session, for an account with private-mode keys: the AMK wrapped under the new password, which
+  // replaces the password path. Without it the password path goes, as the old password no longer opens it.
+  UnlockPath password_path = 5;
+}
+
+// The password is set.
+message FinishPasswordSetupResponse {}
+
+// The account and the client's OPAQUE KE1.
+message StartLoginRequest {
+  // The account's handle or email.
+  string handle = 1;
+  bytes ke1 = 2;
+  // A device that signed in before: its id and the secret that sign-in gave it (Session.device_secret). Its attempts
+  // count apart from everyone else's, so that guessing at the account locks out only the guesser.
+  string device_id = 3;
+  string device_secret = 4;
+}
+
+// The server's OPAQUE KE2.
+message StartLoginResponse {
+  // Names this attempt in FinishLogin, for two minutes.
+  string login_id = 1;
+  bytes ke2 = 2;
+  // The account's Argon2id parameters, the KSF's cost.
+  bytes ksf_params = 3;
+}
+
+// The client's OPAQUE KE3 and the device that signs in.
+message FinishLoginRequest {
+  string login_id = 1;
+  bytes ke3 = 2;
+  // device_id (optional), name, platform and app_version are read.
+  Device device = 3;
+}
+
+// The new session, or what the sign-in still needs.
+message FinishLoginResponse {
+  // Unset while `second_factor` is.
+  Session session = 1;
+  // Set when the account has a second factor: FinishSecondFactor answers it.
+  SecondFactorChallenge second_factor = 2;
+  // With the session, for an account with private-mode keys: its password path, the AMK wrapped under this password,
+  // which only a password sign-in returns (KeyService).
+  UnlockPath password_path = 3;
+}
+
+// Asks for a new token for the calling session.
+message RotateSessionRequest {}
+
+// The calling session with its new token.
+message RotateSessionResponse {
+  Session session = 1;
+}
+
+// Asks for the caller's devices.
+message ListDevicesRequest {}
+
+// The devices with a session that has not expired.
+message ListDevicesResponse {
+  repeated Device devices = 1;
+}
+
+// The device to sign out.
+message RevokeDeviceRequest {
+  string device_id = 1;
+}
+
+// The device is signed out.
+message RevokeDeviceResponse {}
+
+// Where the calling device's backup is.
+message ReportBackupRequest {
+  // Items chosen for backup that are not on the server yet; a negative count is invalid_argument `field.invalid`.
+  int64 pending_count = 1;
+}
+
+// The report is recorded.
+message ReportBackupResponse {}
+
+// The provider and where it sends the person back.
+message StartOidcRequest {
+  // An `id` of GetServerInfoResponse.oidc_providers.
+  string provider = 1;
+  // Registered at the provider: the web app's page or the app's own URL scheme, such as `app.photolib:/oidc`.
+  string redirect_uri = 2;
+  // BASE64URL(SHA-256(code_verifier)) without padding: the S256 challenge of a verifier of 43 to 128 characters.
+  string code_challenge = 3;
+  // Links the identity to the calling session's account instead of signing in.
+  bool link = 4;
+}
+
+// Where to send the person.
+message StartOidcResponse {
+  // Valid for ten minutes and once.
+  string authorization_url = 1;
+}
+
+// What the provider appended to the redirect URI, and the client's PKCE verifier.
+message CompleteOidcRequest {
+  string state = 1;
+  string code = 2;
+  string code_verifier = 3;
+  // As in FinishLoginRequest, also when linking, which opens no session.
+  Device device = 4;
+}
+
+// The new session, or nothing after linking.
+message CompleteOidcResponse {
+  Session session = 1;
+}
+// The answer to a second factor challenge.
+message FinishSecondFactorRequest {
+  // From SecondFactorChallenge.
+  string login_id = 1;
+  // One of the factors the challenge named.
+  oneof answer {
+    // Six digits from the authenticator app; each code counts once.
+    string totp_code = 2;
+    // One of the account's recovery codes, which it uses up.
+    string recovery_code = 3;
+    // The AuthenticationResponseJSON of the passkey for `passkey_options_json`.
+    string passkey_credential_json = 4;
+  }
+}
+
+// The new session.
+message FinishSecondFactorResponse {
+  Session session = 1;
+  // As FinishLoginResponse's.
+  UnlockPath password_path = 2;
+}
+
+// Asks to sign in with a passkey.
+message StartPasskeyLoginRequest {}
+
+// The ceremony to run.
+message StartPasskeyLoginResponse {
+  // Names this sign-in in FinishPasskeyLogin, for five minutes.
+  string login_id = 1;
+  // PublicKeyCredentialRequestOptionsJSON.
+  string options_json = 2;
+}
+
+// The passkey's answer and the device that signs in.
+message FinishPasskeyLoginRequest {
+  string login_id = 1;
+  // The AuthenticationResponseJSON.
+  string credential_json = 2;
+  // As in FinishLoginRequest.
+  Device device = 3;
+}
+
+// The new session.
+message FinishPasskeyLoginResponse {
+  Session session = 1;
+}
+
+// Asks to add a passkey to the caller's account.
+message StartPasskeySetupRequest {}
+
+// The ceremony to run.
+message StartPasskeySetupResponse {
+  // Names this setup in FinishPasskeySetup, for five minutes.
+  string setup_id = 1;
+  // PublicKeyCredentialCreationOptionsJSON.
+  string options_json = 2;
+}
+
+// The new passkey.
+message FinishPasskeySetupRequest {
+  string setup_id = 1;
+  // The RegistrationResponseJSON.
+  string credential_json = 2;
+  // As in Passkey.
+  string name = 3;
+}
+
+// The stored passkey.
+message FinishPasskeySetupResponse {
+  Passkey passkey = 1;
+  // Ten new recovery codes, to show once, when the account had none left; otherwise empty.
+  repeated string recovery_codes = 2;
+}
+
+// Asks for a new TOTP secret.
+message StartTotpSetupRequest {}
+
+// The secret to give the authenticator app.
+message StartTotpSetupResponse {
+  // Names this setup in FinishTotpSetup, for ten minutes.
+  string setup_id = 1;
+  // The secret in base32, for typing in.
+  string secret = 2;
+  // The same as an otpauth:// URI, for a QR code.
+  string uri = 3;
+}
+
+// A code of the new secret.
+message FinishTotpSetupRequest {
+  string setup_id = 1;
+  string code = 2;
+}
+
+// TOTP is on.
+message FinishTotpSetupResponse {
+  // Ten new recovery codes, to show once, when the account had none left; otherwise empty.
+  repeated string recovery_codes = 1;
+}
+
+// Asks for the caller's second factors.
+message ListSecondFactorsRequest {}
+
+// The caller's second factors.
+message ListSecondFactorsResponse {
+  // Oldest first.
+  repeated Passkey passkeys = 1;
+  bool totp = 2;
+  uint32 recovery_codes_left = 3;
+}
+
+// The passkey to remove.
+message DeletePasskeyRequest {
+  string passkey_id = 1;
+}
+
+// The passkey is removed.
+message DeletePasskeyResponse {}
+
+// Asks to turn TOTP off.
+message DeleteTotpRequest {}
+
+// TOTP is off.
+message DeleteTotpResponse {}
+
+// Asks for new recovery codes.
+message CreateRecoveryCodesRequest {}
+
+// The new recovery codes, to show once; the old ones no longer work.
+message CreateRecoveryCodesResponse {
+  repeated string recovery_codes = 1;
+}
+
+// Asks to prove the caller's person.
+message StartStepUpRequest {
+  // The client's OPAQUE KE1, to prove the password; empty to answer with a second factor.
+  bytes ke1 = 1;
+}
+
+// What the proof answers.
+message StartStepUpResponse {
+  // Names this step-up in FinishStepUp, for five minutes and once.
+  string step_up_id = 1;
+  // With a KE1: KE2 and the account's Argon2id parameters, as in StartLoginResponse.
+  bytes ke2 = 2;
+  bytes ksf_params = 3;
+  // The second factors the account can answer with.
+  repeated SecondFactor factors = 4;
+  // PublicKeyCredentialRequestOptionsJSON for one of the account's passkeys, which must verify its user; empty without
+  // one.
+  string passkey_options_json = 5;
+}
+
+// The proof.
+message FinishStepUpRequest {
+  string step_up_id = 1;
+  oneof answer {
+    // The client's OPAQUE KE3 for the KE2 of StartStepUpResponse.
+    bytes ke3 = 2;
+    // As in FinishSecondFactorRequest.
+    string totp_code = 3;
+    string recovery_code = 4;
+    string passkey_credential_json = 5;
+  }
+}
+
+// The session has proved its person.
+message FinishStepUpResponse {}

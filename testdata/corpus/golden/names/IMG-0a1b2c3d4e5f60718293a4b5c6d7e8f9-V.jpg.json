@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "path": "names/IMG-0a1b2c3d4e5f60718293a4b5c6d7e8f9-V.jpg",
+  "size": 3755,
+  "sha256": "e99a3a7055ce56012e4bfc67086d917cf7f2fac50363f1eaddcd4ca73a7751bf",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "counter_not_time",
+    "messenger_copy"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F31"
+    ]
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

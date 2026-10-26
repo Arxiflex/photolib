@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "path": "names/VID-0a1b2c3d4e5f60718293a4b5c6d7e8fa-V.mp4",
+  "size": 747,
+  "sha256": "3513617c37f59bb465c3be9a2c7730bbbe9561fca7b11393c3f4d835381d62ef",
+  "origin": "synthetic",
+  "notes": "Placeholder h264 payload: the structure and metadata are real, the video does not decode.",
+  "format": "mp4",
+  "quirks": [
+    "counter_not_time",
+    "messenger_copy",
+    "mvhd_zero"
+  ],
+  "media": {
+    "container": "isobmff",
+    "brand": "isom",
+    "mime": "video/mp4",
+    "kind": "video",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 1920,
+    "height": 1080,
+    "duration_ms": 3000,
+    "codec": "h264"
+  },
+  "filename": {
+    "matches": [
+      "F31"
+    ]
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

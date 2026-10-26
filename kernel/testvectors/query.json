@@ -1,0 +1,29 @@
+{
+  "cases": [
+    {
+      "method": 3,
+      "name": "",
+      "request": "",
+      "response": "CgA="
+    },
+    {
+      "method": 3,
+      "name": "tag:beach -has:gps",
+      "request": "ChJ0YWc6YmVhY2ggLWhhczpncHM=",
+      "response": "CiQKIhogCg4KDAoDdGFnEgViZWFjaAoOEgwKCgoDaGFzEgNncHM="
+    },
+    {
+      "method": 3,
+      "name": "(anna OR ben) \"happy birthday\"",
+      "request": "Ch4oYW5uYSBPUiBiZW4pICJoYXBweSBiaXJ0aGRheSI=",
+      "response": "CjEKLxotChUiEwoICgYSBGFubmEKBwoFEgNiZW4KFAoSEg5oYXBweSBiaXJ0aGRheRgB"
+    },
+    {
+      "method": 3,
+      "name": "colour:red )",
+      "request": "Cgxjb2xvdXI6cmVkICk=",
+      "response": "ChAKDgoMEgpjb2xvdXI6cmVk"
+    }
+  ],
+  "description": "Search query parsing (design doc 09 §4.2)."
+}

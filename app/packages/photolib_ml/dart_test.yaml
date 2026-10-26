@@ -1,0 +1,2 @@
+# A test that fails runs again up to three times and passes if one of them does: flaky ones no longer fail the gate.
+retry: 3

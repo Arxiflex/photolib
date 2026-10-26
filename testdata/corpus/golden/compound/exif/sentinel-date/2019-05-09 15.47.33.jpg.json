@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "path": "compound/exif/sentinel-date/2019-05-09 15.47.33.jpg",
+  "size": 3454,
+  "sha256": "5a0abdee0cc2f413a689cc9705dfaff18aa8bc72c1503f0a2ccc06f3e052a5fc",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "exif_sentinel_date"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "make": "Canon",
+    "model": "Canon EOS 5D Mark IV"
+  },
+  "filename": {
+    "matches": [
+      "F47",
+      "F52",
+      "F54"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "0000-00-00T00:00:00",
+        "precision": "s",
+        "event": "capture",
+        "rejected": "sentinel"
+      },
+      {
+        "source": "filename:F47",
+        "kind": "local",
+        "value": "2019-05-09T15:47:33",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-05-09T15:47:33",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F47",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

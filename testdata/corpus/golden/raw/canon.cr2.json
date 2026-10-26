@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "path": "raw/canon.cr2",
+  "size": 21924,
+  "sha256": "c1f48a414b92404518c6eb394421da0d1413be141d5b3186a2314418af93a20a",
+  "origin": "synthetic",
+  "notes": "Placeholder sensor data, not a camera mosaic; the embedded JPEG preview decodes.",
+  "format": "cr2",
+  "vendor": "canon",
+  "quirks": [
+    "embedded_preview"
+  ],
+  "media": {
+    "container": "tiff",
+    "mime": "image/x-canon-cr2",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120,
+    "make": "Canon",
+    "model": "Canon EOS 5D Mark IV",
+    "orientation": 8
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2018-06-02T10:20:30",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2018-06-02T10:20:30",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

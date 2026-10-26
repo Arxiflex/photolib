@@ -1,0 +1,15 @@
+{
+  "tracks": [
+    {
+      "items": [
+        {"clip": {"assetId": "landscape", "source": {"start": {"num": 1, "den": 1}, "duration": {"num": 2, "den": 1}}}},
+        {"clip": {"assetId": "portrait", "source": {"start": {"num": 1, "den": 2}, "duration": {"num": 2, "den": 1}}}},
+        {"clip": {"assetId": "silent", "source": {"start": {"num": 0, "den": 1}, "duration": {"num": 3, "den": 2}}}},
+        {"clip": {"assetId": "hlg", "source": {"start": {"num": 0, "den": 1}, "duration": {"num": 2, "den": 1}}}}
+      ]
+    }
+  ],
+  "output": {"maxShortSide": 1080, "hdr": "KEEP_IF_ALL_HDR"},
+  "planner": {"preferLossless": true},
+  "metadata": {"stripGps": false}
+}

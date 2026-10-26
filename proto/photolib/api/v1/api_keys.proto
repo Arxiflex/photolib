@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package photolib.api.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// What an API key may do as its account, and only what the account itself may do. No scope manages keys.
+enum ApiKeyScope {
+  API_KEY_SCOPE_UNSPECIFIED = 0;
+  // See metadata, thumbnails and previews, and sync.
+  API_KEY_SCOPE_VIEW = 1;
+  // Fetch originals.
+  API_KEY_SCOPE_DOWNLOAD = 2;
+  // Upload, and add to albums.
+  API_KEY_SCOPE_CONTRIBUTE = 3;
+  // Change metadata, albums and libraries.
+  API_KEY_SCOPE_EDIT = 4;
+  // Trash and delete.
+  API_KEY_SCOPE_DELETE = 5;
+  // Give others access.
+  API_KEY_SCOPE_SHARE = 6;
+  // Manage the server's accounts, with an administrator's key.
+  API_KEY_SCOPE_MANAGE_USERS = 7;
+  // Run the server (the admin console), with an administrator's key; never pause maintenance jobs.
+  API_KEY_SCOPE_MANAGE_SERVER = 8;
+}
+
+// A credential for scripts, the CLI and other programs, which send its secret as `Authorization: Bearer <secret>`.
+message ApiKey {
+  string api_key_id = 1;
+  // What its owner calls it: 1 to 100 printable characters.
+  string name = 2;
+  // At least one.
+  repeated ApiKeyScope scopes = 3;
+  // Required, and in the future when the key is created.
+  google.protobuf.Timestamp expires_at = 4;
+  // Requests the key may make per minute, in bursts of up to as many: 1 to 60000; 0 when creating means 600.
+  uint32 requests_per_minute = 5;
+  google.protobuf.Timestamp created_at = 6;
+  // The last request the key made, to the minute; absent until then.
+  google.protobuf.Timestamp last_used_at = 7;
+  // Absent until the key is revoked.
+  google.protobuf.Timestamp revoked_at = 8;
+}
+
+// The caller's API keys, which only the account signed in, never a key, manages.
+service ApiKeyService {
+  // Returns the caller's keys, revoked and expired ones included, newest first.
+  rpc ListApiKeys(ListApiKeysRequest) returns (ListApiKeysResponse);
+  // Creates a key for the caller and returns its secret, which the server keeps only hashed and never shows again.
+  rpc CreateApiKey(CreateApiKeyRequest) returns (CreateApiKeyResponse);
+  // Revokes one of the caller's keys at once; revoking a revoked key changes nothing.
+  rpc RevokeApiKey(RevokeApiKeyRequest) returns (RevokeApiKeyResponse);
+}
+
+// Asks for the caller's keys.
+message ListApiKeysRequest {}
+
+// The caller's keys.
+message ListApiKeysResponse {
+  repeated ApiKey api_keys = 1;
+}
+
+// The key to create.
+message CreateApiKeyRequest {
+  // Only name, scopes, expires_at and requests_per_minute are read.
+  ApiKey api_key = 1;
+}
+
+// The key created, and its secret.
+message CreateApiKeyResponse {
+  ApiKey api_key = 1;
+  // `plk_` and 64 lowercase hexadecimal digits.
+  string secret = 2;
+}
+
+// The key to revoke.
+message RevokeApiKeyRequest {
+  string api_key_id = 1;
+}
+
+// The revoked key.
+message RevokeApiKeyResponse {
+  ApiKey api_key = 1;
+}

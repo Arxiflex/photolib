@@ -1,0 +1,135 @@
+syntax = "proto3";
+
+package photolib.kernel.v1;
+
+import "photolib/model/v1/capture_time.proto";
+import "photolib/model/v1/edit_recipe.proto";
+
+// Renders an image with the adjustments of the editor rendering spike (roadmap M0-36, ADR-0054) on the CPU: the
+// reference renderer that every GPU path must match. The edit recipe of design 11 §2.2 replaces these messages.
+message DevelopRequest {
+  Develop develop = 1;
+  // The image, or one tile of it: 8-bit sRGB RGBA, opaque.
+  Image image = 2;
+  // The image's Ultra HDR gain map, which is returned edited.
+  GainMap gain_map = 3;
+  // For a tile: the guide of the whole image (the guide of a response for its proxy), the size of the whole image
+  // and where the tile starts in it. Without it the image is whole and its own proxy.
+  Guide guide = 4;
+  uint32 full_width = 5;
+  uint32 full_height = 6;
+  uint32 tile_x = 7;
+  uint32 tile_y = 8;
+}
+
+// The rendered image, its gain map if the request had one, and the guide it used.
+message DevelopResponse {
+  Image image = 1;
+  GainMap gain_map = 2;
+  Guide guide = 3;
+}
+
+// The adjustments, each neutral at 0.
+message Develop {
+  // White balance, -1 (cool, green) to 1 (warm, magenta).
+  float temperature = 1;
+  float tint = 2;
+  // Exposure in EV.
+  float exposure = 3;
+  // An S-curve (positive) or its inverse (negative), -1 to 1.
+  float contrast = 4;
+  // Local contrast against the guide (clarity), -1 to 1.
+  float clarity = 5;
+  // -1 (monochrome) to 1.
+  float saturation = 6;
+  // Applied last, to sRGB-encoded values.
+  Lut lut = 7;
+  // Geometry, applied first and without resampling: clockwise quarter turns, a mirror left to right if `flip`, then
+  // a crop in the turned and mirrored image.
+  uint32 quarter_turns = 8;
+  Rect crop = 9;
+  bool flip = 10;
+}
+
+// A 3D colour lookup table: size³ sRGB-encoded RGB entries, red fastest, as 16-bit little-endian unsigned values.
+message Lut {
+  uint32 size = 1;
+  bytes rgb16 = 2;
+}
+
+// A rectangle in pixels; an empty one means the whole image.
+message Rect {
+  uint32 x = 1;
+  uint32 y = 2;
+  uint32 width = 3;
+  uint32 height = 4;
+}
+
+// An 8-bit RGBA raster, row by row.
+message Image {
+  uint32 width = 1;
+  uint32 height = 2;
+  bytes rgba = 3;
+}
+
+// A low-resolution grid of the image's mean log2 luminance, blurred, that local contrast compares each pixel with,
+// so that a preview and a tiled export get the same local adjustments.
+message Guide {
+  uint32 width = 1;
+  uint32 height = 2;
+  repeated float log2_luminance = 3;
+}
+
+// A gain map (Ultra HDR, ISO 21496-1) with its metadata, for full HDR headroom: the HDR rendition is
+// (sdr + offset_sdr) * 2^(min_log2 + (max_log2 - min_log2) * (map / 255)^(1 / gamma)) - offset_hdr per channel, each
+// map pixel covering a block of the image (the map's size divides the image's).
+message GainMap {
+  Image image = 1;
+  float min_log2 = 2;
+  float max_log2 = 3;
+  float gamma = 4;
+  float offset_sdr = 5;
+  float offset_hdr = 6;
+  float hdr_capacity_min = 7;
+  float hdr_capacity_max = 8;
+}
+
+// Writes an edited copy of a JPEG photo, never changing the original (design 11 §2.5, ADR-0331). An edit of geometry
+// alone keeps the original's compressed pixels: turns and mirrors become the copy's EXIF orientation, and a crop of a
+// sequential JPEG keeps whole blocks, its top left corner moved up and left onto a block boundary, as jpegtran's is.
+// Any other edit, or one of a progressive JPEG, encodes the rendered image. The copy keeps the original's EXIF, XMP,
+// ICC profile and IPTC, with its new orientation and size, and records the edit and the original in its XMP.
+message EditCopyRequest {
+  // The original, a whole JPEG file.
+  bytes original = 1;
+  // The edit of the original as shown, its EXIF orientation applied.
+  Develop develop = 2;
+  // The original decoded as shown, its EXIF orientation applied: needed unless the edit is lossless, else the call
+  // fails naming this field.
+  Image image = 3;
+  // The original's capture time, which the copy's XMP records when the original's metadata holds none.
+  photolib.model.v1.CaptureTime capture_time = 4;
+  // The original's BLAKE3 in lowercase hex, which the copy's XMP names as its source (xmpMM:DerivedFrom).
+  string original_blake3 = 5;
+  // The edit as a recipe (ADR-0391), which replaces `develop`: its geometry and adjustments as `develop` has them, its
+  // local operations rendered into `image`. The copy's XMP records a summary of it (no pixels of masks or patches)
+  // with its SHA-256, the models and parameters it came from, and IPTC's DigitalSourceType.
+  photolib.model.v1.EditRecipe recipe = 6;
+  // With a recipe: `original` is already the picture the recipe makes, rendered by the host (for a format that this
+  // call cannot edit, such as a HEIC): it is kept as it is, and only the recipe is recorded.
+  bool rendered = 7;
+  // With `rendered`: a JPEG whose EXIF, XMP and IPTC the copy keeps, for a `rendered` picture that the host made from
+  // that file (so that a copy edited in the host's renderer keeps where and when it was taken); the host's picture is
+  // in sRGB, so the file's colour profile is left out, and its orientation is the host's pixels'.
+  bytes metadata_from = 8;
+}
+
+// The copy, a JPEG file.
+message EditCopyResponse {
+  bytes jpeg = 1;
+  // Whether the copy keeps the original's compressed pixels.
+  bool lossless = 2;
+  // The part of the edited image (as turned and mirrored) that the copy shows, which a lossless crop moves up and
+  // left onto the JPEG's block grid; empty when the copy is whole. MapFaces takes it as the crop.
+  Rect crop = 3;
+}

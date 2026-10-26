@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "path": "takeout/Google Photos/Photos from 2019/IMG_5001(1).jpg",
+  "size": 2982,
+  "sha256": "59ba785ca8e1af068547bd6ac51469b90d170dffd6466f740d322e56d944f976",
+  "origin": "synthetic",
+  "original_name": "IMG_5001.jpg",
+  "format": "jpeg",
+  "quirks": [
+    "counter_not_time",
+    "takeout_duplicate_counter",
+    "takeout_geo_zero",
+    "takeout_legacy_sidecar",
+    "takeout_year_folder"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "sidecars": [
+    {
+      "path": "takeout/Google Photos/Photos from 2019/IMG_5001.jpg(1).json",
+      "kind": "takeout_json",
+      "sha256": "2e248640ac53758ea44798463321782a7d845cc863b0c8236263b02db901f600"
+    }
+  ],
+  "filename": {
+    "matches": [
+      "F10",
+      "F43",
+      "F50"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "takeout_photoTakenTime",
+        "kind": "utc",
+        "value": "2019-06-01T09:05:00Z",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": null,
+      "utc": "2019-06-01T09:05:00Z",
+      "offset": null,
+      "tz_source": "device_default",
+      "precision": "s",
+      "bound": "exact",
+      "source": "takeout_photoTakenTime",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

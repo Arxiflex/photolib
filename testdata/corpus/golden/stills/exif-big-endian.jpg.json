@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "path": "stills/exif-big-endian.jpg",
+  "size": 3560,
+  "sha256": "34450fb3a8d229af3a5eb3e91267bb93d1962f888f2a4e0689f9b0525abda109",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "olympus",
+  "quirks": [
+    "exif_big_endian"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "make": "OLYMPUS IMAGING CORP.",
+    "model": "E-M1MarkII"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2017-11-05T07:20:00",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2017-11-05T07:20:00",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

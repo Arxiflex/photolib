@@ -1,0 +1,61 @@
+# Development stack: PostgreSQL, an S3-compatible store (Garage) and Caddy with local TLS, published on loopback only.
+# Secrets come from tools/dev/.env, which `just bootstrap` generates; the server runs on the host, not here.
+name: photolib-dev
+
+services:
+  postgres:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: photolib
+      POSTGRES_DB: photolib
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?run just bootstrap to create tools/dev/.env}
+    ports:
+      - 127.0.0.1:5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U photolib -d photolib]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  garage:
+    image: dxflrs/garage:v2.4.1
+    command: [/garage, server, --single-node, --default-bucket]
+    environment:
+      GARAGE_RPC_SECRET: ${GARAGE_RPC_SECRET:?run just bootstrap to create tools/dev/.env}
+      GARAGE_DEFAULT_ACCESS_KEY: ${AWS_ACCESS_KEY_ID:?run just bootstrap to create tools/dev/.env}
+      GARAGE_DEFAULT_SECRET_KEY: ${AWS_SECRET_ACCESS_KEY:?run just bootstrap to create tools/dev/.env}
+      GARAGE_DEFAULT_BUCKET: ${S3_BUCKET:?run just bootstrap to create tools/dev/.env}
+    ports:
+      - 127.0.0.1:3900:3900
+    volumes:
+      - ./garage.toml:/etc/garage.toml:ro
+      - garage-meta:/var/lib/garage/meta
+      - garage-data:/var/lib/garage/data
+    healthcheck:
+      test: [CMD, /garage, status]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  caddy:
+    image: caddy:2.11
+    ports:
+      - 127.0.0.1:8443:443
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+    healthcheck:
+      test: [CMD, wget, -q, --spider, "http://localhost:2019/config/"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+volumes:
+  postgres:
+  garage-meta:
+  garage-data:
+  caddy-data:

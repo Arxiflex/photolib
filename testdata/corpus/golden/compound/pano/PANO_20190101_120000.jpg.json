@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "path": "compound/pano/PANO_20190101_120000.jpg",
+  "size": 153634,
+  "sha256": "7b91e9373077eeeb6c5e7858de3c6ce87a03ebd6ba57c8e4bcd9e49ad6cf8760",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "motorola",
+  "quirks": [
+    "flat_panorama"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 12000,
+    "height": 2000,
+    "make": "motorola",
+    "model": "moto g(7)"
+  },
+  "filename": {
+    "matches": [
+      "F02",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "2019-01-01T12:00:00",
+        "precision": "s",
+        "event": "capture"
+      },
+      {
+        "source": "filename:F02",
+        "kind": "local",
+        "value": "2019-01-01T12:00:00",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-01-01T12:00:00",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "path": "compound/motion/PXL_20230330_184138390.MP.jpg",
+  "size": 81384,
+  "sha256": "f247e5f1aac66e0686c102cef23690e7454e08abf82e6ca6f3a801474f7aa91d",
+  "origin": "synthetic",
+  "notes": "The embedded motion video is a placeholder.",
+  "format": "jpeg",
+  "vendor": "google",
+  "quirks": [
+    "motion_photo_v1",
+    "pixel_utc_name"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 4080,
+    "height": 3072,
+    "make": "Google",
+    "model": "Pixel 7",
+    "motion": {
+      "offset": 80633,
+      "length": 751
+    }
+  },
+  "filename": {
+    "matches": [
+      "F03"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2023-03-30T14:41:38.390",
+        "precision": "ms",
+        "event": "capture",
+        "offset": "-04:00"
+      },
+      {
+        "source": "filename:F03",
+        "kind": "utc",
+        "value": "2023-03-30T18:41:38.390Z",
+        "precision": "ms",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2023-03-30T14:41:38.390",
+      "utc": "2023-03-30T18:41:38.390Z",
+      "offset": "-04:00",
+      "tz_source": "explicit_offset",
+      "precision": "ms",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "path": "names/WIN_20231231_12_34_56_Pro.jpg",
+  "size": 3446,
+  "sha256": "c5c740a3604285c52756ae364bcb5d5dbd9e331452f264fcdab4010457a46030",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "microsoft",
+  "quirks": [],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F11",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F11",
+        "kind": "local",
+        "value": "2023-12-31T12:34:56",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12-31T12:34:56",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F11",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

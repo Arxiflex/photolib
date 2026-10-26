@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "path": "names/dcf/DSCF0001.RAF",
+  "size": 2225,
+  "sha256": "597c512923aabc009de697322da452ca78aa61747c2e55f3614ed96f432db43e",
+  "origin": "synthetic",
+  "notes": "Placeholder sensor data, not a camera mosaic; the embedded JPEG preview decodes.",
+  "format": "raf",
+  "vendor": "fujifilm",
+  "quirks": [
+    "counter_not_time"
+  ],
+  "media": {
+    "container": "raf",
+    "mime": "image/x-fuji-raf",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": [
+      "F43"
+    ]
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

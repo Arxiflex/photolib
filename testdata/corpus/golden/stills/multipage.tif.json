@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "path": "stills/multipage.tif",
+  "size": 19550,
+  "sha256": "78b584d594e903af37ea204e0eea38b1297024bacf75217cf718287f0cbe6ee9",
+  "origin": "synthetic",
+  "format": "tiff",
+  "quirks": [
+    "multipage"
+  ],
+  "media": {
+    "container": "tiff",
+    "mime": "image/tiff",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

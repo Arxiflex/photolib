@@ -1,0 +1,18 @@
+[package]
+name = "photolib-authz"
+version = "0.0.0"
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+license.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+sqlx = { version = "0.8.6", default-features = false, features = ["runtime-tokio", "postgres"] }
+uuid = "1.26.1"
+
+[dev-dependencies]
+photolib-db = { path = "../photolib-db", features = ["testing"] }
+tokio = { version = "1.53.3", features = ["macros", "rt-multi-thread"] }

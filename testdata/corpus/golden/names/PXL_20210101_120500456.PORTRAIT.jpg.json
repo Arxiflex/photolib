@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "path": "names/PXL_20210101_120500456.PORTRAIT.jpg",
+  "size": 3672,
+  "sha256": "59387be1fc88e92405f3aa7c083809c43c8d3ed164aa8bc36faccf63523e2cfe",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "google",
+  "quirks": [
+    "pixel_utc_name"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F03"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F03",
+        "kind": "utc",
+        "value": "2021-01-01T12:05:00.456Z",
+        "precision": "ms",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": null,
+      "utc": "2021-01-01T12:05:00.456Z",
+      "offset": null,
+      "tz_source": "device_default",
+      "precision": "ms",
+      "bound": "exact",
+      "source": "filename:F03",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

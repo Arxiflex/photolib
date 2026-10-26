@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "path": "time/zones/printed-1955.jpg",
+  "size": 3149,
+  "sha256": "34234d58a6eabbdf449b3d3a7c57db645eff4dbf847796546095057e6a17399e",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "epson",
+  "quirks": [],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480,
+    "make": "EPSON",
+    "model": "Perfection V850"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_no_offset",
+        "kind": "local",
+        "value": "1955-06-01T12:00:00",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "1955-06-01T12:00:00",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_no_offset",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

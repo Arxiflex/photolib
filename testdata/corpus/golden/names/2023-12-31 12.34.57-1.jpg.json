@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "path": "names/2023-12-31 12.34.57-1.jpg",
+  "size": 3290,
+  "sha256": "a259d58a206f23f1a01e7be660ccaa63dd155317beed4d061f7c37565e07d986",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F47",
+      "F52",
+      "F54"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "filename:F47",
+        "kind": "local",
+        "value": "2023-12-31T12:34:57",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2023-12-31T12:34:57",
+      "utc": null,
+      "offset": null,
+      "tz_source": "floating",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F47",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

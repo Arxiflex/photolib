@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "path": "takeout/Google Photos/Photos from 2019/IMG_20190509_154733-edited.jpg",
+  "size": 3524,
+  "sha256": "43d9c8bd02a26cd90a1210e8d08f3018cdb8bb9b7057ee24913b52312ffbbfc5",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "quirks": [
+    "takeout_edited",
+    "takeout_no_sidecar",
+    "takeout_year_folder"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 640,
+    "height": 480
+  },
+  "filename": {
+    "matches": [
+      "F01",
+      "F02",
+      "F50",
+      "F52"
+    ]
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "takeout_photoTakenTime",
+        "kind": "utc",
+        "value": "2019-05-09T13:47:33Z",
+        "precision": "s",
+        "event": "capture"
+      },
+      {
+        "source": "filename:F01",
+        "kind": "local",
+        "value": "2019-05-09T15:47:33",
+        "precision": "s",
+        "event": "capture"
+      }
+    ],
+    "resolved": {
+      "local": "2019-05-09T15:47:33",
+      "utc": "2019-05-09T13:47:33Z",
+      "offset": "+02:00",
+      "tz_source": "paired_utc_delta",
+      "precision": "s",
+      "bound": "exact",
+      "source": "filename:F01",
+      "confidence_band": "medium",
+      "flags": []
+    }
+  }
+}

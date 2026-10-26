@@ -1,0 +1,13 @@
+name: photolib_log
+description: Structured logging for the app and its packages, one hub per isolate, redacted in release builds.
+publish_to: none
+
+environment:
+  sdk: ^3.13.5
+
+dev_dependencies:
+  dart_code_linter: ^4.4.2
+  photolib_harness:
+    path: ../photolib_harness
+  test: ^1.25.0
+  very_good_analysis: ^11.0.0

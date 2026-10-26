@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "path": "stills/rgb.tif",
+  "size": 57728,
+  "sha256": "6aef45a7d8fbfab37563db36e5673ffdf8686bcb9ec533851fcdc2a5ffa7e1b0",
+  "origin": "synthetic",
+  "format": "tiff",
+  "quirks": [],
+  "media": {
+    "container": "tiff",
+    "mime": "image/tiff",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 160,
+    "height": 120
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [],
+    "resolved": null
+  }
+}

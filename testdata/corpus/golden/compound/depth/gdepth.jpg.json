@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "path": "compound/depth/gdepth.jpg",
+  "size": 77151,
+  "sha256": "62a6632ebc5d669fcad101c6ae3a7ff3d2c6c853864f91c51288221539ca7ea4",
+  "origin": "synthetic",
+  "format": "jpeg",
+  "vendor": "google",
+  "quirks": [
+    "depth_gdepth"
+  ],
+  "media": {
+    "container": "jpeg",
+    "mime": "image/jpeg",
+    "kind": "image",
+    "support": "supported"
+  },
+  "metadata": {
+    "width": 4032,
+    "height": 3024,
+    "make": "Google",
+    "model": "Pixel 4"
+  },
+  "filename": {
+    "matches": []
+  },
+  "capture_time": {
+    "claims": [
+      {
+        "source": "exif_dto_with_offset",
+        "kind": "local",
+        "value": "2020-01-15T08:10:00",
+        "precision": "s",
+        "event": "capture",
+        "offset": "-08:00"
+      }
+    ],
+    "resolved": {
+      "local": "2020-01-15T08:10:00",
+      "utc": "2020-01-15T16:10:00Z",
+      "offset": "-08:00",
+      "tz_source": "explicit_offset",
+      "precision": "s",
+      "bound": "exact",
+      "source": "exif_dto_with_offset",
+      "confidence_band": "high",
+      "flags": []
+    }
+  }
+}
