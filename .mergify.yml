@@ -1,0 +1,30 @@
+merge_queue:
+  # One batch is tested at a time, always on top of the current tip of dev.
+  max_parallel_checks: 2
+
+queue_rules:
+  - name: default
+    # Each PR lands on dev as one squashed commit, in a straight line: no merge commit. Its message is the PR title (a
+    # Conventional Commits subject, AGENTS.md "Commits") and the PR number, without the PR body, a long checklist.
+    merge_method: squash
+    commit_message_format:
+      title: pr-title
+      body: empty
+    update_method: rebase
+    # Up to 3 PRs are tested together; a batch starts when it is full or 3 minutes after its first PR.
+    batch_size: 3
+    batch_max_wait_time: 3 minutes
+    # Checked on Mergify's draft PR (branch mergify/merge-queue/*), where dev's ci.yml runs the split gate: its gate
+    # job passes only when every block's jobs did.
+    merge_conditions:
+      - check-success=gate
+
+pull_request_rules:
+  - name: Queue PRs to dev when labeled
+    conditions:
+      - base=dev
+      - label=queue
+      - -draft
+    actions:
+      queue:
+        name: default
